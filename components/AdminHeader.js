@@ -63,9 +63,10 @@ export default function AdminHeader({children}){
       <div className="logoCon" onClick={()=>router.push('/')}>
         {logo&&<Image
           src={logo}
-          width='106px'
-          height='30px'
+          width={106}
+          height={30}
           blurDataURL="/favicon.io"
+          alt={logo}
           priority
           />}
         </div>

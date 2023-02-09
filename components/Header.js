@@ -103,8 +103,9 @@ export default function Header(){
       <div className="logoCon" onClick={()=>router.push('/')}>
         {logo&&<Image
           src={logo}
-          width='106px'
-          height='30px'
+          width={106}
+          height={30}
+          alt={logo}
           blurDataURL="/favicon.io"
           priority
           />}

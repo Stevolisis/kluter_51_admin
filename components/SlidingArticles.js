@@ -15,6 +15,7 @@ export default function SlidingArticles({articlesSlide,title}){
        <div className='blogImg'>
              <Image 
              src={img.url}
+             alt={title}
              layout="fill"
              blurDataURL="/favicon.io"
              placeholder="blur"

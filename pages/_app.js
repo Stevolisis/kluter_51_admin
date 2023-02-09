@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }) {
         if(status==='success'){
           setname(data[0].name)
           setdescription(data[0].description)
-          setlogo(data[0].logo&&data[0].logo.url||'')
+          setlogo(data[0].logo&&data[0].logo.url)
           setfront_cover_image(data[0].front_cover_image&&data[0].front_cover_image.url||'')
           setphone_number(data[0].phone_number)
           setgmail(data[0].gmail)

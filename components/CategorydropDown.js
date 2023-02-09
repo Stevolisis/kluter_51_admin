@@ -16,7 +16,7 @@ export default function CategorydropDown(){
         } else {
             $('.filterCon2').css('display','none');
             $('.filterCon2').css('margin-top','-100%');
-            $('.categoriesCon').css('background','#ec9735');
+            $('.categoriesCon').css('background','#177C65');
             $('.categoriesCon').css('border','none');
             $('.categoriesHeading').css('color','white');
             $('#slideIcon').css('color','white');

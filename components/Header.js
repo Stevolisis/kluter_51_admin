@@ -117,7 +117,7 @@ export default function Header(){
       <Link href='https://ototech22.github.io/OTOTECH-website/contact.html'>Contact</Link>
       </div>
       <div className="buttonCon">
-      <Link href='#'>HIRE A TALENT</Link>
+      <Link href='#'>Contact Us</Link>
             <NavbarController navStatus={navStatus} setnavStatus={setnavStatus}/>
       </div>
 

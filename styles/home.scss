@@ -11,7 +11,7 @@
 
 
 header{
-	background: $color0;
+	background: $color4;
 	display: flex;
 	justify-content: space-between;
 	align-content: center;
@@ -31,16 +31,7 @@ header{
 	align-content: center;
     cursor: pointer;
     height: 40px;
-
-    span{
-        height: 29px !important;
-        margin-top: 6px !important;
-    }
-    
-    h3{
-	font-family: poppinsExtraBold;
-    font-size: 21px;
-    }
+    padding-top: 7px !important;
 }
 
 .linksCon{
@@ -48,7 +39,7 @@ header{
 	align-content: center;
 
     a{
-        color: $color3;
+        color: $color1;
         text-decoration: none;
         font-family: poppinsLight;
         margin: 8px 8px;

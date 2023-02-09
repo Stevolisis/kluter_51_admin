@@ -127,7 +127,7 @@ export default function AddCategory(){
             <p>Thumbnail(Image)</p>
 
             <div className='previewimg'>
-            <img src={imgpreview}/>
+            <img src={imgpreview} alt='d'/>
             </div>
 
             <input type='file' name='img_link' onChange={imgPreview} required='required'/>

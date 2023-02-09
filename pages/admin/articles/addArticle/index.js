@@ -180,7 +180,7 @@ export default function AddArticle(){
             <p>Thumbnail(Image)</p>
 
             <div className='previewimg'>
-            <img src={imgpreview}/>
+            <img src={imgpreview} alt='f'/>
             </div>
 
             <input type='file' name='img_link' onChange={imgPreview}/>

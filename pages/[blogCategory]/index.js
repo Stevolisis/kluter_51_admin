@@ -228,7 +228,7 @@ export default function BlogCategory({category,blogData,error}){
       </div>
 
 
-      {articlesSlide!==null ? <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>: <SlidingArticlesLoader/>}
+      {/* {articlesSlide!==null ? <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>: <SlidingArticlesLoader/>} */}
         </>
     )
 }

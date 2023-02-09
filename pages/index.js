@@ -227,13 +227,13 @@ function loadArticlesByViews(){
   </div>
 
 
-  {
+  {/* {
   articlesSlide!==null 
   ? 
   <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>
   :
   <SlidingArticlesLoader/>
-  }
+  } */}
 
 
 

@@ -410,7 +410,7 @@ export default function Article({error,content,pageId,categoryId,img_link,img_li
 
 
 
-     {articlesSlide!==null ? <SlidingArticles articlesSlide={articlesSlide} title='Related Topics'/>: <SlidingArticlesLoader/>}
+     {/* {articlesSlide!==null ? <SlidingArticles articlesSlide={articlesSlide} title='Related Topics'/>: <SlidingArticlesLoader/>} */}
 
     </>
     )

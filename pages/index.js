@@ -141,7 +141,7 @@ function loadArticlesByViews(){
         <title>{name}</title>
         <meta name="description" content="Web Technology, app development, content writing, web management, SEO" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#ec9735" />
+        <meta name="theme-color" content="#177C65" />
       </Head>
 
 

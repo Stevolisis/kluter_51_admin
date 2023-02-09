@@ -293,7 +293,7 @@ export default function Article({error,content,pageId,categoryId,img_link,img_li
         <title>{content && content.title}</title>
         <meta name="description" content="Web Technology, app development, content writing, web management, SEO" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#ec9735" />
+        <meta name="theme-color" content="#177C65" />
     </Head>
 
 

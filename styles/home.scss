@@ -62,7 +62,7 @@ header{
         border-radius: 5px;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
         background: $color2;
-        color:$color3;
+        color:$color4;
         font-family: poppinsRegular;
         font-size: 12px;
         letter-spacing: 1.5px;
@@ -72,7 +72,7 @@ header{
 
 
 .barCon{
-	background: $color10;
+	background: $color2;
 	padding: 0px 80px;
 	display: flex;
 	justify-content: flex-start;
@@ -120,7 +120,7 @@ input:focus{
 }
 i{
     padding: 13px 8px;
-    color:$color9;
+    color:$color3;
 }
 }
 
@@ -139,7 +139,7 @@ i{
     }
 
     div{
-    background: $color14;
+    background: $color0;
     padding: 15px;
     font-family: poppinsLight;
     display: flex;
@@ -168,7 +168,7 @@ i{
     
     div{
         width:50% ;
-        background: $color4;
+        background: $color3;
         padding: 25px 15px;
         font-family: poppinsLight;
         border: 1px solid $color5;
@@ -176,7 +176,7 @@ i{
 
         a{
             width: 100%;
-            color:$color14;
+            color:$color0;
         }
 }
 }
@@ -202,14 +202,14 @@ width: 50vw;
 }
 
 .main1 h3{
-color: $color1;
+color: $color4;
 font-family: poppinsBold;
 font-size: 35px;
 padding-bottom: 30px;
 }
 
 .main2{
-	color: $color3;
+	color: $color4;
 	font-family: poppinsRegular;
 	padding-bottom: 40px;
 }
@@ -226,7 +226,7 @@ padding-bottom: 30px;
 		border: 1px solid $color1;
         padding: 12px 7px;
         width: 100%;
-        background: #232323;
+        background: $color0;
         position: relative;
         box-sizing: border-box;
         color:$color3;
@@ -239,7 +239,7 @@ padding-bottom: 30px;
 
     i{
         padding: 12px 10px;
-        background: #232323;
+        background: $color0;
 		border: 1px solid $color1;
         border-right: none;
         color: $color9;
@@ -260,7 +260,7 @@ padding-bottom: 30px;
 
 .main4 div{
 	width: 100%;
-    background: $color14;
+    background: $color8;
     padding: 15px;
     font-family: poppinsLight;
     box-sizing: border-box;
@@ -292,7 +292,7 @@ padding-bottom: 30px;
     h2{
         font-family: poppinsMedium;
         font-size: 20px;
-        color:$color14;
+        color:$color0;
     }
 
     p{
@@ -300,6 +300,7 @@ padding-bottom: 30px;
         font-size: 13px;
         padding-top: 10px;
         text-overflow: ellipsis;
+        color: $color8;
     }
 }
 
@@ -320,11 +321,12 @@ padding-bottom: 30px;
         font-size: 19px;
         color: $color9;
     }
+
 }
 
 .emailRegisterCon{
     background: $color1;
-    padding: 5% 10%;
+    padding: 7% 10%;
 }
 
 .emailRegister{
@@ -336,6 +338,7 @@ padding-bottom: 30px;
     h2{
        font-family: poppinsBold; 
        padding-bottom: 20px;
+       color: $color4;
     }
 
 
@@ -346,14 +349,14 @@ padding-bottom: 30px;
     }
 
     input{
-	    border: 1px solid $color3;
+	    border: 1px solid $color2;
         border-right: 0;
         padding: 15px 10px;
         width: 100%;
-        background: #232323;
+        background: $color0;
         position: relative;
         box-sizing: border-box;
-        color:$color3;
+        color:$color4;
     }
     
     input:focus{
@@ -362,9 +365,10 @@ padding-bottom: 30px;
 
     button{
         padding: 15px;
-	    border: 1px solid $color3;
+	    border: 2px solid $color2;
         border-left: 0;
         font-family: poppinsRegular;
+        background: $color3;
     }
 }
 

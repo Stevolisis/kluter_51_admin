@@ -31,7 +31,7 @@ header{
 	align-content: center;
     cursor: pointer;
     height: 40px;
-    padding-top: 7px !important;
+    padding-top: 9px !important;
 }
 
 .linksCon{
@@ -143,7 +143,7 @@ i{
     padding: 15px;
     font-family: poppinsLight;
     display: flex;
-    border-top: 1px solid $color8;
+    border-top: 1px solid $color1;
 
     a{
         width: 100%;
@@ -242,7 +242,7 @@ padding-bottom: 30px;
         background: $color0;
 		border: 1px solid $color1;
         border-right: none;
-        color: $color9;
+        color: $color4;
     }
 }
 
@@ -260,12 +260,12 @@ padding-bottom: 30px;
 
 .main4 div{
 	width: 100%;
-    background: $color8;
+    background: $color1;
     padding: 15px;
     font-family: poppinsLight;
     box-sizing: border-box;
     display: flex;
-    border-top: 1px solid $color8;
+    border-top: 1px solid $color2;
 
     a{
         width:100% !important;
@@ -310,7 +310,7 @@ padding-bottom: 30px;
     width:20%;
     height: 220px;
     background: $color7;
-    box-shadow:$color6;
+    box-shadow:$color10;
     padding: 30px;
     margin:12px;
     box-sizing: content-box;
@@ -391,13 +391,14 @@ padding-bottom: 30px;
 }
 
 .blogCon{
-    max-width: 22%;
-    box-shadow:$color6;
+    max-width: 30%;
+    box-shadow:$color10;
     margin:12px;
+    min-width: 300px;
 }
 
 .blogImg{
-    height: 170px;
+    height: 210px;
     width: 100%;
     position: relative;
     background-color: #F0EEEE;
@@ -414,7 +415,7 @@ padding-bottom: 30px;
 
 .blogInfo{
     padding: 15px 20px 0 20px;
-    background: $color20;
+    background: $color59;
     height: 235px;
     overflow-y: auto;
 
@@ -425,6 +426,7 @@ padding-bottom: 30px;
         font-size: 22px;
         width: 200px;
         min-width: 140px ;
+        color: $color0;
         // overflow: hidden;
         // white-space: nowrap;
         // text-overflow: ellipsis !important;
@@ -436,7 +438,7 @@ padding-bottom: 30px;
 
 .blogMetaData{
     font-size: 10px;
-    color: $color2;
+    color: $color1;
     padding-bottom: 5px;
     display: flex;
     justify-content: space-between;
@@ -471,7 +473,7 @@ padding-bottom: 30px;
     justify-content: space-between;
     align-items: center;
     padding: 9px 20px 15px 20px;
-    background: $color20;
+    background: $color59;
 }
 
 .blogData{
@@ -497,7 +499,7 @@ align-items: center;
     justify-content: center;
 }
 .blogRead p{
-color: $color3;
+color: $color4;
 font-size: 11px;
 padding: 7px 12px;
 background:$color1;
@@ -516,9 +518,9 @@ background:$color1;
     button{
         font-size: 13px;
         padding:7px 12px;
-        color:$color3;
+        color:$color4;
         font-family: poppinsRegular;
-        background: $color14;
+        background: $color0;
         border:none;
         cursor: pointer;
     }
@@ -533,7 +535,7 @@ background:$color1;
     justify-content: space-around;
     align-items: center;
     box-sizing: border-box;
-    background: $gradient2;
+    background: $gradient1;
     padding: 6% 8%;
 }
 
@@ -542,16 +544,16 @@ background:$color1;
     flex-grow: 1;
 
     h2{
-        color:$color3;
+        color:$color4;
         font-family: poppinsExtraBold;
         padding:0 30px 30px 0 ;
     }
     
     a{
-        border:1px solid $color1;
+        border:1px solid $color0;
         padding:10px 15px;
         font-family: poppinsRegular;
-        background: transparent;
+        background: black;
         color:$color3;
         font-size: 16px;
         // border-radius: 5px;
@@ -560,7 +562,7 @@ background:$color1;
 
 .blogAdsImg{
     width: 100%;
-    height: 350px !important;
+    height: 350px;
     box-sizing: border-box;
     flex-grow: 1;
     position: relative;
@@ -597,7 +599,7 @@ box-sizing: border-box;
 
 .blogInfo{
     padding: 15px 20px 0 20px;
-    background: $color20;
+    background: $color59;
     height: 100px;
     overflow-y: hidden;
 
@@ -613,13 +615,15 @@ box-sizing: border-box;
 
     h2{
         font-family: poppinsMedium;
+        color: $color0;
+        font-size: 26px;
     }
 }
 
 footer{
     padding: 80px 7%;
     color:$color3;
-    background: $color10;
+    background: $color1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -639,7 +643,7 @@ footer{
     
     h4{
         font-size: 20px;
-        color:$color12;
+        color:$color3;
         font-family: poppinsRegular;
         margin-bottom: 35px;
     }
@@ -647,6 +651,7 @@ footer{
         font-size: 14px;
         line-height: 2;
         font-family: poppinsLight;
+        color: $color4;
     }
 
     ol{
@@ -657,11 +662,12 @@ footer{
         li{
         font-size: 14px;
         font-family: poppinsLight;
-        transition: 0.5s;   
+        transition: 0.5s;  
+        color: $color4; 
         }
 
         li:hover{
-            color:$color1;
+            color:$color0;
         }
     }
 
@@ -677,8 +683,8 @@ footer{
             width:33px;
             height:32px;
             border-radius: 50%;
-            background-color: $color3;
-            color:$color10;
+            background-color: $color4;
+            color:$color0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -687,7 +693,8 @@ footer{
         }
 
         li:hover{
-            background: $color1;
+            background: $color0;
+            color: $color4;
         }
     }
 
@@ -698,11 +705,11 @@ footer{
             border-radius: 20px;
             height: 40px;
             padding: 0 15px;
-            color:$color13;
+            color:$color0;
             font-size: 13px;
             border: 0;
             line-height: 40px;
-            background: $color14;
+            background: $color3;
             font-family: poppinsMedium;
             margin-bottom: 15px;
             box-sizing: border-box;
@@ -720,11 +727,11 @@ footer{
             max-height: 200px;
             height: 120px;
             padding: 0 15px;
-            color:$color13;
+            color:$color0;
             font-size: 13px;
             border: 0;
             line-height: 40px;
-            background: $color14;
+            background: $color3;
             font-family: poppinsMedium;
             margin-bottom: 15px; 
 
@@ -736,18 +743,19 @@ footer{
         button{
             padding:12px 30px;
             border:0;
-            color:$color3;
-            background: $color1;
+            color:$color4;
+            background: $color2;
             font-size: 13px;
             font-family: poppinsBold;
             border-radius: 30px;
+            cursor: pointer;
         }
     }
 }
 
 .footerCon2{
     padding:25px 0px;
-    background:$color11;
+    background:$color0;
     text-align:center;
     font-family: poppinsLight;
     color:$color3;

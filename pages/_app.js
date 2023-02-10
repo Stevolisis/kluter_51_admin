@@ -108,9 +108,9 @@ useEffect(()=>{
   return(
     <Layout> {loading&&<PageLoader/>}
     <LoaderContext.Provider value={{ loading, setloading, name, description, front_cover_image, logo }}>
-      <GoogleAnalytics measurementId='G-2V6FM503T5'/>
+      {/* <GoogleAnalytics measurementId='G-2V6FM503T5'/>
       <Script strategy='afterInteractive' async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7953128690140311"
-     crossorigin="anonymous"></Script>
+     crossorigin="anonymous"></Script> */}
        {admin==='admin' ? 
         <>
             <AdminHeader>

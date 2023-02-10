@@ -10,21 +10,23 @@ export default async function middleware(req) {
       if (req.method == "HEAD") {
         return NextResponse.error();
       }
-
-      if(req.cookies.get('adminPass')== undefined){
-
-        return NextResponse.rewrite(`${baseUrl}/login?next=${next}&from=adminRoutes`); 
-
-      }else{
-
-       const res=await fetch(`${baseUrl}/api/authentication/adminAuth?cookie=${cookie}`)
-       if(res.status!==404){
-        return NextResponse.next();
-      }else{
+//
+      if (!cookie) {
         return NextResponse.rewrite(`${baseUrl}/login?next=${next}&from=adminRoutes`);
+      } else {
+        try {
+          const res = await fetch(`${baseUrl}/api/authentication/adminAuth?cookie=${cookie}`)
+          if (res.status !== 404) {
+            return NextResponse.next();
+          } else {
+            return NextResponse.redirect(`${baseUrl}/login?next=${next}&from=adminRoutes`);
+          }
+        } catch (error) {
+          console.error(error);
+          return NextResponse.rewrite(`${baseUrl}/login?next=${next}&from=adminRoutes`);
+        }
       }
-
-      }
+      
 
     }
 

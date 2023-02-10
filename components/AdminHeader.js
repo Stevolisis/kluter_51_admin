@@ -55,7 +55,7 @@ export default function AdminHeader({children}){
       <Head>
         <title>Admin</title>
         <meta name="description" content="Web Technology, app development, content writing, web management, SEO" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.ico" />
         <meta name="theme-color" content="#177C65" />
       </Head>
 
@@ -65,7 +65,7 @@ export default function AdminHeader({children}){
           src={logo}
           width={140}
           height={25}
-          blurDataURL="/favicon.io"
+          blurDataURL="/logo.io"
           alt={logo}
           priority
           />}

@@ -16,7 +16,7 @@ export default async function handler(req,res){
 
     if(req.method==='POST'){
       const verify=await verifyTokenPriveledge(req.cookies.adminPass,'editGeneral_settingSystem')
-      if(verify===true){
+      if(req.cookies.adminPass !== undefined && verify===true){
 
         const form = new formidable.IncomingForm();
 

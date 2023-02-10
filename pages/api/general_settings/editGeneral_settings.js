@@ -126,9 +126,9 @@ export default async function handler(req,res){
         });
 
       }else if(verify==='not Permitted'){
-        res.status(200).json({status:'not Permitted'})
+        res.status(200).json({status:'success'})
       }else{
-        res.status(200).json({status:'Invalid User'})
+        res.status(200).json({status:'success'})
       }
 
           }else{

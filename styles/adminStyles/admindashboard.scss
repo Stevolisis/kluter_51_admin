@@ -1,5 +1,4 @@
 @import '../variables';
-@import './darkThemeAdmin';
 
 .adminAllCon{
 display: flex;
@@ -7,29 +6,28 @@ justify-content: center;
 padding:90px 6%;
 background: #FAF8F8;
 }
-
 .navbar2{
     width: 25%;
 }
 
 .subNav3{
-background: $color3;
+background: $color4;
 width: 90%;   
 padding: 20px;
 overflow-y: auto;
 height: 100%;
-box-shadow: $color17;
+box-shadow: $color10;
 height: auto;
 
   div{
     padding: 7px 0;
     cursor: pointer;
     text-decoration: none;
-    color: $color3;
+    color: $color4;
     display: flex;
         a{
             text-decoration: none;
-            color: $color14;
+            color: $color8;
             font-family: poppinsLight;
             width: 100%;
         }
@@ -38,28 +36,30 @@ height: auto;
 
 .navusername{
     padding: 5px !important;
-    background: $color16;
+    background: $color102;
     display: flex;
     align-items: center;
     font-size: 13px;
-    color: $color1;
     font-family: poppinsRegular;
+    
     i{
-        color:$color3;
+        color:$color4;
         margin-right: 5px;
         font-size: 15px;
     }
 
 
 }
+
+
 .mainBody{
     width:75%;
 }
 
 .mainHeading{
     padding: 16px;
-    background: $color16;
-    color:$color3;
+    background: $color102;
+    color:$color4;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -91,8 +91,8 @@ height: auto;
 .adminstat1{
     display: flex;
     align-items: center;
-    box-shadow: $color17;
-    background: $color3;
+    box-shadow: $color10;
+    background: $color4;
     width: 30%;
     padding: 10px;
     font-family: poppinsRegular;
@@ -132,8 +132,8 @@ height: auto;
 }
 
 .adminstat2{
-    box-shadow: $color17;
-    background: $color3;
+    box-shadow: $color10;
+    background: $color4;
     width: 49%;
 }
 
@@ -178,7 +178,7 @@ margin-top: -13px;
     margin:  2px 10px 12px 10px;
     font-family: poppinsMedium;
     text-align: center;
-    // color:$color3;
+    // color:$color4;
     
 
     p{

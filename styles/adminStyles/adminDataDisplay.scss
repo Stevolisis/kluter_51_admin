@@ -6,8 +6,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
-    background: $color3;
+    box-shadow: $color10;
+    background: $color4;
     padding: 15px;
     padding-bottom: 0;
     //margin-bottom: 10px;
@@ -20,7 +20,7 @@
     justify-content: flex-end;
     
         input{
-            border: 1px solid $color13;
+            border: 1px solid $color5;
             padding: 9px 6px;
             border-radius: 5px;
             width: 100%;
@@ -28,7 +28,7 @@
           }
     
           select{
-            border: 1px solid $color13;
+            border: 1px solid $color5;
             padding: 9px 6px;
             border-radius: 5px;
             width: 80%;
@@ -39,8 +39,8 @@
 
 
 .adminstat3con{
-    box-shadow: $color17;
-    background: $color3;
+    box-shadow: $color10;
+    background: $color4;
   //  margin-top: 18px;
     padding-bottom: 18px;
 }
@@ -54,11 +54,12 @@
     padding: 0 15px;
     display: flex;
     justify-content:space-between;
+
     button{
-        color: $color3;
+        color: $color4;
         padding: 10px;
         border: 0;
-        background: $color2;
+        background: $color1;
         border-radius: 5px;
         box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
         cursor: pointer;
@@ -78,7 +79,7 @@
 
     tr{
         border: 0;
-        border: 1px solid $color13;
+        border: 1px solid $color5;
     }
     th{
         padding: 10px 14px;

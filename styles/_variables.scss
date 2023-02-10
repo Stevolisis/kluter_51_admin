@@ -3,6 +3,7 @@
     }
     
     $color0:#073128;
+    $color01:#0b5241;
     $color1:#177C65;
     $color2:#29a084;
     $color3:#e4e2e2;
@@ -15,17 +16,14 @@
     $color9:gray;
     $color10:0 1px 2px 0 rgba(0, 0, 0, 0.15);
     $color101:#f7f7f7;
-    
+    $color102:linear-gradient(40deg,$color2,$color1);
+
     $color11:#29a084;
     $color12:#0a0a0a;
     $color13:#141414;
-    $color14:#c9c5c5;
     $color15:#343434;
-    $color16:#aaaaaa;
-    $color17:linear-gradient(40deg,$color2,$color1);
     $color18:0 1px 2px 0 rgba(0,0,0,.2);
-    $color19:rgb(252, 252, 252);
-    $color20:#fcfcfc;
+
 
 
     //Dark Theme

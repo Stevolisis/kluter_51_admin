@@ -1,7 +1,6 @@
 @import './variables';
 @import './responsiveHome';
 @import './Navbar';
-@import './darkThemeHome';
 // @import './responsiveHome';
 
 *{
@@ -9,6 +8,9 @@
 	margin: 0;
 }
 
+input{
+    accent-color: $color1;
+}
 
 header{
 	background: $color4;
@@ -520,7 +522,7 @@ background:$color1;
         padding:7px 12px;
         color:$color4;
         font-family: poppinsRegular;
-        background: $color0;
+        background: $color01;
         border:none;
         cursor: pointer;
     }
@@ -623,7 +625,7 @@ box-sizing: border-box;
 footer{
     padding: 80px 7%;
     color:$color3;
-    background: $color1;
+    background: $color01;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -9,7 +9,7 @@ export default function PageLoader({res}){
         height="80" 
         width="80" 
         radius="9"
-        color="#0b5241" 
+        color="#177C65" 
         ariaLabel="three-dots-loading"
         wrapperStyle={{}}
         wrapperClassName=""

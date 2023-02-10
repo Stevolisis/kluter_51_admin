@@ -8,20 +8,40 @@
         h2{
             color: $color4 !important;
         }
+
+        i{
+            color: $color9 !important;
+        }
     }
     
+    .categoriesCon2{
+        p{
+            color: $color4 !important;
+        }
+    }
+    .emailRegister{
+        button{
+            color: $color0 !important;
+            background: $color3 !important;
+        }
+    }
 
-    
-.blogInfo{
+
+
+    .blogMetaData{
+        color: $color3 !important;
+    } 
+
+    .blogInfo{
     background: $color18 !important;
 
     h3{
-        color:$color4 !important;
+        color:$color3 !important;
     }
 }
 
 .blogInfo p:nth-of-type(1){
-    color: $color13 !important;
+    color: $color3 !important;
 }
 
 
@@ -36,6 +56,12 @@
 }
 
 
+.blogSliderHeading{
+    h2{
+        color: $color2 !important;
+    }
+}
+
 
 footer{
     background: #202020 !important;
@@ -44,15 +70,15 @@ footer{
 .footerLinksCon{
     
     h4{
-        color:#e9a557 !important;
+        color:$color2 !important;
     }
 
     
     ul{
 
         li{
-            background-color: $color11 !important;
-            color:$color3 !important;
+            background-color: $color3 !important;
+            color:$color0 !important;
         }
 
         li:hover{

@@ -49,5 +49,9 @@
     .categorySlide{
         background: #1b1b1b !important;
     }
+
+    .categorySlider i{
+        color: gray;
+    }
     
     }

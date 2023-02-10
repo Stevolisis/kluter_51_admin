@@ -16,7 +16,7 @@ export default async function handler(req,res){
 
     if(req.method==='POST'){
       const verify=await verifyTokenPriveledge(req.cookies.adminPass,'editGeneral_settingSystem')
-      if(req.cookies.adminPass !== undefined && verify===true){
+      if(verify===true){
 
         const form = new formidable.IncomingForm();
 
@@ -126,9 +126,9 @@ export default async function handler(req,res){
         });
 
       }else if(verify==='not Permitted'){
-        res.status(200).json({status:'success'})
+        res.status(200).json({status:'not Permitted'})
       }else{
-        res.status(200).json({status:'success'})
+        res.status(200).json({status:'Invalid User'})
       }
 
           }else{

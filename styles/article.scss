@@ -4,7 +4,7 @@
 
 .articleHeadCon{
     padding-top: 40px;
-    background: $color4;
+    background: $color59;
 }
 
 .articleHead{
@@ -16,7 +16,7 @@
     }
     p{
         font-family: poppinsLight;
-        color: $color14;
+        color: $color8;
         font-size: 12px;
     }
 }
@@ -35,7 +35,7 @@
 
 .articleCreditCon{
     padding: 30px 8%;
-    background: $color4;
+    background: $color59;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,18 +57,18 @@
 }
 .articleAuthor p:nth-of-type(1){
     font-size: 10px;
-    color: $color14;
+    color: $color8;
 }
 
 .articleAuthor p:nth-of-type(2){
     font-size: 12px;
-    color: $color14;
+    color: $color8;
     font-family: poppinsMedium;
 }
 
 .articleAuthor p:nth-of-type(3){
     font-size: 11px;
-    color: $color14;
+    color: $color8;
 }
 
 .authorSocialLinks{
@@ -79,9 +79,9 @@ margin-top:5px;
         margin: 0 5px;
         width:21px;
         height: 21px;
-        background: $color14;
+        background: $color0;
         border-radius: 50%;
-        color:$color3;
+        color:$color4;
         font-size: 11px;
         display: flex;
         justify-content: center;
@@ -123,8 +123,7 @@ margin-top:5px;
     
     div:nth-of-type(1){
         font-size: 14px;
-
-        color: $color0;
+        color: $color8;
         word-spacing: 4px;
         line-height: 1.9;
         overflow-x: auto;
@@ -154,8 +153,7 @@ margin-top:5px;
         border: none;
         border-radius: 5px;
         padding: 15px 25px;
-        background: $color1;
-        color: $color3;
+        color: $color4;
         box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.15);
         cursor: pointer;
 
@@ -174,7 +172,7 @@ margin-top:5px;
 }
 
 .commentBoxCon{
-    background: $color4;
+    background: $color59;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -198,8 +196,8 @@ margin-top:5px;
             color:$color0;
             font-size: 13px;
             line-height: 40px;
-            background: $color3;
-            border: 1px solid $color15;
+            background: $color4;
+            border: 1px solid $color3;
             font-family: poppinsRegular;
             margin-bottom: 15px;
             box-sizing: border-box;
@@ -216,17 +214,17 @@ margin-top:5px;
             color:$color0;
             font-size: 13px;
             line-height: 40px;
-            background: $color3;
+            background: $color4;
             font-family: poppinsRegular;
             margin-bottom: 15px; 
-            border: 1px solid $color15;
+            border: 1px solid $color3;
         }
 
         button{
             padding:12px 30px;
             border:0;
-            color:$color3;
-            background: $color2;
+            color:$color4;
+            background: $color1;
             font-size: 13px;
             font-family: poppinsBold;
             border-radius: 30px;
@@ -237,7 +235,7 @@ margin-top:5px;
 
 .articleCommentsCon{
     padding: 30px 8%;
-    background: $color3;
+    background: $color4;
 
     h3{
         font-family: poppinsMedium;

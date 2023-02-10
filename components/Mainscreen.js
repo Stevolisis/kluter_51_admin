@@ -56,7 +56,7 @@ export default function Mainscreen({heading,description,imgLink,page}){
       {
         searchResult&& searchResult.map((searchRes,i)=>{
         if(searchRes!==null){
-          return <div key={i}><Link href={searchRes.title ? searchRes.categorySlug+'/' + searchRes.slug : searchRes.slug} legacyBehavior><a>{searchRes.title||searchRes.name} <span style={{color:'dodgerblue',fontSize:'12px'}}>{searchRes.title?'Article':'Category'}</span></a></Link></div>
+          return <div key={i}><Link href={searchRes.title ? searchRes.categorySlug+'/' + searchRes.slug : searchRes.slug} legacyBehavior><a>{searchRes.title||searchRes.name} <span style={{color:'#073128',fontSize:'12px'}}>{searchRes.title?'Article':'Category'}</span></a></Link></div>
         }
       })
       }		

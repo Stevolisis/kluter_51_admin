@@ -93,7 +93,7 @@ export default function Footer({whatsapp,linkedin,google_chat,gmail,phone_number
       </div>
     </div>
   </footer>
-  <div className='footerCon2'><p>Copyright © 2022 OTOTECH Industries.</p></div>
+  <div className='footerCon2'><p>Copyright © 2023 TechREVEAL</p></div>
         </>
     )
 }

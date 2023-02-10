@@ -198,6 +198,7 @@ export default function BlogCategory({category,blogData,error}){
 <div className={styles.categorySlider}>
   {
     categories!==null ? categories.map((category,i)=>{
+      return <Link href={category.slug&&category.slug} key={i} legacyBehavior><a className={styles.categorySlide}><i className={`fa fa-${category.icon}`}/>{category.name}</a></Link>
     }) :
     [1,2,3,4].map((category,i)=>{
           })

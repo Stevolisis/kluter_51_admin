@@ -350,13 +350,33 @@ export default function Article({error,content,pageId,categoryId,img_link,img_li
                 <p>AUTHOR</p>
                 <p>{content && content.author&& content.author.full_name}</p>
                 <p>{content && content.author&& content.author.description}</p>
-
+                <div className="authorSocialLinks">
+            {whatsapp&&whatsapp.status==='inactive'|| ''? '' :<Link href={`${whatsapp&&whatsapp.link}`} legacyBehavior><a><i className='fa fa-whatsapp'/></a></Link>}
+            {dribble&&dribble.status==='inactive'|| ''? '' :<Link href={`${dribble&&dribble.link}`} legacyBehavior><a><i className='fa fa-dribble'/></a></Link>}
+            {github&&github.status==='inactive'|| ''? '' :<Link href={`${github&&github.link}`} legacyBehavior><a><i className='fa fa-github'/></a></Link>}
+            {linkedin&&linkedin.status==='inactive'|| ''? '' :<Link href={`${linkedin&&linkedin.link}`} legacyBehavior><a><i className='fa fa-linkedin'/></a></Link>}
+            {twitter&&twitter.status==='inactive'|| ''? '' :<Link href={`${twitter&&twitter.link}`} legacyBehavior><a><i className='fa fa-twitter'/></a></Link>}
+            {instagram&&instagram.status==='inactive'|| ''? '' :<Link href={`${instagram&&instagram.link}`} legacyBehavior><a><i className='fa fa-instagram'/></a></Link>}
+            </div>
                </div>
         </div>
 
 
         <div className="articleShareCon">
-
+        <div className="articleShare">
+            <RWebShare
+            data={{
+            text: "Like humans, flamingos make friends for life",
+            url: `${windowLink}`,
+            title: `${content && content.title}`,
+            }}
+            onClick={() => console.log("shared successfully!")}>
+            <button onClick={()=>navigator.share({title:`${content && content.title}`,text:'OTOTCH BLOG',url:`${windowLink}}`})}>Share <i className="fa fa-share"/></button>
+            </RWebShare>
+                <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${windowLink}i&title=${content && content.title}&source=OTOTECH Blog`} legacyBehavior><a><i className="fa fa-linkedin"/></a></Link>
+                <Link href={`https://twitter.com/intent/tweet?text=${windowLink}`} legacyBehavior><a><i className="fa fa-twitter"/></a></Link>
+                <Link href={`https://www.facebook.com/sharer/sharer.php?u=${windowLink}`} legacyBehavior><a><i className="fa fa-facebook"/></a></Link>
+            </div>
         </div>
 
 
@@ -380,7 +400,7 @@ export default function Article({error,content,pageId,categoryId,img_link,img_li
 
 
      <div className="likeArticleCon">
-    <button onClick={()=>{setLiked(!liked),handleLikeBtn()}} style={{background:`${liked==true ? '#9c9a9a' : '#ec9735'}`,
+    <button onClick={()=>{setLiked(!liked),handleLikeBtn()}} style={{background:`${liked==true ? '#9c9a9a' : '#177C65'}`,
      boxShadow:`${liked==true ? 'none' : '-1px 2px 4px rgba(0, 0, 0, 0.2)'}`}}>
         <i className='fa fa-thumbs-up'></i>
         </button>

@@ -10,16 +10,16 @@ export default async function middleware(req) {
       if (req.method == "HEAD") {
         return NextResponse.error();
       }
-//
+
       if (!cookie) {
         return NextResponse.rewrite(`${baseUrl}/login?next=${next}&from=adminRoutes`);
       } else {
         try {
-          const res = await fetch(`${baseUrl}/api/authentication/adminAuth?cookie=${cookie}`)
+          const res = await fetch(`${baseUrl}/api/authentication/adminAuth?cookie=${cookie.value}`)
           if (res.status !== 404) {
             return NextResponse.next();
           } else {
-            return NextResponse.redirect(`${baseUrl}/login?next=${next}&from=adminRoutes`);
+            return NextResponse.rewrite(`${baseUrl}/login?next=${next}&from=adminRoutes`);
           }
         } catch (error) {
           console.error(error);

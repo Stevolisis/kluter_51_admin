@@ -138,7 +138,6 @@ function loadArticlesByViews(){
   return (
     <>
       <Head>
-        <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
         <title>{name} | Stay Up-to-Date with the Latest Technology News</title>

@@ -1,8 +1,6 @@
 import Staffs from "../../../db/Model/staffSchema";
 import dbConnect from "../../../db/dbConnect";
 import formidable from "formidable";
-import path from "path";
-import fs from 'fs';
 import bcrypt from 'bcryptjs';
 import Cloudinary from '../../../serviceFunctions/cloudinary';
 import { verifyTokenPriveledge } from "../../../serviceFunctions/verifyToken";
@@ -43,21 +41,10 @@ export default async function handler(req,res){
           
 
 
-           let oldPath=files.img_link.filepath;
-           let imgNewName=Date.now()+files.img_link.originalFilename;
-           let newPath=path.join(path.resolve('public') ,imgNewName);
            let date=new Date();
 
             try{
               let password=await bcrypt.hash(fields.password,10);
-
-              // if(files.size===0){
-              //   imgNewName='';
-              // }else{
-              // fs.rename(oldPath,newPath,function(err){
-              //   if(err) console.log(err);
-              // });                
-              // }
               const cloudImg=await Cloudinary.uploader.upload(files.img_link.filepath)
 
  
@@ -89,7 +76,6 @@ export default async function handler(req,res){
 
              
             }catch(err){
-              fs.unlinkSync(newPath);
               res.status(404).json({status:err.message})
             }
 

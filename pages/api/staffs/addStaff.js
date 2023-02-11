@@ -18,7 +18,7 @@ export default async function handler(req,res){
     const validImagetype=['jpg','JPG','png','PNG','jpeg','JPEG','gif','GIF','webp','WEBP'];
         if(req.method==='POST'){
           const verify=await verifyTokenPriveledge(req.cookies.adminPass,'addStaffs')
-          if(verify===true){
+          if(req.cookies.adminPass !== undefined && verify===true){
 
     const form = new formidable.IncomingForm();
     

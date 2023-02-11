@@ -188,12 +188,12 @@ export default function BlogCategory({category,blogData,error}){
         <meta property="og:title" content={category&&category.name}/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="https://www.techreveal.vercel.app"/>
-        <meta property="og:image" content={category&&category.img.url}/>
+        <meta property="og:image" content={category && category.img && category.img.url}/>
         <meta property="og:description" content={category&&category.description}/>
 
         <meta name="twitter:card" content="summary_large_image"/>
         <meta name="twitter:title" content={category&&category.name}/>
-        <meta name="twitter:image" content={category&&category.img.url}/>
+        <meta name="twitter:image" content={category && category.img && category.img.url}/>
         <meta name="twitter:description" content={category&&category.description}/>
       </Head>
 
@@ -214,6 +214,7 @@ export default function BlogCategory({category,blogData,error}){
       return <Link href={category.slug&&category.slug} key={i} legacyBehavior><a className={styles.categorySlide}><i className={`fa fa-${category.icon}`}/>{category.name}</a></Link>
     }) :
     [1,2,3,4].map((category,i)=>{
+      return <Link href='#' key={i} legacyBehavior><a style={{width:'100px',height:'35px',background:'rgba(201, 197, 197,0.4)',margin:'0 12px'}}><i/></a></Link>
           })
   }
   </div>
@@ -246,3 +247,4 @@ export default function BlogCategory({category,blogData,error}){
         </>
     )
 }
+

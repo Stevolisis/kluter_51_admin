@@ -25,7 +25,7 @@ export default function BlogLoader(){
         <div className='blogInfo'>
   
         <div className="blogMetaData">
-        <div style={{width:'100%',height:'10px',background:'rgba(148, 95, 15,0.4)'}}></div>
+        <div style={{width:'100%',height:'10px',background:'rgba(23, 124, 101,0.4)'}}></div>
         <div></div>
         </div>
   
@@ -40,7 +40,7 @@ export default function BlogLoader(){
           <i style={{width:'80px',height:'20px',background:'rgba(201, 197, 197,0.4)'}}><p>.</p></i>
           <i style={{width:'80px',height:'20px',background:'rgba(201, 197, 197,0.4)'}}><p></p></i>
           </div>
-          <div className='blogRead'><Link href='#'><p style={{width:'40px',height:'26px',background:'rgba(236, 151, 53,0.5)'}}></p></Link></div>
+          <div className='blogRead'><Link href='#'><p style={{width:'40px',height:'26px',background:'rgba(23, 124, 101,0.5)'}}></p></Link></div>
         </div>
         </a>
       </Link>

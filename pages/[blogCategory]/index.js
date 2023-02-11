@@ -178,22 +178,22 @@ export default function BlogCategory({category,blogData,error}){
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-        <title>{category&&category.name} | Stay Up-to-Date with the Latest Technology News</title>
+        <title>{category&&category.name}</title>
         <meta name="description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
         <meta name="keywords" content="tech blog, technology, tech news, updates, insights, latest technology ,Web Technology, app development"/>
 
         <link rel="icon" href="/logo.ico" />
         <meta name="theme-color" content="#177C65" />
 
-        <meta property="og:title" content="TechREVEAL | Stay Up-to-Date with the Latest Technology News"/>
+        <meta property="og:title" content={category&&category.name}/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="https://www.techreveal.vercel.app"/>
-        <meta property="og:image" content="https://www.techreveal.vercel.app/techReal.png"/>
+        <meta property="og:image" content="/logo.ico"/>
         <meta property="og:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
 
         <meta name="twitter:card" content="summary_large_image"/>
-        <meta name="twitter:title" content="TechREVEAL | Stay Up-to-Date with the Latest Technology News"/>
-        <meta name="twitter:image" content="https://www.techreveal.vercel.app/techReal.png"/>
+        <meta name="twitter:title" content={category&&category.name}/>
+        <meta name="twitter:image" content="/logo.ico"/>
         <meta name="twitter:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
       </Head>
 

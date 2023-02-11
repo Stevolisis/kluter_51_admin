@@ -18,7 +18,7 @@ export default async function handler(req,res){
 
             try{
             const verify=jwt.verify(cookie,process.env.JWT_PASS);
-            let data=await Staffs.findOne({email:verify.email}).select('email')
+            let data=await Staffs.findOne({_id:verify.id}).select('email')
             console.log('Verified Token',data);
             if(verify===''){
               res.status(404).json({status:'valid'});

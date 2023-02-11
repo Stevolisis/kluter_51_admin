@@ -5,7 +5,7 @@ async function verifyTokenPriveledge(cookie, priveledgeKey) {
   try {
     const verify = jwt.verify(cookie, process.env.JWT_PASS);
     const staff = await Staffs.findOne({
-      email: verify.email,
+      _id: verify.id,
       status: "active"
     }).select("full_name email priveldges");
 
@@ -15,7 +15,7 @@ async function verifyTokenPriveledge(cookie, priveledgeKey) {
           { status: true, user: staff.full_name }) ||
         (staff.priveldges.find(j => j.value === priveledgeKey) && true) ||
         "not Permitted";
-    } else if (staff && staff.full_name !== "Admin") {
+    } else if (staff && verify.email === staff.email && staff.full_name !== "admin") {
       return priveledgeKey === "editStaffs" &&
         { status: true, user: staff._id } ||
         (priveledgeKey === "deleteStaffs" && "not Permitted") ||

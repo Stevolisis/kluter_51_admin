@@ -34,7 +34,7 @@ export default async function handler(req, res) {
             }
 
             if (passStatus === true) {
-              const token = jwt.sign({ email: fields.email }, process.env.JWT_PASS, { expiresIn: 60 * 60 * 24 * 30 * 12 });
+              const token = jwt.sign({ id: userExist._id }, process.env.JWT_PASS, { expiresIn: 60 * 60 * 24 * 30 * 12 });
               setCookie('adminPass', token, { req, res, maxAge: 60 * 12 * 30, httpOnly: true, secure: true, sameSite: 'strict', path: '/' });
               res.status(200).json({ status: 'success' });
             } else {

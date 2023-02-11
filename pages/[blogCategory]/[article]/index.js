@@ -289,12 +289,28 @@ export default function Article({error,content,pageId,categoryId,img_link,img_li
 
     return(
     <>
-    <Head>
-        <title>{content && content.title}</title>
-        <meta name="description" content="Web Technology, app development, content writing, web management, SEO" />
+      <Head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <title>{content && content.title} | Stay Up-to-Date with the Latest Technology News</title>
+        <meta name="description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
+        <meta name="keywords" content="tech blog, technology, tech news, updates, insights, latest technology ,Web Technology, app development"/>
+
         <link rel="icon" href="/logo.ico" />
         <meta name="theme-color" content="#177C65" />
-    </Head>
+
+        <meta property="og:title" content="TechREVEAL | Stay Up-to-Date with the Latest Technology News"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="https://www.techreveal.vercel.app"/>
+        <meta property="og:image" content="https://www.techreveal.vercel.app/techReal.png"/>
+        <meta property="og:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
+
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:title" content="TechREVEAL | Stay Up-to-Date with the Latest Technology News"/>
+        <meta name="twitter:image" content="https://www.techreveal.vercel.app/techReal.png"/>
+        <meta name="twitter:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
+      </Head>
 
 
 

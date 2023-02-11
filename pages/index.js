@@ -151,14 +151,13 @@ function loadArticlesByViews(){
         <meta property="og:title" content="TechREVEAL | Stay Up-to-Date with the Latest Technology News"/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="https://www.techreveal.vercel.app"/>
-        <meta property="og:image" content="https://www.techreveal.vercel.app/techReal.png"/>
+        <meta property="og:image" content="https://www.techreveal.vercel.app/logo.ico"/>
         <meta property="og:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
 
         <meta name="twitter:card" content="summary_large_image"/>
         <meta name="twitter:title" content="TechREVEAL | Stay Up-to-Date with the Latest Technology News"/>
-        <meta name="twitter:image" content="https://www.techreveal.vercel.app/techReal.png"/>
+        <meta name="twitter:image" content="https://www.techreveal.vercel.app/logo.ico"/>
         <meta name="twitter:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
-
       </Head>
 
 

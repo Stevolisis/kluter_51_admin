@@ -184,7 +184,7 @@ export default function BlogCategory({category,blogData,error}){
 
         <link rel="icon" href="/logo.ico" />
         <meta name="theme-color" content="#177C65" />
-
+{/* 
         <meta property="og:title" content={category&&category.name}/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="https://www.techreveal.vercel.app"/>
@@ -194,7 +194,7 @@ export default function BlogCategory({category,blogData,error}){
         <meta name="twitter:card" content="summary_large_image"/>
         <meta name="twitter:title" content={category&&category.name}/>
         <meta name="twitter:image" content="/logo.ico"/>
-        <meta name="twitter:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
+        <meta name="twitter:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/> */}
       </Head>
 
 

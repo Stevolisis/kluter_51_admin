@@ -303,12 +303,12 @@ export default function Article({error,content,pageId,categoryId,img_link,img_li
         <meta property="og:title" content={content && content.title}/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="https://www.techreveal.vercel.app"/>
-        <meta property="og:image" content="https://www.techreveal.vercel.app/techReal.png"/>
+        <meta property="og:image" content={content&&content.img.url}/>
         <meta property="og:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
 
         <meta name="twitter:card" content="summary_large_image"/>
         <meta name="twitter:title" content={content && content.title}/>
-        <meta name="twitter:image" content="https://www.techreveal.vercel.app/techReal.png"/>
+        <meta name="twitter:image" content={content&&content.img.url}/>
         <meta name="twitter:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
       </Head>
 

@@ -10,7 +10,7 @@ export default async function handler(req,res){
     if(req.method==='GET'){
 
             try{
-            let data=await Articles.find({status:'active'}).populate({ path: 'author',select:'full_name' }).limit(10).lean();
+            let data=await Articles.find({status:'active'}).populate({ path: 'author',select:'full_name' }).limit(18).lean();
             
             for (let i = 0; i < data.length; i++) {
                 // data[i].Views=Articles.getViews('3456789')   

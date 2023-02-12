@@ -594,11 +594,16 @@ box-sizing: border-box;
 }
 
 .blogCon{
-    width: 360px !important;
-    min-width: 360px !important;
+    width: 310px !important;
+    min-width: 310px !important;
     box-shadow:$color6;
     margin:10px;
     box-sizing: border-box;
+}
+
+
+.blogImg{
+    height: 170px;
 }
 
 .blogInfo{

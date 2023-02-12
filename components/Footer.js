@@ -49,9 +49,8 @@ export default function Footer({whatsapp,linkedin,google_chat,gmail,phone_number
   <footer>
     <div className='footerCon'>
       <div className='footerLinksCon'>
-        <h4>OTOTECH Industries</h4>
-        <p> For more enquires and service placement please feel free to
-           contact us through the following Social media's.</p>
+        <h4>TechREVEAL Blog</h4>
+        <p> For tech enthusiasts and industry leaders alike, TechReveal offers in-depth analysis and revelations, providing a window into the ever-evolving world of technology.</p>
            <ul>
            {facebook && facebook.status==='inactive' ? '' :<li><Link href={facebook.link}><i className='fa fa-facebook'></i></Link></li>}
            {phone_number && phone_number.status==='inactive' ? '' :<li><Link href={phone_number.link}><i className='fa fa-phone'></i></Link></li>}
@@ -66,7 +65,6 @@ export default function Footer({whatsapp,linkedin,google_chat,gmail,phone_number
         <h4>Additional Pages</h4>
         <ol>
         <li><Link href='#'>About Us</Link></li>
-        <li><Link href='#'>How We Work</Link></li>
         <li><Link href='#'>Quick Support</Link></li>
         <li><Link href='#'>Privacy Policy</Link></li>
         </ol>

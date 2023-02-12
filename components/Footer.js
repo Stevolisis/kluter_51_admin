@@ -52,12 +52,12 @@ export default function Footer({whatsapp,linkedin,google_chat,gmail,phone_number
         <h4>TechREVEAL Blog</h4>
         <p> For tech enthusiasts and industry leaders alike, TechReveal offers in-depth analysis and revelations, providing a window into the ever-evolving world of technology.</p>
            <ul>
-           {facebook && facebook.status==='inactive' ? '' :<li><Link href={facebook.link}><i className='fa fa-facebook'></i></Link></li>}
-           {phone_number && phone_number.status==='inactive' ? '' :<li><Link href={phone_number.link}><i className='fa fa-phone'></i></Link></li>}
-           {linkedin && linkedin.status==='inactive' ? '' :<li><Link href={linkedin.link}><i className='fa fa-linkedin'></i></Link></li>}
-           {whatsapp && whatsapp.status==='inactive' ? '' :<li><Link href={whatsapp.link}><i className='fa fa-whatsapp'></i></Link></li>}
-           {google_chat && google_chat.status==='inactive' ? '' :<li><Link href={google_chat.link}><i className='fa fa-google'></i></Link></li>}
-           {gmail && gmail.status==='inactive' ? '' :<li><Link href={gmail.link}><i className='fa fa-envelope'></i></Link></li>}
+           {facebook && facebook.status==='inactive' ? '' :<li><Link href={'/'+facebook.link}><i className='fa fa-facebook'></i></Link></li>}
+           {phone_number && phone_number.status==='inactive' ? '' :<li><Link href={'/'+phone_number.link}><i className='fa fa-phone'></i></Link></li>}
+           {linkedin && linkedin.status==='inactive' ? '' :<li><Link href={'/'+linkedin.link}><i className='fa fa-linkedin'></i></Link></li>}
+           {whatsapp && whatsapp.status==='inactive' ? '' :<li><Link href={'/'+whatsapp.link}><i className='fa fa-whatsapp'></i></Link></li>}
+           {google_chat && google_chat.status==='inactive' ? '' :<li><Link href={'/'+google_chat.link}><i className='fa fa-google'></i></Link></li>}
+           {gmail && gmail.status==='inactive' ? '' :<li><Link href={'/'+gmail.link}><i className='fa fa-envelope'></i></Link></li>}
            </ul>
       </div>
 

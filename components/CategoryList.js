@@ -10,7 +10,7 @@ export default function CategoryList({categories}) {
         <div className='categoryIcon'><i className={`fa fa-${icon}`}/></div>
         <div className='categoryInfo'>
             <h2>{name}</h2>
-            <p>{description}</p>
+            <p>{description.slice(0,100)+'...'}</p>
         </div>
         </a>
         </Link>

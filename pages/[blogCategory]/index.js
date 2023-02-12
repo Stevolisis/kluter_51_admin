@@ -19,7 +19,7 @@ export const getServerSideProps=async (context)=>{
   let error=context.query;
   try{
     const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${context.params.blogCategory}`);
-    const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${context.params.blogCategory}&limit=8`);
+    const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${context.params.blogCategory}&limit=15`);
     const category= res.data.data||null;
     const blogData= res2.data.data||null;
     
@@ -42,7 +42,7 @@ export default function BlogCategory({category,blogData,error}){
     const [categories,setcategories]=useState(null);
     const [articles,setarticles]=useState(null);
     const { loading, setloading } = useLoader();
-    let limit=useRef(8);
+    let limit=useRef(15);
 
     if(error){
       Swal.fire(

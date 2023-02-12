@@ -18,7 +18,7 @@ export const getServerSideProps=async (context)=>{
 let error;
 try{
   const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
-  const res3=await axios.get(`${baseUrl}/api/articles/getArticles?limit=8`);
+  const res3=await axios.get(`${baseUrl}/api/articles/getArticles?limit=15`);
   const categories= res.data.data||null;
   const blogData= res3.data.data||null;
   
@@ -38,7 +38,7 @@ export default function Home({categories,blogData,error}) {
   const [articlesSlide,setarticlesSlide]=useState(null);
   const { loading, setloading, name, description,front_cover_image } = useLoader();
   const [articles,setarticles]=useState(null)
-  let limit=useRef(8)
+  let limit=useRef(15)
   
   if(error){
     Swal.fire(

@@ -133,7 +133,7 @@ export default function EditArticle(){
             if (result.isConfirmed) {
                 setloading(true)
         const formData=new FormData(e.target);
-        formData.append('content',editorRef.current.getContent());
+        formData.append('content',content);
         formData.append('id',id);
         axios.post(`${baseUrl}/api/articles/editArticle`,formData,{withCredentials:true})
         .then(res=>{

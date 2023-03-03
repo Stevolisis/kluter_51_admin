@@ -83,7 +83,7 @@ export default function AddArticle(){
     function handleSubmit(e){
         e.preventDefault();
         const formData=new FormData(e.target);
-        formData.append('content',editorRef.current.getContent());
+        formData.append('content',content);
         setloading(true);
         axios.post(`${baseUrl}/api/articles/addArticle`,formData,{withCredentials:true})
         .then(res=>{

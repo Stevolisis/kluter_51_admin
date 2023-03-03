@@ -27,7 +27,7 @@ export default async function handler(req,res){
           let imgDelete;
           const id=fields.id;
 
-          if(verify.user==id||verify.user==='Admin'){
+          if(verify.user==id||verify.admin===true){
             try{
               if(files.img_link.size!==0){
                 imgDelete=await Staffs.findOne({_id:id}).select('img');

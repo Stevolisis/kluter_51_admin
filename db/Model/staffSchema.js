@@ -81,6 +81,7 @@ const staffSchema=new mongoose.Schema({
     type:String,
     required:true
   },
+  admin:Boolean,
   day:{
     type:String,
     required:true,

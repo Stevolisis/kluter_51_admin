@@ -15,7 +15,7 @@ export const getServerSideProps=async (context)=>{
       const data= res.data.data[0];
       const editId=data._id;
       const editFull_name= data.full_name;
-      const editEmail= data.email;
+    //   const editEmail= data.email;
       const editSelectedOption= data.priveldges;
       const editPosition= data.position;
       const editDescription= data.description;
@@ -29,7 +29,7 @@ export const getServerSideProps=async (context)=>{
       const editImg= data.img.url;
       
       return {
-        props:{editId,editFull_name,editEmail,editSelectedOption,editPosition,editDescription,
+        props:{editId,editFull_name,editSelectedOption,editPosition,editDescription,
         editStatus,editWhatsapp,editDribble,editGithub,editLinkedin,editTwitter,
         editInstagram,editImg}
       }    
@@ -42,14 +42,14 @@ export const getServerSideProps=async (context)=>{
     
 }
 
-export default function EditStaff({error,editId,editSelectedOption,editFull_name,editEmail,
+export default function EditStaff({error,editId,editSelectedOption,editFull_name,
     editPosition,editDescription,editStatus,editWhatsapp,editDribble,editGithub,
     editLinkedin,editTwitter,editInstagram,editImg}){
     const {loading,setloading}=useLoader()
     const [id,setid]=useState('')
     const [selectedOption,setselectedOption]=useState([])
     const [full_name,setfull_name]=useState('');
-    const [email,setemail]=useState('');
+    // const [email,setemail]=useState('');
     const [position,setposition]=useState('');
     const [description,setdescription]=useState('');
     const [status,setstatus]=useState('');
@@ -154,7 +154,7 @@ const options = [
     useEffect(()=>{
         setfull_name(editFull_name)
         setid(editId)
-        setemail(editEmail)
+        // setemail(editEmail)
         setdescription(editDescription)
         setselectedOption(editSelectedOption)
         setwhatsapp(editWhatsapp)
@@ -186,12 +186,12 @@ const options = [
             </div>
         </div>
         
-        <div className='admineditnamecon'>
+        {/* <div className='admineditnamecon'>
         <div className='admineditname'>
             <p>Email Address</p>
             <input type='email' name='email' value={email} onChange={(e)=>setemail(e.target.value)}/>
         </div>
-        </div>
+        </div> */}
 
         <div className='admineditnamecon'>
             <div className='admineditname'>

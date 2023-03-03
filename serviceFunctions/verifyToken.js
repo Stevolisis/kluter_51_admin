@@ -1,29 +1,25 @@
 import jwt from "jsonwebtoken";
-import Staffs from "../db/Model/staffSchema";
+import Staffs from '../db/Model/staffSchema';
 
-async function verifyTokenPriveledge(cookie, priveledgeKey) {
+async function verifyTokenPriveledge(cookie, privilegeKey) {
   try {
     const verify = jwt.verify(cookie, process.env.JWT_PASS);
-    const staff = await Staffs.findOne({
-      _id: verify.id,
-      status: "active"
-    }).select("full_name email priveldges");
+    const staff = await Staffs.findOne({ _id: verify.id, status: 'active' }).select('full_name email priveldges admin');
 
-    if (staff && staff.full_name === "Admin") {
-      return priveledgeKey === "logout" ||
-        (priveledgeKey === "editStaffs" &&
-          { status: true, user: staff.full_name }) ||
-        (staff.priveldges.find(j => j.value === priveledgeKey) && true) ||
-        "not Permitted";
-    } else if (staff && verify.email === staff.email && staff.full_name !== "admin") {
-      return priveledgeKey === "editStaffs" &&
-        { status: true, user: staff._id } ||
-        (priveledgeKey === "deleteStaffs" && "not Permitted") ||
-        (priveledgeKey === "logout" && true) ||
-        (staff.priveldges.find(j => j.value === priveledgeKey) && true) ||
-        "not Permitted";
-    } else {
-      return "not Permitted";
+    if (!staff) {
+      return 'not Permitted';
+    }
+
+    switch (privilegeKey) {
+      case 'logout':
+        return true;
+      case 'editStaffs':
+        return staff.admin ? { status: true, user: staff.full_name, admin: staff.admin } : { status: true, user: staff._id };
+      case 'deleteStaffs':
+        return staff.admin ? true : 'not Permitted';
+      default:
+        const obj = staff.priveldges.find(j => j.value === privilegeKey);
+        return obj ? true : 'not Permitted';
     }
   } catch (err) {
     return false;
@@ -58,21 +54,33 @@ export { verifyTokenPriveledge };
 
 
 
+
+
+
+
+
+
+
+
+
 // import jwt from "jsonwebtoken";
 // import Staffs from '../db/Model/staffSchema';
+
+
 
 // async function verifyTokenPriveledge(cookie,priveledgeKey){
 
 //   try{
 //       const verify=jwt.verify(cookie,process.env.JWT_PASS);
-//       const staff=await Staffs.findOne({email:verify.email,status:'active'}).select('full_name email priveldges');
+//       const staff=await Staffs.findOne({_id: verify.id,status:'active'}).select('full_name email priveldges admin');
+//       console.log('rt',staff)
 
-//       if(staff&&staff.full_name==='Admin'){
+//       if(staff&&staff.admin){
 
 //         if(priveledgeKey==='logout'){
 //           return true;
 //         }if(priveledgeKey==='editStaffs'){
-//           return {status:true,user:staff.full_name}
+//           return {status:true,user:staff.full_name,admin:staff.admin}
 //         }
 //         const obj=staff.priveldges.find(j=>j.value===priveledgeKey);
 
@@ -83,10 +91,9 @@ export { verifyTokenPriveledge };
 //         }
   
 //         }else{
-
-//           if(staff&&priveledgeKey==='editStaffs'&&verify.email===staff.email&&staff.full_name!=='admin'){
+//           if(staff&&priveledgeKey==='editStaffs'&&!staff.admin){
 //             return {status:true,user:staff._id}
-//           }else if(staff&&priveledgeKey==='deleteStaffs'&&verify.email===staff.email&&staff.full_name!=='admin'){
+//           }else if(staff&&priveledgeKey==='deleteStaffs'&&!staff.admin){
 //             return 'not Permitted'
 //           }else if(staff&&priveledgeKey==='logout'){
 //             return true;
@@ -116,3 +123,8 @@ export { verifyTokenPriveledge };
 // }
 
 // export  {verifyTokenPriveledge};
+
+
+
+
+

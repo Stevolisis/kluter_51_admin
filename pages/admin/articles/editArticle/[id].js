@@ -120,7 +120,6 @@ export default function EditArticle(){
 
     function handleSubmit(e){
         e.preventDefault();
-
         Swal.fire({
             title: 'Are you sure?',
             text: "Confirm Action On Article",
@@ -226,7 +225,7 @@ export default function EditArticle(){
         <div className='admineditnamecon'>
             <div className='admineditname'>
             <p>Description</p>
-            <TextEditor content={content} setcontent={setContent}/>
+            <TextEditor content={content} setContent={setContent}/>
             </div>
         </div>
 

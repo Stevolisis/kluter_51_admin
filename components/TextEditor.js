@@ -1,30 +1,39 @@
-import "tinymce/tinymce";
-import 'tinymce/icons/default';
-import 'tinymce/themes/silver';
-import 'tinymce/plugins/link';
-import 'tinymce/plugins/image';
-import 'tinymce/plugins/table';
-import 'tinymce/skins/ui/oxide/skin.min.css';
-import 'tinymce/skins/ui/oxide/content.min.css';
-// import 'tinymce/skins/content/default/content.min.css';
-import 'tinymce/models/dom/model';
-import {Editor} from '@tinymce/tinymce-react';
+import ReactQuill, { Quill } from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import ImageResize from 'quill-image-resize-module-react';
+
+Quill.register('modules/imageResize', ImageResize);
 
 
-export default function TextEditor({editorRef,show,initialValue}){
+export default function TextEditor({content,setContent}){
+
+    
+    const modules={
+        toolbar:[
+            [{font:[]}],
+            [{header:[1,2,3,4,5,6,7]}],
+            [{size:[]}],
+            ['bold','underline','strike','bloquote'],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],
+            [
+                {list:'ordered'},
+                {list:'bullet'},
+                {indent:'-1'},
+                {indent:'+1'}
+            ],
+            ['link','image','video'],
+        ],
+        imageResize: {
+            parchment: Quill.import('parchment'),
+            modules: ['Resize', 'DisplaySize']
+        }
+    }
+
 
     return(
-        <>
-            <Editor
-            onInit={(evt,editor)=> editorRef.current=editor}
-            init={{
-                menubar:false,
-                skin:false,
-                content_css:false
-            }}
-            initialValue={initialValue}
-            onChange={show}
-            />
-        </>
+        <ReactQuill placeholder="<p>Whatsup</p>" theme="snow" 
+            value={content} onChange={setContent} className='up' 
+            modules={modules} />
     )
 }

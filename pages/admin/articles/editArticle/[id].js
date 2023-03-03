@@ -6,28 +6,29 @@ import { useRouter } from "next/router";
 import { useLoader } from "../../../_app";
 import { ThreeDots } from "react-loader-spinner";
 import { baseUrl } from "../../../../components/BaseUrl";
+const TextEditor=dynamic(import("@/components/TextEditor"), { ssr: false });
 
-const TextEditor = dynamic(() =>
-import("../../../../components/TextEditor"), {   ssr: false ,loading: () => 
-<div style={{width:'100%',height:'400px',background:'#f5f6f6',display:'flex',justifyContent:'center',alignItems:'center'}}>
-<ThreeDots
-height="40" 
-width="40" 
-radius="9"
-color="#177C65" 
-ariaLabel="three-dots-loading"
-wrapperStyle={{}}
-wrapperClassName=""
-visible={true}
-/></div>
-});
+// const TextEditor = dynamic(() =>
+// import("../../../../components/TextEditor"), {   ssr: false ,loading: () => 
+// <div style={{width:'100%',height:'400px',background:'#f5f6f6',display:'flex',justifyContent:'center',alignItems:'center'}}>
+// <ThreeDots
+// height="40" 
+// width="40" 
+// radius="9"
+// color="#177C65" 
+// ariaLabel="three-dots-loading"
+// wrapperStyle={{}}
+// wrapperClassName=""
+// visible={true}
+// /></div>
+// });
 
 
 export default function EditArticle(){
     const [imgpreview,setImgpreview]=useState('');
     const [title,settitle]=useState('');
     const [author,setauthor]=useState('');
-    const [content,setcontent]=useState('');
+    const [content,setContent]=useState('');
     const [status,setstatus]=useState('');
     const [category,setcategory]=useState('');
     const editorRef=useRef();
@@ -72,7 +73,7 @@ export default function EditArticle(){
             settitle(data[0].title)
             setauthor(data[0].author)
             setcategory(data[0].category)
-            setcontent(data[0].content)
+            setContent(data[0].content)
             setImgpreview(data[0].img.url)
             setstatus(data[0].status)
         }else{
@@ -225,7 +226,7 @@ export default function EditArticle(){
         <div className='admineditnamecon'>
             <div className='admineditname'>
             <p>Description</p>
-            <TextEditor editorRef={editorRef} initialValue={content}/>
+            <TextEditor content={content} setcontent={setContent}/>
             </div>
         </div>
 

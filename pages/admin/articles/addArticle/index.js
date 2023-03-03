@@ -6,20 +6,21 @@ import axios from "axios";
 import { useLoader } from "../../../_app";
 import { ThreeDots } from "react-loader-spinner";
 import {baseUrl} from '../../../../components/BaseUrl';
-const TextEditor = dynamic(() =>
-import("../../../../components/TextEditor"), {   ssr: false ,loading: () => 
-<div style={{width:'100%',height:'400px',background:'#f5f6f6',display:'flex',justifyContent:'center',alignItems:'center'}}>
-<ThreeDots
-height="40" 
-width="40" 
-radius="9"
-color="#177C65" 
-ariaLabel="three-dots-loading"
-wrapperStyle={{}}
-wrapperClassName=""
-visible={true}
-/></div>
-});
+const TextEditor=dynamic(import("@/components/TextEditor"), { ssr: false });
+// const TextEditor = dynamic(() =>
+// import("../../../../components/TextEditor"), {   ssr: false ,loading: () => 
+// <div style={{width:'100%',height:'400px',background:'#f5f6f6',display:'flex',justifyContent:'center',alignItems:'center'}}>
+// <ThreeDots
+// height="40" 
+// width="40" 
+// radius="9"
+// color="#177C65" 
+// ariaLabel="three-dots-loading"
+// wrapperStyle={{}}
+// wrapperClassName=""
+// visible={true}
+// /></div>
+// });
 
 
 
@@ -27,6 +28,7 @@ export default function AddArticle(){
     const [imgpreview,setImgpreview]=useState('');
     const [authors,setAuthors]=useState([]);
     const [categories,setCategories]=useState([]);
+    const [content, setContent] = useState('');
     const editorRef=useRef();
     const {loading,setloading}=useLoader();
     const router=useRouter();
@@ -170,7 +172,7 @@ export default function AddArticle(){
         <div className='admineditnamecon'>
             <div className='admineditname'>
             <p>Content</p>
-            <TextEditor editorRef={editorRef} show={show}/>
+            <TextEditor content={content} setContent={setContent}/>
             </div>
         </div>
 

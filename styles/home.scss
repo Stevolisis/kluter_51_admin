@@ -118,6 +118,9 @@ input{
     color:$color4;
 }
 
+input::placeholder{
+    color: $color4    
+}
 input:focus{
     outline: none;
 }

@@ -1,6 +1,10 @@
 @import '../variables';
 @import './darkThemeAdmin';
 
+
+header{
+    z-index: 1000 !important;
+}
 .adminAllCon{
 display: flex;
 justify-content: center;

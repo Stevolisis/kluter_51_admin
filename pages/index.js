@@ -139,7 +139,7 @@ function loadArticlesByViews(){
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
         <title>{name} | Stay Up-to-Date with the Latest Technology News</title>
         <meta name="description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
         <meta name="keywords" content="tech blog, technology, tech news, updates, insights, latest technology ,Web Technology, app development"/>

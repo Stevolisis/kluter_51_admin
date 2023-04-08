@@ -1,6 +1,6 @@
 import axios from "axios";
 import Head from "next/head";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { useEffect,useState } from "react";
 import Swal from "sweetalert2";
@@ -14,11 +14,33 @@ import Comments from "../../../components/Comments";
 import CommentsLoader from "../../../components/CommentsLoader";
 
 
-
-export const getServerSideProps=async (context)=>{
-    let error=context.query;
+export const getStaticPaths=async()=>{
     try{
-      const res=await axios.get(`${baseUrl}/api/articles/getArticle?category=${context.params.blogCategory}&article=${context.params.article}`);
+        const res=await axios.get(`${baseUrl}/api/articles/getArticles`);
+        const content= res.data.data;
+        
+        return {
+            paths:content.map(article=>{
+                return {
+                    params:{
+                        blogCategory:article.categorySlug,
+                        article:article.slug
+                    }
+                }
+            }),
+            fallback:false
+        }
+
+      }catch(err){
+        console.log(err);
+        return err.message;
+      }
+}
+
+export const getStaticProps=async ({params})=>{
+    // let error=context.query;
+    try{
+      const res=await axios.get(`${baseUrl}/api/articles/getArticle?category=${params.blogCategory}&article=${params.article}`);
       const content= res.data.data;
       const pageId=content._id;
       const categoryId=content.category;
@@ -291,7 +313,7 @@ export default function Article({error,content,pageId,categoryId,img_link,img_li
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
         <title>{content && content.title}</title>
         <meta name="description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
         <meta name="keywords" content="tech blog, technology, tech news, updates, insights, latest technology ,Web Technology, app development"/>

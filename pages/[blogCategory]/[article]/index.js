@@ -14,33 +14,34 @@ import Comments from "../../../components/Comments";
 import CommentsLoader from "../../../components/CommentsLoader";
 
 
-export const getStaticPaths=async()=>{
-    try{
-        const res=await axios.get(`${baseUrl}/api/articles/getArticles`);
-        const content= res.data.data;
+// export const getStaticPaths=async()=>{
+//     try{
+//         const res=await axios.get(`${baseUrl}/api/articles/getArticles`);
+//         const content= res.data.data;
         
-        return {
-            paths:content.map(article=>{
-                return {
-                    params:{
-                        blogCategory:article.categorySlug,
-                        article:article.slug
-                    }
-                }
-            }),
-            fallback:false
-        }
+//         return {
+//             paths:content.map(article=>{
+//                 console.log('article',article)
+//                 return {
+//                     params:{
+//                         blogCategory:article.categorySlug.split('/')[0],
+//                         article:article.slug.split('/')[0]
+//                     }
+//                 }
+//             }),
+//             fallback:true
+//         }
 
-      }catch(err){
-        console.log(err);
-        return err.message;
-      }
-}
+//       }catch(err){
+//         console.log(err);
+//         return err.message;
+//       }
+// }
 
-export const getStaticProps=async ({params})=>{
-    // let error=context.query;
+export const getServersideProps=async ({context})=>{
+    let error=context.query;
     try{
-      const res=await axios.get(`${baseUrl}/api/articles/getArticle?category=${params.blogCategory}&article=${params.article}`);
+      const res=await axios.get(`${baseUrl}/api/articles/getArticle?category=${context.params.blogCategory}&article=${context.params.article}`);
       const content= res.data.data;
       const pageId=content._id;
       const categoryId=content.category;

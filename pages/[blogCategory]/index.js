@@ -41,7 +41,7 @@ export const getStaticPaths=async()=>{
 }
 
 
-export const getStaticProps=async ({params})=>{
+export const getStaticProps=async({params})=>{
   // let error=query;
   try{
     const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`);
@@ -59,7 +59,7 @@ export const getStaticProps=async ({params})=>{
     
   }catch(err){
     return {
-      props:{error:error}
+      props:{error:err.message}
     } 
   }
   

@@ -13,8 +13,8 @@ export default function Navbar({section,navStatus,setnavStatus,logout}){
         <div className="navbar">
             <div className="subNav1">
             {section==='Admin' ? <>
-            <div><Link href='/'>Home</Link></div>
-            <div onClick={navbaring2}><Link href='/admin'>Dashboard</Link></div>
+            <div style={{paddingTop:'13px'}}><Link href='/'>Home</Link></div>
+            <div onClick={navbaring2} ><Link href='/admin'>Dashboard</Link></div>
             <div onClick={navbaring2}><Link href='/admin/categories'>Categories</Link></div>
             <div onClick={navbaring2}><Link href='/admin/articles'>Articles</Link></div>
             <div onClick={navbaring2}><Link href='/admin/comments' >Comments</Link></div>
@@ -25,7 +25,7 @@ export default function Navbar({section,navStatus,setnavStatus,logout}){
             </>
             : 
             <>
-            <div onClick={navbaring2}><Link href='/'>Home</Link></div>
+            <div onClick={navbaring2} style={{paddingTop:'13px'}}><Link href='/'>Home</Link></div>
             <div onClick={navbaring2}><Link href='https://ototech22.github.io/OTOTECH-website/about.html'>About Us</Link></div>
             <div onClick={navbaring2}><Link href='https://ototech22.github.io/OTOTECH-website/#service'>Our Services</Link></div>
             <div onClick={navbaring2}><Link href='https://ototech22.github.io/OTOTECH-website/'>Learn More</Link></div>

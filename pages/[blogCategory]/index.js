@@ -15,11 +15,37 @@ import SlidingArticlesLoader from "../../components/SlidingArticlesLoader";
 import BlogLoader from "../../components/BlogLoader";
 
 
-export const getServerSideProps=async (context)=>{
-  let error=context.query;
+
+export const getStaticPaths=async()=>{
+    
   try{
-    const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${context.params.blogCategory}`);
-    const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${context.params.blogCategory}&limit=15`);
+      const res2=await axios.get(`${baseUrl}/api/categories/getCategories`);
+      const content= res2.data.data;
+
+      return{
+          paths:content.map(category=>{
+              console.log('category',category)
+              return {
+                  params:{
+                      blogCategory:category.slug.split('/')[0]
+                  }
+              }
+          }),
+          fallback:true
+  }
+  }catch(err){
+      return {
+      props:{error:err.message}
+      } 
+  }  
+}
+
+
+export const getStaticProps=async ({params})=>{
+  // let error=query;
+  try{
+    const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`);
+    const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`);
     const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
     const res4=await axios.get(`${baseUrl}/api/categories/getCategories`);
     const category= res.data.data||null;

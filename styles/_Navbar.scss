@@ -7,6 +7,10 @@
 
 .navbarController{
     display: none;
+    
+    i{
+        cursor:pointer;
+    }
 }
 
 
@@ -25,7 +29,6 @@ color: $color0;
 
    input{
     display: none;
-    cursor:pointer;
    }
 
 } 

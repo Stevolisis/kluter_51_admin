@@ -14,7 +14,7 @@ export const getStaticPaths=async()=>{
                 console.log('article',article)
                 return {
                     params:{
-                        arts:article.articleSlug.split('/')[0],
+                        arts:article.categorySlug.split('/')[0],
                         art:article.slug.split('/')[0]
                     }
                 }

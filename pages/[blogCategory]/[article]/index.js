@@ -14,35 +14,40 @@ import Comments from "../../../components/Comments";
 import CommentsLoader from "../../../components/CommentsLoader";
 
 
-// export const getStaticPaths=async()=>{
-//     try{
-//         const res=await axios.get(`${baseUrl}/api/articles/getArticles`);
-//         const content= res.data.data;
-        
-//         return {
-//             paths:content.map(article=>{
-//                 console.log('article',article)
-//                 return {
-//                     params:{
-//                         blogCategory:article.categorySlug.split('/')[0],
-//                         article:article.slug.split('/')[0]
-//                     }
-//                 }
-//             }),
-//             fallback:true
-//         }
-
-//       }catch(err){
-//         console.log(err);
-//         return err.message;
-//       }
-// }
-
-export const getServersideProps=async ({context})=>{
-    let error=context.query;
+export const getStaticPaths=async()=>{
+    
     try{
-      const res=await axios.get(`${baseUrl}/api/articles/getArticle?category=${context.params.blogCategory}&article=${context.params.article}`);
+        const res2=await axios.get(`${baseUrl}/api/articles/getArticles`);
+        const content= res2.data.data;
+
+        return{
+            paths:content.map(article=>{
+                return {
+                    params:{
+                        blogCategory:article.categorySlug.split('/')[0],
+                        article:article.slug.split('/')[0]
+                    }
+                }
+            }),
+            fallback:true
+    }
+    }catch(err){
+        return {
+        props:{error:err.message}
+        } 
+    }  
+}
+
+export const getStaticProps=async ({params})=>{
+    // let error=context.query;
+
+
+    try{
+      const res=await axios.get(`${baseUrl}/api/articles/getArticle?category=${params.blogCategory}&article=${params.article}`);
+      const res2=await axios.get(`${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${params.blogCategory}`)
       const content= res.data.data;
+      const content2= res2.data.data;
+
       const pageId=content._id;
       const categoryId=content.category;
       const img_link=content.img.url;
@@ -55,7 +60,7 @@ export const getServersideProps=async ({context})=>{
       const instagram=content.author&&content.author.instagram;
       
       return {
-        props:{content,pageId,categoryId,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}
+        props:{content,content2,pageId,categoryId,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}
       }    
       
     }catch(err){
@@ -64,12 +69,12 @@ export const getServersideProps=async ({context})=>{
       } 
     }
     
-  }
+}
 
 
 
 
-export default function Article({error,content,pageId,categoryId,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}){
+export default function Article({error,content,content2,pageId,categoryId,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}){
     if(error){
         Swal.fire(
           'Error Occured',
@@ -77,6 +82,7 @@ export default function Article({error,content,pageId,categoryId,img_link,img_li
           'error'
         )
   }
+console.log('content22222',content2)
   const { loading, setloading } = useLoader();
 
 
@@ -267,45 +273,47 @@ export default function Article({error,content,pageId,categoryId,img_link,img_li
      }
 
 
-     function loadArticlesByCategory(){
-        if(pageId===''){
-            return;
-        }else{
-        axios.get(`/api/articles/loadRelatedArticlesByCategory?id=${categoryId}`)
-        .then(res=>{
-            let status=res.data.status;
-            let data=res.data.data;
-            if(status==='success'){
-                setarticlesSlide(data)
-            }else{
-                Swal.fire(
-                    'Error Occured',
-                    res.data.status,
-                    'warning'
-                )
-            }
-        }).catch(err=>{
-            Swal.fire(
-                'Error Occured',
-                err.message,
-                'error'
-            )           
-        });            
-        }
+    //  function loadArticlesByCategory(){
+    //     if(pageId===''){
+    //         return;
+    //     }else{
+    //     axios.get(`/api/articles/loadRelatedArticlesByCategory?id=${categoryId}`)
+    //     .then(res=>{
+    //         let status=res.data.status;
+    //         let data=res.data.data;
+    //         if(status==='success'){
+    //             setarticlesSlide(data)
+    //         }else{
+    //             Swal.fire(
+    //                 'Error Occured',
+    //                 res.data.status,
+    //                 'warning'
+    //             )
+    //         }
+    //     }).catch(err=>{
+    //         Swal.fire(
+    //             'Error Occured',
+    //             err.message,
+    //             'error'
+    //         )           
+    //     });            
+    //     }
 
-      }
+    //   }
+
 
     useEffect(()=>{
     setwindowLink(window.location.href)
     checkLike()
     userAuth();
-    loadComments()
-    setView();
-    loadArticlesByCategory(); 
    },[])
 
     useEffect(()=>{
-
+        if(pageId){
+            setView();
+            loadComments()
+            setarticlesSlide(content2);
+        }
     },[pageId])
 
 
@@ -407,8 +415,7 @@ export default function Article({error,content,pageId,categoryId,img_link,img_li
             text: "Like humans, flamingos make friends for life",
             url: `${windowLink}`,
             title: `${content && content.title}`,
-            }}
-            onClick={() => console.log("shared successfully!")}>
+            }}>
             <button onClick={()=>navigator.share({title:`${content && content.title}`,text:'OTOTCH BLOG',url:`${windowLink}}`})}>Share <i className="fa fa-share"/></button>
             </RWebShare>
                 <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${windowLink}i&title=${content && content.title}&source=OTOTECH Blog`} legacyBehavior><a><i className="fa fa-linkedin"/></a></Link>

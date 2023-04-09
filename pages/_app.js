@@ -108,9 +108,12 @@ useEffect(()=>{
   return(
     <Layout> {loading&&<PageLoader/>}
     <LoaderContext.Provider value={{ loading, setloading, name, description, front_cover_image, logo }}>
-      <GoogleAnalytics measurementId='G-584WFXT84Y'/>
+      
+      {/* <GoogleAnalytics measurementId='G-584WFXT84Y'/>
       <Script strategy='afterInteractive' async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7953128690140311"
-     crossorigin="anonymous"></Script>
+      crossorigin="anonymous"></Script> */}
+
+
        {admin==='admin' ? 
         <>
             <AdminHeader>
@@ -124,7 +127,10 @@ useEffect(()=>{
                <Component {...pageProps} key={router.asPath}/>
          <Footer phone_number={phone_number} linkedin={linkedin} whatsapp={whatsapp} google_chat={google_chat} facebook={facebook} gmail={gmail} />
          </>
-         }
+        }
+
+
+
     </LoaderContext.Provider>
     </Layout>
   )

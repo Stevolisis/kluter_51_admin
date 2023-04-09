@@ -8,11 +8,11 @@ export default async function handler(req,res){
 
 
     if(req.method==='GET'){
-        let {id}=req.query;
+        let {slug}=req.query;
         let data;
 
             try{
-            data=await Articles.find({category:id,status:'active'}).populate({ path: 'author',select:'full_name' }).limit(10).sort({_id:-1}).lean();
+            data=await Articles.find({categorySlug:`/${slug}`,status:'active'}).populate({ path: 'author',select:'full_name' }).limit(10).sort({_id:-1}).lean();
             
              
             if(data.length===0){

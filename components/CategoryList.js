@@ -5,7 +5,7 @@ export default function CategoryList({categories}) {
         const {name,slug,icon,description}=categ;
         
         return(
-        <Link href={`/arts${slug}`} key={i} legacyBehavior>
+        <Link href={`${slug}`} key={i} legacyBehavior>
         <a className='categoryCon' >
         <div className='categoryIcon'><i className={`fa fa-${icon}`}/></div>
         <div className='categoryInfo'>

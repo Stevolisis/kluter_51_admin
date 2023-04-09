@@ -20,11 +20,15 @@ export const getServerSideProps=async (context)=>{
   try{
     const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${context.params.blogCategory}`);
     const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${context.params.blogCategory}&limit=15`);
+    const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
+    const res4=await axios.get(`${baseUrl}/api/categories/getCategories`);
     const category= res.data.data||null;
     const blogData= res2.data.data||null;
+    const articleViews= res3.data.data||null;
+    const categories= res4.data.data||null;
     
     return {
-      props:{category,blogData}
+      props:{category,blogData,articleViews,categories}
     }    
     
   }catch(err){
@@ -36,10 +40,10 @@ export const getServerSideProps=async (context)=>{
 }
 
   
-export default function BlogCategory({category,blogData,error}){
+export default function BlogCategory({category,blogData,articleViews,categories,error}){
   let router=useRouter();
     const [articlesSlide,setarticlesSlide]=useState(null);
-    const [categories,setcategories]=useState(null);
+    const [categoryList,setcategoryList]=useState(null);
     const [articles,setarticles]=useState(null);
     const { loading, setloading } = useLoader();
     let limit=useRef(15);
@@ -68,28 +72,28 @@ export default function BlogCategory({category,blogData,error}){
         }
       
 
-        function loadArticlesByViews(){
-          axios.get('/api/articles/getArticlesByViews')
-          .then(res=>{
-              let status=res.data.status;
-              let data=res.data.data;
-              if(status==='success'){
-                  setarticlesSlide(data)
-              }else{
-                  Swal.fire(
-                      'Error Occured',
-                      res.data.status,
-                      'warning'
-                  )
-              }
-          }).catch(err=>{
-              Swal.fire(
-                  'Error Occured',
-                  err.message,
-                  'error'
-              )           
-          });
-        }
+        // function loadArticlesByViews(){
+        //   axios.get('/api/articles/getArticlesByViews')
+        //   .then(res=>{
+        //       let status=res.data.status;
+        //       let data=res.data.data;
+        //       if(status==='success'){
+        //           setarticlesSlide(data)
+        //       }else{
+        //           Swal.fire(
+        //               'Error Occured',
+        //               res.data.status,
+        //               'warning'
+        //           )
+        //       }
+        //   }).catch(err=>{
+        //       Swal.fire(
+        //           'Error Occured',
+        //           err.message,
+        //           'error'
+        //       )           
+        //   });
+        // }
       
 
         function loadArticlesByCategory(){
@@ -122,28 +126,28 @@ export default function BlogCategory({category,blogData,error}){
 
 
         
-  function loadCategories(){
-    axios.get('/api/categories/getCategories')
-    .then(res=>{
-        let status=res.data.status;
-        let data=res.data.data;
-        if(status==='success'){
-            setcategories(data)
-        }else{
-            Swal.fire(
-                'Error Occured',
-                res.data.status,
-                'warning'
-            )
-        }
-    }).catch(err=>{
-        Swal.fire(
-            'Error Occured',
-            err.message,
-            'error'
-        )           
-    });
-}
+//   function loadCategories(){
+//     axios.get('/api/categories/getCategories')
+//     .then(res=>{
+//         let status=res.data.status;
+//         let data=res.data.data;
+//         if(status==='success'){
+//             setcategoryList(data)
+//         }else{
+//             Swal.fire(
+//                 'Error Occured',
+//                 res.data.status,
+//                 'warning'
+//             )
+//         }
+//     }).catch(err=>{
+//         Swal.fire(
+//             'Error Occured',
+//             err.message,
+//             'error'
+//         )           
+//     });
+// }
 
 
         function loadMore(){
@@ -157,8 +161,10 @@ export default function BlogCategory({category,blogData,error}){
 
         useEffect(()=>{
           setarticles(blogData);
-          loadCategories();
-          loadArticlesByViews();
+          setarticlesSlide(articleViews);
+          setcategoryList(categories);
+          // loadCategories();
+          // loadArticlesByViews();
           if(category===null){
             Swal.fire(
               'Error Occured',
@@ -209,7 +215,7 @@ export default function BlogCategory({category,blogData,error}){
 <div className={styles.categorySliderCon}>
 <div className={styles.categorySlider}>
   {
-    categories!==null ? categories.map((category,i)=>{
+    categoryList!==null ? categoryList.map((category,i)=>{
       return <Link href={category.slug&&category.slug} key={i} legacyBehavior><a className={styles.categorySlide}><i className={`fa fa-${category.icon}`}/>{category.name}</a></Link>
     }) :
     [1,2,3,4].map((category,i)=>{

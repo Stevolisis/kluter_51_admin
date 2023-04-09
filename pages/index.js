@@ -14,16 +14,18 @@ import Image from 'next/image';
 import BlogLoader from '../components/BlogLoader';
 import SlidingArticlesLoader from '../components/SlidingArticlesLoader';
 
-export const getServerSideProps=async (context)=>{
+export const getStaticProps=async (context)=>{
 let error;
 try{
   const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
-  const res3=await axios.get(`${baseUrl}/api/articles/getArticles?limit=15`);
+  const res2=await axios.get(`${baseUrl}/api/articles/getArticles?limit=15`);
+  const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
   const categories= res.data.data||null;
-  const blogData= res3.data.data||null;
+  const blogData= res2.data.data||null;
+  const articleViews= res3.data.data||null;
   
   return {
-    props:{categories,blogData}
+    props:{categories,blogData,articleViews}
   }    
   
 }catch(err){
@@ -34,7 +36,7 @@ try{
 
 }
 
-export default function Home({categories,blogData,error}) {
+export default function Home({categories,blogData,articleViews,error}) {
   const [articlesSlide,setarticlesSlide]=useState(null);
   const { loading, setloading, name, description,front_cover_image } = useLoader();
   const [articles,setarticles]=useState(null)
@@ -97,28 +99,28 @@ function loadArticles(){
 
 
 
-function loadArticlesByViews(){
-  axios.get('/api/articles/getArticlesByViews')
-  .then(res=>{
-      let status=res.data.status;
-      let data=res.data.data;
-      if(status==='success'){
-          setarticlesSlide(data)
-      }else{
-          Swal.fire(
-              'Error Occured',
-              res.data.status,
-              'warning'
-          )
-      }
-  }).catch(err=>{
-      Swal.fire(
-          'Error Occured',
-          err.message,
-          'error'
-      )           
-  });
-}
+// function loadArticlesByViews(){
+//   axios.get('/api/articles/getArticlesByViews')
+//   .then(res=>{
+//       let status=res.data.status;
+//       let data=res.data.data;
+//       if(status==='success'){
+//           setarticlesSlide(data)
+//       }else{
+//           Swal.fire(
+//               'Error Occured',
+//               res.data.status,
+//               'warning'
+//           )
+//       }
+//   }).catch(err=>{
+//       Swal.fire(
+//           'Error Occured',
+//           err.message,
+//           'error'
+//       )           
+//   });
+// }
 
 
   function loadMore(){
@@ -132,7 +134,8 @@ function loadArticlesByViews(){
 
   useEffect(()=>{
     setarticles(blogData);
-    loadArticlesByViews();
+    setarticlesSlide(articleViews)
+    // loadArticlesByViews();
   },[])
 
   return (

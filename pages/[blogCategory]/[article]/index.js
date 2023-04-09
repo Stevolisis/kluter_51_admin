@@ -163,15 +163,8 @@ console.log('content22222',content2)
                     icon: 'success',
                     title:''
                 });                
-                    }
-
-
-
-                    
+                    }   
                 }
-
-
-
 
                 }else{
                     Toast.fire({

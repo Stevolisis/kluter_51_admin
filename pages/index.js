@@ -20,9 +20,9 @@ try{
   const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
   const res2=await axios.get(`${baseUrl}/api/articles/getArticles?limit=15`);
   const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
-  const categories= res.data.data||null;
-  const blogData= res2.data.data||null;
-  const articleViews= res3.data.data||null;
+  const categories= res.data.data;
+  const blogData= res2.data.data;
+  const articleViews= res3.data.data;
   
   return {
     props:{categories,blogData,articleViews}

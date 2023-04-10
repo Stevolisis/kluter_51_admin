@@ -19,15 +19,15 @@ import BlogLoader from "../../components/BlogLoader";
 export const getStaticPaths=async()=>{
     
   try{
-      const res2=await axios.get(`${baseUrl}/api/categories/getCategories`);
-      const content= res2.data.data;
+      const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
+      const content= res.data.data;
 
       return{
           paths:content.map(category=>{
               console.log('category',category)
               return {
                   params:{
-                      blogCategory:category.slug.split('/')[0]||"404"
+                      blogCategory:category.slug.split('/')[0]
                   }
               }
           }),
@@ -48,11 +48,11 @@ export const getStaticProps=async({params})=>{
     const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`);
     const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
     const res4=await axios.get(`${baseUrl}/api/categories/getCategories`);
-    const category= res.data.data||null;
-    const blogData= res2.data.data||null;
-    const articleViews= res3.data.data||null;
-    const categories= res4.data.data||null;
-    
+    const category= res.data.data;
+    const blogData= res2.data.data;
+    const articleViews= res3.data.data;
+    const categories= res4.data.data;
+
     return {
       props:{category,blogData,articleViews,categories}
     }    
@@ -69,7 +69,7 @@ export const getStaticProps=async({params})=>{
 export default function BlogCategory({category,blogData,articleViews,categories,error}){
   let router=useRouter();
     const [articlesSlide,setarticlesSlide]=useState(null);
-    const [categoryList,setcategoryList]=useState(null);
+    const [categoryList,setCategoryList]=useState(null);
     const [articles,setarticles]=useState(null);
     const { loading, setloading } = useLoader();
     let limit=useRef(15);
@@ -158,7 +158,7 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 //         let status=res.data.status;
 //         let data=res.data.data;
 //         if(status==='success'){
-//             setcategoryList(data)
+//             setCategoryList(data)
 //         }else{
 //             Swal.fire(
 //                 'Error Occured',
@@ -188,7 +188,7 @@ export default function BlogCategory({category,blogData,articleViews,categories,
         useEffect(()=>{
           setarticles(blogData);
           setarticlesSlide(articleViews);
-          setcategoryList(categories);
+          setCategoryList(categories);
           // loadCategories();
           // loadArticlesByViews();
           if(category===null){
@@ -238,7 +238,7 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 
 
 
-<div className={styles.categorySliderCon}>
+{/* <div className={styles.categorySliderCon}>
 <div className={styles.categorySlider}>
   {
     categoryList!==null ? categoryList.map((category,i)=>{
@@ -249,7 +249,7 @@ export default function BlogCategory({category,blogData,articleViews,categories,
           })
   }
   </div>
-</div>
+</div> */}
 
 
 
@@ -275,6 +275,29 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 
 
       {articlesSlide!==null ? <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>: <SlidingArticlesLoader/>}
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
+        <div>dgfhgjl;kl;</div>
         </>
     )
 }

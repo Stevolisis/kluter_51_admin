@@ -68,8 +68,8 @@ export const getStaticProps=async({params})=>{
   
 export default function BlogCategory({category,blogData,articleViews,categories,error}){
   let router=useRouter();
-    const [articlesSlide,setarticlesSlide]=useState(null);
-    const [categoryList,setCategoryList]=useState(null);
+    // const [articlesSlide,setarticlesSlide]=useState(null);
+    // const [categoryList,setCategoryList]=useState(null);
     const [articles,setarticles]=useState(null);
     const { loading, setloading } = useLoader();
     let limit=useRef(15);
@@ -187,21 +187,15 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 
         useEffect(()=>{
           setarticles(blogData);
-          setarticlesSlide(articleViews);
-          setCategoryList(categories);
+          // setarticlesSlide(articleViews);
+          // setCategoryList(categories);
           // loadCategories();
           // loadArticlesByViews();
-          if(category===null){
-            Swal.fire(
-              'Error Occured',
-              'Category not Found',
-              'error'
-            )
-          }
         },[])
 
     
-
+        console.log('ppp',articleViews)
+        console.log('nnn',categories)
 
 
     return(
@@ -238,18 +232,18 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 
 
 
-{/* <div className={styles.categorySliderCon}>
+<div className={styles.categorySliderCon}>
 <div className={styles.categorySlider}>
-  {
-    categoryList!==null ? categoryList.map((category,i)=>{
+  {/* {
+    categories!==null ? categories.map((category,i)=>{
       return <Link href={category.slug&&category.slug} key={i} legacyBehavior><a className={styles.categorySlide}><i className={`fa fa-${category.icon}`}/>{category.name}</a></Link>
     }) :
     [1,2,3,4].map((category,i)=>{
       return <Link href='#' key={i} legacyBehavior><a style={{width:'100px',height:'35px',background:'rgba(201, 197, 197,0.4)',margin:'0 12px'}}><i/></a></Link>
           })
-  }
+  } */}
   </div>
-</div> */}
+</div>
 
 
 
@@ -263,6 +257,7 @@ export default function BlogCategory({category,blogData,articleViews,categories,
      <div className='categoriesCon3'>
       
       
+      {/* {articles!==null ? <BlogList articles={articles}/> : <BlogLoader/>} */}
       {articles!==null ? <BlogList articles={articles}/> : <BlogLoader/>}
 
 
@@ -274,30 +269,7 @@ export default function BlogCategory({category,blogData,articleViews,categories,
       </div>
 
 
-      {articlesSlide!==null ? <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>: <SlidingArticlesLoader/>}
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
-        <div>dgfhgjl;kl;</div>
+      {articleViews ? <SlidingArticles articlesSlide={articleViews} title='Most Read Articles'/>: <SlidingArticlesLoader/>}
         </>
     )
 }

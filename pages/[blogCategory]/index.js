@@ -35,13 +35,15 @@ export const getStaticPaths=async()=>{
   }
   }catch(err){
       return {
-      props:{error:err.message}
+        props:{error:err.message}
       } 
   }  
 }
 
 
 export const getStaticProps=async({params})=>{
+  console.log('params',params)
+
   // let error=query;
   try{
     const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`);
@@ -77,8 +79,6 @@ export const getStaticProps=async({params})=>{
   
 export default function BlogCategory({category,blogData,articleViews,categories,error}){
   let router=useRouter();
-    // const [articlesSlide,setarticlesSlide]=useState(null);
-    // const [categoryList,setCategoryList]=useState(null);
     const [articles,setarticles]=useState(null);
     const { loading, setloading } = useLoader();
     let limit=useRef(15);

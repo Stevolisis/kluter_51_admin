@@ -200,7 +200,7 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 
     return(
         <>
-      <Head>
+      {/* <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
         <title>{category&&category.name}</title>
@@ -220,11 +220,11 @@ export default function BlogCategory({category,blogData,articleViews,categories,
         <meta name="twitter:title" content={category&&category.name}/>
         <meta name="twitter:image" content={category && category.img && category.img.url}/>
         <meta name="twitter:description" content={category&&category.description}/>
-      </Head>
+      </Head> */}
 
 
 
-
+{/* 
       <Mainscreen heading={category&&category.name} description={category&&category.description}
      imgLink={category && category.img && category.img.url} page='blogCategory'/>
 
@@ -246,6 +246,7 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 </div>
 
 
+ */}
 
 
 
@@ -253,11 +254,9 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 
 
 
-
-     <div className='categoriesCon3'>
+     {/* <div className='categoriesCon3'>
       
       
-      {/* {articles!==null ? <BlogList articles={articles}/> : <BlogLoader/>} */}
       {articles ? <BlogList articles={articles}/> : <BlogLoader/>}
 
 
@@ -270,6 +269,7 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 
 
       {articleViews ? <SlidingArticles articlesSlide={articleViews} title='Most Read Articles'/>: <SlidingArticlesLoader/>}
+         */}
         </>
     )
 }

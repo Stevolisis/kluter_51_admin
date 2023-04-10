@@ -27,7 +27,7 @@ export const getStaticPaths=async()=>{
               console.log('category',category)
               return {
                   params:{
-                      blogCategory:category.slug.split('/')[0]||"404"
+                      blogCategory:category.slug.split('/')[0]
                   }
               }
           }),
@@ -65,6 +65,15 @@ export const getStaticProps=async({params})=>{
   
 }
 
+
+
+
+
+
+
+
+
+
   
 export default function BlogCategory({category,blogData,articleViews,categories,error}){
   let router=useRouter();
@@ -97,29 +106,6 @@ export default function BlogCategory({category,blogData,articleViews,categories,
         });
         }
       
-
-        // function loadArticlesByViews(){
-        //   axios.get('/api/articles/getArticlesByViews')
-        //   .then(res=>{
-        //       let status=res.data.status;
-        //       let data=res.data.data;
-        //       if(status==='success'){
-        //           setarticlesSlide(data)
-        //       }else{
-        //           Swal.fire(
-        //               'Error Occured',
-        //               res.data.status,
-        //               'warning'
-        //           )
-        //       }
-        //   }).catch(err=>{
-        //       Swal.fire(
-        //           'Error Occured',
-        //           err.message,
-        //           'error'
-        //       )           
-        //   });
-        // }
       
 
         function loadArticlesByCategory(){
@@ -151,30 +137,6 @@ export default function BlogCategory({category,blogData,articleViews,categories,
         }
 
 
-        
-//   function loadCategories(){
-//     axios.get('/api/categories/getCategories')
-//     .then(res=>{
-//         let status=res.data.status;
-//         let data=res.data.data;
-//         if(status==='success'){
-//             setCategoryList(data)
-//         }else{
-//             Swal.fire(
-//                 'Error Occured',
-//                 res.data.status,
-//                 'warning'
-//             )
-//         }
-//     }).catch(err=>{
-//         Swal.fire(
-//             'Error Occured',
-//             err.message,
-//             'error'
-//         )           
-//     });
-// }
-
 
         function loadMore(){
           limit.current=limit.current+8;
@@ -187,10 +149,6 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 
         useEffect(()=>{
           setarticles(blogData);
-          // setarticlesSlide(articleViews);
-          // setCategoryList(categories);
-          // loadCategories();
-          // loadArticlesByViews();
         },[blogData])
 
     
@@ -200,7 +158,7 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 
     return(
         <>
-      {/* <Head>
+      <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
         <title>{category&&category.name}</title>
@@ -220,11 +178,11 @@ export default function BlogCategory({category,blogData,articleViews,categories,
         <meta name="twitter:title" content={category&&category.name}/>
         <meta name="twitter:image" content={category && category.img && category.img.url}/>
         <meta name="twitter:description" content={category&&category.description}/>
-      </Head> */}
+      </Head>
 
 
 
-{/* 
+
       <Mainscreen heading={category&&category.name} description={category&&category.description}
      imgLink={category && category.img && category.img.url} page='blogCategory'/>
 
@@ -246,7 +204,6 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 </div>
 
 
- */}
 
 
 
@@ -254,7 +211,8 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 
 
 
-     {/* <div className='categoriesCon3'>
+
+     <div className='categoriesCon3'>
       
       
       {articles ? <BlogList articles={articles}/> : <BlogLoader/>}
@@ -269,7 +227,6 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 
 
       {articleViews ? <SlidingArticles articlesSlide={articleViews} title='Most Read Articles'/>: <SlidingArticlesLoader/>}
-         */}
         </>
     )
 }

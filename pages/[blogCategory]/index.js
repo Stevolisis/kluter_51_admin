@@ -27,7 +27,7 @@ export const getStaticPaths=async()=>{
               console.log('category',category)
               return {
                   params:{
-                      blogCategory:category.slug.split('/')[0]
+                      blogCategory:category.slug.split('/')[0]||"404"
                   }
               }
           }),

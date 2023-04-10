@@ -191,11 +191,11 @@ export default function BlogCategory({category,blogData,articleViews,categories,
           // setCategoryList(categories);
           // loadCategories();
           // loadArticlesByViews();
-        },[])
+        },[blogData])
 
     
         console.log('ppp',articleViews)
-        console.log('nnn',categories)
+        console.log('nnn',blogData)
 
 
     return(
@@ -234,14 +234,14 @@ export default function BlogCategory({category,blogData,articleViews,categories,
 
 <div className={styles.categorySliderCon}>
 <div className={styles.categorySlider}>
-  {/* {
-    categories!==null ? categories.map((category,i)=>{
+  {
+    categories ? categories.map((category,i)=>{
       return <Link href={category.slug&&category.slug} key={i} legacyBehavior><a className={styles.categorySlide}><i className={`fa fa-${category.icon}`}/>{category.name}</a></Link>
     }) :
     [1,2,3,4].map((category,i)=>{
       return <Link href='#' key={i} legacyBehavior><a style={{width:'100px',height:'35px',background:'rgba(201, 197, 197,0.4)',margin:'0 12px'}}><i/></a></Link>
           })
-  } */}
+  }
   </div>
 </div>
 
@@ -258,7 +258,7 @@ export default function BlogCategory({category,blogData,articleViews,categories,
       
       
       {/* {articles!==null ? <BlogList articles={articles}/> : <BlogLoader/>} */}
-      {articles!==null ? <BlogList articles={articles}/> : <BlogLoader/>}
+      {articles ? <BlogList articles={articles}/> : <BlogLoader/>}
 
 
       <div className='blogNavCon'>

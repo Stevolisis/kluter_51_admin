@@ -15,7 +15,6 @@ import BlogLoader from '../components/BlogLoader';
 import SlidingArticlesLoader from '../components/SlidingArticlesLoader';
 
 export const getStaticProps=async (context)=>{
-let error;
 try{
   const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
   const res2=await axios.get(`${baseUrl}/api/articles/getArticles?limit=15`);

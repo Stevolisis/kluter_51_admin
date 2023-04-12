@@ -44,35 +44,32 @@ export const getStaticPaths=async()=>{
 
 
 
-export const getStaticProps=async ({params})=>{
-  // let error=context.query;
-  console.log('params',params)
+export const getServerSideProps=async (context)=>{
+  let error=context.query;
   try{
-    const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`);
-    const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`);
+    const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${context.params.blogCategory}`);
+    const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${context.params.blogCategory}&limit=15`);
     const category= res.data.data||null;
-    const articles= res2.data.data||null;
-    console.log('category',category)
-    console.log('articles',articles)
-
+    const blogData= res2.data.data||null;
+    
     return {
-      props:{category,articles}
+      props:{category,blogData}
     }    
     
   }catch(err){
     return {
-      props:{error:err.message}
+      props:{error:error}
     } 
   }
   
 }
 
   
-export default function BlogCategory({category,articles,error}){
+export default function BlogCategory({category,blogData,error}){
   let router=useRouter();
     const [articlesSlide,setarticlesSlide]=useState(null);
     const [categories,setcategories]=useState(null);
-    // const [articles,setarticles]=useState(null);
+    const [articles,setarticles]=useState(null);
     const { loading, setloading } = useLoader();
     let limit=useRef(15);
 
@@ -188,7 +185,7 @@ export default function BlogCategory({category,articles,error}){
         })
 
         useEffect(()=>{
-          // setarticles(blogData);
+          setarticles(blogData);
           loadCategories();
           loadArticlesByViews();
           if(category===null){

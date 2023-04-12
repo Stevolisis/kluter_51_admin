@@ -18,29 +18,29 @@ import BlogLoader from "../../components/BlogLoader";
 
 
 
-export const getStaticPaths=async()=>{
+// export const getStaticPaths=async()=>{
     
-  try{
-      const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
-      const content= res.data.data;
+//   try{
+//       const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
+//       const content= res.data.data;
 
-      return{
-          paths:content.map(category=>{
-              console.log('category',category)
-              return {
-                  params:{
-                      blogCategory:category.slug.split('/')[0]
-                  }
-              }
-          }),
-          fallback:true
-  }
-  }catch(err){
-      return {
-        props:{error:err.message}
-      } 
-  }  
-}
+//       return{
+//           paths:content.map(category=>{
+//               console.log('category',category)
+//               return {
+//                   params:{
+//                       blogCategory:category.slug.split('/')[0]
+//                   }
+//               }
+//           }),
+//           fallback:true
+//   }
+//   }catch(err){
+//       return {
+//         props:{error:err.message}
+//       } 
+//   }  
+// }
 
 
 

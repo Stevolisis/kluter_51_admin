@@ -18,39 +18,39 @@ import BlogLoader from "../../components/BlogLoader";
 
 
 
-// export const getStaticPaths=async()=>{
+export const getStaticPaths=async()=>{
     
-//   try{
-//       const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
-//       const content= res.data.data;
-
-//       return{
-//           paths:content.map(category=>{
-//               console.log('category',category)
-//               return {
-//                   params:{
-//                       blogCategory:category.slug.split('/')[0]
-//                   }
-//               }
-//           }),
-//           fallback:true
-//   }
-//   }catch(err){
-//       return {
-//         props:{error:err.message}
-//       } 
-//   }  
-// }
-
-
-
-export const getServerSideProps=async (context)=>{
-  let error=context.query;
   try{
-    const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${context.params.blogCategory}`);
-    const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${context.params.blogCategory}&limit=15`);
-    const category= res.data.data||null;
-    const blogData= res2.data.data||null;
+      const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
+      const content= res.data.data;
+
+      return{
+          paths:content.map(category=>{
+              console.log('category',category)
+              return {
+                  params:{
+                      blogCategory:category.slug.split('/')[0]
+                  }
+              }
+          }),
+          fallback:true
+  }
+  }catch(err){
+      return {
+        props:{error:err.message}
+      } 
+  }  
+}
+
+
+
+export const getStaticProps=async ({params})=>{
+  // let error=context.query;
+  try{
+    const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`);
+    const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`);
+    const category= res.data.data;
+    const blogData= res2.data.data;
     
     return {
       props:{category,blogData}
@@ -58,11 +58,37 @@ export const getServerSideProps=async (context)=>{
     
   }catch(err){
     return {
-      props:{error:error}
+      props:{error:err.message}
     } 
   }
   
 }
+
+// export const getStaticProps=async({params})=>{
+//   console.log('params',params)
+
+//   // let error=query;
+//   try{
+//     const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`);
+//     const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`);
+//     const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
+//     const res4=await axios.get(`${baseUrl}/api/categories/getCategories`);
+//     const category= res.data.data;
+//     const blogData= res2.data.data;
+//     const articleViews= res3.data.data;
+//     const categories= res4.data.data;
+
+//     return {
+//       props:{category,blogData,articleViews,categories}
+//     }    
+    
+//   }catch(err){
+//     return {
+//       props:{error:err.message}
+//     } 
+//   }
+  
+// }
 
   
 export default function BlogCategory({category,blogData,error}){
@@ -188,14 +214,14 @@ export default function BlogCategory({category,blogData,error}){
           setarticles(blogData);
           loadCategories();
           loadArticlesByViews();
-          if(category===null){
-            Swal.fire(
-              'Error Occured',
-              'Category not Found',
-              'error'
-            )
-          }
-        },[])
+          // if(category===null){
+          //   Swal.fire(
+          //     'Error Occured',
+          //     'Category not Found',
+          //     'error'
+          //   )
+          // }
+        },[blogData])
 
     
 
@@ -260,7 +286,7 @@ export default function BlogCategory({category,blogData,error}){
      <div className='categoriesCon3'>
       
       
-      {articles!==null ? <BlogList articles={articles}/> : <BlogLoader/>}
+      {articles ? <BlogList articles={articles}/> : <BlogLoader/>}
 
 
       <div className='blogNavCon'>

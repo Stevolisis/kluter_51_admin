@@ -38,7 +38,7 @@ export const getStaticPaths=async()=>{
     }  
 }
 
-export const getStaticProps=async ({params})=>{
+export const getStaticProps=async({params})=>{
     // let error=context.query;
 
 

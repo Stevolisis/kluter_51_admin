@@ -48,10 +48,10 @@ export const getStaticProps=async({params})=>{
   // let error=context.query;
   console.log('params',params)
   try{
-    const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`);
-    const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`);
-    const category= res.data.data;
-    const blogData= res2.data.data;
+    const res={"img":{"public_id":"abcpcvxjq4nxwwkjycmr","url":"https://res.cloudinary.com/dbkcvkodl/image/upload/v1676650858/abcpcvxjq4nxwwkjycmr.png"},"_id":"63efa96b3de888c3c1fba8dc","name":"Software","description":"A set of instructions or programs that tell a computer or other digital device what to do. It can be categorized into various types, such as application software, system software, and programming software."};
+    const res2=[{"_id":"63e9295dbabd6c57732f1958","title":"Android App Development","slug":"/Android-App-Development","categorySlug":"/Software","category":"63efa96b3de888c3c1fba8dc","author":{"_id":"63e6db804bb803801914eb39","full_name":"Steven Joseph"},"content":"","img":{"public_id":"1676224861358android-app","url":"https://res.cloudinary.com/dbkcvkodl/image/upload/v1676224861/1676224861358android-app.jpg"},"status":"active","day":"12","month":"1","year":"2023","__v":0,"likes":1,"views":10,"comments":0,"description":"<p>The world of mobile technology has grown at an unprecedented rate over the past few years. With billions of people now using sm..."},{"_id":"63e92777babd6c57732f18bc","title":"Mobile App Development with Java","slug":"/Mobile-App-Development-with-Java","categorySlug":"/Software","category":"63efa96b3de888c3c1fba8dc","author":{"_id":"63e6db804bb803801914eb39","full_name":"Steven Joseph"},"content":"","img":{"public_id":"1676224374651Java-App-Development-2","url":"https://res.cloudinary.com/dbkcvkodl/image/upload/v1676224374/1676224374651Java-App-Development-2.jpg"},"status":"active","day":"12","month":"1","year":"2023","__v":0,"likes":0,"views":2,"comments":0,"description":"<p>Mobile app development has been one of the fastest-growing industries in recent years, and with the increasing popularity of sm..."}];
+    const category= res;
+    const blogData= res2;
     console.log('categoryResult',category)
     console.log('blogData',blogData)
 

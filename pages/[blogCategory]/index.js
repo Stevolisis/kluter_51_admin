@@ -46,12 +46,15 @@ export const getStaticPaths=async()=>{
 
 export const getStaticProps=async ({params})=>{
   // let error=context.query;
+  console.log('params',params)
   try{
     const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`);
     const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`);
     const category= res.data.data;
     const blogData= res2.data.data;
-    
+    console.log('categoryResult',category)
+    console.log('blogData',blogData)
+
     return {
       props:{category,blogData}
     }    
@@ -283,7 +286,7 @@ export default function BlogCategory({category,blogData,error}){
 
 
 
-     <div className='categoriesCon3'>
+     {/* <div className='categoriesCon3'>
       
       
       {articles ? <BlogList articles={articles}/> : <BlogLoader/>}
@@ -297,8 +300,8 @@ export default function BlogCategory({category,blogData,error}){
       </div>
 
 
-      {articlesSlide!==null ? <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>: <SlidingArticlesLoader/>}
-        </>
+      {articlesSlide!==null ? <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>: <SlidingArticlesLoader/>} */}
+      </>
     )
 }
 

@@ -18,33 +18,24 @@ import BlogLoader from "../../components/BlogLoader";
 
 
 
-export const getStaticPaths=async()=>{
-    
-  try{
-      const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
-      const content= res.data.data;
+export const getStaticPaths = async () => {
+  try {
+    const res = await axios.get(`${baseUrl}/api/categories/getCategories`);
+    const categories = res.data.data;
 
-      return{
-          paths:content.map(category=>{
-              console.log('category',category)
-              return {
-                  params:{
-                      blogCategory:category.slug.split('/')[0]||"404"
-                  }
-              }
-          }),
-          fallback:true
+    const paths = categories.map((category) => ({
+      params: { blogCategory: category.slug.split('/')[0] },
+    }));
+
+    return { paths, fallback: false };
+  } catch (err) {
+    return { props: { error: err.message } };
   }
-  }catch(err){
-      return {
-        props:{error:err.message}
-      } 
-  }  
-}
+};
 
 
 
-export const getStaticProps=async ({params})=>{
+export const getStaticProps=async({params})=>{
   // let error=context.query;
   console.log('params',params)
   try{

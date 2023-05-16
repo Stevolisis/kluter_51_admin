@@ -64,13 +64,13 @@ import BlogLoader from "../../components/BlogLoader";
   
 // }
 
-export const getStaticProps=async({params})=>{
-  console.log('params',params)
+export const getServerSideProps=async(context)=>{
+  console.log('params',params);
 
   // let error=query;
   try{
-    const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`);
-    const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`);
+    const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${context.params.blogCategory}`);
+    const res2=await axios.get(`context.baseUrl}/api/articles/loadArticlesByCategory?category=${context.params.blogCategory}&limit=15`);
     const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
     const res4=await axios.get(`${baseUrl}/api/categories/getCategories`);
     const category= res.data.data;

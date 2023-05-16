@@ -51,7 +51,7 @@ export default function Home({categories,blogData,articleViews,error}) {
 
   
 
-  function dropdown1(){
+function dropdown1(){
   $('.filterSearch1').on('focus',function(){
     $('.main4').css('display','block')
   });
@@ -64,7 +64,7 @@ export default function Home({categories,blogData,articleViews,error}) {
       }
     })
   });
-  }
+}
 
 
 

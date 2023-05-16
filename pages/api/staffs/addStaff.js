@@ -26,6 +26,7 @@ export default async function handler(req, res) {
         if (files.full_name === 'admin') return res.status(200).json({ status: 'This name is not Permitted' });
         try {
           const password = await bcrypt.hash(fields.password, 10);
+          let date=new Date();
           const AdminCheck = await Staffs.findOne({ admin: true }).select('full_name email position admin');
           const EmailCheck = await Staffs.findOne({ email: fields.email }).select('full_name email position admin');
           if (AdminCheck && AdminCheck.admin && (fields.full_name === 'Admin' || fields.full_name === 'admin')) {

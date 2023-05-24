@@ -96,6 +96,7 @@ export default function BlogCategory({category,blogData,error}){
     const [articlesSlide,setarticlesSlide]=useState(null);
     const [categories,setcategories]=useState(null);
     const [articles,setarticles]=useState(null);
+    const [shouldRender , setShouldRender]=useState(false);
     const { loading, setloading } = useLoader();
     let limit=useRef(15);
 
@@ -211,6 +212,7 @@ export default function BlogCategory({category,blogData,error}){
         })
 
         useEffect(()=>{
+          setShouldRender(true);
           setarticles(blogData);
           loadCategories();
           loadArticlesByViews();
@@ -264,12 +266,14 @@ export default function BlogCategory({category,blogData,error}){
 <div className={styles.categorySliderCon}>
 <div className={styles.categorySlider}>
   {
-    categories!==null ? categories.map((category,i)=>{
+    shouldRender && (
+      categories!==null ? categories.map((category,i)=>{
       return <Link href={category.slug&&category.slug} key={i}><a className={styles.categorySlide}><i className={`fa fa-${category.icon}`}/>{category.name}</a></Link>
     }) :
     [1,2,3,4].map((category,i)=>{
       return <Link href='#' key={i} legacyBehavior><a style={{width:'100px',height:'35px',background:'rgba(201, 197, 197,0.4)',margin:'0 12px'}}><i/></a></Link>
-          })
+    })
+    )
   }
   </div>
 </div>
@@ -286,7 +290,12 @@ export default function BlogCategory({category,blogData,error}){
      <div className='categoriesCon3'>
       
       
-      {articles ? <BlogList articles={articles}/> : <BlogLoader/>}
+      {
+        shouldRender && (articles!==null ? 
+          <BlogList articles={articles}/>
+        : 
+        <BlogLoader/>)
+      }
 
 
       <div className='blogNavCon'>
@@ -296,8 +305,13 @@ export default function BlogCategory({category,blogData,error}){
       </div>
       </div>
 
+      {
+        shouldRender && (articlesSlide!==null ? 
+        <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>
+        : 
+        <SlidingArticlesLoader/>)
+      }
 
-      {articlesSlide!==null ? <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>: <SlidingArticlesLoader/>}
         </>
     )
 }

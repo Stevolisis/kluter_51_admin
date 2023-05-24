@@ -94,7 +94,7 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
     const [email, setemail]=useState('');
     const [full_name, setfull_name]=useState('');
     const [comments, setcomments]=useState(null); 
-    const [slide, setSlide]=useState(false);
+    const [shouldRender , setShouldRender]=useState(false);
 
 
 
@@ -300,7 +300,7 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
     setwindowLink(window.location.href)
     checkLike()
     userAuth();
-    setSlide(true)
+    setShouldRender(true)
    },[])
 
     useEffect(()=>{
@@ -470,7 +470,7 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
     {comments!==null ? <Comments comments={comments}/> : <CommentsLoader/>}
 
     {
-        slide && (articlesSlide!==null ? 
+        shouldRender  && (articlesSlide!==null ? 
         <SlidingArticles articlesSlide={articlesSlide} title='Related Topics'/>
         : 
         <SlidingArticlesLoader/>)

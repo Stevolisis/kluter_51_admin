@@ -38,8 +38,9 @@ try{
 export default function Home({categories,blogData,articleViews,error}) {
   const [articlesSlide,setarticlesSlide]=useState(null);
   const { loading, setloading, name, description,front_cover_image } = useLoader();
-  const [articles,setarticles]=useState(null)
-  let limit=useRef(15)
+  const [articles,setarticles]=useState(null);
+  const [shouldRender , setShouldRender]=useState(false);
+  let limit=useRef(15);
   
   if(error){
     Swal.fire(
@@ -133,7 +134,8 @@ function loadArticles(){
 
   useEffect(()=>{
     setarticles(blogData);
-    setarticlesSlide(articleViews)
+    setarticlesSlide(articleViews);
+    setShouldRender(true)
     // loadArticlesByViews();
   },[])
 
@@ -207,7 +209,13 @@ function loadArticles(){
 
 
 
-      {articles!==null ? <BlogList articles={articles}/> : <BlogLoader/>}
+      {/* {articles!==null ? <BlogList articles={articles}/> : <BlogLoader/>} */}
+      {
+        shouldRender && (articles!==null ? 
+          <BlogList articles={articles}/>
+        : 
+        <BlogLoader/>)
+      }
 
       
 
@@ -245,11 +253,10 @@ function loadArticles(){
 
 
   {
-  articlesSlide!==null 
-  ? 
-  <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>
-  :
-  <SlidingArticlesLoader/>
+    shouldRender && (articlesSlide!==null ? 
+    <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>
+    : 
+    <SlidingArticlesLoader/>)
   }
 
 

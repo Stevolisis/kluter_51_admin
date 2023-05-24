@@ -82,7 +82,7 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
           'error'
         )
   }
-console.log('contentfuuul',content.content)
+console.log('contentfuuul',content&&content.content);
   const { loading, setloading } = useLoader();
 
 

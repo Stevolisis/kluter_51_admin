@@ -376,6 +376,7 @@ console.log('contentfuuul',content&&content.content);
             <div className='authorImg'>
                {img_link2 && <Image
                 src={img_link2}
+                alt='author Image'
                 width={40}
                 height={40}
                 style={{borderRadius:'50%'}}
@@ -464,11 +465,15 @@ console.log('contentfuuul',content&&content.content);
 
 
 
-{comments!==null ? <Comments comments={comments}/> : <CommentsLoader/>}
+    {comments!==null ? <Comments comments={comments}/> : <CommentsLoader/>}
 
+    {
+        articlesSlide!==null ? 
+        <SlidingArticles articlesSlide={articlesSlide} title='Related Topics'/>
+        : 
+        <SlidingArticlesLoader/>
+    }
 
-
-     {articlesSlide!==null ? <SlidingArticles articlesSlide={articlesSlide} title='Related Topics'/>: <SlidingArticlesLoader/>}
 
     </>
     )

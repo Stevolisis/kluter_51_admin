@@ -65,7 +65,7 @@ import BlogLoader from "../../components/BlogLoader";
 // }
 
 export const getServerSideProps=async(context)=>{
-  // console.log('params',params);
+  console.log('params',context.params);
 
   // let error=query;
   try{

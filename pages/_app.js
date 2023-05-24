@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
   const childrenName=router.pathname;
   const admin=childrenName.split('/')[1]; 
   const [loading,setloading]=useState(false);
-  const [name,setname]=useState('')
+  const [name,setname]=useState('');
   const [description,setdescription]=useState('')
   const [logo,setlogo]=useState('')
   const [front_cover_image,setfront_cover_image]=useState('')
@@ -85,25 +85,28 @@ function MyApp({ Component, pageProps }) {
     });
 }
 
-useEffect(()=>{
-  loadSupport();
-},[]);
+  useEffect(()=>{
+    loadSupport();
+  },[]);
 
-useEffect(()=>{
-  const handleRouteChange  = () => {
-    setloading(true)
-  }
-  const routeChangeComplete = (url) => {
-    setloading(false)
-    gtag.pageview(url)
-}
-  Router.events.on("routeChangeStart", handleRouteChange );
-  Router.events.on("routeChangeError", routeChangeComplete);
-  Router.events.on("routeChangeComplete", routeChangeComplete);
-  return()=>{
-    Router.events.off("routeChangeComplete", routeChangeComplete);
-  }
-},[router.events]);
+  useEffect(()=>{
+    const handleRouteChange  = () => {
+      setloading(true)
+    }
+
+    const routeChangeComplete = (url) => {  
+      setloading(false)
+      gtag.pageview(url)
+    }
+    
+    Router.events.on("routeChangeStart", handleRouteChange );
+    Router.events.on("routeChangeError", routeChangeComplete);
+    Router.events.on("routeChangeComplete", routeChangeComplete);
+    
+    return()=>{
+      Router.events.off("routeChangeComplete", routeChangeComplete);
+    }
+  },[router.events]);
 
   return(
     <Layout> {loading&&<PageLoader/>}

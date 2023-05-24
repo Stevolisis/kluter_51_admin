@@ -82,7 +82,7 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
           'error'
         )
   }
-console.log('contentfuuul',content&&content.content);
+
   const { loading, setloading } = useLoader();
 
 
@@ -94,6 +94,7 @@ console.log('contentfuuul',content&&content.content);
     const [email, setemail]=useState('');
     const [full_name, setfull_name]=useState('');
     const [comments, setcomments]=useState(null); 
+    const [slide, setSlide]=useState(false);
 
 
 
@@ -295,10 +296,11 @@ console.log('contentfuuul',content&&content.content);
     //   }
 
 
-    useEffect(()=>{
+   useEffect(()=>{
     setwindowLink(window.location.href)
     checkLike()
     userAuth();
+    setSlide(true)
    },[])
 
     useEffect(()=>{
@@ -468,11 +470,12 @@ console.log('contentfuuul',content&&content.content);
     {comments!==null ? <Comments comments={comments}/> : <CommentsLoader/>}
 
     {
-        articlesSlide!==null ? 
+        slide && (articlesSlide!==null ? 
         <SlidingArticles articlesSlide={articlesSlide} title='Related Topics'/>
         : 
-        <SlidingArticlesLoader/>
+        <SlidingArticlesLoader/>)
     }
+
 
 
     </>

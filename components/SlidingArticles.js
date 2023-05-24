@@ -6,21 +6,23 @@ export default function SlidingArticles({articlesSlide,title}){
   'August','September','October','November','December'];
   let listing;
 
-  if(articlesSlide!== undefined){
+  if(articlesSlide){
     listing=articlesSlide.map((article,i)=>{
      const {title,img,author,categorySlug,slug,views,likes,day,month,year}=article;
  
+
+     
      return(
      <Link href={categorySlug+slug} key={i} legacyBehavior><a className='blogCon'>
        <div className='blogImg'>
-             <Image 
-             src={img.url}
-             alt={title}
-             layout="fill"
-             blurDataURL="/favicon.io"
-             placeholder="blur"
-             priority
-             />
+          <Image 
+            src={img.url}
+            alt={title}
+            layout="fill"
+            blurDataURL="/favicon.io"
+            placeholder="blur"
+            priority
+          />
        </div>
        <div className='blogInfo'>
  
@@ -49,16 +51,18 @@ export default function SlidingArticles({articlesSlide,title}){
 
 
 
-    return(
-        <>
-        
-    <div className='blogSliderHeading'><h2>{title}</h2></div>
 
-<div className='blogSliderCon'>
-  <div className='blogSlider'>
-    {listing}
-  </div>
-</div>
-        </>
+
+
+  return(
+      <>
+        <div className='blogSliderHeading'><h2>{title}</h2></div>
+
+        <div className='blogSliderCon'>
+          <div className='blogSlider'>
+            {listing}
+          </div>
+        </div>
+      </>
     )
 }

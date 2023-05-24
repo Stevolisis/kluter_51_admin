@@ -13,14 +13,28 @@ export default function BlogList({articles}){
       return(
         <Link href={categorySlug+slug} key={i} legacyBehavior><a className='blogCon'>
         <div className='blogImg'>
-              <Image 
-              src={img.url}
-              alt={title}
-              layout="fill"
-              blurDataURL="/favicon.io"
-              placeholder="blur"
-              priority
-              />
+          <Image 
+            src={img.url}
+            alt={title}
+            layout="fill"
+            blurDataURL="/favicon.io"
+            placeholder="blur"
+            priority
+          />
+          {/* <Image
+            src={img.url}
+            alt={title}
+            layout="responsive"
+            width={img.width}
+            height={img.height}
+            placeholder="blur"
+            blurDataURL="/favicon.io"
+            priority
+            style={{
+              objectFit: "cover",
+              objectPosition: "center",
+          }}
+          /> */}
         </div>
         <div className='blogInfo'>
   

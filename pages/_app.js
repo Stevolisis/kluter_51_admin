@@ -102,11 +102,18 @@ function MyApp({ Component, pageProps }) {
     Router.events.on("routeChangeStart", handleRouteChange );
     Router.events.on("routeChangeError", routeChangeComplete);
     Router.events.on("routeChangeComplete", routeChangeComplete);
-    
+
     return()=>{
       Router.events.off("routeChangeComplete", routeChangeComplete);
     }
   },[router.events]);
+
+
+
+
+
+
+
 
   return(
     <Layout> {loading&&<PageLoader/>}
@@ -122,7 +129,7 @@ function MyApp({ Component, pageProps }) {
             <AdminHeader>
                   <Component {...pageProps} key={router.asPath}/>        
             </AdminHeader> 
-        <Footer phone_number={phone_number} linkedin={linkedin} whatsapp={whatsapp} google_chat={google_chat} facebook={facebook} gmail={gmail} />
+            <Footer phone_number={phone_number} linkedin={linkedin} whatsapp={whatsapp} google_chat={google_chat} facebook={facebook} gmail={gmail} />
         </>
         :
          <>

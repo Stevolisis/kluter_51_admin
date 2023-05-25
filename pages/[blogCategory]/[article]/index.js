@@ -74,6 +74,18 @@ export const getStaticProps=async({params})=>{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 export default function Article({error,content,content2,pageId,categoryId,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}){
     if(error){
         Swal.fire(
@@ -84,7 +96,8 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
   }
 
   const { loading, setloading } = useLoader();
-
+  console.log('cont1',content&&content.content);
+console.log('cont2',content&&parse(content.content));
 
     const months=['January','February','March','April','May','June','July',
     'August','September','October','November','December'];
@@ -429,7 +442,12 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
 
 
      <div className="articleContentCon">
-        <div >{content && parse(content.content)}</div>
+        <div >{content && parse(content.content,{
+            replace:({attribs,children})=>{
+                console.log('attribs',attribs);
+                console.log('children',children);
+            }
+        })}</div>
      </div>
 
 

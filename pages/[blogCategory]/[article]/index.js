@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect,useState } from "react";
 import Swal from "sweetalert2";
 import SlidingArticles from "../../../components/SlidingArticles";
-import parse from 'html-react-parser';
+import parse, { attributesToProps } from 'html-react-parser';
 import { RWebShare } from "react-web-share";
 import {baseUrl} from '../../../components/BaseUrl'
 import { useLoader } from "../../_app";
@@ -444,6 +444,10 @@ console.log('cont2',content&&parse(content.content));
      <div className="articleContentCon">
         <div >{content && parse(content.content,{
             replace:domNode=>{
+                if(domNode.name==='a'){
+                    const props = attributesToProps(domNode.attribs);
+                    return <h1 {...props} >{domNode.children[0].data}</h1>
+                }
                 console.log('attribs',domNode);
                 // console.log('children',children);
             }

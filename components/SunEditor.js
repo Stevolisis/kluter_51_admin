@@ -20,7 +20,7 @@ export default function SunEditors({content,setContent}){
                 ['table', 'link', 'image', 'video', 'audio' 
                 /** ,'math' */], // You must add the 'katex' library at options to use the 'math' plugin.
                 /** ['imageGallery'] */ // You must add the "imageGalleryUrl".
-                ['fullScreen','imageGallery'],
+                ['fullScreen'],
             ]
             }}
         />

@@ -443,9 +443,9 @@ console.log('cont2',content&&parse(content.content));
 
      <div className="articleContentCon">
         <div >{content && parse(content.content,{
-            replace:({attribs,children})=>{
-                console.log('attribs',attribs);
-                console.log('children',children);
+            replace:domNode=>{
+                console.log('attribs',domNode);
+                // console.log('children',children);
             }
         })}</div>
      </div>

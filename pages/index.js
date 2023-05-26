@@ -161,6 +161,11 @@ function loadArticles(){
         <meta name="twitter:title" content="TechREVEAL | Stay Up-to-Date with the Latest Technology News"/>
         <meta name="twitter:image" content="https://res.cloudinary.com/dbkcvkodl/image/upload/v1676112672/techReal_lxfms4.png"/>
         <meta name="twitter:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
+        <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7953128690140311"
+            crossOrigin="anonymous"
+        ></script>
       </Head>
 
 

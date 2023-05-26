@@ -349,6 +349,11 @@ console.log('cont2',content&&parse(content.content));
         <meta name="twitter:title" content={content && content.title}/>
         <meta name="twitter:image" content={content&&content.img.url}/>
         <meta name="twitter:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
+        <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7953128690140311"
+            crossOrigin="anonymous"
+        ></script>
       </Head>
 
 

@@ -251,6 +251,11 @@ export default function BlogCategory({category,blogData,error}){
         <meta name="twitter:title" content={category&&category.name}/>
         <meta name="twitter:image" content={category && category.img && category.img.url}/>
         <meta name="twitter:description" content={category&&category.description}/>
+        <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7953128690140311"
+            crossOrigin="anonymous"
+        ></script>
       </Head>
 
 

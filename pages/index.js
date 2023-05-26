@@ -15,6 +15,7 @@ import BlogLoader from '../components/BlogLoader';
 import SlidingArticlesLoader from '../components/SlidingArticlesLoader';
 
 export const getStaticProps=async (context)=>{
+  
 try{
   const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
   const res2=await axios.get(`${baseUrl}/api/articles/getArticles?limit=15`);
@@ -37,7 +38,7 @@ try{
 
 export default function Home({categories,blogData,articleViews,error}) {
   const [articlesSlide,setarticlesSlide]=useState(null);
-  const { loading, setloading, name, description,front_cover_image } = useLoader();
+  const { setloading, name, description,front_cover_image } = useLoader();
   const [articles,setarticles]=useState(null);
   const [shouldRender , setShouldRender]=useState(false);
   let limit=useRef(15);

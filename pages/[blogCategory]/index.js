@@ -65,7 +65,6 @@ import BlogLoader from "../../components/BlogLoader";
 // }
 
 export const getServerSideProps=async(context)=>{
-  console.log('params',context.params);
 
   // let error=query;
   try{
@@ -154,7 +153,6 @@ export default function BlogCategory({category,blogData,error}){
           .then(res=>{
               let status=res.data.status;
               let data=res.data.data;
-              console.log(data)
               setloading(false)
               if(status==='success'){
                   setarticles(data)
@@ -200,7 +198,6 @@ export default function BlogCategory({category,blogData,error}){
         )           
     });
 }
-
 
         function loadMore(){
           limit.current=limit.current+8;

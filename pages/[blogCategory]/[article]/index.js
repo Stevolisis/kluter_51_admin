@@ -12,7 +12,6 @@ import { useLoader } from "../../_app";
 import SlidingArticlesLoader from "../../../components/SlidingArticlesLoader";
 import Comments from "../../../components/Comments";
 import CommentsLoader from "../../../components/CommentsLoader";
-import AdScript from "@/styles/AdScript";
 
 
 export const getStaticPaths=async()=>{
@@ -97,8 +96,6 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
   }
 
   const { loading, setloading } = useLoader();
-  console.log('cont1',content&&content.content);
-console.log('cont2',content&&parse(content.content));
 
     const months=['January','February','March','April','May','June','July',
     'August','September','October','November','December'];
@@ -457,8 +454,6 @@ console.log('cont2',content&&parse(content.content));
                     const props = attributesToProps(domNode.attribs);
                     return <code {...props} >{domNode.children[0].data}</code>;
                 }
-                console.log('attribs',domNode);
-                // console.log('children',children);
             }
         })}</div>
      </div>

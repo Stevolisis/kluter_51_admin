@@ -120,24 +120,29 @@ margin-top:5px;
 }
 .articleContentCon{
     padding: 10px 10% 0 10%;
+    word-break: break-all;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
     
     div:nth-of-type(1){
         font-size: 14px;
         color: $color8;
-        // word-spacing: 4px;
-        // line-height: 1.9;
+        word-spacing: 4px;
+        line-height: 1.9;
         // overflow-x: auto;
-        // word-break: break-word;
+
 
         a{
             color: dodgerblue;
             text-decoration: underline;
+            white-space: break-spaces;
         }
 
-        // code{
-        //     color:blueviolet;
-        //     word-break: break-word;
-        // }
+        pre{
+            background-color:rgb(235, 232, 232);
+            white-space: break-spaces;
+            // word-break: break-all;
+        }
 
         img{
             max-width: 100%;

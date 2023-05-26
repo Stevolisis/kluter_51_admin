@@ -449,7 +449,7 @@ console.log('cont2',content&&parse(content.content));
                     const props = attributesToProps(domNode.attribs);
                     return <h1 {...props} >{domNode.children[0].data}</h1>
                 }else if(domNode.name==='pre'){
-                    return <AdScript/>
+                    return;
                 }
                 console.log('attribs',domNode);
                 // console.log('children',children);

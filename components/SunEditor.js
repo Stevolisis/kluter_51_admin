@@ -7,6 +7,8 @@ export default function SunEditors({content,setContent}){
             placeholder="Please type here..." 
             value={content} 
             onChange={setContent}
+            setContents={content}
+            height={'500px'}
             setOptions={{
                 buttonList:[        ['undo', 'redo'],
                 ['font', 'fontSize', 'formatBlock'],
@@ -14,7 +16,7 @@ export default function SunEditors({content,setContent}){
                 ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
                 ['fontColor', 'hiliteColor', 'textStyle'],
                 ['removeFormat'],
-                '/', // Line break
+                '/',
                 ['outdent', 'indent'],
                 ['align','list', 'lineHeight'],
                 ['table', 'link', 'image', 'video', 'audio' 

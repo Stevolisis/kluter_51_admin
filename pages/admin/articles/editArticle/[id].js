@@ -240,7 +240,7 @@ export default function EditArticle(){
 
         <div className='admineditnamecon'>
             <div className='admineditname'>
-            <p>Thumbnail(Image)</p>
+            <p>Thumbnail(Image) Reels</p>
 
             <div className='previewimg'>
             <img src={imgpreview}/>

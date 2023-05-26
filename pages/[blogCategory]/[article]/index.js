@@ -449,7 +449,8 @@ console.log('cont2',content&&parse(content.content));
                     const props = attributesToProps(domNode.attribs);
                     return <h1 {...props} >{domNode.children[0].data}</h1>
                 }else if(domNode.name==='pre'){
-                    return;
+                    const props = attributesToProps(domNode.attribs);
+                    return <code {...props} >{domNode.children[0].data}</code>;
                 }
                 console.log('attribs',domNode);
                 // console.log('children',children);

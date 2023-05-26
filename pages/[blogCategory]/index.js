@@ -70,7 +70,7 @@ export const getServerSideProps=async(context)=>{
   // let error=query;
   try{
     const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${context.params.blogCategory}`);
-    const res2=await axios.get(`context.baseUrl}/api/articles/loadArticlesByCategory?category=${context.params.blogCategory}&limit=15`);
+    const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${context.params.blogCategory}&limit=15`);
     const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
     const res4=await axios.get(`${baseUrl}/api/categories/getCategories`);
     const category= res.data.data;
@@ -273,10 +273,18 @@ export default function BlogCategory({category,blogData,error}){
   {
     shouldRender && (
       categories!==null ? categories.map((category,i)=>{
-      return <Link href={category.slug&&category.slug} key={i}><a className={styles.categorySlide}><i className={`fa fa-${category.icon}`}/>{category.name}</a></Link>
+      return <Link href={category.slug&&category.slug} key={i}>
+          <div className={styles.categorySlide}>
+            <i className={`fa fa-${category.icon}`}/>{category.name}
+          </div>
+        </Link>
     }) :
     [1,2,3,4].map((category,i)=>{
-      return <Link href='#' key={i} legacyBehavior><a style={{width:'100px',height:'35px',background:'rgba(201, 197, 197,0.4)',margin:'0 12px'}}><i/></a></Link>
+      return <Link href='#' key={i} legacyBehavior>
+          <div style={{width:'100px',height:'35px',background:'rgba(201, 197, 197,0.4)',margin:'0 12px'}}>
+              <i/>
+          </div>
+        </Link>
     })
     )
   }

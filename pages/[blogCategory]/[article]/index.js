@@ -12,6 +12,7 @@ import { useLoader } from "../../_app";
 import SlidingArticlesLoader from "../../../components/SlidingArticlesLoader";
 import Comments from "../../../components/Comments";
 import CommentsLoader from "../../../components/CommentsLoader";
+import AdScript from "@/styles/AdScript";
 
 
 export const getStaticPaths=async()=>{
@@ -447,6 +448,8 @@ console.log('cont2',content&&parse(content.content));
                 if(domNode.name==='a'){
                     const props = attributesToProps(domNode.attribs);
                     return <h1 {...props} >{domNode.children[0].data}</h1>
+                }else if(domNode.name==='pre'){
+                    return <AdScript/>
                 }
                 console.log('attribs',domNode);
                 // console.log('children',children);

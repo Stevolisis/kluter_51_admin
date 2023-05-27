@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useLoader } from "../../../_app";
 import { ThreeDots } from "react-loader-spinner";
 import { baseUrl } from "../../../../components/BaseUrl";
-const TextEditor=dynamic(import("@/components/TextEditor"), { ssr: false });
+// const TextEditor=dynamic(import("@/components/TextEditor"), { ssr: false });
 const SunEditors=dynamic(import("@/components/SunEditor"), { ssr: false });
 
 // const TextEditor = dynamic(() =>
@@ -233,7 +233,7 @@ export default function EditArticle(){
         <div className='admineditnamecon'>
             <div className='admineditname'>
             <p>Description</p>
-            <SunEditors content={content} setContent={setContent}/>
+                <SunEditors content={content} setContent={setContent}/>
             </div>
         </div>
 

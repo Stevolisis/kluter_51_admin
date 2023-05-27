@@ -223,12 +223,12 @@ export default function EditArticle(){
             </div>
         </div>
 
-        <div className='admineditnamecon'>
+        {/* <div className='admineditnamecon'>
             <div className='admineditname'>
             <p>Description</p>
             <TextEditor content={content} setContent={setContent}/>
             </div>
-        </div>
+        </div> */}
 
         <div className='admineditnamecon'>
             <div className='admineditname'>

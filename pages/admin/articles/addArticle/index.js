@@ -6,6 +6,7 @@ import axios from "axios";
 import { useLoader } from "../../../_app";
 import { ThreeDots } from "react-loader-spinner";
 import {baseUrl} from '../../../../components/BaseUrl';
+import SunEditors from "@/components/SunEditor";
 const TextEditor=dynamic(import("@/components/TextEditor"), { ssr: false });
 // const TextEditor = dynamic(() =>
 // import("../../../../components/TextEditor"), {   ssr: false ,loading: () => 
@@ -169,13 +170,19 @@ export default function AddArticle(){
             </div>
         </div>
 
-        <div className='admineditnamecon'>
+        {/* <div className='admineditnamecon'>
             <div className='admineditname'>
             <p>Content</p>
             <TextEditor content={content} setContent={setContent}/>
             </div>
-        </div>
+        </div> */}
 
+        <div className='admineditnamecon'>
+            <div className='admineditname'>
+            <p>Content</p>
+                <SunEditors content={content} setContent={setContent}/>
+            </div>
+        </div>
 
         <div className='admineditnamecon'>
             <div className='admineditname'>

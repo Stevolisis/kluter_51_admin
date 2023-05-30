@@ -14,7 +14,7 @@ import Image from 'next/image';
 import BlogLoader from '../components/BlogLoader';
 import SlidingArticlesLoader from '../components/SlidingArticlesLoader';
 
-export const getStaticProps=async (context)=>{
+export const getStaticProps=async ()=>{
   
 try{
   const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
@@ -215,13 +215,13 @@ function loadArticles(){
 
 
 
-<BlogList articles={articles}/> 
-      {/* {
+{/* <BlogList articles={articles}/>  */}
+      {
         shouldRender && (articles!==null ? 
           <BlogList articles={articles}/>
         : 
         <BlogLoader/>)
-      } */}
+      }
 
       
 
@@ -258,14 +258,14 @@ function loadArticles(){
   </div>
 
 
-  {/* {
+  {
     shouldRender && (articlesSlide!==null ? 
     <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>
     : 
     <SlidingArticlesLoader/>)
-  } */}
+  }
 
-  <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>
+  {/* <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/> */}
 
 
 

@@ -215,13 +215,13 @@ function loadArticles(){
 
 
 
-      {/* {articles!==null ? <BlogList articles={articles}/> : <BlogLoader/>} */}
-      {
+<BlogList articles={articles}/> 
+      {/* {
         shouldRender && (articles!==null ? 
           <BlogList articles={articles}/>
         : 
         <BlogLoader/>)
-      }
+      } */}
 
       
 
@@ -258,14 +258,14 @@ function loadArticles(){
   </div>
 
 
-  {
+  {/* {
     shouldRender && (articlesSlide!==null ? 
     <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>
     : 
     <SlidingArticlesLoader/>)
-  }
+  } */}
 
-
+  <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>
 
 
 

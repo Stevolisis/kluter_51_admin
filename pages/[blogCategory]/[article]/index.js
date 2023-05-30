@@ -451,8 +451,9 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
                     const props = attributesToProps(domNode.attribs);
                     return <h1 {...props} >{domNode.children[0].data}</h1>
                 }else if(domNode.name==='pre'){
+                    console.log('pre',domNode)
                     const props = attributesToProps(domNode.attribs);
-                    return <code {...props} >{domNode.children[0].data}</code>;
+                    return <code {...props}>{domNode.children[0].data}</code>;
                 }
             }
         })}</div>

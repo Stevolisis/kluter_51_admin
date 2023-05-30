@@ -6,21 +6,21 @@ import axios from "axios";
 import { useLoader } from "../../../_app";
 import { ThreeDots } from "react-loader-spinner";
 import {baseUrl} from '../../../../components/BaseUrl';
-const SunEditors=dynamic(import("@/components/SunEditor"), { ssr: false });
-// const TextEditor = dynamic(() =>
-// import("../../../../components/TextEditor"), {   ssr: false ,loading: () => 
-// <div style={{width:'100%',height:'400px',background:'#f5f6f6',display:'flex',justifyContent:'center',alignItems:'center'}}>
-// <ThreeDots
-// height="40" 
-// width="40" 
-// radius="9"
-// color="#177C65" 
-// ariaLabel="three-dots-loading"
-// wrapperStyle={{}}
-// wrapperClassName=""
-// visible={true}
-// /></div>
-// });
+// const SunEditors=dynamic(import("@/components/SunEditor"), { ssr: false });
+const SunEditors = dynamic(() =>
+import("@/components/SunEditor"), { ssr: false ,loading: () => 
+<div style={{width:'100%',height:'600px',background:'#f5f6f6',display:'flex',justifyContent:'center',alignItems:'center'}}>
+<ThreeDots
+height="40" 
+width="40" 
+radius="9"
+color="#177C65" 
+ariaLabel="three-dots-loading"
+wrapperStyle={{}}
+wrapperClassName=""
+visible={true}
+/></div>
+});
 
 
 

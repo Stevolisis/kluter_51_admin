@@ -49,13 +49,17 @@ export const getStaticProps=async ({params})=>{
   try{
     const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`);
     const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`);
+    const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
+    const res4=await axios.get(`${baseUrl}/api/categories/getCategories`);
     const category= res.data.data;
     console.log('blogDaaataaaaaaa',res2.data)
 
     const blogData= res2.data.data||[];
-    
+    const articleViews= res3.data.data;
+    const categories= res4.data.data;
+
     return {
-      props:{category,blogData}
+      props:{category,blogData,articleViews,categories}
     }    
     
   }catch(err){
@@ -105,7 +109,7 @@ export const getStaticProps=async ({params})=>{
 
 
 
-export default function BlogCategory({category,blogData,error}){
+export default function BlogCategory({category,blogData,articleViews,categories,error}){
   let router=useRouter();
     const [articlesSlide,setarticlesSlide]=useState(null);
     const [categories,setcategories]=useState(null);
@@ -138,28 +142,28 @@ export default function BlogCategory({category,blogData,error}){
         }
       
 
-        function loadArticlesByViews(){
-          axios.get('/api/articles/getArticlesByViews')
-          .then(res=>{
-              let status=res.data.status;
-              let data=res.data.data;
-              if(status==='success'){
-                  setarticlesSlide(data)
-              }else{
-                  Swal.fire(
-                      'Error Occured',
-                      res.data.status,
-                      'warning'
-                  )
-              }
-          }).catch(err=>{
-              Swal.fire(
-                  'Error Occured',
-                  err.message,
-                  'error'
-              )           
-          });
-        }
+        // function loadArticlesByViews(){
+        //   axios.get('/api/articles/getArticlesByViews')
+        //   .then(res=>{
+        //       let status=res.data.status;
+        //       let data=res.data.data;
+        //       if(status==='success'){
+        //           setarticlesSlide(data)
+        //       }else{
+        //           Swal.fire(
+        //               'Error Occured',
+        //               res.data.status,
+        //               'warning'
+        //           )
+        //       }
+        //   }).catch(err=>{
+        //       Swal.fire(
+        //           'Error Occured',
+        //           err.message,
+        //           'error'
+        //       )           
+        //   });
+        // }
       
 
         function loadArticlesByCategory(){
@@ -191,28 +195,28 @@ export default function BlogCategory({category,blogData,error}){
 
 
         
-  function loadCategories(){
-    axios.get('/api/categories/getCategories')
-    .then(res=>{
-        let status=res.data.status;
-        let data=res.data.data;
-        if(status==='success'){
-            setcategories(data)
-        }else{
-            Swal.fire(
-                'Error Occured',
-                res.data.status,
-                'warning'
-            )
-        }
-    }).catch(err=>{
-        Swal.fire(
-            'Error Occured',
-            err.message,
-            'error'
-        )           
-    });
-}
+//   function loadCategories(){
+//     axios.get('/api/categories/getCategories')
+//     .then(res=>{
+//         let status=res.data.status;
+//         let data=res.data.data;
+//         if(status==='success'){
+//             setcategories(data)
+//         }else{
+//             Swal.fire(
+//                 'Error Occured',
+//                 res.data.status,
+//                 'warning'
+//             )
+//         }
+//     }).catch(err=>{
+//         Swal.fire(
+//             'Error Occured',
+//             err.message,
+//             'error'
+//         )           
+//     });
+// }
 
         function loadMore(){
           limit.current=limit.current+8;
@@ -226,6 +230,10 @@ export default function BlogCategory({category,blogData,error}){
         useEffect(()=>{
           setShouldRender(true);
           setarticles(blogData);
+          setarticles(blogData);
+          setarticles(blogData);
+          setcategories(categories);
+          setarticlesSlide(articleViews)
           // loadCategories();
           // loadArticlesByViews();
           // if(category===null){

@@ -13,6 +13,7 @@ import { useLoader } from './_app';
 import Image from 'next/image';
 import BlogLoader from '../components/BlogLoader';
 import SlidingArticlesLoader from '../components/SlidingArticlesLoader';
+import useSWR from 'swr';
 
 
 
@@ -44,6 +45,10 @@ export default function Home({categories,blogData,articleViews,error}) {
   const [articles,setarticles]=useState(null);
   const [shouldRender , setShouldRender]=useState(false);
   let limit=useRef(15);
+  const fetcher = url => axios.get(`${baseUrl}/api/categories/getCategories`).then(res => res.data)
+  const { data, error3 } = useSWR(`${baseUrl}/api/categories/getCategories`, fetcher);
+  console.log('fetcherfetcher',data)
+  console.log('errorerror',error3)
   
   if(error){
     Swal.fire(

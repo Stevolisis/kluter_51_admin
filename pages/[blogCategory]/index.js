@@ -26,14 +26,13 @@ export const getStaticPaths=async()=>{
 
       return{
           paths:content.map(category=>{
-              console.log('categoryyyyyyyyyyy',category)
               return {
                   params:{
-                      blogCategory:category.slug.split('/')[0]
+                      blogCategory:category.slug.split('/')[0]||'404'
                   }
               }
           }),
-          fallback:false
+          fallback:true
   }
   }catch(err){
       return {
@@ -67,34 +66,6 @@ export const getStaticProps=async ({params})=>{
   }
   
 }
-
-// export const getServerSideProps=async(context)=>{
-
-//   // let error=query;
-//   try{
-//     const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${context.params.blogCategory}`);
-//     const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${context.params.blogCategory}&limit=15`);
-//     const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
-//     const res4=await axios.get(`${baseUrl}/api/categories/getCategories`);
-//     const category= res.data.data;
-//     const blogData= res2.data.data;
-//     const articleViews= res3.data.data;
-//     const categories= res4.data.data;
-
-//     return {
-//       props:{category,blogData,articleViews,categories}
-//     }    
-    
-//   }catch(err){
-//     return {
-//       props:{error:err.message}
-//     } 
-//   }
-  
-// }
-
-  
-
 
 
 
@@ -291,7 +262,7 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 <div className={styles.categorySlider}>
   {
     shouldRender && (
-      categories!==null ? categories.map((category,i)=>{
+      categories && categories!==null ? categories.map((category,i)=>{
       return <Link href={category.slug&&category.slug} key={i}>
           <div className={styles.categorySlide}>
             <i className={`fa fa-${category.icon}`}/>{category.name}

@@ -50,7 +50,9 @@ export const getStaticProps=async ({params})=>{
     const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`);
     const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`);
     const category= res.data.data;
-    const blogData= res2.data.data;
+    console.log('blogDaaataaaaaaa',res2.data)
+
+    const blogData= res2.data.data||[];
     
     return {
       props:{category,blogData}

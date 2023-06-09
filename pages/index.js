@@ -45,10 +45,7 @@ export default function Home({categories,blogData,articleViews,error}) {
   const [articles,setarticles]=useState(null);
   const [shouldRender , setShouldRender]=useState(false);
   let limit=useRef(15);
-  const fetcher = url => axios.get(`${baseUrl}/api/categories/getCategories`).then(res => res.data)
-  const { data, error3 } = useSWR(`${baseUrl}/api/categories/getCategories`, fetcher);
-  console.log('fetcherfetcher',data)
-  console.log('errorerror',error3)
+
   
   if(error){
     Swal.fire(
@@ -107,28 +104,31 @@ function loadArticles(){
 
 
 
-// function loadArticlesByViews(){
-//   axios.get('/api/articles/getArticlesByViews')
-//   .then(res=>{
-//       let status=res.data.status;
-//       let data=res.data.data;
-//       if(status==='success'){
-//           setarticlesSlide(data)
-//       }else{
-//           Swal.fire(
-//               'Error Occured',
-//               res.data.status,
-//               'warning'
-//           )
-//       }
-//   }).catch(err=>{
-//       Swal.fire(
-//           'Error Occured',
-//           err.message,
-//           'error'
-//       )           
-//   });
-// }
+function loadArticlesByViews(){
+
+      try{
+        const fetcher = () => axios.get(`/api/articles/getArticlesByViews`).then(res => res.data)
+        const { data } = useSWR(`/api/articles/getArticlesByViews`, fetcher, {initialData: articleViews});
+        console.log('rrrrrrrrr',data)
+        const status=data.status;
+          if(status==='success'){
+            setarticlesSlide(data&&data.data)
+          }else{
+              Swal.fire(
+                  'Error Occured',
+                  status,
+                  'warning'
+              )
+          }  
+      }catch(err){
+        Swal.fire(
+            'Error Occured',
+            err.message,
+            'error'
+        ) 
+      }
+
+}
 
 
   function loadMore(){
@@ -144,7 +144,6 @@ function loadArticles(){
     setarticles(blogData);
     setarticlesSlide(articleViews);
     setShouldRender(true)
-    // loadArticlesByViews();
   },[]);
 
   

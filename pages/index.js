@@ -14,6 +14,8 @@ import Image from 'next/image';
 import BlogLoader from '../components/BlogLoader';
 import SlidingArticlesLoader from '../components/SlidingArticlesLoader';
 
+
+
 export const getStaticProps=async ()=>{
   
 try{
@@ -138,7 +140,9 @@ function loadArticles(){
     setarticlesSlide(articleViews);
     setShouldRender(true)
     // loadArticlesByViews();
-  },[])
+  },[]);
+
+  
 
   return (
     <>

@@ -52,14 +52,12 @@ export const getStaticProps=async ({params})=>{
     const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
     const res4=await axios.get(`${baseUrl}/api/categories/getCategories`);
     const category= res.data.data;
-    console.log('blogDaaataaaaaaa',res2.data)
-
     const blogData= res2.data.data||[];
     const articleViews= res3.data.data;
-    const categories= res4.data.data;
+    const returnedCategories= res4.data.data;
 
     return {
-      props:{category,blogData,articleViews,categories}
+      props:{returnedCategories,blogData,articleViews,category}
     }    
     
   }catch(err){
@@ -109,7 +107,7 @@ export const getStaticProps=async ({params})=>{
 
 
 
-export default function BlogCategory({category,blogData,articleViews,categories,error}){
+export default function BlogCategory({category,blogData,articleViews,returnedCategories,error}){
   let router=useRouter();
     const [articlesSlide,setarticlesSlide]=useState(null);
     const [categories,setcategories]=useState(null);
@@ -232,7 +230,8 @@ export default function BlogCategory({category,blogData,articleViews,categories,
           setarticles(blogData);
           setarticles(blogData);
           setarticles(blogData);
-          setcategories(categories);
+          console.log('ppppppppp',returnedCategories)
+          setcategories(returnedCategories);
           setarticlesSlide(articleViews)
           // loadCategories();
           // loadArticlesByViews();

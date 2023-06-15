@@ -29,6 +29,7 @@ export const getStaticPaths=async()=>{
               return {
                   params:{
                       blogCategory:category.slug.split('/')[0]
+                      //why this error
                   }
               }
           }),

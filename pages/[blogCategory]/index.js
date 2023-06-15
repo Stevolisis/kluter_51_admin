@@ -26,12 +26,20 @@ export const getStaticPaths=async()=>{
 
       return{
           paths:content.map(category=>{
+            if(category){
               return {
                   params:{
                       blogCategory:category.slug.split('/')[0]
                       //why this error
                   }
               }
+            }else{
+              return {
+                paths: [],
+                fallback: true
+              };
+            }
+              
           }),
           fallback:true
   }

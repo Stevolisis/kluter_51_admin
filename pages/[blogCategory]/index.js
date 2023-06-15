@@ -36,9 +36,10 @@ export const getStaticPaths=async()=>{
           fallback:true
   }
   }catch(err){
-      return {
-        props:{error:err.message}
-      } 
+    return {
+      paths: [],
+      fallback: true
+    };
   }  
 }
 
@@ -56,6 +57,12 @@ export const getStaticProps=async ({params})=>{
     const articleViews= res3.data.data;
     const returnedCategories= res4.data.data;
 
+    if (res.data.data === null || res2.data.data === null) {
+      // File not found, handle it as needed (e.g., return a 404 status code)
+      return {
+        notFound: true
+      };
+    }
     return {
       props:{returnedCategories,blogData,articleViews,category}
     }    
@@ -67,6 +74,7 @@ export const getStaticProps=async ({params})=>{
   }
   
 }
+
 
 
 

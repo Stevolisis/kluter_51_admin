@@ -28,7 +28,7 @@ export const getStaticPaths=async()=>{
           paths:content.map(category=>{
               return {
                   params:{
-                      blogCategory:category.slug.split('/')[0]||"Startups"
+                      blogCategory:category.slug.split('/')[0]
                       //why this error
                   }
               }

@@ -29,7 +29,7 @@ export const getStaticPaths=async()=>{
             console.log('kkk',typeof category)
               return {
                   params:{
-                      blogCategory:category.slug.split('/')[0]||'Startups'
+                      blogCategory:category.slug.split('/')[0]
                       //why this error
                   }
               }

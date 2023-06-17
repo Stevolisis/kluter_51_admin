@@ -26,28 +26,21 @@ export const getStaticPaths=async()=>{
 
       return{
           paths:content.map(category=>{
-            if(category){
+
               return {
                   params:{
-                      blogCategory:category.slug.split('/')[0]
+                      blogCategory:category.slug.split('/')[0]||'Startups'
                       //why this error
                   }
               }
-            }else{
-              return {
-                paths: [],
-                fallback: true
-              };
-            }
-              
+
           }),
           fallback:true
   }
   }catch(err){
     return {
-      paths: [],
-      fallback: true
-    };
+      props:{error:err.message}
+    } 
   }  
 }
 
@@ -65,12 +58,13 @@ export const getStaticProps=async ({params})=>{
     const articleViews= res3.data.data;
     const returnedCategories= res4.data.data;
 
-    if (res.data.data === null || res2.data.data === null) {
-      // File not found, handle it as needed (e.g., return a 404 status code)
-      return {
-        notFound: true
-      };
-    }
+    console.log('daaaaaata', res.data)
+    // if (res.data.data === null || res2.data.data === null) {
+    //   // File not found, handle it as needed (e.g., return a 404 status code)
+    //   return {
+    //     notFound: true
+    //   };
+    // }
     return {
       props:{returnedCategories,blogData,articleViews,category}
     }    

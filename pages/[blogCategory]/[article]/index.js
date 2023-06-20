@@ -275,7 +275,7 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
          }).catch(err=>{
              return;
          })
-     }
+    }
 
 
     //  function loadArticlesByCategory(){

@@ -1,7 +1,11 @@
 import Link from "next/link";
+import { useState } from "react";
+
+
 
 export default function Footer({whatsapp,linkedin,google_chat,gmail,phone_number,facebook}){
-
+  const [email, setemail]=useState('');
+  const [full_name, setfull_name]=useState('');
 
   
 //   function loadSupport(){
@@ -40,9 +44,27 @@ export default function Footer({whatsapp,linkedin,google_chat,gmail,phone_number
 // }
 
 
-//     useEffect(()=>{
-//       loadSupport();
-//     },[]);
+    function userAuth(){
+      axios.get('/api/users/userAuth')
+      .then(res=>{
+          let data=res.data.data;
+          let status=res.data.status;
+          if(status==='success'){
+            setfull_name(data.full_name);
+            setemail(data.email);
+        }else{
+            return;
+        }
+
+      }).catch(err=>{
+          return;
+      })
+    }
+
+    useEffect(()=>{
+      // loadSupport();
+      userAuth();
+    },[]);
 
     return(
         <>
@@ -81,8 +103,8 @@ export default function Footer({whatsapp,linkedin,google_chat,gmail,phone_number
       <div className='footerLinksCon'>
         <h4>Contact Us</h4>
         <form>
-        <input type='text' placeholder='Full Name'/>
-        <input type='email' placeholder='E-Mail Address'/>
+        <input type='text' placeholder='Full Name' value={full_name} onChange={(e)=>setfull_name(e.target.value)}/>
+        <input type='email' placeholder='E-Mail Address' value={email} onChange={(e)=>setemail(e.target.value)}/>
         <textarea placeholder='Your Message'>
 
         </textarea>

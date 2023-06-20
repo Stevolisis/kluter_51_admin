@@ -10,40 +10,36 @@ export default function Footer({whatsapp,linkedin,google_chat,gmail,phone_number
   const [full_name, setfull_name]=useState('');
 
   
-//   function loadSupport(){
-//     axios.get('/api/supports/getSupport')
-//     .then(res=>{
-//         let data=res.data.data;
-//         if(res.data.status==='success'){
-//             setphone_number(data[0].phone_number)
-//             setgmail(data[0].gmail)
-//             setfacebook(data[0].facebook)
-//             setwhatsapp(data[0].whatsapp)
-//             setgoogle_chat(data[0].google_chat)
-//             setlinkedin(data[0].linkedin)
-//         }else if(res.data.status==='no data Found'){
-//           setphone_number({status:'inactive'})
-//           setgmail({status:'inactive'})
-//           setwhatsapp({status:'inactive'})
-//           setgoogle_chat({status:'inactive'})
-//           setfacebook({status:'inactive'})
-//           setlinkedin({status:'inactive'});
-//         }else{
-//             Swal.fire(
-//                 'Error',
-//                 res.data.status,
-//                 'warning'
-//             )
-//         }
-//     }).catch(err=>{
-//         console.log(err)
-//         Swal.fire(
-//             'Error',
-//             'Error Occured at Axios',
-//             'warning'
-//         )           
-//     });
-// }
+  function loadSupport(){
+    axios.get('/api/supports/getGeneral_settings')
+    .then(res=>{
+        let data=res.data.data;
+        console.log('Foooterra Data',data)
+        // if(res.data.status==='success'){
+        //     setphone_number(data[0].phone_number)
+        //     setgmail(data[0].gmail)
+        //     setfacebook(data[0].facebook)
+        //     setwhatsapp(data[0].whatsapp)
+        //     setgoogle_chat(data[0].google_chat)
+        //     setlinkedin(data[0].linkedin)
+        // }else if(res.data.status==='no data Found'){
+        //   setphone_number({status:'inactive'})
+        //   setgmail({status:'inactive'})
+        //   setwhatsapp({status:'inactive'})
+        //   setgoogle_chat({status:'inactive'})
+        //   setfacebook({status:'inactive'})
+        //   setlinkedin({status:'inactive'});
+        // }else{
+        //     Swal.fire(
+        //         'Error',
+        //         res.data.status,
+        //         'warning'
+        //     )
+        // }
+    }).catch(err=>{
+        console.log(err)      
+    });
+}
 
 
     function userAuth(){
@@ -67,6 +63,12 @@ export default function Footer({whatsapp,linkedin,google_chat,gmail,phone_number
       // loadSupport();
       userAuth();
     },[]);
+    console.log(facebook,linkedin,whatsapp)
+
+
+
+
+
 
     return(
         <>

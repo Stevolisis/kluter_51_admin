@@ -68,9 +68,10 @@ header{
         color:$color4;
         font-family: poppinsRegular;
         font-size: 12px;
-        letter-spacing: 1.5px;
+        letter-spacing: 0 !important;
         text-decoration: none;
-        }
+        margin: 0 5px;
+    }
 }
 
 

@@ -26,10 +26,10 @@ export const getStaticPaths=async()=>{
 
       return{
           paths:content.map(category=>{
-            console.log('kkk',typeof category)
+
               return {
                   params:{
-                      blogCategory:category.slug.split('/')[0]
+                      blogCategory:category.slug.split('/')[0]||'Startups'
                       //why this error
                   }
               }
@@ -39,8 +39,9 @@ export const getStaticPaths=async()=>{
   }
   }catch(err){
     return {
-      props:{error:err.message}
-    } 
+      paths: [],
+      fallback: true
+    };
   }  
 }
 
@@ -59,12 +60,12 @@ export const getStaticProps=async ({params})=>{
     const returnedCategories= res4.data.data;
 
     console.log('daaaaaata', res.data)
-    // if (res.data.data === null || res2.data.data === null) {
-    //   // File not found, handle it as needed (e.g., return a 404 status code)
-    //   return {
-    //     notFound: true
-    //   };
-    // }
+    if (res.data.data === null || res2.data.data === null) {
+      // File not found, handle it as needed (e.g., return a 404 status code)
+      return {
+        notFound: true
+      };
+    }
     return {
       props:{returnedCategories,blogData,articleViews,category}
     }    
@@ -119,114 +120,66 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
             }
           })
         });
-        }
+    }
       
 
-        // function loadArticlesByViews(){
-        //   axios.get('/api/articles/getArticlesByViews')
-        //   .then(res=>{
-        //       let status=res.data.status;
-        //       let data=res.data.data;
-        //       if(status==='success'){
-        //           setarticlesSlide(data)
-        //       }else{
-        //           Swal.fire(
-        //               'Error Occured',
-        //               res.data.status,
-        //               'warning'
-        //           )
-        //       }
-        //   }).catch(err=>{
-        //       Swal.fire(
-        //           'Error Occured',
-        //           err.message,
-        //           'error'
-        //       )           
-        //   });
-        // }
-      
+  
 
-        function loadArticlesByCategory(){
-          setloading(true);
-          axios.get(`/api/articles/loadArticlesByCategory?category=${router.query.blogCategory}&limit=${limit.current}`)
-          .then(res=>{
-              let status=res.data.status;
-              let data=res.data.data;
-              setloading(false)
-              if(status==='success'){
-                  setarticles(data)
-              }else{
-                  Swal.fire(
-                      'Error Occured',
-                      res.data.status,
-                      'warning'
-                  )
-              }
-          }).catch(err=>{
-            setloading(false);
+    function loadArticlesByCategory(){
+      setloading(true);
+      axios.get(`/api/articles/loadArticlesByCategory?category=${router.query.blogCategory}&limit=${limit.current}`)
+      .then(res=>{
+          let status=res.data.status;
+          let data=res.data.data;
+          setloading(false)
+          if(status==='success'){
+              setarticles(data)
+          }else{
               Swal.fire(
                   'Error Occured',
-                  err.message,
-                  'error'
-              )           
-          });            
-  
-        }
+                  res.data.status,
+                  'warning'
+              )
+          }
+      }).catch(err=>{
+        setloading(false);
+          Swal.fire(
+              'Error Occured',
+              err.message,
+              'error'
+          )           
+      });            
+
+    }
 
 
-        
-//   function loadCategories(){
-//     axios.get('/api/categories/getCategories')
-//     .then(res=>{
-//         let status=res.data.status;
-//         let data=res.data.data;
-//         if(status==='success'){
-//             setcategories(data)
-//         }else{
-//             Swal.fire(
-//                 'Error Occured',
-//                 res.data.status,
-//                 'warning'
-//             )
-//         }
-//     }).catch(err=>{
-//         Swal.fire(
-//             'Error Occured',
-//             err.message,
-//             'error'
-//         )           
-//     });
-// }
 
-        function loadMore(){
-          limit.current=limit.current+8;
-          loadArticlesByCategory();
-        }
 
-        useEffect(()=>{
-          dropdown1();  
-        })
+    function loadMore(){
+      limit.current=limit.current+8;
+      loadArticlesByCategory();
+    }
 
-        useEffect(()=>{
-          setShouldRender(true);
-          setarticles(blogData);
-          setarticles(blogData);
-          setarticles(blogData);
-          console.log('ppppppppp',returnedCategories)
-          setcategories(returnedCategories);
-          setarticlesSlide(articleViews)
-          // loadCategories();
-          // loadArticlesByViews();
-          // if(category===null){
-          //   Swal.fire(
-          //     'Error Occured',
-          //     'Category not Found',
-          //     'error'
-          //   )
-          // }
-        },[blogData])
+    useEffect(()=>{
+      dropdown1();  
+    })
+
+    useEffect(()=>{
+      setShouldRender(true);
+      setarticles(blogData);
+      setarticles(blogData);
+      setarticles(blogData);
+      console.log('ppppppppp',returnedCategories)
+      setcategories(returnedCategories);
+      setarticlesSlide(articleViews)
+
+    },[blogData])
 
     
+
+
+
+
 
 
 
@@ -351,6 +304,74 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 
 
 
+
+        // function loadArticlesByViews(){
+        //   axios.get('/api/articles/getArticlesByViews')
+        //   .then(res=>{
+        //       let status=res.data.status;
+        //       let data=res.data.data;
+        //       if(status==='success'){
+        //           setarticlesSlide(data)
+        //       }else{
+        //           Swal.fire(
+        //               'Error Occured',
+        //               res.data.status,
+        //               'warning'
+        //           )
+        //       }
+        //   }).catch(err=>{
+        //       Swal.fire(
+        //           'Error Occured',
+        //           err.message,
+        //           'error'
+        //       )           
+        //   });
+        // }
+
+
+
+
+
+        
+//   function loadCategories(){
+//     axios.get('/api/categories/getCategories')
+//     .then(res=>{
+//         let status=res.data.status;
+//         let data=res.data.data;
+//         if(status==='success'){
+//             setcategories(data)
+//         }else{
+//             Swal.fire(
+//                 'Error Occured',
+//                 res.data.status,
+//                 'warning'
+//             )
+//         }
+//     }).catch(err=>{
+//         Swal.fire(
+//             'Error Occured',
+//             err.message,
+//             'error'
+//         )           
+//     });
+// }
+
+
+
+
+
+
+
+
+          // loadCategories();
+          // loadArticlesByViews();
+          // if(category===null){
+          //   Swal.fire(
+          //     'Error Occured',
+          //     'Category not Found',
+          //     'error'
+          //   )
+          // }
 
 
 

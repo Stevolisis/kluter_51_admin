@@ -16,6 +16,7 @@ export default function Header(){
   const [categories,setcategories]=useState(false);
   const [searchResult,setsearchResult]=useState([]);
   const [searchKey,setsearchKey]=useState('');
+  const [showSocialLink,setshowSocialLink]=useState(false);
   const { logo } = useLoader();
   const router=useRouter();
 
@@ -93,6 +94,7 @@ export default function Header(){
 
   useEffect(()=>{
     loadCategories();
+    setshowSocialLink(true);
   },[])
 
 
@@ -117,10 +119,10 @@ export default function Header(){
       <Link href='https://ototech22.github.io/OTOTECH-website/contact.html'>Contact</Link>
       </div>
       <div className="buttonCon">
-        <Link href={typeof window === "undefined"?'':window.location.href}><i className='fa fa-facebook'></i></Link>
-        <Link href={typeof window === "undefined"?'':window.location.href}><i className='fa fa-phone'></i></Link>
-        <Link href={typeof window === "undefined"?'':window.location.href}><i className='fa fa-linkedin'></i></Link>
-        <Link href={typeof window === "undefined"?'':window.location.href}><i className='fa fa-whatsapp'></i></Link>
+        <Link href={ !showSocialLink ? '' : 'https://www.facebook.com/sharer/sharer.php?u='+window.location.href}><i className='fa fa-facebook'></i></Link>
+        <Link href={ !showSocialLink ? '' : 'https://linkedin.com/shareArticle?mini=true&url='+window.location.href}><i className='fa fa-linkedin'></i></Link>
+        <Link href={ !showSocialLink ? '' : 'https://twitter.com/intent/tweet?text='+window.location.href+'&url='+window.location.href}><i className='fa fa-twitter'></i></Link>
+        <Link href={ !showSocialLink ? '' : 'https://api.whatsapp.com/send?text='+window.location.href}><i className='fa fa-whatsapp'></i></Link>
             <NavbarController navStatus={navStatus} setnavStatus={setnavStatus}/>
       </div>
 

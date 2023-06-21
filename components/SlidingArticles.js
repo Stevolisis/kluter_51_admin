@@ -13,7 +13,8 @@ export default function SlidingArticles({articlesSlide,title}){
 
      
      return(
-     <Link href={categorySlug+slug} key={i} legacyBehavior><a className='blogCon'>
+     <Link href={categorySlug+slug} key={i} legacyBehavior>
+      <a className='blogCon'>
        <div className='blogImg'>
           <Image 
             src={img.url}

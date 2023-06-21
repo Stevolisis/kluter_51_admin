@@ -12,6 +12,8 @@ import { useLoader } from "../../_app";
 import SlidingArticlesLoader from "../../../components/SlidingArticlesLoader";
 import Comments from "../../../components/Comments";
 import CommentsLoader from "../../../components/CommentsLoader";
+import MiniBlogList from "@/components/MiniBlogList";
+import BlogLoader from "@/components/BlogLoader";
 
 
 export const getStaticPaths=async()=>{
@@ -502,6 +504,18 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
         : 
         <SlidingArticlesLoader/>)
     }
+    
+    <div className='miniBlogListCon'>
+        
+        {
+            shouldRender  && (articlesSlide!==null ? 
+            <MiniBlogList articles={articlesSlide} title='Latest News'/>
+            : 
+            <BlogLoader/>)
+        }
+        
+    </div>
+
 
 
 

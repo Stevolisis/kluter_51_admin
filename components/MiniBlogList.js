@@ -41,6 +41,7 @@ export default function MiniBlogList({title,articles}){
 
     return(
         <>
+        <div className='blogSliderHeading'><h2>{title}</h2></div>
         <div className='categories'>
           {articles&&listing}
 

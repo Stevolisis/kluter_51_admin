@@ -18,10 +18,10 @@
 }
 
 .miniBlogCon{
-    max-width: 20%;
+    min-width: 255px;
     width: 20%;
     margin:12px;
-    height: auto;
+    height: 250px;
 }
 
 .miniBlogImg{
@@ -31,12 +31,12 @@
     background-color: #F0EEEE;
     background-image: url('/imageLoader.png');
     background-repeat: no-repeat;
-    object-fit: cover;
     background-position: center;
 
     img{
         width: 100%;
         height: 100%;
+        object-fit: cover;
     }
 }
 
@@ -62,7 +62,19 @@
 
 
 @media (max-width:780px) {
-    .miniBlogListCon{
-
+    .miniBlogCon{
+        min-width: 90px;
+        width: 45%;
+        margin: 8px;
+        height: 220px;
+    }
+    .miniBlogImg{
+        height: 100px;
+    }
+    .miniBlogInfo{
+        h3{
+            font-size: 13px;
+        }
+    
     }
 }

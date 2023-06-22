@@ -254,7 +254,7 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 
 
 
-     <div className='categoriesCon'>
+     <div className='categoriesCon3'>
       
       
       {

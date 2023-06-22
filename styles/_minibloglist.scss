@@ -62,11 +62,16 @@
 
 
 @media (max-width:780px) {
+    .miniBlogListCon{
+        .categories{
+            align-items: flex-start;
+        }
+    }
     .miniBlogCon{
         min-width: 90px;
         width: 45%;
         margin: 8px;
-        height: 220px;
+        height: auto;
     }
     .miniBlogImg{
         height: 100px;

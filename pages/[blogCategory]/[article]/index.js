@@ -14,6 +14,8 @@ import Comments from "../../../components/Comments";
 import CommentsLoader from "../../../components/CommentsLoader";
 import MiniBlogList from "@/components/MiniBlogList";
 import BlogLoader from "@/components/BlogLoader";
+import BlogFastLink from "@/components/BlogFastLink";
+import BlogFastLinkLoader from "@/components/BlogFastLinkLoader";
 
 
 export const getStaticPaths=async()=>{
@@ -47,8 +49,11 @@ export const getStaticProps=async({params})=>{
     try{
       const res=await axios.get(`${baseUrl}/api/articles/getArticle?category=${params.blogCategory}&article=${params.article}`);
       const res2=await axios.get(`${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${params.blogCategory}`)
+      const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
+
       const content= res.data.data;
       const content2= res2.data.data;
+      const articleViews= res3.data.data;
 
       const pageId=content._id;
       const categoryId=content.category;
@@ -62,7 +67,7 @@ export const getStaticProps=async({params})=>{
       const instagram=content.author&&content.author.instagram;
       
       return {
-        props:{content,content2,pageId,categoryId,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}
+        props:{content,content2,articleViews,pageId,categoryId,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}
       }    
       
     }catch(err){
@@ -88,7 +93,7 @@ export const getStaticProps=async({params})=>{
 
 
 
-export default function Article({error,content,content2,pageId,categoryId,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}){
+export default function Article({error,content,content2,pageId,articleViews,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}){
     if(error){
         Swal.fire(
           'Error Occured',
@@ -463,31 +468,13 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
         </div>
 
 
-        <div className="BlogFastLinkCon">
-            <div className="BlogFastLinkHeader"><h1>Latest News</h1></div>
-                <div className="BlogFastLink1">
-                    <Link href='/' className="BlogFastLinkBlock">
-                            <p>BBNaija Reunion: Eloswag's Betrayal Shows he can</p>
-                    </Link>
+        {
+        shouldRender  && (articlesSlide!==null ? 
+            <BlogFastLink articles={articlesSlide} title='Latest News'/>
+        : 
+            <BlogFastLinkLoader/> )
+        }
 
-                    <Link href='/' className="BlogFastLinkBlock">
-                            <p>BBNaija Reunion: Eloswag's Betrayal Shows he can</p>
-                    </Link>
-                    
-                    <Link href='/' className="BlogFastLinkBlock">
-                            <p>BBNaija Reunion: Eloswag's Betrayal Shows he can</p>
-                    </Link>
-
-                    <Link href='/' className="BlogFastLinkBlock">
-                            <p>BBNaija Reunion: Eloswag's Betrayal Shows he can</p>
-                    </Link>
-
-                    <Link href='/' className="BlogFastLinkBlock">
-                            <p>BBNaija Reunion: Eloswag's Betrayal Shows he can</p>
-                    </Link>
-
-                </div>
-        </div>
         
      </div>
 
@@ -539,7 +526,7 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
         
         {
             shouldRender  && (articlesSlide!==null ? 
-            <MiniBlogList articles={articlesSlide} title='Latest News'/>
+            <MiniBlogList articles={articleViews} title='Trending News'/>
             : 
             <BlogLoader/>)
         }

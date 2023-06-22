@@ -14,6 +14,7 @@ import Image from 'next/image';
 import BlogLoader from '../components/BlogLoader';
 import SlidingArticlesLoader from '../components/SlidingArticlesLoader';
 import useSWR from 'swr';
+import MiniBlogList from '@/components/MiniBlogList';
 
 
 
@@ -22,13 +23,16 @@ export const getStaticProps=async ()=>{
 try{
   const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
   const res2=await axios.get(`${baseUrl}/api/articles/getArticles?limit=15`);
-  const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
+  const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`);
+  const res4=await axios.get(`${baseUrl}/api/articles/getArticlesByLikes?limit=${12}`);
+
   const categories= res.data.data;
   const blogData= res2.data.data;
   const articleViews= res3.data.data;
+  const articleLikes= res4.data.data;
   
   return {
-    props:{categories,blogData,articleViews}
+    props:{categories,articleLikes,blogData,articleViews}
   }    
   
 }catch(err){
@@ -39,7 +43,7 @@ try{
 
 }
 
-export default function Home({categories,blogData,articleViews,error}) {
+export default function Home({categories,articleLikes,blogData,articleViews,error}) {
   const [articlesSlide,setarticlesSlide]=useState(null);
   const { setloading, name, description,front_cover_image } = useLoader();
   const [articles,setarticles]=useState(null);
@@ -273,10 +277,18 @@ function loadArticlesByViews(){
     <SlidingArticlesLoader/>)
   }
 
-  {/* <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/> */}
 
-
-
+    
+  <div className='miniBlogListCon'>
+        
+        {
+            shouldRender  && (articlesSlide!==null ? 
+            <MiniBlogList articles={articleLikes} title='Trending News'/>
+            : 
+            <BlogLoader/>)
+        }
+        
+    </div>
 
 
 

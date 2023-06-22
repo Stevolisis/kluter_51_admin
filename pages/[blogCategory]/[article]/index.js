@@ -49,11 +49,13 @@ export const getStaticProps=async({params})=>{
     try{
       const res=await axios.get(`${baseUrl}/api/articles/getArticle?category=${params.blogCategory}&article=${params.article}`);
       const res2=await axios.get(`${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${params.blogCategory}`)
-      const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews`);
+      const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${12}`);
+      const res4=await axios.get(`${baseUrl}/api/articles/getArticles?limit=${7}`);
 
       const content= res.data.data;
       const content2= res2.data.data;
       const articleViews= res3.data.data;
+      const latestArticles= res4.data.data;
 
       const pageId=content._id;
       const categoryId=content.category;
@@ -67,7 +69,7 @@ export const getStaticProps=async({params})=>{
       const instagram=content.author&&content.author.instagram;
       
       return {
-        props:{content,content2,articleViews,pageId,categoryId,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}
+        props:{content,content2,articleViews,latestArticles,pageId,categoryId,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}
       }    
       
     }catch(err){
@@ -93,7 +95,7 @@ export const getStaticProps=async({params})=>{
 
 
 
-export default function Article({error,content,content2,pageId,articleViews,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}){
+export default function Article({error,content,content2,pageId,articleViews,latestArticles,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}){
     if(error){
         Swal.fire(
           'Error Occured',
@@ -470,7 +472,7 @@ export default function Article({error,content,content2,pageId,articleViews,img_
 
         {
         shouldRender  && (articlesSlide!==null ? 
-            <BlogFastLink articles={articlesSlide} title='Latest News'/>
+            <BlogFastLink articles={latestArticles} title='Latest News'/>
         : 
             <BlogFastLinkLoader/> )
         }

@@ -447,18 +447,48 @@ export default function Article({error,content,content2,pageId,categoryId,img_li
 
 
      <div className="articleContentCon">
-        <div >{content && parse(content.content,{
-            replace:domNode=>{
-                if(domNode.name==='a'){
-                    const props = attributesToProps(domNode.attribs);
-                    return <h1 {...props} >{domNode.children[0].data}</h1>
-                }else if(domNode.name==='pre'){
-                    console.log('pre',domNode)
-                    const props = attributesToProps(domNode.attribs);
-                    return <code {...props}>{domNode.children[0].data}</code>;
+
+        <div className="article">{content && parse(content.content,{
+                replace:domNode=>{
+                    if(domNode.name==='a'){
+                        const props = attributesToProps(domNode.attribs);
+                        return <h1 {...props} >{domNode.children[0].data}</h1>
+                    }else if(domNode.name==='pre'){
+                        console.log('pre',domNode)
+                        const props = attributesToProps(domNode.attribs);
+                        return <code {...props}>{domNode.children[0].data}</code>;
+                    }
                 }
-            }
-        })}</div>
+            })}
+        </div>
+
+
+        <div className="BlogFastLinkCon">
+            <div className="BlogFastLinkHeader"><h1>Latest News</h1></div>
+                <div className="BlogFastLink1">
+                    <Link href='/' className="BlogFastLinkBlock">
+                            <p>BBNaija Reunion: Eloswag's Betrayal Shows he can</p>
+                    </Link>
+
+                    <Link href='/' className="BlogFastLinkBlock">
+                            <p>BBNaija Reunion: Eloswag's Betrayal Shows he can</p>
+                    </Link>
+                    
+                    <Link href='/' className="BlogFastLinkBlock">
+                            <p>BBNaija Reunion: Eloswag's Betrayal Shows he can</p>
+                    </Link>
+
+                    <Link href='/' className="BlogFastLinkBlock">
+                            <p>BBNaija Reunion: Eloswag's Betrayal Shows he can</p>
+                    </Link>
+
+                    <Link href='/' className="BlogFastLinkBlock">
+                            <p>BBNaija Reunion: Eloswag's Betrayal Shows he can</p>
+                    </Link>
+
+                </div>
+        </div>
+        
      </div>
 
 

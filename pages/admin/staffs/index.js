@@ -116,8 +116,8 @@ function filterByFullName(e){
     filterIndex.current=e;
     let filterStaffs2=[];
     for (let i = 0; i < backup.length; i++) {
-    if(backup[i].full_name.toLowerCase().includes(filterIndex.current.toLowerCase())){
-    filterStaffs2.push(backup[i]);
+        if(backup[i].full_name.toLowerCase().includes(filterIndex.current.toLowerCase())){
+        filterStaffs2.push(backup[i]);
     }      
     }
     setstaffs(filterStaffs2);

@@ -119,7 +119,7 @@ function filterByFullName(e){
     filterIndex.current=e;
     let filterUsers2=[];
     for (let i = 0; i < backup.length; i++) {
-    if(backup[i].name.toLowerCase().includes(filterIndex.current.toLowerCase())){
+    if(backup[i].full_name.toLowerCase().includes(filterIndex.current.toLowerCase())){
     filterUsers2.push(backup[i]);
     }      
     }

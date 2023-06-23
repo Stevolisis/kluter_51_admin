@@ -279,16 +279,16 @@ function loadArticlesByViews(){
 
 
     
-  {/* <div className='miniBlogListCon'>
+  <div className='miniBlogListCon'>
         
         {
-            shouldRender  && (articlesSlide!==null ? 
+            shouldRender  && (articleLikes!==null ? 
             <MiniBlogList articles={articleLikes} title='Trending News'/>
             : 
             <BlogLoader/>)
         }
         
-  </div> */}
+  </div>
 
 
     </>

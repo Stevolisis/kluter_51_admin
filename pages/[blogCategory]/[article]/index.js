@@ -121,9 +121,8 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const [shouldRender , setShouldRender]=useState(false);
     const url = `${baseUrl}/api/articles/getArticlesByViews?limit=${12}`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());
-    const { data, errore } = useSWR(url, fetcher);
+    const { data, errore } = useSWR(url, fetcher, {fallbackData: articleViews});
 
-    console.log('datae',data)
 
     const Toast = Swal.mixin({
         toast: true,
@@ -294,40 +293,13 @@ export default function Article({error,content,content2,pageId,articleViews,late
     }
 
 
-    //  function loadArticlesByCategory(){
-    //     if(pageId===''){
-    //         return;
-    //     }else{
-    //     axios.get(`/api/articles/loadRelatedArticlesByCategory?id=${categoryId}`)
-    //     .then(res=>{
-    //         let status=res.data.status;
-    //         let data=res.data.data;
-    //         if(status==='success'){
-    //             setarticlesSlide(data)
-    //         }else{
-    //             Swal.fire(
-    //                 'Error Occured',
-    //                 res.data.status,
-    //                 'warning'
-    //             )
-    //         }
-    //     }).catch(err=>{
-    //         Swal.fire(
-    //             'Error Occured',
-    //             err.message,
-    //             'error'
-    //         )           
-    //     });            
-    //     }
-
-    //   }
-
 
    useEffect(()=>{
     setwindowLink(window.location.href)
     checkLike()
     userAuth();
-    setShouldRender(true)
+    setShouldRender(true);
+    setarticlesSlide(data)
    },[])
 
     useEffect(()=>{

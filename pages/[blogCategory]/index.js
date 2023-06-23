@@ -169,7 +169,7 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       setarticles(blogData);
       setarticles(blogData);
       setarticles(blogData);
-      console.log('ppppppppp',returnedCategories)
+      // console.log('ppppppppp',returnedCategories)
       setcategories(returnedCategories);
       setarticlesSlide(articleViews)
 

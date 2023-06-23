@@ -43,6 +43,11 @@ try{
 
 }
 
+
+
+
+
+
 export default function Home({categories,articleLikes,blogData,articleViews,error}) {
   const [articlesSlide,setarticlesSlide]=useState(null);
   const { setloading, name, description,front_cover_image } = useLoader();

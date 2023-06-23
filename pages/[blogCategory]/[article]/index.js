@@ -16,6 +16,8 @@ import MiniBlogList from "@/components/MiniBlogList";
 import BlogLoader from "@/components/BlogLoader";
 import BlogFastLink from "@/components/BlogFastLink";
 import BlogFastLinkLoader from "@/components/BlogFastLinkLoader";
+import useSWR,{ useSWRConfig } from "swr";
+
 
 
 export const getStaticPaths=async()=>{
@@ -81,7 +83,9 @@ export const getStaticProps=async({params})=>{
 }
 
 
-
+// function Posts(props){
+//     const { data }=useSWR(`${baseUrl}/api/articles/getArticlesByViews?limit=${12}`)
+// }
 
 
 
@@ -115,8 +119,13 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const [full_name, setfull_name]=useState('');
     const [comments, setcomments]=useState(null); 
     const [shouldRender , setShouldRender]=useState(false);
+    const url = `/api/articles/getArticlesByViews?limit=${12}`;
+    const fetcher = async () => {
+        return await axios.get(`${baseUrl}`);
+     };
+    const { datae, errore } = useSWR(url, fetcher);
 
-
+    console.log('datae',datae)
 
     const Toast = Swal.mixin({
         toast: true,

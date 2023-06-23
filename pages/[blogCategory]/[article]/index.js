@@ -119,13 +119,11 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const [full_name, setfull_name]=useState('');
     const [comments, setcomments]=useState(null); 
     const [shouldRender , setShouldRender]=useState(false);
-    const url = `/api/articles/getArticlesByViews?limit=${12}`;
-    const fetcher = async () => {
-        return await axios.get(`${baseUrl}`);
-     };
-    const { datae, errore } = useSWR(url, fetcher);
+    const url = `${baseUrl}/api/articles/getArticlesByViews?limit=${12}`;
+    const fetcher = (...args) => fetch(...args).then(res => res.json());
+    const { data, errore } = useSWR(url, fetcher);
 
-    console.log('datae',datae)
+    console.log('datae',data)
 
     const Toast = Swal.mixin({
         toast: true,
@@ -441,12 +439,12 @@ export default function Article({error,content,content2,pageId,articleViews,late
         <div className="articleShareCon">
         <div className="articleShare">
             <RWebShare
-            data={{
-            text: "Like humans, flamingos make friends for life",
-            url: `${windowLink}`,
-            title: `${content && content.title}`,
-            }}>
-            <button onClick={()=>navigator.share({title:`${content && content.title}`,text:'OTOTCH BLOG',url:`${windowLink}}`})}>Share <i className="fa fa-share"/></button>
+                data={{
+                text: "Like humans, flamingos make friends for life",
+                url: `${windowLink}`,
+                title: `${content && content.title}`,
+                }}>
+                <button onClick={()=>navigator.share({title:`${content && content.title}`,text:'OTOTCH BLOG',url:`${windowLink}}`})}>Share <i className="fa fa-share"/></button>
             </RWebShare>
                 <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${windowLink}i&title=${content && content.title}&source=OTOTECH Blog`} legacyBehavior><a><i className="fa fa-linkedin"/></a></Link>
                 <Link href={`https://twitter.com/intent/tweet?text=${windowLink}`} legacyBehavior><a><i className="fa fa-twitter"/></a></Link>

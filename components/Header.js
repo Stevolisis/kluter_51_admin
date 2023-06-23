@@ -123,7 +123,7 @@ export default function Header(){
         <Link href={ !showSocialLink ? '' : 'https://linkedin.com/shareArticle?mini=true&url='+window.location.href}><i className='fa fa-linkedin'></i></Link>
         <Link href={ !showSocialLink ? '' : 'https://twitter.com/intent/tweet?text='+window.location.href+'&url='+window.location.href}><i className='fa fa-twitter'></i></Link>
         <Link href={ !showSocialLink ? '' : 'https://api.whatsapp.com/send?text='+window.location.href}><i className='fa fa-whatsapp'></i></Link>
-            <NavbarController navStatus={navStatus} setnavStatus={setnavStatus}/>
+            {/* <NavbarController navStatus={navStatus} setnavStatus={setnavStatus}/> */}
       </div>
 
       </header>

@@ -279,7 +279,7 @@ function loadArticlesByViews(){
 
 
     
-  <div className='miniBlogListCon'>
+  {/* <div className='miniBlogListCon'>
         
         {
             shouldRender  && (articlesSlide!==null ? 
@@ -288,8 +288,7 @@ function loadArticlesByViews(){
             <BlogLoader/>)
         }
         
-    </div>
-
+  </div> */}
 
 
     </>

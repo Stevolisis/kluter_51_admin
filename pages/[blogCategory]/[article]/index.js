@@ -55,7 +55,7 @@ export const getStaticProps=async({params})=>{
       const res4=await axios.get(`${baseUrl}/api/articles/getArticles?limit=${7}`);
 
       const content= res.data.data;
-      const content2= res2.data.data;
+      const content2= [];
       const articleViews= res3.data.data;
       const latestArticles= res4.data.data;
 
@@ -122,6 +122,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const url = `${baseUrl}/api/articles/getArticlesByViews?limit=${12}`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());
     const { data, errore } = useSWR(url, fetcher, {fallbackData: articleViews});
+    console.log('dataaaaaa',data)
 
 
     const Toast = Swal.mixin({
@@ -210,7 +211,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
             let indexTracker=likeTracker.indexOf(window.location.href);
             likeTracker.splice(indexTracker,indexTracker+1);
             localStorage.setItem('likeTracker',JSON.stringify(likeTracker));  
-                    }
+        }
     }
 
 
@@ -299,7 +300,9 @@ export default function Article({error,content,content2,pageId,articleViews,late
     checkLike()
     userAuth();
     setShouldRender(true);
-    setarticlesSlide(data)
+    // setarticlesSlide(data&&data.data);
+    // console.log('dataaaaaa2',data)
+
    },[])
 
     useEffect(()=>{
@@ -308,6 +311,8 @@ export default function Article({error,content,content2,pageId,articleViews,late
             loadComments()
             setarticlesSlide(content2);
         }
+        // console.log('dataaaaaa3',data)
+
     },[pageId])
 
 

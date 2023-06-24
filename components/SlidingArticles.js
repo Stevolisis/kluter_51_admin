@@ -57,7 +57,7 @@ export default function SlidingArticles({articlesSlide,title}){
 
   return(
       <>
-        <div className='blogSliderHeading'><h2>{title}</h2></div>
+        <div className='blogSliderHeading'><h2>{articlesSlide.length!==0 ? title : ''}</h2></div>
 
         <div className='blogSliderCon'>
           <div className='blogSlider'>

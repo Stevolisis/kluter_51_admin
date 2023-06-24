@@ -512,7 +512,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
         
         {
             shouldRender  && (articlesSlide!==null ? 
-            <MiniBlogList articles={articleViews} title='Trending News'/>
+            <MiniBlogList articles={data&&data.data} title='Trending News'/>
             : 
             <BlogLoader/>)
         }

@@ -17,6 +17,7 @@ import BlogLoader from "@/components/BlogLoader";
 import BlogFastLink from "@/components/BlogFastLink";
 import BlogFastLinkLoader from "@/components/BlogFastLinkLoader";
 import useSWR,{ useSWRConfig } from "swr";
+import { useRouter } from "next/router";
 
 
 
@@ -55,7 +56,7 @@ export const getStaticProps=async({params})=>{
       const res4=await axios.get(`${baseUrl}/api/articles/getArticles?limit=${7}`);
 
       const content= res.data.data;
-      const content2= [];
+      const content2= res2.data.data;
       const articleViews= res3.data.data;
       const latestArticles= res4.data.data;
 
@@ -119,10 +120,18 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const [full_name, setfull_name]=useState('');
     const [comments, setcomments]=useState(null); 
     const [shouldRender , setShouldRender]=useState(false);
-    const url = `${baseUrl}/api/articles/getArticlesByViews?limit=${12}`;
+    const router=useRouter();
+    const params=router.query;
+    const url = `${baseUrl}/api/articles/getArticle?category=${params.blogCategory}&article=${params.article}`;
+    const url2 = `${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${params.blogCategory}`;
+    const url3 = `${baseUrl}/api/articles/getArticlesByViews?limit=${12}`;
+    const url4 = `${baseUrl}/api/articles/getArticles?limit=${7}`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());
-    const { data, errore } = useSWR(url, fetcher, {fallbackData: articleViews});
-    console.log('dataaaaaa',data)
+    const newUpdate1 = useSWR(url, fetcher, {fallbackData: content});
+    const newUpdate2 = useSWR(url2, fetcher, {fallbackData: content2});
+    const newUpdate3 = useSWR(url3, fetcher, {fallbackData: articleViews});
+    const newUpdate4 = useSWR(url4, fetcher, {fallbackData: latestArticles});
+    console.log('dataaaaaa',newUpdate1.data);
 
 
     const Toast = Swal.mixin({
@@ -456,7 +465,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
         {
         shouldRender  && (articlesSlide!==null ? 
-            <BlogFastLink articles={latestArticles} title='Latest News'/>
+            <BlogFastLink articles={newUpdate4&&newUpdate4.data.data} title='Latest News'/>
         : 
             <BlogFastLinkLoader/> )
         }
@@ -503,7 +512,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
     {
         shouldRender  && (articlesSlide!==null ? 
-        <SlidingArticles articlesSlide={articlesSlide} title='Related Topics'/>
+        <SlidingArticles articlesSlide={newUpdate2&&newUpdate2.data.data} title='Related Topics'/>
         : 
         <SlidingArticlesLoader/>)
     }
@@ -512,7 +521,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
         
         {
             shouldRender  && (articlesSlide!==null ? 
-            <MiniBlogList articles={data&&data.data} title='Trending News'/>
+            <MiniBlogList articles={newUpdate3&&newUpdate3.data.data} title='Trending News'/>
             : 
             <BlogLoader/>)
         }

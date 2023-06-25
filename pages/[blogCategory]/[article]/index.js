@@ -467,7 +467,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
 
         {
-        shouldRender  && (typeof newUpdate4!==undefined ? 
+        shouldRender  && ( newUpdate4!==undefined ? 
             <BlogFastLink articles={newUpdate4?.data?.data} title='Latest News'/>
         : 
             <BlogFastLinkLoader/> )

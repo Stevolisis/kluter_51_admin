@@ -465,13 +465,13 @@ export default function Article({error,content,content2,pageId,articleViews,late
             })}
         </div>
 
-{/* 
+
         {
-        shouldRender  && (articlesSlide!==null ? 
-            <BlogFastLink articles={newUpdate4&&newUpdate4.data&&newUpdate4.data.data} title='Latest News'/>
+        shouldRender  && (newUpdate4!==undefined ? 
+            <BlogFastLink articles={newUpdate4&&newUpdate4.data.data} title='Latest News'/>
         : 
             <BlogFastLinkLoader/> )
-        } */}
+        }
 
         
      </div>

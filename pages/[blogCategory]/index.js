@@ -108,6 +108,7 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
     const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:blogData}});
     const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
     const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:returnedCategories}});
+    console.log('newUpdate4',newUpdate4.data)
 
     if(error){
       Swal.fire(
@@ -176,12 +177,10 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 
     useEffect(()=>{
       setShouldRender(true);
-      setarticles(blogData);
-      setarticles(blogData);
-      setarticles(blogData);
-      // console.log('ppppppppp',returnedCategories)
-      setcategories(returnedCategories);
-      setarticlesSlide(articleViews)
+      // setarticles(blogData);
+      // // console.log('ppppppppp',returnedCategories)
+      // setcategories(returnedCategories);
+      // setarticlesSlide(articleViews)
 
     },[blogData])
 
@@ -198,23 +197,23 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-        <title>{category&&category.name}</title>
+        <title>{newUpdate1?.data?.data?.name}</title>
         <meta name="description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
         <meta name="keywords" content="tech blog, technology, tech news, updates, insights, latest technology ,Web Technology, app development"/>
 
         <link rel="icon" href="/logo.ico" />
         <meta name="theme-color" content="#177C65" />
 
-        <meta property="og:title" content={category&&category.name}/>
+        <meta property="og:title" content={newUpdate1?.data?.data?.name}/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="https://www.techreveal.vercel.app"/>
-        <meta property="og:image" content={category && category.img && category.img.url}/>
-        <meta property="og:description" content={category&&category.description}/>
+        <meta property="og:image" content={newUpdate1?.data?.data?.img.url}/>
+        <meta property="og:description" content={newUpdate1?.data?.data?.description}/>
 
         <meta name="twitter:card" content="summary_large_image"/>
-        <meta name="twitter:title" content={category&&category.name}/>
-        <meta name="twitter:image" content={category && category.img && category.img.url}/>
-        <meta name="twitter:description" content={category&&category.description}/>
+        <meta name="twitter:title" content={newUpdate1?.data?.data?.name}/>
+        <meta name="twitter:image" content={newUpdate1?.data?.data?.img.url}/>
+        <meta name="twitter:description" content={newUpdate1?.data?.data?.description}/>
         <script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7953128690140311"
@@ -225,8 +224,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 
 
 
-      <Mainscreen heading={category&&category.name} description={category&&category.description}
-     imgLink={category && category.img && category.img.url} page='blogCategory'/>
+      <Mainscreen heading={newUpdate1?.data?.data?.name} description={newUpdate1?.data?.data?.description}
+     imgLink={newUpdate1?.data?.data?.img.url} page='blogCategory'/>
 
 
 
@@ -236,14 +235,15 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 <div className={styles.categorySlider}>
   {
     shouldRender && (
-      categories && categories!==null ? categories.map((category,i)=>{
+      newUpdate4 && newUpdate4.data && newUpdate4.data.data!== undefined||null ? 
+      newUpdate4?.data?.data.map((category,i)=>{
       return <Link href={category.slug&&category.slug} key={i}>
           <div className={styles.categorySlide}>
             <i className={`fa fa-${category.icon}`}/>{category.name}
           </div>
         </Link>
     }) :
-    [1,2,3,4].map((category,i)=>{
+    [1,2,3,4].map((i)=>{
       return <Link href='#' key={i} legacyBehavior>
           <div style={{width:'100px',height:'35px',background:'rgba(201, 197, 197,0.4)',margin:'0 12px'}}>
               <i/>
@@ -268,8 +268,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       
       
       {
-        shouldRender && (articles!==null ? 
-          <BlogList articles={articles}/>
+        shouldRender && ( newUpdate2 !==null ? 
+          <BlogList articles={newUpdate2?.data?.data}/>
         : 
         <BlogLoader/>)
       }
@@ -283,8 +283,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       </div>
 
       {
-        shouldRender && (articlesSlide!==null ? 
-        <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>
+        shouldRender && ( newUpdate3 !==undefined ? 
+        <SlidingArticles articlesSlide={newUpdate3?.data?.data} title='Most Read Articles'/>
         : 
         <SlidingArticlesLoader/>)
       }

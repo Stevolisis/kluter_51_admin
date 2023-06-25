@@ -37,7 +37,7 @@ export default async function handler(req,res){
             
 
             if(!validImagetype.includes(files.img_link.mimetype.split('/')[1],0)) {
-            res.status(200).json({status:'Invalid Image Type'});
+              res.status(200).json({status:'Invalid Image Type'});
             return;
             }else if(files.img_link.size >=1048576 ) {
               res.status(200).json({status:'Image Size must be less than 1mb'});
@@ -75,7 +75,7 @@ export default async function handler(req,res){
         res.status(200).json({status:'not Permitted'})
       }else{
         res.status(200).json({status:'Invalid User'})
-      }
+      } 
 
 
 

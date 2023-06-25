@@ -362,8 +362,8 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
      
      <div className='articleHeadCon'>
-        <div className='articleHead'><h1>{content && content.title}</h1>
-        <p> {content && `Posed on ${months[content.month]} ${content.day}, ${content.year}`}</p>
+        <div className='articleHead'><h1>{newUpdate1?.data?.data?.title}</h1>
+        <p> { `Posed on ${months[newUpdate1?.data?.data?.month]} ${newUpdate1?.data?.data?.day}, ${newUpdate1?.data?.data?.year}`}</p>
         </div>
         <div className="articleImg">
         <div style={{width:'100%',height:'100%',position:'relative'}}>

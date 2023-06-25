@@ -131,7 +131,10 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const newUpdate2 = useSWR(url2, fetcher, {fallbackData: content2});
     const newUpdate3 = useSWR(url3, fetcher, {fallbackData: articleViews});
     const newUpdate4 = useSWR(url4, fetcher, {fallbackData: latestArticles});
-    console.log('dataaaaaa',newUpdate1.data);
+    console.log('dataaaaaa',content);
+    console.log('dataaaaaa2',content2);
+    console.log('dataaaaaa3',articleViews);
+    console.log('dataaaaaa4',latestArticles);
 
 
     const Toast = Swal.mixin({
@@ -318,7 +321,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
         if(pageId){
             setView();
             loadComments()
-            setarticlesSlide(content2);
+            // setarticlesSlide(content2);
         }
         // console.log('dataaaaaa3',data)
 
@@ -454,7 +457,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
                         const props = attributesToProps(domNode.attribs);
                         return <h1 {...props} >{domNode.children[0].data}</h1>
                     }else if(domNode.name==='pre'){
-                        console.log('pre',domNode)
+                        // console.log('pre',domNode)
                         const props = attributesToProps(domNode.attribs);
                         return <code {...props}>{domNode.children[0].data}</code>;
                     }
@@ -511,8 +514,8 @@ export default function Article({error,content,content2,pageId,articleViews,late
     {comments!==null ? <Comments comments={comments}/> : <CommentsLoader/>}
 
     {
-        shouldRender  && (articlesSlide!==null ? 
-        <SlidingArticles articlesSlide={newUpdate2&&newUpdate2.data&&newUpdate2.data.data} title='Related Topics'/>
+        shouldRender  && (newUpdate2!==null ? 
+        <SlidingArticles articlesSlide={newUpdate2.data.data} title='Related Topics'/>
         : 
         <SlidingArticlesLoader/>)
     }
@@ -520,8 +523,8 @@ export default function Article({error,content,content2,pageId,articleViews,late
     <div className='miniBlogListCon'>
         
         {
-            shouldRender  && (articlesSlide!==null ? 
-            <MiniBlogList articles={newUpdate3&&newUpdate3.data&&newUpdate3.data.data} title='Trending News'/>
+            shouldRender  && (newUpdate3!==null ? 
+            <MiniBlogList articles={newUpdate3.data.data} title='Trending News'/>
             : 
             <BlogLoader/>)
         }

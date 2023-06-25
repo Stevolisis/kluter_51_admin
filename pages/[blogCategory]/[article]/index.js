@@ -131,10 +131,6 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const newUpdate2 = useSWR(url2, fetcher, {fallbackData: content2});
     const newUpdate3 = useSWR(url3, fetcher, {fallbackData: articleViews});
     const newUpdate4 = useSWR(url4, fetcher, {fallbackData: latestArticles});
-    console.log('dataaaaaa',newUpdate1);
-    console.log('dataaaaaa2',newUpdate2?.data);
-    // console.log('dataaaaaa3',articleViews);
-    // console.log('dataaaaaa4',latestArticles);
 
 
     const Toast = Swal.mixin({
@@ -334,22 +330,22 @@ export default function Article({error,content,content2,pageId,articleViews,late
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
-        <title>{content && content.title}</title>
+        <title>{newUpdate1?.data?.title}</title>
         <meta name="description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
         <meta name="keywords" content="tech blog, technology, tech news, updates, insights, latest technology ,Web Technology, app development"/>
 
         <link rel="icon" href="/logo.ico" />
         <meta name="theme-color" content="#177C65" />
 
-        <meta property="og:title" content={content && content.title}/>
+        <meta property="og:title" content={newUpdate1?.data?.title}/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="https://www.techreveal.vercel.app"/>
-        <meta property="og:image" content={content&&content.img.url}/>
+        <meta property="og:image" content={newUpdate1?.data?.img.url}/>
         <meta property="og:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
 
         <meta name="twitter:card" content="summary_large_image"/>
-        <meta name="twitter:title" content={content && content.title}/>
-        <meta name="twitter:image" content={content&&content.img.url}/>
+        <meta name="twitter:title" content={newUpdate1?.data?.title}/>
+        <meta name="twitter:image" content={newUpdate1?.data?.img.url}/>
         <meta name="twitter:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
         <script
             async
@@ -365,8 +361,8 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
      
      <div className='articleHeadCon'>
-        <div className='articleHead'><h1>{content && content.title}</h1>
-        <p> {content && `Posed on ${months[content.month]} ${content.day}, ${content.year}`}</p>
+        <div className='articleHead'><h1>{newUpdate1?.data?.title}</h1>
+        <p> {content && `Posed on ${months[newUpdate1?.data?.month]} ${newUpdate1?.data?.day}, ${newUpdate1?.data?.year}`}</p>
         </div>
         <div className="articleImg">
         <div style={{width:'100%',height:'100%',position:'relative'}}>

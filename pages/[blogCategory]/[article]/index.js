@@ -513,21 +513,21 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
     {comments!==null ? <Comments comments={comments}/> : <CommentsLoader/>}
 
-    {/* {
-        shouldRender  && (newUpdate2!==null ? 
-        <SlidingArticles articlesSlide={newUpdate2.data.data} title='Related Topics'/>
+    {
+        shouldRender  && (newUpdate2!==undefined ? 
+        <SlidingArticles articlesSlide={newUpdate2?.data?.data} title='Related Topics'/>
         : 
         <SlidingArticlesLoader/>)
-    } */}
+    }
     
     <div className='miniBlogListCon'>
         
-        {/* {
-            shouldRender  && (newUpdate3!==null ? 
-            <MiniBlogList articles={newUpdate3.data.data} title='Trending News'/>
+        {
+            shouldRender  && (newUpdate3!==undefined ? 
+            <MiniBlogList articles={newUpdate3?.data?.data} title='Trending News'/>
             : 
             <BlogLoader/>)
-        } */}
+        }
         
     </div>
 

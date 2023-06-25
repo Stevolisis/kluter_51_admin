@@ -131,10 +131,10 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const newUpdate2 = useSWR(url2, fetcher, {fallbackData: content2});
     const newUpdate3 = useSWR(url3, fetcher, {fallbackData: articleViews});
     const newUpdate4 = useSWR(url4, fetcher, {fallbackData: latestArticles});
-    console.log('dataaaaaa',content);
-    console.log('dataaaaaa2',content2);
-    console.log('dataaaaaa3',articleViews);
-    console.log('dataaaaaa4',latestArticles);
+    console.log('dataaaaaa',newUpdate1);
+    console.log('dataaaaaa2',newUpdate2);
+    // console.log('dataaaaaa3',articleViews);
+    // console.log('dataaaaaa4',latestArticles);
 
 
     const Toast = Swal.mixin({

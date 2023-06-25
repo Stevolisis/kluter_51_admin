@@ -132,7 +132,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const newUpdate3 = useSWR(url3, fetcher, {fallbackData: articleViews});
     const newUpdate4 = useSWR(url4, fetcher, {fallbackData: latestArticles});
     console.log('dataaaaaa',newUpdate1);
-    console.log('dataaaaaa2',newUpdate2);
+    console.log('dataaaaaa2',newUpdate2&&newUpdate2.data);
     // console.log('dataaaaaa3',articleViews);
     // console.log('dataaaaaa4',latestArticles);
 

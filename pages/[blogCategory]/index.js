@@ -13,6 +13,7 @@ import { baseUrl } from "../../components/BaseUrl";
 import { useLoader } from "../_app";
 import SlidingArticlesLoader from "../../components/SlidingArticlesLoader";
 import BlogLoader from "../../components/BlogLoader";
+import useSWR from "swr";
 
 
 
@@ -36,7 +37,7 @@ export const getStaticPaths=async()=>{
 
           }),
           fallback:true
-  }
+      }
   }catch(err){
     return {
       paths: [],
@@ -59,13 +60,12 @@ export const getStaticProps=async ({params})=>{
     const articleViews= res3.data.data;
     const returnedCategories= res4.data.data;
 
-    console.log('daaaaaata', res.data)
     if (res.data.data === null || res2.data.data === null) {
-      // File not found, handle it as needed (e.g., return a 404 status code)
       return {
         notFound: true
       };
     }
+
     return {
       props:{returnedCategories,blogData,articleViews,category}
     }    
@@ -91,13 +91,23 @@ export const getStaticProps=async ({params})=>{
 
 
 export default function BlogCategory({category,blogData,articleViews,returnedCategories,error}){
-  let router=useRouter();
     const [articlesSlide,setarticlesSlide]=useState(null);
     const [categories,setcategories]=useState(null);
     const [articles,setarticles]=useState(null);
     const [shouldRender , setShouldRender]=useState(false);
     const { loading, setloading } = useLoader();
     let limit=useRef(15);
+    const router=useRouter();
+    const params=router.query;
+    const url=`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`;
+    const url2=`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`;
+    const url3=`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`;
+    const url4=`${baseUrl}/api/categories/getCategories`;
+    const fetcher = (...args) => fetch(...args).then(res => res.json());
+    const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:category}});
+    const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:blogData}});
+    const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
+    const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:returnedCategories}});
 
     if(error){
       Swal.fire(

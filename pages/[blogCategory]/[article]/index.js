@@ -127,7 +127,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const url3 = `${baseUrl}/api/articles/getArticlesByViews?limit=${12}`;
     const url4 = `${baseUrl}/api/articles/getArticles?limit=${7}`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());
-    const newUpdate1 = useSWR(url, fetcher, {fallbackData: content});
+    const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:content}});
     const newUpdate2 = useSWR(url2, fetcher, {fallbackData: content2});
     const newUpdate3 = useSWR(url3, fetcher, {fallbackData: articleViews});
     const newUpdate4 = useSWR(url4, fetcher, {fallbackData: latestArticles});
@@ -363,7 +363,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
      
      <div className='articleHeadCon'>
         <div className='articleHead'><h1>{newUpdate1?.data?.data?.title}</h1>
-        <p> { `Posed on ${months[newUpdate1?.data?.data?.month]} ${newUpdate1?.data?.data?.day}, ${newUpdate1?.data?.data?.year}`}</p>
+        <p> { newUpdate1 && `Posed on ${months[newUpdate1?.data?.data?.month]} ${newUpdate1?.data?.data?.day}, ${newUpdate1?.data?.data?.year}`}</p>
         </div>
         <div className="articleImg">
         <div style={{width:'100%',height:'100%',position:'relative'}}>

@@ -15,6 +15,7 @@ import BlogLoader from '../components/BlogLoader';
 import SlidingArticlesLoader from '../components/SlidingArticlesLoader';
 import useSWR from 'swr';
 import MiniBlogList from '@/components/MiniBlogList';
+import { useRouter } from 'next/router';
 
 
 
@@ -48,12 +49,24 @@ try{
 
 
 
-export default function Home({categories,articleLikes,blogData,articleViews,error}) {
+export default function Home({categories,blogData,articleViews,articleLikes,error}) {
   const [articlesSlide,setarticlesSlide]=useState(null);
   const { setloading, name, description,front_cover_image } = useLoader();
   const [articles,setarticles]=useState(null);
   const [shouldRender , setShouldRender]=useState(false);
   let limit=useRef(15);
+  const router=useRouter();
+  const params=router.query;
+  const url=`${baseUrl}/api/categories/getCategories`;
+  const url2=`${baseUrl}/api/articles/getArticles?limit=15`;
+  const url3=`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`;
+  const url4=`${baseUrl}/api/articles/getArticlesByLikes?limit=${12}`;  
+  const fetcher = (...args) => fetch(...args).then(res => res.json());  
+  const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:categories}});
+  const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:blogData}});
+  const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
+  const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:articleLikes}});
+
 
   
   if(error){

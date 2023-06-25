@@ -108,7 +108,6 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
     const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:blogData}});
     const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
     const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:returnedCategories}});
-    console.log('newUpdate4',newUpdate4.data)
 
     if(error){
       Swal.fire(

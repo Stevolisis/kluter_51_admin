@@ -402,12 +402,12 @@ export default function Article({error,content,content2,pageId,articleViews,late
                 <p>{newUpdate1?.data?.data?.author.full_name}</p>
                 <p>{newUpdate1?.data?.data?.author.description}</p>
                 <div className="authorSocialLinks">
-            {newUpdate1?.data?.data?.whatsapp.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.whatsapp.link}`} legacyBehavior><a><i className='fa fa-whatsapp'/></a></Link>}
-            {newUpdate1?.data?.data?.dribble.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.dribble.link}`} legacyBehavior><a><i className='fa fa-dribble'/></a></Link>}
-            {newUpdate1?.data?.data?.github.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.github.link}`} legacyBehavior><a><i className='fa fa-github'/></a></Link>}
-            {newUpdate1?.data?.data?.linkedin.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.linkedin.link}`} legacyBehavior><a><i className='fa fa-linkedin'/></a></Link>}
-            {newUpdate1?.data?.data?.twitter.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.twitter.link}`} legacyBehavior><a><i className='fa fa-twitter'/></a></Link>}
-            {newUpdate1?.data?.data?.instagram.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.instagram.link}`} legacyBehavior><a><i className='fa fa-instagram'/></a></Link>}
+            {newUpdate1?.data?.data?.author?.whatsapp.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.whatsapp.link}`} legacyBehavior><a><i className='fa fa-whatsapp'/></a></Link>}
+            {newUpdate1?.data?.data?.author?.dribble.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.dribble.link}`} legacyBehavior><a><i className='fa fa-dribble'/></a></Link>}
+            {newUpdate1?.data?.data?.author?.github.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.github.link}`} legacyBehavior><a><i className='fa fa-github'/></a></Link>}
+            {newUpdate1?.data?.data?.author?.linkedin.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.linkedin.link}`} legacyBehavior><a><i className='fa fa-linkedin'/></a></Link>}
+            {newUpdate1?.data?.data?.author?.twitter.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.twitter.link}`} legacyBehavior><a><i className='fa fa-twitter'/></a></Link>}
+            {newUpdate1?.data?.data?.author?.instagram.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.instagram.link}`} legacyBehavior><a><i className='fa fa-instagram'/></a></Link>}
             </div>
                </div>
         </div>

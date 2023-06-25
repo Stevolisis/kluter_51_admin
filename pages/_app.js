@@ -27,7 +27,6 @@ export const useLoader = () => useContext(LoaderContext);
 
 
 
-
 function MyApp({ Component, pageProps }) {
   const router=useRouter()
   const childrenName=router.pathname;

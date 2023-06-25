@@ -5,6 +5,23 @@ import axios from "axios";
 import { baseUrl } from "../../../components/BaseUrl";
 import { useLoader } from "../../_app";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+import { ThreeDots } from "react-loader-spinner";
+const SunEditors = dynamic(() =>
+import("@/components/SunEditor"), { ssr: false ,loading: () => 
+<div style={{width:'100%',height:'600px',background:'#f5f6f6',display:'flex',justifyContent:'center',alignItems:'center'}}>
+<ThreeDots
+height="40" 
+width="40" 
+radius="9"
+color="#177C65" 
+ariaLabel="three-dots-loading"
+wrapperStyle={{}}
+wrapperClassName=""
+visible={true}
+/></div>
+});
+
 
 
 export const getServerSideProps=async (context)=>{
@@ -65,6 +82,8 @@ export default function AddSupportSystem({error,editName,editDescription,editLog
     const [google_chat,setgoogle_chat]=useState({status:'active',link:''});
     const [imgpreview,setImgpreview]=useState('');
     const [imgpreview2,setImgpreview2]=useState('');
+    const [content, setContent] = useState('');
+    const [content2, setContent2] = useState('');
     const {loading,setloading}=useLoader()
     const router=useRouter();
 
@@ -98,6 +117,9 @@ function handleSubmit(e){
     formData.append('whatsapp',JSON.stringify(whatsapp));
     formData.append('facebook',JSON.stringify(facebook));
     formData.append('google_chat',JSON.stringify(google_chat));
+    formData.append('about_us',JSON.stringify(content));
+    formData.append('privacy_policy',JSON.stringify(content2));
+    
     axios.post('/api/general_settings/editGeneral_settings/',formData)
     .then(res=>{
         let status=res.data.status;
@@ -315,6 +337,20 @@ useEffect(()=>{
             <input type='text' value={google_chat&&google_chat.link} onChange={(e)=>setgoogle_chat({...google_chat,['link']:e.target.value})}/>
         </div>
         </div>
+        </div>
+
+        <div className='admineditnamecon'>
+            <div className='admineditname'>
+            <p>About Us Page Info</p>
+                <SunEditors content={content} setContent={setContent}/>
+            </div>
+        </div>
+
+        <div className='admineditnamecon'>
+            <div className='admineditname'>
+            <p>Privacy Policy</p>
+                <SunEditors content={content2} setContent={setContent2}/>
+            </div>
         </div>
 
         <div className='admineditbtn'>

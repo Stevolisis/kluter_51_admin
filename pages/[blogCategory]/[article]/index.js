@@ -465,7 +465,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
         {
         shouldRender  && (articlesSlide!==null ? 
-            <BlogFastLink articles={newUpdate4&&newUpdate4.data.data} title='Latest News'/>
+            <BlogFastLink articles={newUpdate4&&newUpdate4.data&&newUpdate4.data.data} title='Latest News'/>
         : 
             <BlogFastLinkLoader/> )
         }
@@ -512,7 +512,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
     {
         shouldRender  && (articlesSlide!==null ? 
-        <SlidingArticles articlesSlide={newUpdate2&&newUpdate2.data.data} title='Related Topics'/>
+        <SlidingArticles articlesSlide={newUpdate2&&newUpdate2.data&&newUpdate2.data.data} title='Related Topics'/>
         : 
         <SlidingArticlesLoader/>)
     }
@@ -521,7 +521,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
         
         {
             shouldRender  && (articlesSlide!==null ? 
-            <MiniBlogList articles={newUpdate3&&newUpdate3.data.data} title='Trending News'/>
+            <MiniBlogList articles={newUpdate3&&newUpdate3.data&&newUpdate3.data.data} title='Trending News'/>
             : 
             <BlogLoader/>)
         }

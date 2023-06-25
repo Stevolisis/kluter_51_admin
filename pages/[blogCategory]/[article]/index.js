@@ -439,7 +439,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
      <div className="articleContentCon">
 
-        <div className="article">{parse(newUpdate1?.data?.data?.content,{
+        <div className="article">{newUpdate1 && parse(newUpdate1?.data?.data?.content,{
                 replace:domNode=>{
                     if(domNode.name==='a'){
                         const props = attributesToProps(domNode.attribs);

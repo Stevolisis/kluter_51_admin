@@ -18,7 +18,7 @@ export default function BlogFastLink({title,articles}){
 
     return(
         <div className="BlogFastLinkCon">
-        <div className="BlogFastLinkHeader"><h1>{articles.length!==0 ? title : ''}</h1></div>
+        <div className="BlogFastLinkHeader"><h1>{articles && articles.length!==0 ? title : ''}</h1></div>
             <div className="BlogFastLink1">
                 {listing}
             </div>

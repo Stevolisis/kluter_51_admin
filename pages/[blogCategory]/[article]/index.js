@@ -61,18 +61,10 @@ export const getStaticProps=async({params})=>{
       const latestArticles= res4.data.data;
 
       const pageId=content._id;
-      const categoryId=content.category;
-      const img_link=content.img.url;
-      const img_link2=content.author&& content.author.img.url;
-      const whatsapp=content.author&&content.author.whatsapp;
-      const dribble=content.author&&content.author.dribble;
-      const github=content.author&&content.author.github;
-      const linkedin=content.author&&content.author.linkedin;
-      const twitter=content.author&&content.author.twitter;
-      const instagram=content.author&&content.author.instagram;
+      const categoryId=content.category
       
       return {
-        props:{content,content2,articleViews,latestArticles,pageId,categoryId,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}
+        props:{content,content2,articleViews,latestArticles,pageId,categoryId}
       }    
       
     }catch(err){
@@ -100,7 +92,7 @@ export const getStaticProps=async({params})=>{
 
 
 
-export default function Article({error,content,content2,pageId,articleViews,latestArticles,img_link,img_link2,whatsapp,dribble,github,linkedin,twitter,instagram}){
+export default function Article({error,content,content2,pageId,articleViews,latestArticles}){
     if(error){
         Swal.fire(
           'Error Occured',
@@ -331,22 +323,22 @@ export default function Article({error,content,content2,pageId,articleViews,late
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
-        <title>{content && content.title}</title>
+        <title>{newUpdate1?.data?.data?.title}</title>
         <meta name="description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
         <meta name="keywords" content="tech blog, technology, tech news, updates, insights, latest technology ,Web Technology, app development"/>
 
         <link rel="icon" href="/logo.ico" />
         <meta name="theme-color" content="#177C65" />
 
-        <meta property="og:title" content={content && content.title}/>
+        <meta property="og:title" content={newUpdate1?.data?.data?.title}/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="https://www.techreveal.vercel.app"/>
-        <meta property="og:image" content={content&&content.img.url}/>
+        <meta property="og:image" content={newUpdate1?.data?.data?.img.url}/>
         <meta property="og:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
 
         <meta name="twitter:card" content="summary_large_image"/>
-        <meta name="twitter:title" content={content && content.title}/>
-        <meta name="twitter:image" content={content&&content.img.url}/>
+        <meta name="twitter:title" content={newUpdate1?.data?.data?.title}/>
+        <meta name="twitter:image" content={newUpdate1?.data?.data?.img.url}/>
         <meta name="twitter:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
         <script
             async
@@ -367,9 +359,8 @@ export default function Article({error,content,content2,pageId,articleViews,late
         </div>
         <div className="articleImg">
         <div style={{width:'100%',height:'100%',position:'relative'}}>
-           {img_link && 
             <Image 
-            src={img_link}
+            src={newUpdate1?.data?.data?.img?.url}
             alt='Cover Image'
             layout="fill"
             quality={90}
@@ -377,7 +368,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
             blurDataURL="/favicon.io"
             placeholder="blur"
             priority
-            />}
+            />
         </div>
         </div>
 
@@ -394,8 +385,8 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
         <div className='articleAuthorCon'>
             <div className='authorImg'>
-               {img_link2 && <Image
-                src={img_link2}
+               <Image
+                src={newUpdate1?.data?.data?.author?.img?.url}
                 alt='author Image'
                 width={40}
                 height={40}
@@ -403,20 +394,20 @@ export default function Article({error,content,content2,pageId,articleViews,late
                 placeholder='blur'
                 blurDataURL="/imageLoader.png"
                 priority
-                />}
+                />
             </div>
 
             <div className="articleAuthor">
                 <p>AUTHOR</p>
-                <p>{content && content.author&& content.author.full_name}</p>
-                <p>{content && content.author&& content.author.description}</p>
+                <p>{newUpdate1?.data?.data?.author.full_name}</p>
+                <p>{newUpdate1?.data?.data?.author.description}</p>
                 <div className="authorSocialLinks">
-            {whatsapp&&whatsapp.status==='inactive'|| ''? '' :<Link href={`${whatsapp&&whatsapp.link}`} legacyBehavior><a><i className='fa fa-whatsapp'/></a></Link>}
-            {dribble&&dribble.status==='inactive'|| ''? '' :<Link href={`${dribble&&dribble.link}`} legacyBehavior><a><i className='fa fa-dribble'/></a></Link>}
-            {github&&github.status==='inactive'|| ''? '' :<Link href={`${github&&github.link}`} legacyBehavior><a><i className='fa fa-github'/></a></Link>}
-            {linkedin&&linkedin.status==='inactive'|| ''? '' :<Link href={`${linkedin&&linkedin.link}`} legacyBehavior><a><i className='fa fa-linkedin'/></a></Link>}
-            {twitter&&twitter.status==='inactive'|| ''? '' :<Link href={`${twitter&&twitter.link}`} legacyBehavior><a><i className='fa fa-twitter'/></a></Link>}
-            {instagram&&instagram.status==='inactive'|| ''? '' :<Link href={`${instagram&&instagram.link}`} legacyBehavior><a><i className='fa fa-instagram'/></a></Link>}
+            {newUpdate1?.data?.data?.whatsapp.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.whatsapp.link}`} legacyBehavior><a><i className='fa fa-whatsapp'/></a></Link>}
+            {newUpdate1?.data?.data?.dribble.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.dribble.link}`} legacyBehavior><a><i className='fa fa-dribble'/></a></Link>}
+            {newUpdate1?.data?.data?.github.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.github.link}`} legacyBehavior><a><i className='fa fa-github'/></a></Link>}
+            {newUpdate1?.data?.data?.linkedin.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.linkedin.link}`} legacyBehavior><a><i className='fa fa-linkedin'/></a></Link>}
+            {newUpdate1?.data?.data?.twitter.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.twitter.link}`} legacyBehavior><a><i className='fa fa-twitter'/></a></Link>}
+            {newUpdate1?.data?.data?.instagram.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.instagram.link}`} legacyBehavior><a><i className='fa fa-instagram'/></a></Link>}
             </div>
                </div>
         </div>
@@ -428,11 +419,11 @@ export default function Article({error,content,content2,pageId,articleViews,late
                 data={{
                 text: "Like humans, flamingos make friends for life",
                 url: `${windowLink}`,
-                title: `${content && content.title}`,
+                title: `${newUpdate1?.data?.data?.title}`,
                 }}>
-                <button onClick={()=>navigator.share({title:`${content && content.title}`,text:'OTOTCH BLOG',url:`${windowLink}}`})}>Share <i className="fa fa-share"/></button>
+                <button onClick={()=>navigator.share({title:`${newUpdate1?.data?.data?.title}`,text:'OTOTCH BLOG',url:`${windowLink}}`})}>Share <i className="fa fa-share"/></button>
             </RWebShare>
-                <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${windowLink}i&title=${content && content.title}&source=OTOTECH Blog`} legacyBehavior><a><i className="fa fa-linkedin"/></a></Link>
+                <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${windowLink}i&title=${newUpdate1?.data?.data?.title}&source=OTOTECH Blog`} legacyBehavior><a><i className="fa fa-linkedin"/></a></Link>
                 <Link href={`https://twitter.com/intent/tweet?text=${windowLink}`} legacyBehavior><a><i className="fa fa-twitter"/></a></Link>
                 <Link href={`https://www.facebook.com/sharer/sharer.php?u=${windowLink}`} legacyBehavior><a><i className="fa fa-facebook"/></a></Link>
             </div>
@@ -448,7 +439,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
      <div className="articleContentCon">
 
-        <div className="article">{content && parse(content.content,{
+        <div className="article">{parse(newUpdate1?.data?.data?.content,{
                 replace:domNode=>{
                     if(domNode.name==='a'){
                         const props = attributesToProps(domNode.attribs);

@@ -465,13 +465,13 @@ export default function Article({error,content,content2,pageId,articleViews,late
             })}
         </div>
 
-
+{/* 
         {
         shouldRender  && (articlesSlide!==null ? 
             <BlogFastLink articles={newUpdate4&&newUpdate4.data&&newUpdate4.data.data} title='Latest News'/>
         : 
             <BlogFastLinkLoader/> )
-        }
+        } */}
 
         
      </div>
@@ -513,21 +513,21 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
     {comments!==null ? <Comments comments={comments}/> : <CommentsLoader/>}
 
-    {
+    {/* {
         shouldRender  && (newUpdate2!==null ? 
         <SlidingArticles articlesSlide={newUpdate2.data.data} title='Related Topics'/>
         : 
         <SlidingArticlesLoader/>)
-    }
+    } */}
     
     <div className='miniBlogListCon'>
         
-        {
+        {/* {
             shouldRender  && (newUpdate3!==null ? 
             <MiniBlogList articles={newUpdate3.data.data} title='Trending News'/>
             : 
             <BlogLoader/>)
-        }
+        } */}
         
     </div>
 

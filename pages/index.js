@@ -125,34 +125,6 @@ function loadArticles(){
 
 
 
-
-function loadArticlesByViews(){
-
-      try{
-        const fetcher = () => axios.get(`/api/articles/getArticlesByViews`).then(res => res.data)
-        const { data } = useSWR(`/api/articles/getArticlesByViews`, fetcher, {initialData: articleViews});
-        console.log('rrrrrrrrr',data)
-        const status=data.status;
-          if(status==='success'){
-            setarticlesSlide(data&&data.data)
-          }else{
-              Swal.fire(
-                  'Error Occured',
-                  status,
-                  'warning'
-              )
-          }  
-      }catch(err){
-        Swal.fire(
-            'Error Occured',
-            err.message,
-            'error'
-        ) 
-      }
-
-}
-
-
   function loadMore(){
     limit.current=limit.current+8;
     loadArticles()
@@ -208,7 +180,7 @@ function loadArticlesByViews(){
 
 
 
-<CategoryList categories={categories}/>
+<CategoryList categories={newUpdate1?.data?.data}/>
 
 
 
@@ -247,8 +219,8 @@ function loadArticlesByViews(){
 
 {/* <BlogList articles={articles}/>  */}
       {
-        shouldRender && (articles!==null ? 
-          <BlogList articles={articles}/>
+        shouldRender && (newUpdate2!==undefined||null ? 
+          <BlogList articles={newUpdate2?.data?.data}/>
         : 
         <BlogLoader/>)
       }
@@ -289,8 +261,8 @@ function loadArticlesByViews(){
 
 
   {
-    shouldRender && (articlesSlide!==null ? 
-    <SlidingArticles articlesSlide={articlesSlide} title='Most Read Articles'/>
+    shouldRender && ( newUpdate3!==undefined||null ? 
+    <SlidingArticles articlesSlide={newUpdate3?.data?.data} title='Most Read Articles'/>
     : 
     <SlidingArticlesLoader/>)
   }
@@ -300,8 +272,8 @@ function loadArticlesByViews(){
   <div className='miniBlogListCon'>
         
         {
-            shouldRender  && (articleLikes!==null ? 
-            <MiniBlogList articles={articleLikes} title='Trending News'/>
+            shouldRender  && (newUpdate4!==undefined||null!==null ? 
+            <MiniBlogList articles={newUpdate4?.data?.data} title='Trending News'/>
             : 
             <BlogLoader/>)
         }

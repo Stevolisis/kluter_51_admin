@@ -57,9 +57,9 @@ export default function Footer({whatsapp,linkedin,google_chat,gmail,phone_number
       <div className='footerLinksCon'>
         <h4>Additional Pages</h4>
         <ol>
-          <li><Link href='#'>About Us</Link></li>
+          <li><Link href='/about-us'>About Us</Link></li>
           <li><Link href='#'>Quick Support</Link></li>
-          <li><Link href='#'>Privacy Policy</Link></li>
+          <li><Link href='/privacy-policy'>Privacy Policy</Link></li>
         </ol>
       </div>
 

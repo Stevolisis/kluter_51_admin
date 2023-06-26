@@ -56,7 +56,6 @@ export default function Home({categories,blogData,articleViews,articleLikes,erro
   const [shouldRender , setShouldRender]=useState(false);
   let limit=useRef(15);
   const router=useRouter();
-  const params=router.query;
   const url=`${baseUrl}/api/categories/getCategories`;
   const url2=`${baseUrl}/api/articles/getArticles?limit=15`;
   const url3=`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`;

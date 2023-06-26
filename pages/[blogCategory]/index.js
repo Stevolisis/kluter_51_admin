@@ -4,7 +4,6 @@ import {useRouter} from 'next/router'
 import { useEffect,useRef,useState } from "react";
 import BlogList from "../../components/BlogList";
 import SlidingArticles from "../../components/SlidingArticles";
-import styles from '../../styles/blogCategory.module.css'
 import $ from 'jquery';
 import Mainscreen from "../../components/Mainscreen";
 import axios from "axios";
@@ -230,14 +229,14 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 
 
 
-<div className={styles.categorySliderCon}>
-<div className={styles.categorySlider}>
+<div className='categorySliderCon'>
+<div className='categorySlider'>
   {
     shouldRender && (
       newUpdate4 && newUpdate4.data && newUpdate4.data.data!== undefined||null ? 
       newUpdate4?.data?.data.map((category,i)=>{
       return <Link href={category.slug&&category.slug} key={i}>
-          <div className={styles.categorySlide}>
+          <div className='categorySlide'>
             <i className={`fa fa-${category.icon}`}/>{category.name}
           </div>
         </Link>

@@ -65,6 +65,8 @@ const general_settingSchema=new mongoose.Schema({
     },
     link:String
    },
+   about_us:String,
+   privacy_policy:String
 })
 
 

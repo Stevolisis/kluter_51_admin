@@ -120,8 +120,8 @@ function handleSubmit(e){
     formData.append('whatsapp',JSON.stringify(whatsapp));
     formData.append('facebook',JSON.stringify(facebook));
     formData.append('google_chat',JSON.stringify(google_chat));
-    formData.append('about_us',JSON.stringify(content));
-    formData.append('privacy_policy',JSON.stringify(content2));
+    formData.append('about_us',content);
+    formData.append('privacy_policy',content2);
 
     axios.post('/api/general_settings/editGeneral_settings/',formData)
     .then(res=>{

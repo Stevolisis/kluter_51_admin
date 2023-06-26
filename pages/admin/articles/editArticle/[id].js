@@ -204,9 +204,9 @@ export default function EditArticle(){
             <div className='admineditname'>
             <p>Category</p>
             <select name='category' value={category} onChange={(e)=>setcategory(e.target.value)}>
-            {categories.map(category=>{
-                return <option value={category._id} key={category._id}>{category.name}</option>
-            })}
+                {categories.map(category=>{
+                    return <option value={category._id} key={category._id}>{category.name}</option>
+                })}
             </select>
             </div>
         </div>

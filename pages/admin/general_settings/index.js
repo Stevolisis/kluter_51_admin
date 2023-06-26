@@ -31,7 +31,7 @@ export const getServerSideProps=async (context)=>{
       
       const data= res.data.data||[];
       let resStatus=res.data.status;
-      let editName,editDescription,editLogo,editFront_cover_image,editPhone_number,editGmail,editLinkedin,editWhatsapp,editFacebook,editGoogle_chat; 
+      let editName,editDescription,editLogo,editFront_cover_image,editPhone_number,editGmail,editLinkedin,editWhatsapp,editFacebook,editGoogle_chat,editAbout_us,editPrivacy_policy; 
        
      if(resStatus==='no data Found'){
        editName='';
@@ -54,11 +54,14 @@ export const getServerSideProps=async (context)=>{
        editLinkedin=data[0].linkedin;
        editWhatsapp=data[0].whatsapp;
        editFacebook=data[0].facebook;
-       editGoogle_chat=data[0].google_chat;  
+       editGoogle_chat=data[0].google_chat; 
+       editAbout_us=data[0].about_us||'';   
+       editPrivacy_policy=data[0].privacy_policy||'';  
      }
       
       return {
-        props:{editName,editDescription,editLogo,editFront_cover_image,editPhone_number,editGmail,editWhatsapp,editLinkedin,editFacebook,editGoogle_chat}
+        props:{editName,editDescription,editLogo,editFront_cover_image,editPhone_number,editGmail,editWhatsapp
+            ,editLinkedin,editFacebook,editGoogle_chat,editAbout_us,editPrivacy_policy}
       }    
       
     }catch(err){
@@ -71,7 +74,7 @@ export const getServerSideProps=async (context)=>{
 
 
 export default function AddSupportSystem({error,editName,editDescription,editLogo,editFront_cover_image,editPhone_number,editGmail,editLinkedin,
-    editWhatsapp,editFacebook,editGoogle_chat}){
+    editWhatsapp,editFacebook,editGoogle_chat,editAbout_us,editPrivacy_policy}){
     const [name,setName]=useState('');
     const [description,setDescription]=useState('');
     const [phone_number,setphone_number]=useState({status:'inactive',link:''})
@@ -119,7 +122,7 @@ function handleSubmit(e){
     formData.append('google_chat',JSON.stringify(google_chat));
     formData.append('about_us',JSON.stringify(content));
     formData.append('privacy_policy',JSON.stringify(content2));
-    
+
     axios.post('/api/general_settings/editGeneral_settings/',formData)
     .then(res=>{
         let status=res.data.status;
@@ -167,6 +170,8 @@ useEffect(()=>{
     setlinkedin(editLinkedin);
     setfacebook(editFacebook);
     setgoogle_chat(editGoogle_chat);
+    setContent(editAbout_us);
+    setContent2(editPrivacy_policy);
 },[]);
 
 
@@ -341,7 +346,7 @@ useEffect(()=>{
 
         <div className='admineditnamecon'>
             <div className='admineditname'>
-            <p>About Us Page Info</p>
+            <p>About Us</p>
                 <SunEditors content={content} setContent={setContent}/>
             </div>
         </div>
@@ -361,3 +366,45 @@ useEffect(()=>{
         </>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

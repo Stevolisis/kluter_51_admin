@@ -22,6 +22,7 @@ export default async function handler(req,res){
 
         form.parse(req,async function(err, fields, files) {
           if (err) throw new Error('Error at Parsing');
+          console.log('fields',fields);
 
           try{
           let setting=fields;
@@ -68,7 +69,11 @@ export default async function handler(req,res){
                }
              }  
 
-            await Settings.updateMany({},{$set:setting});
+            await Settings.updateMany({},{$set:setting},{
+              returnNewDocument: true,
+              new: true,
+              strict: false
+            });
 
             res.status(200).json({status:'success'});
 
@@ -113,7 +118,9 @@ export default async function handler(req,res){
               linkedin:{status:setting.linkedin.status,link:setting.linkedin.link},
               whatsapp:{status:setting.whatsapp.status,link:setting.whatsapp.link},
               facebook:{status:setting.facebook.status,link:setting.facebook.link},
-              google_chat:{status:setting.google_chat.status,link:setting.google_chat.link}
+              google_chat:{status:setting.google_chat.status,link:setting.google_chat.link},
+              about_us:setting.about_us,
+              privacy_policy:setting.privacy_policy
             })
             await settingsave.save();
             res.status(200).json({status:'success'});

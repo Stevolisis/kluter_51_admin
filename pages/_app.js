@@ -48,17 +48,17 @@ function MyApp({ Component, pageProps }) {
   const [google_chat,setgoogle_chat]=useState({status:'',link:''});
   const url = `${baseUrl}/api/general_settings/getGeneral_settings`;
   const fetcher = (...args) => fetch(...args).then(res => res.json());
-  const { data } = useSWR(url, fetcher);
+  const { error, data } = useSWR(url, fetcher);
   const status=data?.status;
   const response=data?.data;
   
-  // if(error) {
-  //   Swal.fire(
-  //     'Error',
-  //     error.message,
-  //     'warning'
-  //   ) 
-  // }
+  if(error) {
+    Swal.fire(
+      'Error',
+      error.message,
+      'warning'
+    ) 
+  }
 
   useEffect(()=>{
     if(data){

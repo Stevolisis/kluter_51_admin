@@ -1,5 +1,7 @@
 import { baseUrl } from "@/components/BaseUrl";
+import axios from "axios";
 import parse from "html-react-parser";
+import Swal from "sweetalert2";
 import useSWR from "swr";
 
 
@@ -29,13 +31,21 @@ export const getStaticProps=async ()=>{
 export default function About_us({about_us}){
     const url=`${baseUrl}/api/general_settings/getAboutUs`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());  
-    const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:about_us}});
-
+    const { error, data } = useSWR(url, fetcher, {fallbackData: {data:about_us}});
+    console.log('initial',about_us);
+    console.log('later', data)
+    if(error) {
+      Swal.fire(
+        'Error',
+        error.message,
+        'warning'
+      ) 
+    }
   
     return(
         <><div className="aboutusCon">
             <h1>About Us</h1>
-            <div>{ parse(newUpdate1?.data?.data||'') }</div>
+            <div>{ parse(data?.data||'') }</div>
         </div>
                 
   

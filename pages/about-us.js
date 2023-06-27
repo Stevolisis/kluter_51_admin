@@ -32,8 +32,8 @@ export default function About_us({about_us}){
     const url=`${baseUrl}/api/general_settings/getAboutUs`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());  
     const { error, data } = useSWR(url, fetcher, {fallbackData: {data:about_us}});
-    console.log('initial',about_us);
-    console.log('later', data)
+
+    
     if(error) {
       Swal.fire(
         'Error',

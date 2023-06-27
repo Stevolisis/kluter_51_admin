@@ -114,9 +114,9 @@ export default function Header(){
         </div>
       <div className="linksCon">
       <Link href='/'>Home</Link>
-      <Link href='https://ototech22.github.io/OTOTECH-website/about.html'>About Us</Link>
-      <Link href='https://ototech22.github.io/OTOTECH-website/#service'>Our Services</Link>
-      <Link href='https://ototech22.github.io/OTOTECH-website/contact.html'>Contact</Link>
+      <Link href='/about-us'>About Us</Link>
+      <Link href='/privacy-policy'>Privacy Policy</Link>
+      <Link href='#'>Contact</Link>
       </div>
       <div className="buttonCon">
         <Link href={ !showSocialLink ? '' : 'https://www.facebook.com/sharer/sharer.php?u='+window.location.href}><i className='fa fa-facebook'></i></Link>

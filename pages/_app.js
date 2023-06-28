@@ -61,7 +61,7 @@ function MyApp({ Component, pageProps }) {
   }
 
   useEffect(()=>{
-    if(data){
+    if(response){
       if(status==='success'){
         setname(response[0].name)
         setdescription(response[0].description)

@@ -52,13 +52,13 @@ function MyApp({ Component, pageProps }) {
   const status=data?.status;
   const response=data?.data;
   
-  if(error) {
-    Swal.fire(
-      'Error',
-      error.message,
-      'warning'
-    ) 
-  }
+  // if(error) {
+  //   Swal.fire(
+  //     'Error',
+  //     error.message,
+  //     'warning'
+  //   ) 
+  // }
 
   useEffect(()=>{
     if(response){

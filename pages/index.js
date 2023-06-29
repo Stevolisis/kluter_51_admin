@@ -95,32 +95,36 @@ function dropdown1(){
 
 
 
-function loadArticles(){
-  setloading(true)
-  axios.get(`/api/articles/getArticles?limit=${limit.current}`)
-  .then(res=>{
-      let status=res.data.status;
-      let data=res.data.data;
-      setloading(false);
+  function loadArticles(){
+    setloading(true)
+    axios.get(`/api/articles/getArticles?limit=${limit.current}`)
+    .then(res=>{
+        let status=res.data.status;
+        let data=res.data.data;
+        setloading(false);
 
-      if(status==='success'){
-          setarticles(data)
-      }else{
-          Swal.fire(
-              'Error Occured',
-              res.data.status,
-              'warning'
-          )
-      }
-  }).catch(err=>{
-    setloading(false);
-      Swal.fire(
-          'Error Occured',
-          err.message,
-          'error'
-      )           
-  });
-}
+        if(status==='success'){
+            setarticles(data)
+        }else{
+            Swal.fire(
+                'Error Occured',
+                res.data.status,
+                'warning'
+            )
+        }
+    }).catch(err=>{
+      setloading(false);
+        Swal.fire(
+            'Error Occured',
+            err.message,
+            'error'
+        )           
+    });
+  }
+
+  function registerNewsLetter(e){
+    e.preventDefault();
+  }
 
 
 
@@ -192,7 +196,7 @@ function loadArticles(){
           <h2>World-class articles, delivered weekly.</h2>
           <form>
             <input type='email' placeholder='Enter your email'/>  
-            <button disabled>Submit</button>
+            <button>Submit</button>
           </form>
         </div>
       </div>

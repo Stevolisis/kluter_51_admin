@@ -135,7 +135,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
           toast.addEventListener('mouseenter', Swal.stopTimer)
           toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
-      })
+    })
 
     function checkLike(){
         let checkTracker=localStorage.getItem('likeTracker');

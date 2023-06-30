@@ -124,6 +124,21 @@ function dropdown1(){
 
   function registerNewsLetter(e){
     e.preventDefault();
+    const formData=new FormData(e.target);
+
+    axios.post(`/api/news_letter/register`,formData)
+    .then(res=>{
+      let status=res.data.status;
+
+
+      if(status==='success') Swal.fire('Success','Worked !!!','success');
+      Swal.fire('Success','Did not Work','success')
+     
+    }).catch(err=>{
+      Swal.fire('Error Occured', err.message, 'error')
+        console.log(err);
+    })
+    
   }
 
 
@@ -195,8 +210,8 @@ function dropdown1(){
         <div className='emailRegister'>
           <h2>World-class articles, delivered weekly.</h2>
           <form>
-            <input type='email' placeholder='Enter your email'/>  
-            <button>Submit</button>
+            <input type='email' name='email' placeholder='Enter your email'/>  
+            <button onClick={(e)=>registerNewsLetter(e)}>Submit</button>
           </form>
         </div>
       </div>

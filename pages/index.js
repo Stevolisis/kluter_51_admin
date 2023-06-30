@@ -124,7 +124,7 @@ function dropdown1(){
 
   function registerNewsLetter(e){
     e.preventDefault();
-    const formData=new FormData(e.target);
+    const formData=new FormData();
 
     axios.post(`/api/news_letter/register`,formData)
     .then(res=>{

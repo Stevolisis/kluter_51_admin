@@ -31,16 +31,16 @@ export const getStaticPaths=async()=>{
             paths:content.map(article=>{
                 return {
                     params:{
-                        blogCategory:article.categorySlug.split('/')[0],
+                        blogCategory:'/'+article.categorySlug.split('/')[0],
                         article:article.slug.split('/')[0]
                     }
                 }
             }),
-            fallback:true
+            fallback:false
     }
     }catch(err){
         return {
-        props:{error:err.message}
+            props:{error:err.message}
         } 
     }  
 }

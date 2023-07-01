@@ -29,18 +29,18 @@ export const getStaticPaths=async()=>{
 
               return {
                   params:{
-                      blogCategory:category.slug.split('/')[0]||'Startups'
+                      blogCategory:category.slug.split('/')[0]
                       //why this error
                   }
               }
 
           }),
-          fallback:true
+          fallback:false
       }
   }catch(err){
     return {
       paths: [],
-      fallback: true
+      fallback: false
     };
   }  
 }

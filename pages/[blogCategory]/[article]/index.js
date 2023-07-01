@@ -16,7 +16,7 @@ import MiniBlogList from "@/components/MiniBlogList";
 import BlogLoader from "@/components/BlogLoader";
 import BlogFastLink from "@/components/BlogFastLink";
 import BlogFastLinkLoader from "@/components/BlogFastLinkLoader";
-import useSWR,{ useSWRConfig } from "swr";
+import useSWR from "swr";
 import { useRouter } from "next/router";
 
 

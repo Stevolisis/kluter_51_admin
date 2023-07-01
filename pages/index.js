@@ -122,17 +122,16 @@ function dropdown1(){
     });
   }
 
-  function registerNewsLetter(e){
+  function subscribeNewsLetter(e){
     e.preventDefault();
     const formData=new FormData();
 
-    axios.post(`/api/news_letter/register`,formData)
+    axios.post(`/api/news_letter/subscribe`,formData)
     .then(res=>{
       let status=res.data.status;
 
-
       if(status==='success') Swal.fire('Success','Worked !!!','success');
-      Swal.fire('Success','Did not Work','success')
+      Swal.fire('Error Occured','Did not Work','error')
      
     }).catch(err=>{
       Swal.fire('Error Occured', err.message, 'error')
@@ -211,7 +210,7 @@ function dropdown1(){
           <h2>World-class articles, delivered weekly.</h2>
           <form>
             <input type='email' name='email' placeholder='Enter your email'/>  
-            <button onClick={(e)=>registerNewsLetter(e)}>Submit</button>
+            <button onClick={(e)=>subscribeNewsLetter(e)}>Submit</button>
           </form>
         </div>
       </div>

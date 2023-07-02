@@ -23,10 +23,11 @@ export const getStaticPaths=async()=>{
   try{
       const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
       const content= res.data.data;
+//remeber see more button in main index to load more articles
 
       return{
           paths:content.map(category=>{
-
+            console.log(category.slug);
               return {
                   params:{
                       blogCategory:category.slug.split('/')[0]

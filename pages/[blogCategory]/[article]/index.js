@@ -29,10 +29,11 @@ export const getStaticPaths=async()=>{
 
         return{
             paths:content.map(article=>{
+                console.log(article.categorySlug)
                 return {
                     params:{
-                        blogCategory:article.categorySlug.split('/')[0]||"404",
-                        article:article.slug.split('/')[0]||"404"
+                        blogCategory:article.categorySlug.split('/')[0],
+                        article:article.slug.split('/')[0]
                     }
                 }
             }),

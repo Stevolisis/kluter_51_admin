@@ -29,10 +29,10 @@ export const getStaticPaths=async()=>{
 
         return{
             paths:content.map(article=>{
-                console.log(article.categorySlug)
+                console.log(article.categorySlug,article.slug)
                 return {
                     params:{
-                        blogCategory:article.categorySlug.split('/')[0],
+                        blogCategory:article.categorySlug.split('/')[0]||"Internet-of-Things-IoT",
                         article:article.slug.split('/')[0]
                     }
                 }

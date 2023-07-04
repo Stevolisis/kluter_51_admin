@@ -23,14 +23,13 @@ export const getStaticPaths=async()=>{
   try{
       const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
       const content= res.data.data;
-//remeber see more button in main index to load more articles
+//remember see more button in main index to load more articles
 
       return{
           paths:content.map(category=>{
-            console.log(category.slug);
               return {
                   params:{
-                      blogCategory:category.slug.split('/')[0]
+                      blogCategory:category.slug.split('/')[0]||'Startups'
                       //why this error
                   }
               }

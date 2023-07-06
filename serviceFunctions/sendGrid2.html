@@ -458,47 +458,9 @@
             <span style="color: #ffffff; font-size: 15px">{{status}}</span></div>
           <div style="font-family: inherit; text-align: inherit"><br></div>
           <div style="font-family: inherit; text-align: inherit"><span style="color: #ffffff; font-size: 15px">
-            {{#switch month}}
-  {{#case 1}}
-    {{set monthName "January"}}
-  {{/case}}
-  {{#case 2}}
-    {{set monthName "February"}}
-  {{/case}}
-  {{#case 3}}
-    {{set monthName "March"}}
-  {{/case}}
-  {{#case 4}}
-    {{set monthName "April"}}
-  {{/case}}
-  {{#case 5}}
-    {{set monthName "May"}}
-  {{/case}}
-  {{#case 6}}
-    {{set monthName "June"}}
-  {{/case}}
-  {{#case 7}}
-    {{set monthName "July"}}
-  {{/case}}
-  {{#case 8}}
-    {{set monthName "August"}}
-  {{/case}}
-  {{#case 9}}
-    {{set monthName "September"}}
-  {{/case}}
-  {{#case 10}}
-    {{set monthName "October"}}
-  {{/case}}
-  {{#case 11}}
-    {{set monthName "November"}}
-  {{/case}}
-  {{#case 12}}
-    {{set monthName "December"}}
-  {{/case}}
-{{/switch}}
-
-{{monthName}} {{day}} {{month}} {{year}}
-
+            {{#with getMonthName month}}
+            {{this}} {{day}} {{month}} {{year}}
+            {{/with}}
           </span></div><div></div></div></td>
       </tr>
     </tbody>

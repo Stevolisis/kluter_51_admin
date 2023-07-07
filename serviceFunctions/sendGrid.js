@@ -3,7 +3,7 @@ sgMail.setSubstitutionWrappers('{{', '}}');
 
 export async function sendEmail(type,subscribers,subject,email,data1,data2){
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    const emailTemplate=['d-3dabf83b3c8a480daa14a2a0b0737d5c','d-5d881094bdde4eb1abc67784a7903f03','d-f0e286a0ee614fab874c4193868aa29d'];
+    const emailTemplate=['d-3dabf83b3c8a480daa14a2a0b0737d5c','d-f0e286a0ee614fab874c4193868aa29d','d-5d881094bdde4eb1abc67784a7903f03'];
     // console.log(data1)
     // console.log(email);
     function getMonthName(month) {
@@ -20,9 +20,10 @@ export async function sendEmail(type,subscribers,subject,email,data1,data2){
             name:"TechREVEAL",
             email:"stevolisisjoseph@gmail.com"
           },
-          subject:subject,
+          subject:'TechREVEAL NewsLetter',
           template_id: emailTemplate[parseInt(type)],
           personalizations:[{
+            subject:'TechREVEAL NewsLetter',
             to:subscribers,
             dynamic_template_data: {
               items: data1,

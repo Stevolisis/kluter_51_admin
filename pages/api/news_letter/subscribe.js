@@ -30,13 +30,18 @@ export default async function handler(req,res){
             if (err) throw new Error('Error at Parsing');
             // console.log('fields',fields);
     
-            const emailSent=await sendEmail(2,subscribers,'TechREVEAL NewsLetter','stevolisisjosephpur@gmail.com',latest,most_read);
+            const emailSent=sendEmail(1,subscribers,'TechREVEAL NewsLetter','stevolisisjosephpur@gmail.com',latest,most_read);
+            const emailSent2=sendEmail(2,subscribers,'New Article Just In','stevolisisjosephpur@gmail.com',latest,most_read);
             
-            if(emailSent){
-                res.status(200).json({status:'success nigga'})
-            }else{
-                res.status(404).json({status:'error nigga'})
-            }
+            await Promise.all([emailSent,emailSent2])
+            .then(response=>{
+                if(response[0]&&response[1]){
+                    res.status(200).json({status:'success nigga'})
+                }else{
+                    res.status(404).json({status:'error nigga'})
+                }
+            })
+            
 
         });
     }catch(err){

@@ -2,6 +2,7 @@ import { sendEmail } from "@/serviceFunctions/sendGrid";
 import formidable from "formidable";
 import Articles from "../../../db/Model/articleSchema";
 import Users from "../../../db/Model/userSchema";
+import Settings from "../../../db/Model/general_settingSchema";
 
 export const config = {
     api: {
@@ -14,24 +15,21 @@ export default async function handler(req,res){
 
     try{
         let most_read=await Articles.findOne({status:'active'}).populate({ path: 'author',select:'full_name' });
-        const latest=await Articles.find({}).populate({ path: 'author',select:'full_name' }).limit(5).sort({_id:-1}).lean();
+        const company_info=await Settings.findOne({});
         const users=await Users.find({}).lean();
         let subscribers=[];
-        // console.log(users)
 
         if(users){
             users.map(user=>{
-                // console.log(user)
                 subscribers.push(user.email);
             })
         }
 
-        form.parse(req,async function(err, fields) {
+        form.parse(req,async function(err) {
             if (err) throw new Error('Error at Parsing');
-            // console.log('fields',fields);
     
-            const emailSent=sendEmail(1,subscribers,'TechREVEAL NewsLetter','stevolisisjosephpur@gmail.com',latest,most_read);
-            const emailSent2=sendEmail(2,subscribers,'New Article Just In','stevolisisjosephpur@gmail.com',latest,most_read);
+            const emailSent=sendEmail(1,subscribers,'TechREVEAL NewsLetter','stevolisisjosephpur@gmail.com');
+            const emailSent2=sendEmail(2,subscribers,`Just In: ${company_info[0].name}`,'stevolisisjosephpur@gmail.com',company_info,most_read);
             
             await Promise.all([emailSent,emailSent2])
             .then(response=>{

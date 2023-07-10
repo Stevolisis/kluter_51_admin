@@ -53,7 +53,7 @@ export default async function handler(req, res) {
             status: fields.status,
             admin: fields.full_name === 'Admin' ? true : false || fields.full_name === 'admin' ? true : false,
             day: date.getDay(),
-            month: date.getMonth(),
+            month: date.getMonth()+1,
             year: date.getFullYear()
           });
           await staff.save();

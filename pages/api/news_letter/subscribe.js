@@ -31,28 +31,38 @@ export default async function handler(req,res){
             if (err) throw new Error('Error at Parsing');
             if(fields.email===""||fields.email===null||fields.email===undefined) res.status(200).json({status:'Email Required'}); 
 
+            const findSubscriber=await emailSubscribe.findOne({email:fields.email});
             const emailSent=sendEmail(1,subscribers,'TechREVEAL NewsLetter','stevolisisjosephpur@gmail.com');
             const emailSent2=sendEmail(2,subscribers,`Just In: ${new_article[0].title}`,'stevolisisjosephpur@gmail.com',company_info,most_read,new_article[0]);
             let date=new Date();
 
-            const subscribe=new emailSubscribe({
-                email:fields.email,
-                status:true,
-                day:date.getDay(),
-                month:date.getMonth(),
-                year:date.getFullYear()
-            });
+            if(findSubscriber){
+                res.status(200).json({status:'Subscriber already exist'})
+            }else{
 
-            const newSubscribe=subscribe.save();
+                console.log('findSubscriber',findSubscriber);
 
-            await Promise.all([newSubscribe,emailSent,emailSent2])
-            .then(response=>{
-                if(response[0]&&response[1]){
-                    res.status(200).json({status:'success nigga'})
-                }else{
-                    res.status(404).json({status:'error nigga'})
-                }
-            })
+                const subscribe=new emailSubscribe({
+                    email:fields.email,
+                    status:true,
+                    day:date.getDate(),
+                    month:date.getMonth()+1,
+                    year:date.getFullYear()
+                });
+    
+                const newSubscribe=subscribe.save();
+    
+                await Promise.all([newSubscribe,emailSent,emailSent2])
+                .then(response=>{
+                    if(response[0]&&response[1]){
+                        res.status(200).json({status:'Error Occured'})
+                    }else{
+                        res.status(404).json({status:'Error Occured'})
+                    }
+                })
+
+            }
+
             
 
         });

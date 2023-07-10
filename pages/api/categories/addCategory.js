@@ -54,7 +54,7 @@ export default async function handler(req,res){
              img:{public_id:cloudImg.public_id,url:cloudImg.secure_url},
              status:fields.status,
              day:date.getDate(),
-             month:date.getMonth(),
+             month:date.getMonth()+1,
              year:date.getFullYear()
              })
       

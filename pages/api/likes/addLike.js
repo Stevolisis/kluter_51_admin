@@ -24,7 +24,7 @@ export default async function handler(req,res){
             page_link:fields.page_link,
             pageId:fields.pageId,
             day:date.getDate(),
-            month:date.getMonth(),
+            month:date.getMonth()+1,
             year:date.getFullYear()
         })
 

@@ -51,7 +51,7 @@ export default async function handler(req,res){
                     full_name:fields.full_name,
                     email:fields.email,
                     day:date.getDate(),
-                    month:date.getMonth(),
+                    month:date.getMonth()+1,
                     year:date.getFullYear()
                 });
                 const userSave=await user.save();
@@ -61,7 +61,7 @@ export default async function handler(req,res){
                     pageId:fields.pageId,
                     comment:fields.comment,
                     day:date.getDate(),
-                    month:date.getMonth(),
+                    month:date.getMonth()+1,
                     year:date.getFullYear()
                 });
     

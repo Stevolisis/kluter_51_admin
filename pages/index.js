@@ -124,14 +124,14 @@ function dropdown1(){
 
   function subscribeNewsLetter(e){
     e.preventDefault();
-    const formData=new FormData();
+    const formData=new FormData(e.target);
 
     axios.post(`/api/news_letter/subscribe`,formData)
     .then(res=>{
       let status=res.data.status;
 
       if(status==='success') Swal.fire('Success','Worked !!!','success');
-      Swal.fire('Error Occured','Did not Work','error')
+      Swal.fire('Error Occured',status,'warning')
      
     }).catch(err=>{
       Swal.fire('Error Occured', err.message, 'error')
@@ -208,9 +208,9 @@ function dropdown1(){
       <div className='emailRegisterCon'>
         <div className='emailRegister'>
           <h2>World-class articles, delivered weekly.</h2>
-          <form>
+          <form onSubmit={subscribeNewsLetter}>
             <input type='email' name='email' placeholder='Enter your email'/>  
-            <button onClick={(e)=>subscribeNewsLetter(e)}>Submit</button>
+            <button>Submit</button>
           </form>
         </div>
       </div>

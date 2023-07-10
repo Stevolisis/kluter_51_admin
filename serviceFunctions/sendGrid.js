@@ -20,13 +20,14 @@ export async function sendEmail(type,subscribers,subject,email,data1,data2,data3
             name: "TechREVEAL",
             email: "stevolisisjoseph@gmail.com"
           },
-          subject: subject,
           template_id: emailTemplate[parseInt(type)],
           personalizations:[{
             to:subscribers,
+            subject: subject,
             dynamic_template_data: {
-              company_info: data2,
-              most_read:data3,
+              company_info: data1,
+              most_read:data2,
+              new_article:data3
               // monthName: getMonthName(5),     
             },
           }]
@@ -40,7 +41,7 @@ export async function sendEmail(type,subscribers,subject,email,data1,data2,data3
 
       }catch(err){
         console.log(err.message)
-        return err
+        return false
       }
 }
 

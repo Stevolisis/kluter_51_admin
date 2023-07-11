@@ -1,10 +1,12 @@
 import Articles from "../../../db/Model/articleSchema";
 import Categories from "../../../db/Model/categorySchema";
 import dbConnect from "../../../db/dbConnect";
+import emailSubscribe from "../../../db/Model/subscribersSchema";
 import formidable from "formidable";
 const url_slugify=require('slugify');
 import cloudinary from '../../../serviceFunctions/cloudinary';
 import { verifyTokenPriveledge } from "../../../serviceFunctions/verifyToken";
+import { sendEmail } from "@/serviceFunctions/sendGrid";
 
 export const config = {
     api: {
@@ -20,7 +22,8 @@ export default async function handler(req,res){
         const verify=await verifyTokenPriveledge(req.cookies.adminPass,'addArticles')
 
           try{
-            
+            const subscribers=await emailSubscribe.find({status:true});
+            let most_read=await Articles.findOne({status:'active'}).populate([{ path: 'author',select:'full_name'},{ path: 'category',select:'name'}]);
 
             if(req.cookies.adminPass !== undefined && verify===true){
               const form = new formidable.IncomingForm();
@@ -46,21 +49,27 @@ export default async function handler(req,res){
                       let stripSlug=url_slugify(slug.replace(/[^\w\s']|_/g,' ').replaceAll("'",' '));
                       let cloudImg;
     
-                        try{
+                      try{
                         cloudImg=await cloudinary.uploader.upload(files.img_link.filepath,{public_id:Date.now()+files.img_link.originalFilename.split('.')[0]})              
                         
+                        if(subscribers.length!==0){
+                          subscribers.map(user=>{
+                            sendEmail(2,`Just In: ${fields.title}`,user.email,company_info,most_read,new_article[0])
+                          })
+                        }
+
                         const article=new Articles({
-                        title:fields.title,
-                        slug:`/${stripSlug}`,
-                        categorySlug:`${categorySlug.slug}`,
-                        category:fields.category,
-                        author:fields.author,
-                        content:fields.content,
-                        img:{public_id:cloudImg.public_id,url:cloudImg.secure_url},
-                        status:fields.status,
-                        day:date.getDate(),
-                        month:date.getMonth()+1,
-                        year:date.getFullYear()
+                          title:fields.title,
+                          slug:`/${stripSlug}`,
+                          categorySlug:`${categorySlug.slug}`,
+                          category:fields.category,
+                          author:fields.author,
+                          content:fields.content,
+                          img:{public_id:cloudImg.public_id,url:cloudImg.secure_url},
+                          status:fields.status,
+                          day:date.getDate(),
+                          month:date.getMonth()+1,
+                          year:date.getFullYear()
                         })
     
                   

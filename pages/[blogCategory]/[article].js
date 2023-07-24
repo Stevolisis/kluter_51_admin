@@ -10,7 +10,7 @@ import { RWebShare } from "react-web-share";
 import {baseUrl} from '@/components/BaseUrl'
 import { useLoader } from "../_app";
 import SlidingArticlesLoader from "@/components/SlidingArticlesLoader";
-import Comments from "@/../components/Comments";
+import Comments from "@/components/Comments";
 import CommentsLoader from "@/components/CommentsLoader";
 import MiniBlogList from "@/components/MiniBlogList";
 import BlogLoader from "@/components/BlogLoader";

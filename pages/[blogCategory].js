@@ -2,16 +2,16 @@ import Head from "next/head";
 import Link from "next/link";
 import {useRouter} from 'next/router'
 import { useEffect,useRef,useState } from "react";
-import BlogList from "../../components/BlogList";
-import SlidingArticles from "../../components/SlidingArticles";
+import BlogList from "@/components/BlogList";
+import SlidingArticles from "@/components/SlidingArticles";
 import $ from 'jquery';
-import Mainscreen from "../../components/Mainscreen";
+import Mainscreen from "@/components/Mainscreen";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { baseUrl } from "../../components/BaseUrl";
-import { useLoader } from "../_app";
-import SlidingArticlesLoader from "../../components/SlidingArticlesLoader";
-import BlogLoader from "../../components/BlogLoader";
+import { baseUrl } from "@/components/BaseUrl";
+import { useLoader } from "./_app";
+import SlidingArticlesLoader from "@/components/SlidingArticlesLoader";
+import BlogLoader from "@/components/BlogLoader";
 import useSWR from "swr";
 
 

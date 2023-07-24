@@ -29,12 +29,12 @@ export const getStaticPaths = async () => {
         paths: content.map((article) => {
           return {
             params: {
-              blogCategory: article.categorySlug.split("/")[0] || "404",
+              blogCategory: article.categorySlug.split("/")[0]+'**||unique' || "404",
               article: article.slug.split("/")[0] || "404",
             },
           };
         }),
-        fallback: true,
+        fallback: false,
       };
     } catch (err) {
       return {
@@ -50,7 +50,7 @@ export const getStaticProps=async({params})=>{
 
 
     try{
-      const res=await axios.get(`${baseUrl}/api/articles/getArticle?category=${params.blogCategory}&article=${params.article}`);
+      const res=await axios.get(`${baseUrl}/api/articles/getArticle?category=${params.blogCategory.split('**||')[0]}&article=${params.article}`);
       const res2=await axios.get(`${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${params.blogCategory}`)
       const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${12}`);
       const res4=await axios.get(`${baseUrl}/api/articles/getArticles?limit=${7}`);

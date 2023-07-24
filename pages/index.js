@@ -38,8 +38,9 @@ try{
   
 }catch(err){
   return {
-    props:{error:err.message}
-  } 
+    paths: [],
+    fallback: true,
+  };
 }
 
 }

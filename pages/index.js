@@ -68,13 +68,13 @@ export default function Home({categories,blogData,articleViews,articleLikes,erro
 
 
   
-  // if(error){
-  //   Swal.fire(
-  //     'Error Occured',
-  //     'Please check your connection',
-  //     'error'
-  //   )
-  // }
+  if(error){
+    Swal.fire(
+      'Error Occured',
+      'Please check your connection',
+      'error'
+    )
+  }
 
   
 

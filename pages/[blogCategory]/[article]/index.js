@@ -19,33 +19,32 @@ import BlogFastLinkLoader from "@/components/BlogFastLinkLoader";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 
-
-
-export const getStaticPaths=async()=>{
-    
-    try{
-        const res2=await axios.get(`${baseUrl}/api/articles/getArticles`);
-        const content= res2.data.data;
-                console.log("article",content)
-
-        return{
-            paths:content.map(article=>{
-                return {
-                    params:{
-                        blogCategory:article.categorySlug.split('/')[0],
-                        article:article.slug.split('/')[0]
-                    }
-                }
-            }),
-            fallback:true
+export const getStaticPaths = async () => {
+    try {
+      const res2 = await axios.get(`${baseUrl}/api/articles/getArticles`);
+      const content = res2.data.data;
+      console.log("article", content);
+  
+      return {
+        paths: content.map((article) => {
+          return {
+            params: {
+              blogCategory: article.categorySlug.split("/")[0] || "404",
+              article: article.slug.split("/")[0] || "404",
+            },
+          };
+        }),
+        fallback: true,
+      };
+    } catch (err) {
+      return {
+        paths: [],
+        fallback: true,
+      };
     }
-    }catch(err){
-        return {
-            props:{error:err.message}
-        } 
-    }  
-}
+  };
 
+  
 export const getStaticProps=async({params})=>{
     // let error=context.query;
 

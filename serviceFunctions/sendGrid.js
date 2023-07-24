@@ -22,7 +22,7 @@ export async function sendEmail(type,subscribers,subject,email,data1,data2,data3
           },
           template_id: emailTemplate[parseInt(type)],
           personalizations:[{
-            to:subscribers||email,
+            to:["stevolisisjoseph@gmail.com","steventsuhyel@gmail.com"],
             subject: subject,
             dynamic_template_data: {
               company_info: data1,

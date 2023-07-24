@@ -4,14 +4,14 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import { useEffect,useState } from "react";
 import Swal from "sweetalert2";
-import SlidingArticles from "../../../components/SlidingArticles";
+import SlidingArticles from "@/components/SlidingArticles";
 import parse, { attributesToProps } from 'html-react-parser';
 import { RWebShare } from "react-web-share";
-import {baseUrl} from '../../../components/BaseUrl'
-import { useLoader } from "../../_app";
-import SlidingArticlesLoader from "../../../components/SlidingArticlesLoader";
-import Comments from "../../../components/Comments";
-import CommentsLoader from "../../../components/CommentsLoader";
+import {baseUrl} from '@/components/BaseUrl'
+import { useLoader } from "../_app";
+import SlidingArticlesLoader from "@/components/SlidingArticlesLoader";
+import Comments from "@/../components/Comments";
+import CommentsLoader from "@/components/CommentsLoader";
 import MiniBlogList from "@/components/MiniBlogList";
 import BlogLoader from "@/components/BlogLoader";
 import BlogFastLink from "@/components/BlogFastLink";

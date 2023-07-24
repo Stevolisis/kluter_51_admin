@@ -18,22 +18,22 @@ export default async function handler(req,res){
         let most_read=await Articles.findOne({status:'active'}).populate([{ path: 'author',select:'full_name'},{ path: 'category',select:'name'}]);
         const new_article=await Articles.find({}).populate({ path: 'author',select:'full_name' }).limit(1).sort({_id:-1}).lean();
         const company_info=await Settings.findOne({});
-        const users=await Users.find({}).lean();
-        let subscribers=[];
+        // const users=await Users.find({}).lean();
+        // let subscribers=[];
 
-        if(users){
-            users.map(user=>{
-                subscribers.push(user.email);
-            })
-        }
+        // if(users){
+        //     users.map(user=>{
+        //         subscribers.push(user.email);
+        //     })
+        // }
 
         form.parse(req,async function(err,fields) {
             if (err) throw new Error('Error at Parsing');
             if(fields.email===""||fields.email===null||fields.email===undefined) res.status(200).json({status:'Email Required'}); 
 
             const findSubscriber=await emailSubscribe.findOne({email:fields.email});
-            const emailSent=sendEmail(1,subscribers,'TechREVEAL NewsLetter','stevolisisjosephpur@gmail.com');
-            const emailSent2=sendEmail(2,subscribers,`Just In: ${new_article[0].title}`,'stevolisisjosephpur@gmail.com',company_info,most_read,new_article[0]);
+            const emailSent=sendEmail(1,subscribers,'TechREVEAL NewsLetter',fields.email);
+            const emailSent2=sendEmail(2,null,`Just In: ${new_article[0].title}`,'stevolisisjosephpur@gmail.com',company_info,most_read,new_article[0]);
             let date=new Date();
 
             if(findSubscriber){

@@ -2,6 +2,7 @@ import Articles from "../../../db/Model/articleSchema";
 import Categories from "../../../db/Model/categorySchema";
 import dbConnect from "../../../db/dbConnect";
 import emailSubscribe from "../../../db/Model/subscribersSchema";
+import Settings from "../../../db/Model/general_settingSchema";
 import formidable from "formidable";
 const url_slugify=require('slugify');
 import cloudinary from '../../../serviceFunctions/cloudinary';
@@ -24,6 +25,7 @@ export default async function handler(req,res){
           try{
             const subscribers=await emailSubscribe.find({status:true});
             let most_read=await Articles.findOne({status:'active'}).populate([{ path: 'author',select:'full_name'},{ path: 'category',select:'name'}]);
+            const company_info=await Settings.findOne({});
 
             if(req.cookies.adminPass !== undefined && verify===true){
               const form = new formidable.IncomingForm();
@@ -53,8 +55,8 @@ export default async function handler(req,res){
                         cloudImg=await cloudinary.uploader.upload(files.img_link.filepath,{public_id:Date.now()+files.img_link.originalFilename.split('.')[0]})              
                         
                         if(subscribers.length!==0){
-                          subscribers.map(user=>{
-                            sendEmail(2,`Just In: ${fields.title}`,user.email,company_info,most_read,new_article[0])
+                          subscribers.map(async user=>{
+                            await sendEmail(2,`Just In: ${fields.title}`,user.email,company_info,most_read,fields)
                           })
                         }
 

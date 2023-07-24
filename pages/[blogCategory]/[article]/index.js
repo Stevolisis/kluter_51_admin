@@ -26,13 +26,13 @@ export const getStaticPaths=async()=>{
     try{
         const res2=await axios.get(`${baseUrl}/api/articles/getArticles`);
         const content= res2.data.data;
+                console.log("article",content)
 
         return{
             paths:content.map(article=>{
-                console.log(article.categorySlug,article.slug)
                 return {
                     params:{
-                        blogCategory:article.categorySlug.split('/')[0]||"Internet-of-Things-IoT",
+                        blogCategory:article.categorySlug.split('/')[0],
                         article:article.slug.split('/')[0]
                     }
                 }

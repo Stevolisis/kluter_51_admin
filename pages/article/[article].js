@@ -50,13 +50,13 @@ export const getStaticProps=async({params})=>{
 
 
     try{
-      const res=await axios.get(`${baseUrl}/api/articles/getArticle?category=${params.blogCategory.split('**||')[0]}&article=${params.article}`);
-      const res2=await axios.get(`${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${params.blogCategory}`)
+      const res=await axios.get(`${baseUrl}/api/articles/getArticle?article=${params.article}`);
+    //   const res2=await axios.get(`${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${params.blogCategory}`)
       const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${12}`);
       const res4=await axios.get(`${baseUrl}/api/articles/getArticles?limit=${7}`);
 
       const content= res.data.data;
-      const content2= res2.data.data;
+      const content2= [];
       const articleViews= res3.data.data;
       const latestArticles= res4.data.data;
 
@@ -108,13 +108,15 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const [shouldRender , setShouldRender]=useState(false);
     const router=useRouter();
     const params=router.query;
-    const url = `${baseUrl}/api/articles/getArticle?category=${params.blogCategory}&article=${params.article}`;
-    const url2 = `${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${params.blogCategory}`;
+    // const url = `${baseUrl}/api/articles/getArticle?category=${params.blogCategory}&article=${params.article}`;
+    // const url2 = `${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${params.blogCategory}`;
     const url3 = `${baseUrl}/api/articles/getArticlesByViews?limit=${12}`;
     const url4 = `${baseUrl}/api/articles/getArticles?limit=${7}`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());
-    const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:content}});
-    const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:content2}});
+    // const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:content}});
+    // const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:content2}});
+    const newUpdate1 = []
+    const newUpdate2 = []
     const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
     const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:latestArticles}});
 

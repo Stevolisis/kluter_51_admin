@@ -57,7 +57,8 @@ export default function AdminCategories(){
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Yes, delete it!',
+        reverseButtons: true,
       }).then((result) => {
         if (result.isConfirmed) {
             setloading(true)

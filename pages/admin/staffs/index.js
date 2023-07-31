@@ -57,10 +57,7 @@ export default function AdminStaffs(){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!',
-        customClass: {
-            cancelButton: 'order-1 right-gap',
-            confirmButton: 'order-2',
-        }
+        reverseButtons: true,
       }).then((result) => {
         if (result.isConfirmed) {
             setloading(true);

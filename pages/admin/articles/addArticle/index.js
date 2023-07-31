@@ -10,16 +10,17 @@ import {baseUrl} from '../../../../components/BaseUrl';
 const SunEditors = dynamic(() =>
 import("@/components/SunEditor"), { ssr: false ,loading: () => 
 <div style={{width:'100%',height:'600px',background:'#f5f6f6',display:'flex',justifyContent:'center',alignItems:'center'}}>
-<ThreeDots
-height="40" 
-width="40" 
-radius="9"
-color="#177C65" 
-ariaLabel="three-dots-loading"
-wrapperStyle={{}}
-wrapperClassName=""
-visible={true}
-/></div>
+    <ThreeDots
+        height="40" 
+        width="40" 
+        radius="9"
+        color="#177C65" 
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+    />
+</div>
 });
 
 

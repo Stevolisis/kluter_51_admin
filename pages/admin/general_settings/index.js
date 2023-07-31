@@ -109,7 +109,8 @@ function handleSubmit(e){
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Edit it!'
+        confirmButtonText: 'Yes, Edit it!',
+        reverseButtons: true,
       }).then((result) => {
         if (result.isConfirmed) {
         setloading(true)

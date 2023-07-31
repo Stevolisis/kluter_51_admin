@@ -8,7 +8,7 @@ export default function BlogFastLink({title,articles}){
             const {title,categorySlug,slug}=article;
       
             return(
-                <Link href={categorySlug+slug} className="BlogFastLinkBlock" key={i}>
+                <Link href={'/article'+slug} className="BlogFastLinkBlock" key={i}>
                     <p>{title}</p>
                 </Link>
       

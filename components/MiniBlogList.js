@@ -10,7 +10,7 @@ export default function MiniBlogList({title,articles}){
       const {title,img,author,slug,categorySlug,description,views,likes,day,month,year}=article;
 
       return(
-        <Link href={categorySlug+slug} key={i} legacyBehavior>
+        <Link href={'/article'+slug} key={i} legacyBehavior>
         <a className='miniBlogCon'>
             
             <div className='miniBlogImg'>

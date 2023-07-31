@@ -11,7 +11,7 @@ export default function BlogList({articles}){
       const {title,img,author,slug,categorySlug,description,views,likes,day,month,year}=article;
 
       return(
-        <Link href={categorySlug+slug} key={i} legacyBehavior><a className='blogCon'>
+        <Link href={'/article'+slug} key={i} legacyBehavior><a className='blogCon'>
         <div className='blogImg'>
           <Image 
             src={img.url}
@@ -54,7 +54,7 @@ export default function BlogList({articles}){
           <i className='fa fa-eye'><p>{views}</p></i>
           <i className='fa fa-thumbs-up'><p>{likes}</p></i>
           </div>
-          <div className='blogRead'><Link href={categorySlug+slug}><p>Read</p></Link></div>
+          <div className='blogRead'><Link href={'/article'+slug}><p>Read</p></Link></div>
         </div>
         </a>
       </Link>

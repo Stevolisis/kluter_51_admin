@@ -9,7 +9,7 @@ import Mainscreen from "@/components/Mainscreen";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { baseUrl } from "@/components/BaseUrl";
-import { useLoader } from "./_app";
+import { useLoader } from "../_app";
 import SlidingArticlesLoader from "@/components/SlidingArticlesLoader";
 import BlogLoader from "@/components/BlogLoader";
 import useSWR from "swr";
@@ -235,7 +235,7 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
     shouldRender && (
       newUpdate4 && newUpdate4.data && newUpdate4.data.data!== undefined||null ? 
       newUpdate4?.data?.data.map((category,i)=>{
-      return <Link href={category.slug&&category.slug} key={i}>
+      return <Link href={'/category'+category?.slug} key={i}>
           <div className='categorySlide'>
             <i className={`fa fa-${category.icon}`}/>{category.name}
           </div>

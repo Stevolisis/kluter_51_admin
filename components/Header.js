@@ -147,7 +147,7 @@ export default function Header(){
       {
         searchResult&& searchResult.map((searchRes,i)=>{
           if(searchRes!==null){
-            return <div key={i}><Link href={searchRes.title ? searchRes.categorySlug+'/' + searchRes.slug : searchRes.slug} legacyBehavior><a>{searchRes.title||searchRes.name}  <span style={{color:'dodgerblue',fontSize:'12px'}}>{searchRes.title?'Article':'Category'}</span></a></Link></div>
+            return <div key={i}><Link href={searchRes.title ? '/article'+ searchRes.slug : '/category'+searchRes.slug} legacyBehavior><a>{searchRes.title||searchRes.name}  <span style={{color:'dodgerblue',fontSize:'12px'}}>{searchRes.title?'Article':'Category'}</span></a></Link></div>
           }
         })
       }
@@ -155,7 +155,7 @@ export default function Header(){
 
       <div className="filterCon2">
         {categories&& categories.map((category,i)=>{
-          return <div key={i}><Link href={category.slug}>{category.name}</Link></div>
+          return <div key={i}><Link href={'/category'+category.slug}>{category.name}</Link></div>
         })}
 		  </div>
         </>

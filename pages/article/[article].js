@@ -21,20 +21,19 @@ import { useRouter } from "next/router";
 
 export const getStaticPaths = async () => {
     try {
-      const res2 = await axios.get(`${baseUrl}/api/articles/getArticles`);
-      const content = res2.data.data;
-      console.log("article", content);
+      const res = await axios.get(`${baseUrl}/api/articles/getArticles`);
+      const content = res.data.data;
+      console.log("article", content[0]);
   
       return {
         paths: content.map((article) => {
           return {
             params: {
-            //   blogCategory: article.categorySlug.split("/")[0]+'**||unique' || "404",
               article: article.slug.split("/")[0] || "404",
             },
           };
         }),
-        fallback: false,
+        fallback: true,
       };
     } catch (err) {
       return {
@@ -108,8 +107,8 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const [shouldRender , setShouldRender]=useState(false);
     const router=useRouter();
     const params=router.query;
-    const url = `${baseUrl}/api/articles/getArticle?category=${params.blogCategory}&article=${params.article}`;
-    const url2 = `${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${params.blogCategory}`;
+    const url = `${baseUrl}/api/articles/getArticle?article=${params.article}`;
+    const url2 = `${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${content?.categorySlug}`;
     const url3 = `${baseUrl}/api/articles/getArticlesByViews?limit=${12}`;
     const url4 = `${baseUrl}/api/articles/getArticles?limit=${7}`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());

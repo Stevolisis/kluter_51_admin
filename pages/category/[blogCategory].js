@@ -90,16 +90,12 @@ export const getStaticProps=async ({params})=>{
 
 
 export default function BlogCategory({category,blogData,articleViews,returnedCategories,error}){
-    const [articlesSlide,setarticlesSlide]=useState(null);
-    const [categories,setcategories]=useState(null);
-    const [articles,setarticles]=useState(null);
     const [shouldRender , setShouldRender]=useState(false);
-    const { loading, setloading } = useLoader();
-    let limit=useRef(15);
+    const [limit,setLimit]=useState(3);
     const router=useRouter();
     const params=router.query;
     const url=`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`;
-    const url2=`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`;
+    const url2=`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=${limit}`;
     const url3=`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`;
     const url4=`${baseUrl}/api/categories/getCategories`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());
@@ -132,41 +128,10 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
     }
       
 
-  
-
-    function loadArticlesByCategory(){
-      setloading(true);
-      axios.get(`/api/articles/loadArticlesByCategory?category=${router.query.blogCategory}&limit=${limit.current}`)
-      .then(res=>{
-          let status=res.data.status;
-          let data=res.data.data;
-          setloading(false)
-          if(status==='success'){
-              setarticles(data)
-          }else{
-              Swal.fire(
-                  'Error Occured',
-                  res.data.status,
-                  'warning'
-              )
-          }
-      }).catch(err=>{
-        setloading(false);
-          Swal.fire(
-              'Error Occured',
-              err.message,
-              'error'
-          )           
-      });            
-
-    }
-
-
 
 
     function loadMore(){
-      limit.current=limit.current+8;
-      loadArticlesByCategory();
+      setLimit(limit+8);
     }
 
     useEffect(()=>{
@@ -275,7 +240,7 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 
       <div className='blogNavCon'>
         <div className='blogNav'>
-        {articles&&<button onClick={loadMore}>Load More</button>}
+        {blogData&&<button onClick={loadMore}>Load More</button>}
         </div>
       </div>
       </div>

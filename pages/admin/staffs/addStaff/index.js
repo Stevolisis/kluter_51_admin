@@ -267,7 +267,7 @@ export default function AddStaff(){
             <p>Thumbnail(Image)</p>
 
             <div className='previewimg'>
-            <img src={imgpreview}/>
+            <img src={imgpreview} alt='Cover Image'/>
             </div>
 
             <input type='file' name='img_link' onChange={imgPreview}/>

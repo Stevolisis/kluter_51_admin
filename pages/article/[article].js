@@ -23,7 +23,6 @@ export const getStaticPaths = async () => {
     try {
       const res2 = await axios.get(`${baseUrl}/api/articles/getArticles`);
       const content = res2.data.data;
-      console.log("article", content);
   
       return {
         paths: content.map((article) => {
@@ -54,6 +53,7 @@ export const getStaticProps=async({params})=>{
     //   const res2=await axios.get(`${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${params.blogCategory}`)
       const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${12}`);
       const res4=await axios.get(`${baseUrl}/api/articles/getArticles?limit=${7}`);
+      console.log("articlegetStaticProps", res.data.data);
 
       const content= res.data.data;
       const content2= [];

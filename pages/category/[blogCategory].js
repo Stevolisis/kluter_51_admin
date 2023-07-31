@@ -9,7 +9,6 @@ import Mainscreen from "@/components/Mainscreen";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { baseUrl } from "@/components/BaseUrl";
-import { useLoader } from "../_app";
 import SlidingArticlesLoader from "@/components/SlidingArticlesLoader";
 import BlogLoader from "@/components/BlogLoader";
 import useSWR from "swr";
@@ -185,15 +184,15 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       </Head>
 
 
-
+{/* 
 
       <Mainscreen heading={newUpdate1?.data?.data?.name} description={newUpdate1?.data?.data?.description}
-     imgLink={newUpdate1?.data?.data?.img.url} page='blogCategory'/>
+     imgLink={newUpdate1?.data?.data?.img.url} page='blogCategory'/> */}
 
 
 
 
-
+{/* 
 <div className='categorySliderCon'>
 <div className='categorySlider'>
   {
@@ -224,8 +223,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 
 
 
-
-
+ */}
+{/* 
 
      <div className='categoriesCon3'>
       
@@ -250,7 +249,7 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
         <SlidingArticles articlesSlide={newUpdate3?.data?.data} title='Most Read Articles'/>
         : 
         <SlidingArticlesLoader/>)
-      }
+      } */}
 
         </>
     )

@@ -51,7 +51,11 @@ export default function EditUser({error,editId,editFull_name,editEmail}){
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Edit it!'
+            confirmButtonText: 'Yes, Edit it!',
+            customClass: {
+                cancelButton: 'order-1 right-gap',
+                confirmButton: 'order-2',
+            }
           }).then((result) => {
             if (result.isConfirmed) {
                 setloading(true)

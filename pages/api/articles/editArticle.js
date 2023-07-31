@@ -22,7 +22,6 @@ export default async function handler(req,res){
         const form = new formidable.IncomingForm();
         const validImagetype=['jpg','JPG','png','PNG','jpeg','JPEG','gif','GIF','webp','WEBP'];
 
-
         form.parse(req,async function(err, fields, files) {
           if (err) throw new Error('Error at Parsing');
           let cloudImg;

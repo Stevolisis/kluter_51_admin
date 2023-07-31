@@ -54,10 +54,10 @@ export default function Home({categories,blogData,articleViews,articleLikes,erro
   const { setloading, name, description,front_cover_image } = useLoader();
   const [articles,setarticles]=useState(null);
   const [shouldRender , setShouldRender]=useState(false);
-  let limit=useRef(15);
+  const [limit,setLimit]=useState(15);
   const router=useRouter();
   const url=`${baseUrl}/api/categories/getCategories`;
-  const url2=`${baseUrl}/api/articles/getArticles?limit=15`;
+  const url2=`${baseUrl}/api/articles/getArticles?limit=${limit}`;
   const url3=`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`;
   const url4=`${baseUrl}/api/articles/getArticlesByLikes?limit=${12}`;  
   const fetcher = (...args) => fetch(...args).then(res => res.json());  
@@ -94,34 +94,6 @@ function dropdown1(){
 }
 
 
-
-  function loadArticles(){
-    setloading(true)
-    axios.get(`/api/articles/getArticles?limit=${limit.current}`)
-    .then(res=>{
-        let status=res.data.status;
-        let data=res.data.data;
-        setloading(false);
-
-        if(status==='success'){
-            setarticles(data)
-        }else{
-            Swal.fire(
-                'Error Occured',
-                res.data.status,
-                'warning'
-            )
-        }
-    }).catch(err=>{
-      setloading(false);
-        Swal.fire(
-            'Error Occured',
-            err.message,
-            'error'
-        )           
-    });
-  }
-
   function subscribeNewsLetter(e){
     e.preventDefault();
     const formData=new FormData(e.target);
@@ -143,8 +115,7 @@ function dropdown1(){
 
 
   function loadMore(){
-    limit.current=limit.current+8;
-    loadArticles()
+    setLimit(limit+8);
   }
 
   useEffect(()=>{

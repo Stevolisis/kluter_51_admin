@@ -54,11 +54,11 @@ export default async function handler(req,res){
                       try{
                         cloudImg=await cloudinary.uploader.upload(files.img_link.filepath,{public_id:Date.now()+files.img_link.originalFilename.split('.')[0]})              
                         
-                        if(subscribers.length!==0){
-                          subscribers.map(async user=>{
-                            await sendEmail(2,`Just In: ${fields.title}`,user.email,company_info,most_read,fields)
-                          })
-                        }
+                        // if(subscribers.length!==0){
+                        //   subscribers.map(async user=>{
+                        //     await sendEmail(2,`Just In: ${fields.title}`,user.email,company_info,most_read,fields)
+                        //   })
+                        // }
 
                         const article=new Articles({
                           title:fields.title,

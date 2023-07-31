@@ -91,7 +91,7 @@ export const getStaticProps=async ({params})=>{
 
 export default function BlogCategory({category,blogData,articleViews,returnedCategories,error}){
     const [shouldRender , setShouldRender]=useState(false);
-    const [limit,setLimit]=useState(3);
+    const [limit,setLimit]=useState(15);
     const router=useRouter();
     const params=router.query;
     const url=`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`;

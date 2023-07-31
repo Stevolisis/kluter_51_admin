@@ -29,7 +29,7 @@ export const getStaticPaths = async () => {
         paths: content.map((article) => {
           return {
             params: {
-              blogCategory: article.categorySlug.split("/")[0]+'**||unique' || "404",
+            //   blogCategory: article.categorySlug.split("/")[0]+'**||unique' || "404",
               article: article.slug.split("/")[0] || "404",
             },
           };
@@ -74,12 +74,6 @@ export const getStaticProps=async({params})=>{
     }
     
 }
-
-
-// function Posts(props){
-//     const { data }=useSWR(`${baseUrl}/api/articles/getArticlesByViews?limit=${12}`)
-// }
-
 
 
 

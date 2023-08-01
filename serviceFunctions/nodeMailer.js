@@ -2,8 +2,13 @@ import { Template2 } from '@/emailTemplates/newArticle';
 import { Template1 } from '@/emailTemplates/welcome';
 import nodemailer from 'nodemailer';
 
-export async function sendNodeMail(template, subject, toEmail) {
-    const emailTemplate=template===1 ? Template1('https://techreveal.vercel.app/'): Template2('https://techreveal.vercel.app/');
+export async function sendNodeMail(template, subject, toEmail, data1, data2, data3) {
+    console.log('rtyui',data1)
+    const emailTemplate=template===1 ? 
+    Template1('https://techreveal.vercel.app/')
+    :template===2 ?
+    Template2(data1, data2, data3)
+    :''
 
     var transporter = nodemailer.createTransport({
       service: "gmail",

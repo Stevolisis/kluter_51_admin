@@ -1,6 +1,6 @@
 
 
-export function Template2(url){
+export function Template2(company_info,most_read,new_article){
     return(
         `
         
@@ -153,7 +153,7 @@ export function Template2(url){
       <tr>
         <td style="font-size:6px; line-height:10px; padding:6px 0px 0px 0px;" valign="top" align="center">
           <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !important; width:100%; height:auto !important;" width="120" alt="" data-proportionally-constrained="true" data-responsive="true" 
-          src="{{company_info.logo.url}}">
+          src="${company_info?.logo?.url}">
         </td>
       </tr>
     </tbody>
@@ -183,7 +183,7 @@ export function Template2(url){
       <tr>
         <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;" valign="top" align="center">
           <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !important; width:100%; height:auto !important;" width="400" alt="" data-proportionally-constrained="true" data-responsive="true" 
-          src="{{company_info.front_cover_image.url}}">
+          src="${company_info?.front_cover_image?.url}">
         </td>
       </tr>
     </tbody>
@@ -215,7 +215,7 @@ export function Template2(url){
 <!------------Main Header------------->
     <tbody>
       <tr>
-        <td style="padding:0px 0px 10px 0px; line-height:28px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: left"><span style="font-family: tahoma, geneva, sans-serif; font-size: 28px; color: #8c32d4">{{company_info.name}},</span></div>
+        <td style="padding:0px 0px 10px 0px; line-height:28px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: left"><span style="font-family: tahoma, geneva, sans-serif; font-size: 28px; color: #8c32d4">${company_info?.name},</span></div>
 <div style="font-family: inherit; text-align: left"><span style="font-family: tahoma, geneva, sans-serif; font-size: 28px; color: #8c32d4"> Get the latest Tech Article.</span></div><div></div></div></td>
       </tr>
     </tbody>
@@ -249,7 +249,7 @@ export function Template2(url){
 <!-----------------Main Description--------------------->    
     <tbody>
       <tr>
-        <td style="padding:0px 0px 0px 0px; line-height:21px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">{{company_info.description}}</div><div></div></div></td>
+        <td style="padding:0px 0px 0px 0px; line-height:21px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">${company_info.description}</div><div></div></div></td>
       </tr>
     </tbody>
 
@@ -341,7 +341,7 @@ export function Template2(url){
       <tr>
         <td style="font-size:6px; line-height:10px; padding:5px 0px 10px 0px;" valign="top" align="center">
           <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !important; width:100%; height:auto !important;" width="285" alt="" data-proportionally-constrained="true" data-responsive="true" 
-          src="{{new_article.img.url}}">
+          src="${new_article?.img?.url}">
         </td>
       </tr>
     </tbody>
@@ -372,7 +372,7 @@ export function Template2(url){
     <tbody>
       <tr>
         <td style="padding:0px 0px 5px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit"><span style="font-family: tahoma, geneva, sans-serif; font-size: 20px">
-            <strong>{{new_article.title}}</strong>
+            <strong>${new_article?.title}</strong>
         </span></div><div></div></div></td>
       </tr>
     </tbody>
@@ -381,14 +381,14 @@ export function Template2(url){
   <table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="nab3S7wZerNme5cK7ZVFZW.1" data-mc-module-version="2019-10-22">
     <tbody>
       <tr>
-        <td style="padding:0px 0px 0px 0px; line-height:21px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">{{new_article.content.slice 0 130}}</div><div></div></div></td>
+        <td style="padding:0px 0px 0px 0px; line-height:21px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">${new_article?.content.slice(0,130)}</div><div></div></div></td>
       </tr>
     </tbody>
   </table><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="00b915d0-6071-4550-8931-852726eadc1c.1" data-mc-module-version="2019-10-22">
     <tbody>
       <tr>
         <td style="padding:10px 0px 0px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-            <span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><a href="https://techreveal.vercel.app{{new_article.categorySlug}}{{new_article.slug}}">Read more</a> &gt;&gt;</span>
+            <span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><a href="https://techreveal.vercel.app/article/${new_article?.slug}">Read more</a> &gt;&gt;</span>
         </div><div></div></div></td>
       </tr>
     </tbody>

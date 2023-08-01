@@ -38,9 +38,12 @@ export default async function handler(req,res){
             if(findSubscriber){
                 res.status(200).json({status:'Subscriber already exist'})
             }else{
-                // const emailSent=sendEmail(1,[fields.email],'TechREVEAL NewsLetter','stevolisisjosephpur@gmail.com');
-                // const emailSent2=sendEmail(2,[fields.email],`Just In: ${new_article[0].title}`,'stevolisisjosephpur@gmail.com',company_info,most_read,new_article[0]);
-                const emailSent=sendNodeMail(2,'Welcome to Techreveal',['stevolisisjoseph@gmail.com','stevolisisjosephpur@gmail.com']);
+
+                const recipients=fields.email;
+                const emailSent=sendNodeMail(1,'TechREVEAL NewsLetter',recipients);
+                const emailSent2=sendNodeMail(2,`Just In: ${new_article[0].title}`,recipients,company_info,most_read,new_article[0]);
+
+
                 // console.log('emailSentNodemailer',emailSent);
 
                 const subscribe=new emailSubscribe({
@@ -53,7 +56,7 @@ export default async function handler(req,res){
     
                 // const newSubscribe=subscribe.save();
     
-                await Promise.all([emailSent])
+                await Promise.all([emailSent,emailSent2])
                 .then(response=>{
                     console.log('check response',response)
                     if(response){

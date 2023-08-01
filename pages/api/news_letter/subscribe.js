@@ -17,7 +17,7 @@ export default async function handler(req,res){
     const form = new formidable.IncomingForm();
 
     try{
-        let most_read_fetch=await Articles.find({status:'active'}).populate({ path: 'author',select:'full_name' }).limit(5).lean();
+        let most_read_fetch=await Articles.find({status:'active'}).populate({ path: 'category',select:'name' }).limit(6).lean();
             
         for (let i = 0; i < most_read_fetch.length; i++) {
             most_read_fetch[i].likes=await Likes.count({pageId:most_read_fetch[i]._id});

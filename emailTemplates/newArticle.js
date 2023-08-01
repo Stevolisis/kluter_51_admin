@@ -465,7 +465,7 @@ ${
     <tbody>
       <tr>
         <td style="padding:0px 0px 15px 0px; line-height:20px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-            <span style="font-family: tahoma, geneva, sans-serif; color: #8c32d4">${most.name}</span></div><div></div></div></td>
+            <span style="font-family: tahoma, geneva, sans-serif; color: #8c32d4">${most?.category?.name}</span></div><div></div></div></td>
       </tr>
     </tbody>
   </table>
@@ -489,7 +489,7 @@ ${
     <tbody>
       <tr>
         <td style="padding:0px 0px 0px 0px; line-height:21px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-            <span style="font-family: georgia, serif; font-size: 15px">${most.content.slice(0,130)}</span></div><div></div></div></td>
+            <span style="font-family: georgia, serif; font-size: 15px">${most.content.slice(0,250)+'...'}</span></div><div></div></div></td>
       </tr>
     </tbody>
   </table>
@@ -500,7 +500,7 @@ ${
     <tbody>
       <tr>
         <td style="padding:10px 0px 0px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-            <span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><a href="https://techreveal.vercel.app/${most.slug}">Read more </a></span></div><div></div></div></td>
+            <span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><a href="https://techreveal.vercel.app/article${most.slug}">Read more </a></span></div><div></div></div></td>
       </tr>
     </tbody>
   </table>
@@ -586,7 +586,8 @@ ${
           <td style="padding:0px;margin:0px;border-spacing:0;"><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="dJWDTG9nTrW3VZvPPGjtw8.1" data-mc-module-version="2019-10-22">
     <tbody>
       <tr>
-        <td style="padding:0px 0px 0px 30px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit"><span style="font-size: 16px; font-family: georgia, serif; color: #ffffff">Next Thursday is our company's 20th anniversary celebration! Parties will be held at our buildings located around the world. Families and friends are welcome to come!</span></div><div></div></div></td>
+        <td style="padding:0px 0px 0px 30px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit"><span style="font-size: 16px; font-family: georgia, serif; color: #ffffff">
+        Next Thursday is our company's 20th anniversary celebration! Parties will be held at our buildings located around the world. Families and friends are welcome to come!</span></div><div></div></div></td>
       </tr>
     </tbody>
   </table></td>

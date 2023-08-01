@@ -41,7 +41,7 @@ export default async function handler(req,res){
                 // const emailSent=sendEmail(1,[fields.email],'TechREVEAL NewsLetter','stevolisisjosephpur@gmail.com');
                 // const emailSent2=sendEmail(2,[fields.email],`Just In: ${new_article[0].title}`,'stevolisisjosephpur@gmail.com',company_info,most_read,new_article[0]);
                 const emailSent=sendNodeMail('Welcome to Techreveal',['stevolisisjoseph@gmail.com','stevolisisjosephpur@gmail.com'],'Try this Out');
-                console.log('emailSentNodemailer',emailSent);
+                // console.log('emailSentNodemailer',emailSent);
 
                 const subscribe=new emailSubscribe({
                     email:fields.email,
@@ -57,6 +57,7 @@ export default async function handler(req,res){
                 .then(response=>{
                     console.log('check response',response)
                     if(response){
+                    // console.log('txts',Test('admin2@gmail.com','EMAILPASS'))
                         res.status(200).json({status:'success'})
                     }else{
                         res.status(404).json({status:'Error Occured'})

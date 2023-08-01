@@ -4,8 +4,8 @@ export async function sendNodeMail(subject, toEmail, otpText) {
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: 'harmonicsub8@gmail.com',
-        pass: 'ljecbufrfqqhyptn',
+        user: process.env.EMAILSENDER,
+        pass: process.env.EMAILPASS,
       },
       tls: {
         rejectUnauthorized: false

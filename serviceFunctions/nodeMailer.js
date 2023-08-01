@@ -1,7 +1,10 @@
-import { Test } from '@/emailTemplates/welcome';
+import { Template2 } from '@/emailTemplates/newArticle';
+import { Template1 } from '@/emailTemplates/welcome';
 import nodemailer from 'nodemailer';
 
-export async function sendNodeMail(subject, toEmail, otpText) {
+export async function sendNodeMail(template, subject, toEmail) {
+    const emailTemplate=template===1 ? Template1('https://techreveal.vercel.app/'): Template2('https://techreveal.vercel.app/');
+
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -17,8 +20,7 @@ export async function sendNodeMail(subject, toEmail, otpText) {
       from: 'harmonicsub8@gmail.com',
       to: toEmail,
       subject: subject,
-      text: otpText,
-      html:Test('https://techreveal.vercel.app/')
+      html: emailTemplate
     };
   
     try{

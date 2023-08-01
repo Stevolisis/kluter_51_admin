@@ -182,7 +182,7 @@ export function Template2(company_info,most_read,new_article){
     <tbody>
       <tr>
         <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;" valign="top" align="center">
-          <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !important; width:100%; height:auto !important;" width="400" alt="" data-proportionally-constrained="true" data-responsive="true" 
+          <img class="max-width" border="0" style="object-fit: cover; display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !important; width:100%; height:auto !important;" width="400" alt="" data-proportionally-constrained="true" data-responsive="true" 
           src="${company_info?.front_cover_image?.url}">
         </td>
       </tr>

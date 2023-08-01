@@ -23,7 +23,6 @@ export const getStaticPaths = async () => {
     try {
       const res = await axios.get(`${baseUrl}/api/articles/getArticles`);
       const content = res.data.data;
-      console.log("article", content[0]);
   
       return {
         paths: content.map((article) => {

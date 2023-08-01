@@ -4,9 +4,12 @@ export async function sendNodeMail(subject, toEmail, otpText) {
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: 'harmonicsub8@gmsil.com',
-        pass: 'seetheworld',
+        user: 'harmonicsub8@gmail.com',
+        pass: 'ljecbufrfqqhyptn',
       },
+      tls: {
+        rejectUnauthorized: false
+    }
     });
   
     var mailOptions = {
@@ -19,8 +22,10 @@ export async function sendNodeMail(subject, toEmail, otpText) {
   
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
-        throw new Error(error);
+        console.log('error',error);
+        return error;
       } else {
+        console.log('info',info)
         console.log("Email Sent");
         return true;
       }

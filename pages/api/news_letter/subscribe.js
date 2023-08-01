@@ -40,7 +40,7 @@ export default async function handler(req,res){
             }else{
                 // const emailSent=sendEmail(1,[fields.email],'TechREVEAL NewsLetter','stevolisisjosephpur@gmail.com');
                 // const emailSent2=sendEmail(2,[fields.email],`Just In: ${new_article[0].title}`,'stevolisisjosephpur@gmail.com',company_info,most_read,new_article[0]);
-                const emailSent=sendNodeMail('Welcome to TTechreveal','stevolisisjosephpur@gmail.com','Try this Out');
+                const emailSent=sendNodeMail('Welcome to Techreveal',['stevolisisjoseph@gmail.com','stevolisisjosephpur@gmail.com'],'Try this Out');
                 console.log('emailSentNodemailer',emailSent);
 
                 const subscribe=new emailSubscribe({
@@ -51,13 +51,13 @@ export default async function handler(req,res){
                     year:date.getFullYear()
                 });
     
-                const newSubscribe=subscribe.save();
+                // const newSubscribe=subscribe.save();
     
-                await Promise.all([newSubscribe,emailSent])
+                await Promise.all([emailSent])
                 .then(response=>{
-                    console.log('check response',response[1],response[2])
-                    if(response[0]&&response[1]){
-                        res.status(200).json({status:'Error Occured'})
+                    console.log('check response',response)
+                    if(response){
+                        res.status(200).json({status:'success'})
                     }else{
                         res.status(404).json({status:'Error Occured'})
                     }

@@ -102,8 +102,12 @@ function dropdown1(){
     .then(res=>{
       let status=res.data.status;
 
-      if(status==='success') Swal.fire('Success','Worked !!!','success');
-      Swal.fire('Error Occured',status,'warning')
+      if(status==='success'){
+        Swal.fire('Success','Worked !!!','success') 
+      } else{
+        Swal.fire('Error Occured',status,'warning')
+      }
+      
      
     }).catch(err=>{
       Swal.fire('Error Occured', err.message, 'error')

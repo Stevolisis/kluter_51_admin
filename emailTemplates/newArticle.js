@@ -627,7 +627,7 @@ ${
 
 <!-----------------Facebook------------->
 ${
-    company_info?.facebook?.status==='active' &&
+    company_info?.facebook?.status==='active' ?
     `
     <table width="140" style="width:140px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-0">
     <tbody>
@@ -645,6 +645,7 @@ ${
         </tbody>
     </table>
     `
+    :''
 }
     
 
@@ -654,7 +655,7 @@ ${
 
 
 <!----------------Whatsapp------------->
-${company_info?.whatsapp?.status==='active' &&
+${company_info?.whatsapp?.status==='active' ?
 `    
     <table width="140" style="width:140px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-1">
       <tbody>
@@ -672,7 +673,7 @@ ${company_info?.whatsapp?.status==='active' &&
       </tbody>
     </table>
 `
-    
+:''
 }
     
     
@@ -682,7 +683,7 @@ ${company_info?.whatsapp?.status==='active' &&
 
 <!---------------Phone Number---------->
 ${
-    company_info?.phone_number?.status==='active' &&
+    company_info?.phone_number?.status==='active' ?
 
     `    
     <table width="140" style="width:140px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-1">
@@ -701,6 +702,7 @@ ${
       </tbody>
     </table>
 `
+:''
 }
     
     
@@ -710,7 +712,7 @@ ${
 
 <!----------------Linkedin------------>
 ${
-    company_info?.linkedin?.status==='active' &&
+    company_info?.linkedin?.status==='active' ?
 
     `    
     <table width="140" style="width:140px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-1">
@@ -729,6 +731,7 @@ ${
       </tbody>
     </table>
 `
+:''
 }
   
   

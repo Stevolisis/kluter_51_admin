@@ -69,7 +69,6 @@ export default async function handler(req,res){
                 .then(response=>{
                     console.log('check response',response)
                     if(response){
-                    // console.log('txts',Test('admin2@gmail.com','EMAILPASS'))
                         res.status(200).json({status:'success'})
                     }else{
                         res.status(404).json({status:'Error Occured'})

@@ -1,7 +1,8 @@
-import { sendEmail } from "@/serviceFunctions/sendGrid";
 import formidable from "formidable";
 import Articles from "../../../db/Model/articleSchema";
 import Users from "../../../db/Model/userSchema";
+import Likes from '../../../db/Model/likeSchema';
+import Views from '../../../db/Model/viewSchema';
 import Settings from "../../../db/Model/general_settingSchema";
 import emailSubscribe from "../../../db/Model/subscribersSchema";
 import { sendNodeMail } from "@/serviceFunctions/nodeMailer";
@@ -16,7 +17,15 @@ export default async function handler(req,res){
     const form = new formidable.IncomingForm();
 
     try{
-        let most_read=await Articles.findOne({status:'active'}).populate([{ path: 'author',select:'full_name'},{ path: 'category',select:'name'}]);
+        let most_read_fetch=await Articles.find({status:'active'}).populate({ path: 'author',select:'full_name' }).limit(5).lean();
+            
+        for (let i = 0; i < most_read_fetch.length; i++) {
+            most_read_fetch[i].likes=await Likes.count({pageId:most_read_fetch[i]._id});
+            most_read_fetch[i].views=await Views.count({pageId:most_read_fetch[i]._id});
+            most_read_fetch[i].description=most_read_fetch[i].content.slice(0,130)+'...';
+        }
+        
+        let most_read=most_read_fetch.sort((a,b)=>a.views < b.views ? 1:-1);
         const new_article=await Articles.find({}).populate({ path: 'author',select:'full_name' }).limit(1).sort({_id:-1}).lean();
         const company_info=await Settings.findOne({});
         const users=await Users.find({}).lean();

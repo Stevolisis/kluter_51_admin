@@ -432,56 +432,52 @@ export function Template2(company_info,most_read,new_article){
 
 
 
-
-{{#each most_read}}
-<table width="285" style="width:285px; border-spacing:0; border-collapse:collapse; margin:0px 15px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-0">
-      <tbody>
-        <tr>
-    <td style="padding:0px;margin:0px;border-spacing:0;">
-
-
-
-
-<!------------first border------------->
-  <table class="module" role="module" data-type="divider" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="2b816bee-a2e9-454d-9686-15eb77fd558a">
-    <tbody>
-      <tr>
-        <td style="padding:30px 0px 10px 0px;" role="module-content" height="100%" valign="top" bgcolor="">
-          <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" height="8px" style="line-height:8px; font-size:8px;">
+${
+    most_read&&most_read.map(most=>{
+        return(
+            `
+        <table width="285" style="width:285px; border-spacing:0; border-collapse:collapse; margin:0px 15px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-0">
             <tbody>
-              <tr>
-                <td style="padding:0px 0px 8px 0px;" bgcolor="#177C65"></td>
-              </tr>
+                <tr>
+            <td style="padding:0px;margin:0px;border-spacing:0;">     
+            
+                    <!------------first border------------->
+        <table class="module" role="module" data-type="divider" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="2b816bee-a2e9-454d-9686-15eb77fd558a">
+            <tbody>
+            <tr>
+                <td style="padding:30px 0px 10px 0px;" role="module-content" height="100%" valign="top" bgcolor="">
+                <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" height="8px" style="line-height:8px; font-size:8px;">
+                    <tbody>
+                    <tr>
+                        <td style="padding:0px 0px 8px 0px;" bgcolor="#177C65"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </td>
+            </tr>
             </tbody>
-          </table>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
-
-
-  <!-----------Category----------->
+        </table>
+        
+        
+        <!-----------Category----------->
   
   <table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="nab3S7wZerNme5cK7ZVFZW.4" data-mc-module-version="2019-10-22">
     <tbody>
       <tr>
         <td style="padding:0px 0px 15px 0px; line-height:20px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-            <span style="font-family: tahoma, geneva, sans-serif; color: #8c32d4">{{category.name}}</span></div><div></div></div></td>
+            <span style="font-family: tahoma, geneva, sans-serif; color: #8c32d4">${most.name}</span></div><div></div></div></td>
       </tr>
     </tbody>
   </table>
 
-
-
-
+  
 <!-----------------Article Title------------->
   <table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="nab3S7wZerNme5cK7ZVFZW.2.1.1" data-mc-module-version="2019-10-22">
     <tbody>
       <tr>
         <td style="padding:0px 0px 5px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
             <span style="font-family: tahoma, geneva, sans-serif; font-size: 20px">
-                <strong>{{title}}</strong></span></div><div></div></div></td>
+                <strong>${most.title}</strong></span></div><div></div></div></td>
       </tr>
     </tbody>
   </table>
@@ -493,7 +489,7 @@ export function Template2(company_info,most_read,new_article){
     <tbody>
       <tr>
         <td style="padding:0px 0px 0px 0px; line-height:21px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-            <span style="font-family: georgia, serif; font-size: 15px">{{content.slice 0 130}}</span></div><div></div></div></td>
+            <span style="font-family: georgia, serif; font-size: 15px">${most.content.slice(0,130)}</span></div><div></div></div></td>
       </tr>
     </tbody>
   </table>
@@ -504,7 +500,7 @@ export function Template2(company_info,most_read,new_article){
     <tbody>
       <tr>
         <td style="padding:10px 0px 0px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-            <span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><a href="https://techreveal.vercel.app{{slug}}">Read more </a></span></div><div></div></div></td>
+            <span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><a href="https://techreveal.vercel.app/${most.slug}">Read more </a></span></div><div></div></div></td>
       </tr>
     </tbody>
   </table>
@@ -513,9 +509,11 @@ export function Template2(company_info,most_read,new_article){
 </td>
         </tr>
       </tbody>
-    </table>
-{{/each}}
-<!-------------------------------------->
+    </table>  
+            `
+        )
+    })
+}
     
     
     
@@ -625,33 +623,36 @@ export function Template2(company_info,most_read,new_article){
             
 
 <!-----------------Facebook------------->
-    {{#if company_info.facebook.status==='active'}}
-    
+${
+    company_info?.facebook?.status==='active' &&
+    `
     <table width="140" style="width:140px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-0">
-        <tbody>
-          <tr>
-            <td style="padding:0px;margin:0px;border-spacing:0;"><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="28c531f6-6959-4711-bfc9-95af46f91ded" data-mc-module-version="2019-10-22">
-      <tbody>
-        <tr>
-          <td style="padding:10px 0px 10px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4">
-              <u><a href="{{company_info.facebook.link}}">Facebok</a></u>
-          </span></div><div></div></div></td>
-        </tr>
-      </tbody>
+    <tbody>
+      <tr>
+        <td style="padding:0px;margin:0px;border-spacing:0;"><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="28c531f6-6959-4711-bfc9-95af46f91ded" data-mc-module-version="2019-10-22">
+  <tbody>
+    <tr>
+      <td style="padding:10px 0px 10px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4">
+          <u><a href="${company_info?.facebook?.link}">Facebok</a></u>
+      </span></div><div></div></div></td>
+    </tr>
+    </tbody>
     </table></td>
-          </tr>
+        </tr>
         </tbody>
-      </table>
+    </table>
+    `
+}
     
-    {{/if}}
+
 
 
 
 
 
 <!----------------Whatsapp------------->
-{{#if company_info.whatsapp.status==='active'}}
-
+${company_info?.whatsapp?.status==='active' &&
+`    
     <table width="140" style="width:140px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-1">
       <tbody>
         <tr>
@@ -659,7 +660,7 @@ export function Template2(company_info,most_read,new_article){
     <tbody>
       <tr>
         <td style="padding:10px 0px 10px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4">
-            <u><a href="{{company_info.whatsapp.link}}">Whatsapp</a></u>
+            <u><a href="${company_info.whatsapp.link}">Whatsapp</a></u>
         </span></div><div></div></div></td>
       </tr>
     </tbody>
@@ -667,8 +668,9 @@ export function Template2(company_info,most_read,new_article){
         </tr>
       </tbody>
     </table>
+`
     
-{{/if}}
+}
     
     
     
@@ -676,22 +678,27 @@ export function Template2(company_info,most_read,new_article){
     
 
 <!---------------Phone Number---------->
-{{#if company_info.phone_number.status==='active'}}
+${
+    company_info?.phone_number?.status==='active' &&
 
-<table width="140" style="width:140px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-2">
+    `    
+    <table width="140" style="width:140px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-1">
       <tbody>
         <tr>
-          <td style="padding:0px;margin:0px;border-spacing:0;"><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="28c531f6-6959-4711-bfc9-95af46f91ded.2" data-mc-module-version="2019-10-22">
+          <td style="padding:0px;margin:0px;border-spacing:0;"><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="28c531f6-6959-4711-bfc9-95af46f91ded.3" data-mc-module-version="2019-10-22">
     <tbody>
       <tr>
-        <td style="padding:10px 0px 10px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><u>Instagram</u></span></div><div></div></div></td>
+        <td style="padding:10px 0px 10px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4">
+            <u><a href="${company_info.phone_number.link}">Whatsapp</a></u>
+        </span></div><div></div></div></td>
       </tr>
     </tbody>
   </table></td>
         </tr>
       </tbody>
     </table>
-{{/if}}
+`
+}
     
     
     
@@ -699,26 +706,27 @@ export function Template2(company_info,most_read,new_article){
     
 
 <!----------------Linkedin------------>
-{{#if company_info.linkedin.status==='active'}}
+${
+    company_info?.linkedin?.status==='active' &&
 
-<table width="140" style="width:140px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-3">
+    `    
+    <table width="140" style="width:140px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-1">
       <tbody>
         <tr>
-          <td style="padding:0px;margin:0px;border-spacing:0;"><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="28c531f6-6959-4711-bfc9-95af46f91ded.1" data-mc-module-version="2019-10-22">
+          <td style="padding:0px;margin:0px;border-spacing:0;"><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="28c531f6-6959-4711-bfc9-95af46f91ded.3" data-mc-module-version="2019-10-22">
     <tbody>
       <tr>
-        <td style="padding:10px 0px 10px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><u>Linkedin</u></span></div><div></div></div></td>
+        <td style="padding:10px 0px 10px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4">
+            <u><a href="${company_info.linkedin.link}">Whatsapp</a></u>
+        </span></div><div></div></div></td>
       </tr>
     </tbody>
   </table></td>
         </tr>
       </tbody>
-    </table></td>
-      </tr>
-    </tbody>
-  </table>
-  
-{{/if}}
+    </table>
+`
+}
   
   
   

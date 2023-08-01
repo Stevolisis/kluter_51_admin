@@ -17,32 +17,27 @@ import useSWR from "swr";
 
 
 
-export const getStaticPaths=async()=>{
-    
-  try{
-      const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
-      const content= res.data.data;
-//remember see more button in main index to load more articles
+export const getStaticPaths = async () => {
+  try {
+    const res = await axios.get(`${baseUrl}/api/categories/getCategories`);
+    const content = res.data.data;
 
-      return{
-          paths:content.map(category=>{
-              return {
-                  params:{
-                      blogCategory:category.slug.split('/')[0]
-                      //why this error
-                  }
-              }
-
-          }),
-          fallback:true
-      }
-  }catch(err){
+    return {
+      paths: content.map((category) => ({
+        params: {
+          blogCategory: category.slug.split('/')[0],
+        },
+      })),
+      fallback: true,
+    };
+  } catch (err) {
     return {
       paths: [],
-      fallback: true
+      fallback: true,
     };
-  }  
-}
+  }
+};
+
 
 
 
@@ -184,15 +179,15 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       </Head>
 
 
-{/* 
+
 
       <Mainscreen heading={newUpdate1?.data?.data?.name} description={newUpdate1?.data?.data?.description}
-     imgLink={newUpdate1?.data?.data?.img.url} page='blogCategory'/> */}
+     imgLink={newUpdate1?.data?.data?.img.url} page='blogCategory'/>
 
 
 
 
-{/* 
+
 <div className='categorySliderCon'>
 <div className='categorySlider'>
   {
@@ -223,8 +218,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 
 
 
- */}
-{/* 
+
+
 
      <div className='categoriesCon3'>
       
@@ -249,7 +244,7 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
         <SlidingArticles articlesSlide={newUpdate3?.data?.data} title='Most Read Articles'/>
         : 
         <SlidingArticlesLoader/>)
-      } */}
+      }
 
         </>
     )

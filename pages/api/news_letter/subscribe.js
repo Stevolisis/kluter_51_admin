@@ -4,6 +4,7 @@ import Articles from "../../../db/Model/articleSchema";
 import Users from "../../../db/Model/userSchema";
 import Settings from "../../../db/Model/general_settingSchema";
 import emailSubscribe from "../../../db/Model/subscribersSchema";
+import { sendNodeMail } from "@/serviceFunctions/nodeMailer";
 
 export const config = {
     api: {
@@ -37,10 +38,10 @@ export default async function handler(req,res){
             if(findSubscriber){
                 res.status(200).json({status:'Subscriber already exist'})
             }else{
-                const emailSent=sendEmail(1,[fields.email],'TechREVEAL NewsLetter','stevolisisjosephpur@gmail.com');
-                const emailSent2=sendEmail(2,[fields.email],`Just In: ${new_article[0].title}`,'stevolisisjosephpur@gmail.com',company_info,most_read,new_article[0]);
-    
-                console.log('findSubscriber',findSubscriber);
+                // const emailSent=sendEmail(1,[fields.email],'TechREVEAL NewsLetter','stevolisisjosephpur@gmail.com');
+                // const emailSent2=sendEmail(2,[fields.email],`Just In: ${new_article[0].title}`,'stevolisisjosephpur@gmail.com',company_info,most_read,new_article[0]);
+                const emailSent=sendNodeMail('Welcome to TTechreveal','stevolisisjosephpur@gmail.com','Try this Out');
+                console.log('emailSentNodemailer',emailSent);
 
                 const subscribe=new emailSubscribe({
                     email:fields.email,
@@ -52,7 +53,7 @@ export default async function handler(req,res){
     
                 const newSubscribe=subscribe.save();
     
-                await Promise.all([newSubscribe,emailSent,emailSent2])
+                await Promise.all([newSubscribe,emailSent])
                 .then(response=>{
                     console.log('check response',response[1],response[2])
                     if(response[0]&&response[1]){

@@ -96,11 +96,13 @@ function dropdown1(){
 
   function subscribeNewsLetter(e){
     e.preventDefault();
+    setloading(true)
     const formData=new FormData(e.target);
 
     axios.post(`/api/news_letter/subscribe`,formData)
     .then(res=>{
       let status=res.data.status;
+      setloading(false);
 
       if(status==='success'){
         Swal.fire('Success','Worked !!!','success') 
@@ -110,6 +112,7 @@ function dropdown1(){
       
      
     }).catch(err=>{
+      setloading(false);
       Swal.fire('Error Occured', err.message, 'error')
         console.log(err);
     })

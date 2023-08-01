@@ -587,7 +587,9 @@ ${
     <tbody>
       <tr>
         <td style="padding:0px 0px 0px 30px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit"><span style="font-size: 16px; font-family: georgia, serif; color: #ffffff">
-        Next Thursday is our company's 20th anniversary celebration! Parties will be held at our buildings located around the world. Families and friends are welcome to come!</span></div><div></div></div></td>
+        Stay tuned and keep an eye on your inbox! We can't wait to share these exciting tech topics with you.
+        If you have any specific topics you'd like us to cover or questions you'd like us to answer, feel free to reach out to us. We value your input and are committed to delivering content that matters to you.
+         </span></div><div></div></div></td>
       </tr>
     </tbody>
   </table></td>

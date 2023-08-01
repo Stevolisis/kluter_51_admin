@@ -29,16 +29,9 @@ export async function sendNodeMail(template, subject, toEmail, data1, data2, dat
     };
   
     try{
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-              console.log('error',error);
-              return error;
-            } else {
-              console.log('info',info)
-              console.log("Email Sent");
-              return true;
-            }
-          });
+        const send=await transporter.sendMail(mailOptions);
+        console.log('reeees',send)
+            return true;
     }catch(err){
         console.log('error',err);
         return err;

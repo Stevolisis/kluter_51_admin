@@ -256,8 +256,8 @@ export function Template1(url){
               <tr>
                 <td style="padding:18px 30px 18px 30px; line-height:22px; text-align:inherit; background-color:#ffffff;" height="100%" valign="top" bgcolor="#ffffff" role="module-content"><div><div style="font-family: inherit;">
                     <span style="font-size: 17px; margin-left:50px"> Welcome to our tech blog newsletter! We are thrilled to have you on board and appreciate your interest in staying up to date with the latest tech news, trends, and insights. Thank you for subscribing!</span>
-                        <br/><span style="font-size: 17px; margin-left:50px"> As a subscriber, you will receive regular updates directly in your inbox about our newest articles, product reviews, tutorials, and much more. We strive to deliver high-quality content that educates and inspires, helping you stay informed about the ever-evolving world of technology. </span> 
-                        <br/><span style="font-size: 17px; margin-left:50px"> Rest assured, you won't miss a single article. We will notify you promptly via email every time we publish something new. This way, you can easily access the latest posts and dive into the topics that interest you the most.</span>
+                        <br/><span style="font-size: 17px;"> As a subscriber, you will receive regular updates directly in your inbox about our newest articles, product reviews, tutorials, and much more. We strive to deliver high-quality content that educates and inspires, helping you stay informed about the ever-evolving world of technology. </span> 
+                        <br/><span style="font-size: 17px;"> Rest assured, you won't miss a single article. We will notify you promptly via email every time we publish something new. This way, you can easily access the latest posts and dive into the topics that interest you the most.</span>
                 </div>
         <div style="font-family: inherit; text-align: center"><span style="color: #ffbe00; font-size: 18px"><strong>Thank you!</strong></span></div><div></div></div></td>
               </tr>

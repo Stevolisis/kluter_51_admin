@@ -49,8 +49,8 @@ export default async function handler(req,res){
             }else{
 
                 const recipients=fields.email;
-                const emailSent=sendNodeMail(1,'TechREVEAL NewsLetter',recipients);
-                const emailSent2=sendNodeMail(2,`Just In: ${new_article[0].title}`,recipients,company_info,most_read,new_article[0]);
+                const emailSent=await sendNodeMail(1,'TechREVEAL NewsLetter',recipients);
+                const emailSent2=await sendNodeMail(2,`Just In: ${new_article[0].title}`,recipients,company_info,most_read,new_article[0]);
 
 
                 // console.log('emailSentNodemailer',emailSent);
@@ -65,7 +65,7 @@ export default async function handler(req,res){
     
                 // const newSubscribe=subscribe.save();
     
-                await Promise.all([emailSent,emailSent2])
+                await Promise.all([subscribe.save(),emailSent,emailSent2])
                 .then(response=>{
                     console.log('check response',response)
                     if(response){

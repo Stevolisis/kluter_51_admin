@@ -48,13 +48,12 @@ export default function AdminComments(){
   }
 
     function view(i){
-    Swal.fire({
-        title:comments[i].user.email,
-        html:comments[i].comment,
-        icon:'info',
-        confirmButtonText:'Close'
-    })
-
+        Swal.fire({
+            title:comments[i].user.email,
+            html:comments[i].comment,
+            icon:'info',
+            confirmButtonText:'Close'
+        })
     }
 
 
@@ -107,10 +106,10 @@ function deleteComment(id){
       })
   }
 
-function loadLimitComment(){
-    limit.current=limit.current+10;
-    loadComments();
-  }
+    function loadLimitComment(){
+        limit.current=limit.current+10;
+        loadComments();
+    }
 
   function filter(e){
     if(e==='ascend'){
@@ -133,9 +132,9 @@ function filterByUser(e){
     setcomments(filterComments2);
 }
 
-useEffect(()=>{
-    loadComments();
-  },[]);
+    useEffect(()=>{
+        loadComments();
+    },[]);
 
     return(
         <>

@@ -21,6 +21,7 @@ export default function Navbar({section,navStatus,setnavStatus,logout}){
             <div onClick={navbaring2}><Link href='/admin/users'>Users</Link></div>
             <div onClick={navbaring2}><Link href='/admin/staffs'>Staffs</Link></div>
             <div onClick={navbaring2}><Link href='/admin/analytics'>Analytics</Link></div>
+            <div onClick={navbaring2}><Link href='/admin/email_support' >Email Support</Link></div>
             <div onClick={navbaring2}><Link href='/admin/general_settings'>General Settings</Link></div>
             </>
             : 

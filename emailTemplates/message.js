@@ -1,5 +1,5 @@
 
-export function Template1(message){
+export function Template4(message){
 
     return(
         `${message}`

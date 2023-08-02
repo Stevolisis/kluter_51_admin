@@ -64,7 +64,7 @@ export default function sendEmail(){
         e.preventDefault();
                 setloading(true)
         const formData=new FormData(e.target);
-        formData.append('subscribers',selectedOption);
+        formData.append('subscribers',JSON.stringify(selectedOption));
         formData.append('message',content);
         axios.post(`${baseUrl}/api/news_letter/sendMail`,formData,{withCredentials:true})
         .then(res=>{

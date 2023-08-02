@@ -2,6 +2,7 @@ import emailSubscribe from "../../../db/Model/subscribersSchema";
 import dbConnect from "../../../db/dbConnect";
 import formidable from "formidable";
 import { verifyTokenPriveledge } from "../../../serviceFunctions/verifyToken";
+import { sendNodeMail } from "@/serviceFunctions/nodeMailer";
 
 export const config = {
     api: {
@@ -11,8 +12,6 @@ export const config = {
 
 export default async function handler(req,res){
     await dbConnect();
-
-
 
     if(req.method==='POST'){
       try{
@@ -24,11 +23,14 @@ export default async function handler(req,res){
 
         form.parse(req,async function(err, fields, files) {
           if (err) throw new Error('Error at Parsing');
-          console.log(fields)
+          if(JSON.parse(fields.subscribers).length < 1){
+            res.status(200).json({status:'Complete fields'});
+            return;
+          }
           const toSend=[];
-          const recipients=JSON.parse(fields.recepients).map(item=>toSend.push(item.id));
-            
-            const sendMessage=await sendNodeMail(4,toSend,fields.subject,fields.message);
+          JSON.parse(fields.subscribers).map(item=>toSend.push(item.value));
+
+            const sendMessage=await sendNodeMail(4,fields.subject,toSend,fields.message);
             if(sendMessage){
                 res.status(200).json({status:'success'})
             }else{

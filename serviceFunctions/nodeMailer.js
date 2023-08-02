@@ -40,6 +40,6 @@ export async function sendNodeMail(template, subject, toEmail, data1, data2, dat
             return true;
     }catch(err){
         console.log('error',err);
-        return err;
+        return false;
     }
 }

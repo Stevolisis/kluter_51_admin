@@ -253,11 +253,11 @@ export default function AddStaff(){
         <div className='admineditname'>
         <p>Priveldges</p>
         <MultiSelect
-        options={options}
-        value={selectedOption}
-        onChange={setselectedOption}
-        labelledBy="Select"
-        disableSearch={true}
+            options={options}
+            value={selectedOption}
+            onChange={setselectedOption}
+            labelledBy="Select"
+            disableSearch={true}
         />
         </div>
         </div>

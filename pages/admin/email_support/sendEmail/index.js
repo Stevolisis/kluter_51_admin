@@ -6,7 +6,7 @@ import axios from "axios";
 import { useLoader } from "../../../_app";
 import { ThreeDots } from "react-loader-spinner";
 import {baseUrl} from '../../../../components/BaseUrl';
-// const SunEditors=dynamic(import("@/components/SunEditor"), { ssr: false });
+import { MultiSelect } from "react-multi-select-component";
 const SunEditors = dynamic(() =>
 import("@/components/SunEditor"), { ssr: false ,loading: () => 
 <div style={{width:'100%',height:'600px',background:'#f5f6f6',display:'flex',justifyContent:'center',alignItems:'center'}}>
@@ -27,6 +27,7 @@ import("@/components/SunEditor"), { ssr: false ,loading: () =>
 
 export default function sendEmail(){
     const [subscribers,setSubscribers]=useState([]);
+    const [selectedOption,setselectedOption]=useState([]);
     const [content, setContent] = useState('');
     const {setloading}=useLoader();
     const router=useRouter();
@@ -36,7 +37,12 @@ export default function sendEmail(){
         .then(res=>{
             let data=res.data.data;
             if(res.data.status==='success'){
-                setSubscribers(data)
+                const formattedData = data.map(item => ({
+                    value: item.email,
+                    label: item.email
+                  }));
+        
+                  setSubscribers(formattedData);
             }else{
                 Swal.fire(
                     'Error',
@@ -56,22 +62,11 @@ export default function sendEmail(){
 
     function handleSubmit(e){
         e.preventDefault();
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "Confirm Action On Article",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Edit it!',
-            reverseButtons: true,
-          }).then((result) => {
-            if (result.isConfirmed) {
                 setloading(true)
         const formData=new FormData(e.target);
-        formData.append('content',content);
-        formData.append('id',id);
-        axios.post(`${baseUrl}/api/news_letter/sendEmail`,formData,{withCredentials:true})
+        formData.append('subscribers',selectedOption);
+        formData.append('message',content);
+        axios.post(`${baseUrl}/api/news_letter/sendMail`,formData,{withCredentials:true})
         .then(res=>{
             let status=res.data.status;
             setloading(false)
@@ -98,11 +93,6 @@ export default function sendEmail(){
                 'error'
             )
         })
-    }else{
-        setloading(false);
-        return;
-    }
-    })
     }
     
     useEffect(()=>{
@@ -123,7 +113,7 @@ export default function sendEmail(){
         <div className='admineditnamecon'>
             <div className='admineditname'>
             <p>Subject</p>
-            <input type='text' name='title'/>
+            <input type='text' name='subject'/>
             </div>
         </div>
 
@@ -131,11 +121,18 @@ export default function sendEmail(){
         <div className='admineditnamecon'>
             <div className='admineditname'>
             <p>Subscribers</p>
-            <select name='category'>
+            {/* <select name='category'>
             {subscribers.map(subs=>{
                 return <option value={subs._id} key={subs._id}>{subs.email}</option>
             })}
-            </select>
+            </select> */}
+            <MultiSelect
+                options={subscribers}
+                value={selectedOption}
+                onChange={setselectedOption}
+                labelledBy="Select"
+                disableSearch={true}
+            />
             </div>
         </div>
 

@@ -144,6 +144,8 @@ color: $color8;
 .dropdown-container{
     border-color: $color9 !important;
     color: $color8 !important;
+    z-index: 99;
+    display: flex !important;
 }
 
 

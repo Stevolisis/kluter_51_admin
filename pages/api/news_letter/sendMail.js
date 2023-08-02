@@ -16,19 +16,28 @@ export default async function handler(req,res){
 
     if(req.method==='POST'){
       try{
-      const verify=await verifyTokenPriveledge(req.cookies.adminPass,'deleteSubscriber')
+      const verify=await verifyTokenPriveledge(req.cookies.adminPass,'sendMail')
 
       if(req.cookies.adminPass !== undefined && verify===true){
 
         const form = new formidable.IncomingForm();  
+
         form.parse(req,async function(err, fields, files) {
           if (err) throw new Error('Error at Parsing');
+          console.log(fields)
+          const toSend=[];
+          const recipients=JSON.parse(fields.recepients).map(item=>toSend.push(item.id));
             
+            const sendMessage=await sendNodeMail(4,toSend,fields.subject,fields.message);
+            if(sendMessage){
+                res.status(200).json({status:'success'})
+            }else{
+                res.status(404).json({status:'Error Occured'})
+            }
 
-            await Promise.all([emailSubscribe.deleteOne({_id:fields.id})]).then(
-              res.status(200).json({status:'success'})
-            )
         });
+
+
 
       }else if(verify==='not Permitted'){
         res.status(200).json({status:'not Permitted'})

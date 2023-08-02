@@ -376,7 +376,7 @@ setcategoryStat({['week1']:week1,['week2']:week2,['week3']:week3,['week4']:week4
 
     
     function getSubscribersStat(){
-        setdataLoad6(true)
+        setdataLoad7(true)
         axios.get(`/api/news_letter/getSubscribersStat?month=${subscibersCurrentMonth}&year=${subscibersCurrentYear}`)
         .then(res=>{
             let status=res.data.status;
@@ -425,19 +425,19 @@ setcategoryStat({['week1']:week1,['week2']:week2,['week3']:week3,['week4']:week4
 
     function setTime(){
         const dateNow=new Date();
-        setviewCurrentMonth(dateNow.getMonth());
+        setviewCurrentMonth(dateNow.getMonth()+1);
         setviewCurrentYear(dateNow.getFullYear())
-        setlikeCurrentMonth(dateNow.getMonth());
+        setlikeCurrentMonth(dateNow.getMonth()+1);
         setlikeCurrentYear(dateNow.getFullYear())
-        setcommentCurrentMonth(dateNow.getMonth());
+        setcommentCurrentMonth(dateNow.getMonth()+1);
         setcommentCurrentYear(dateNow.getFullYear())
-        setuserCurrentMonth(dateNow.getMonth());
+        setuserCurrentMonth(dateNow.getMonth()+1);
         setuserCurrentYear(dateNow.getFullYear())
-        setarticleCurrentMonth(dateNow.getMonth());
+        setarticleCurrentMonth(dateNow.getMonth()+1);
         setarticleCurrentYear(dateNow.getFullYear())
-        setcategoryCurrentMonth(dateNow.getMonth());
+        setcategoryCurrentMonth(dateNow.getMonth()+1);
         setcategoryCurrentYear(dateNow.getFullYear());
-        setsubscibersCurrentMonth(dateNow.getMonth());
+        setsubscibersCurrentMonth(dateNow.getMonth()+1);
         setsubscibersCurrentYear(dateNow.getFullYear())
     }
 
@@ -888,17 +888,17 @@ const options  = {
 
                 <HighchartsReact
                 highcharts={Highcharts}
-                options={options4}
+                options={options7}
                 />
                 {dataLoad7&&<ThreeDots
-                height="40" 
-                width="40" 
-                radius="9"
-                color="#177C65" 
-                ariaLabel="three-dots-loading"
-                wrapperStyle={{}}
-                wrapperClassName=""
-                visible={true}
+                    height="40" 
+                    width="40" 
+                    radius="9"
+                    color="#177C65" 
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
                 />}
                 </div>
         <div className='chartfilterscon'>

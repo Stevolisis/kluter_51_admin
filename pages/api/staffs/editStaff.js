@@ -52,11 +52,14 @@ export default async function handler(req,res){
               if(staff.linkedin) staff.linkedin=JSON.parse(staff.linkedin);
               if(staff.twitter) staff.twitter=JSON.parse(staff.twitter);
               if(staff.instagram) staff.instagram=JSON.parse(staff.instagram);
-              if(staff.priveldges&&verify.user==='Admin'){
+              if(staff.priveldges&&verify.admin){
+                console.log('hmmmmmmmm')
                 staff.priveldges=JSON.parse(staff.priveldges);
               }else{
+                console.log('whyyyyyyyy',verify.admin)
                 delete staff.priveldges;
               }
+              console.log(staff)
     
               {files.img_link.size===0 ? '' : staff.img={public_id:cloudImg.public_id,url:cloudImg.url}}
               await Staffs.updateOne({_id:id},{$set:staff});

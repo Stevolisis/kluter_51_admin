@@ -437,7 +437,7 @@ export function Template3(url,company_info,new_article,most_read,related_article
         <!-------------->
   
         ${related_articles.length>0 ? 
-            `<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:30px 30px 30px 0px;" bgcolor="#6CA2CF" data-distribution="1,1">
+            `<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:30px 30px 30px 0px; margin-top:20px" bgcolor="#6CA2CF" data-distribution="1,1">
               <tbody>
                     <td style="padding:0px;margin:0px;border-spacing:0;"><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="dJWDTG9nTrW3VZvPPGjtw8" data-mc-module-version="2019-10-22">
               <tbody>
@@ -549,7 +549,7 @@ export function Template3(url,company_info,new_article,most_read,related_article
         <!-------------->
   
     ${most_read.length>0 ? 
-        `<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:30px 30px 30px 0px;" bgcolor="#6CA2CF" data-distribution="1,1">
+        `<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:30px 30px 30px 0px; margin-top:20px" bgcolor="#6CA2CF" data-distribution="1,1">
           <tbody>
                 <td style="padding:0px;margin:0px;border-spacing:0;"><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="dJWDTG9nTrW3VZvPPGjtw8" data-mc-module-version="2019-10-22">
           <tbody>

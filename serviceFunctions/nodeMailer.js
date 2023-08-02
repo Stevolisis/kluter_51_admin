@@ -1,7 +1,8 @@
 import { baseUrl } from '@/components/BaseUrl';
-import { Template3 } from '@/emailTemplates/newArticle';
-import { Template2 } from '@/emailTemplates/showArticles';
 import { Template1 } from '@/emailTemplates/welcome';
+import { Template2 } from '@/emailTemplates/showArticles';
+import { Template3 } from '@/emailTemplates/newArticle';
+import { Template4 } from '@/emailTemplates/message';
 import nodemailer from 'nodemailer';
 
 export async function sendNodeMail(template, subject, toEmail, data1, data2, data3, data4) {
@@ -11,6 +12,8 @@ export async function sendNodeMail(template, subject, toEmail, data1, data2, dat
     Template2(baseUrl,data1, data2, data3)
     :template===3 ?
     Template3(baseUrl,data1, data2, data3, data4)
+    :template===4 ?
+    Template4(data1)
     :''
 
     var transporter = nodemailer.createTransport({

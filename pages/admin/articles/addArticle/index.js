@@ -173,11 +173,6 @@ export default function AddArticle(){
             )
         })
     }
-
-    function show(){
-        console.log(editorRef.current.getContent())
-     }
-
     
     function imgPreview(e){
         setImgpreview(URL.createObjectURL(e.target.files[0]));

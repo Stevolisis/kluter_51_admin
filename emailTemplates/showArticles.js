@@ -1,6 +1,6 @@
 
 
-export function Template3(url,company_info,new_article,most_read,related_articles){
+export function Template2(url,company_info,most_read,new_article){
     return(
         `
         
@@ -422,124 +422,7 @@ export function Template3(url,company_info,new_article,most_read,related_article
     <tbody>
       <tr role="module-content">
         <td height="100%" valign="top">
-
-        
-
-
-
-
-
-
-
-
-
-
-        <!-------------->
-  
-        ${related_articles.length>0 ? 
-            `<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:30px 30px 30px 0px;" bgcolor="#6CA2CF" data-distribution="1,1">
-              <tbody>
-                    <td style="padding:0px;margin:0px;border-spacing:0;"><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="dJWDTG9nTrW3VZvPPGjtw8" data-mc-module-version="2019-10-22">
-              <tbody>
-              <tr>
-              <td style="padding:0px 0px 0px 30px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit"><span style="font-family: tahoma, geneva, sans-serif; color: #ffffff; font-size: 25px">
-              Related Articles</span></div><div></div></div></td>
-            </tr>
-              </tbody>
-            </table></td>
-              </tbody>
-            </table>`
-            :''
-        }
             
-    
-    
-    ${
-        related_articles&&related_articles.map(related=>{
-            return(
-                `
-            <table width="285" style="width:285px; border-spacing:0; border-collapse:collapse; margin:0px 15px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-0">
-                <tbody>
-                    <tr>
-                <td style="padding:0px;margin:0px;border-spacing:0;">     
-                
-                        <!------------first border------------->
-            <table class="module" role="module" data-type="divider" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="2b816bee-a2e9-454d-9686-15eb77fd558a">
-                <tbody>
-                <tr>
-                    <td style="padding:30px 0px 10px 0px;" role="module-content" height="100%" valign="top" bgcolor="">
-                    <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" height="8px" style="line-height:8px; font-size:8px;">
-                        <tbody>
-                        <tr>
-                            <td style="padding:0px 0px 8px 0px;" bgcolor="#177C65"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            
-            
-            <!-----------Category----------->
-      
-      <table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="nab3S7wZerNme5cK7ZVFZW.4" data-mc-module-version="2019-10-22">
-        <tbody>
-          <tr>
-            <td style="padding:0px 0px 15px 0px; line-height:20px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-                <span style="font-family: tahoma, geneva, sans-serif; color: #8c32d4">${related?.category?.name}</span></div><div></div></div></td>
-          </tr>
-        </tbody>
-      </table>
-    
-      
-    <!-----------------Article Title------------->
-      <table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="nab3S7wZerNme5cK7ZVFZW.2.1.1" data-mc-module-version="2019-10-22">
-        <tbody>
-          <tr>
-            <td style="padding:0px 0px 5px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-                <span style="font-family: tahoma, geneva, sans-serif; font-size: 20px">
-                    <strong>${related.title}</strong></span></div><div></div></div></td>
-          </tr>
-        </tbody>
-      </table>
-      
-      
-      
-    <!----------------Article Description-------------->
-      <table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="t7affZnVRDfBkmAqcpYU4C.1" data-mc-module-version="2019-10-22">
-        <tbody>
-          <tr>
-            <td style="padding:0px 0px 0px 0px; line-height:21px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-                <span style="font-family: georgia, serif; font-size: 15px">${related.content.slice(0,250)+'...'}</span></div><div></div></div></td>
-          </tr>
-        </tbody>
-      </table>
-      
-    
-    <!-------------Article Link------------>
-      <table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="00b915d0-6071-4550-8931-852726eadc1c.1.2" data-mc-module-version="2019-10-22">
-        <tbody>
-          <tr>
-            <td style="padding:10px 0px 0px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-                <span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><a href="${url}/article${related.slug}">Read more </a></span></div><div></div></div></td>
-          </tr>
-        </tbody>
-      </table>
-    
-    
-    </td>
-            </tr>
-          </tbody>
-        </table>  
-                `
-            )
-        })
-    }
-        
- 
-    
-
             
 
 
@@ -548,8 +431,7 @@ export function Template3(url,company_info,new_article,most_read,related_article
 
         <!-------------->
   
-    ${most_read.length>0 ? 
-        `<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:30px 30px 30px 0px;" bgcolor="#6CA2CF" data-distribution="1,1">
+        <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:30px 30px 30px 0px;" bgcolor="#6CA2CF" data-distribution="1,1">
           <tbody>
                 <td style="padding:0px;margin:0px;border-spacing:0;"><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="dJWDTG9nTrW3VZvPPGjtw8" data-mc-module-version="2019-10-22">
           <tbody>
@@ -560,9 +442,7 @@ export function Template3(url,company_info,new_article,most_read,related_article
           </tbody>
         </table></td>
           </tbody>
-        </table>`
-        :''
-    }
+        </table>
         
 
 

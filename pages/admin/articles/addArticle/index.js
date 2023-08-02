@@ -96,6 +96,64 @@ export default function AddArticle(){
                     'Article Added',
                     'success'
                 )
+
+
+
+                Swal.fire({
+                    title: 'Successful!!',
+                    text: "Article Added. Do you want to notify your newsletter subscribers of your new article?",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Notify them!',
+                    reverseButtons: true,
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        setloading(true)
+                        axios.post(`${baseUrl}/api/news_letter/new_article_notification`,formData,{withCredentials:true})
+                        .then(res=>{
+                            let status=res.data.status;
+                            setloading(false)
+                            if(status==='success'){
+                                Swal.fire(
+                                    'Successful!',
+                                    'New Article Notification Email Sent',
+                                    'success'
+                                )
+                            }else{
+                                Swal.fire(
+                                    'Error Occured',
+                                    status,
+                                    'warning'
+                                )  
+                            }
+                        }).catch(err=>{
+                            setloading(false)
+                            Swal.fire(
+                                'Error Occured',
+                                err.message,
+                                'error'
+                            )
+                        })
+            }else{
+                setloading(false);
+                return;
+            }
+            })
+
+
+
+
+
+
+
+
+
+
+
+
+
             }else if(status==='Invalid User'){
                
                 router.push(`/login?next=${next}`)

@@ -1,12 +1,16 @@
-import { Template2 } from '@/emailTemplates/newArticle';
+import { baseUrl } from '@/components/BaseUrl';
+import { Template3 } from '@/emailTemplates/newArticle';
+import { Template2 } from '@/emailTemplates/showArticles';
 import { Template1 } from '@/emailTemplates/welcome';
 import nodemailer from 'nodemailer';
 
-export async function sendNodeMail(template, subject, toEmail, data1, data2, data3) {
+export async function sendNodeMail(template, subject, toEmail, data1, data2, data3, data4) {
     const emailTemplate=template===1 ? 
-    Template1('https://techreveal.vercel.app/')
+    Template1(baseUrl)
     :template===2 ?
-    Template2('https://techreveal.vercel.app/',data1, data2, data3)
+    Template2(baseUrl,data1, data2, data3)
+    :template===3 ?
+    Template3(baseUrl,data1, data2, data3, data4)
     :''
 
     var transporter = nodemailer.createTransport({

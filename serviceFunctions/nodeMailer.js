@@ -6,7 +6,7 @@ export async function sendNodeMail(template, subject, toEmail, data1, data2, dat
     const emailTemplate=template===1 ? 
     Template1('https://techreveal.vercel.app/')
     :template===2 ?
-    Template2(data1, data2, data3)
+    Template2('https://techreveal.vercel.app/',data1, data2, data3)
     :''
 
     var transporter = nodemailer.createTransport({

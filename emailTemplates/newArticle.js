@@ -1,6 +1,6 @@
 
 
-export function Template2(company_info,most_read,new_article){
+export function Template2(url,company_info,most_read,new_article){
     return(
         `
         
@@ -272,7 +272,7 @@ export function Template2(company_info,most_read,new_article){
     <tbody>
       <tr>
         <td style="padding:10px 0px 0px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-            <span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><a href="https://techreveal.vercel.app">Learn more</a> &gt;&gt;</span>
+            <span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><a href="${url}">Learn more</a> &gt;&gt;</span>
         </div><div></div></div></td>
       </tr>
     </tbody>
@@ -388,7 +388,7 @@ export function Template2(company_info,most_read,new_article){
     <tbody>
       <tr>
         <td style="padding:10px 0px 0px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-            <span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><a href="https://techreveal.vercel.app/article/${new_article?.slug}">Read more</a> &gt;&gt;</span>
+            <span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><a href="${url}/article/${new_article?.slug}">Read more</a> &gt;&gt;</span>
         </div><div></div></div></td>
       </tr>
     </tbody>
@@ -431,7 +431,7 @@ export function Template2(company_info,most_read,new_article){
 
         <!-------------->
   
-        <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:40px 20px 30px 0px;" bgcolor="#6CA2CF" data-distribution="1,1">
+        <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:30px 30px 30px 0px;" bgcolor="#6CA2CF" data-distribution="1,1">
           <tbody>
                 <td style="padding:0px;margin:0px;border-spacing:0;"><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="dJWDTG9nTrW3VZvPPGjtw8" data-mc-module-version="2019-10-22">
           <tbody>
@@ -514,7 +514,7 @@ ${
     <tbody>
       <tr>
         <td style="padding:10px 0px 0px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit">
-            <span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><a href="https://techreveal.vercel.app/article${most.slug}">Read more </a></span></div><div></div></div></td>
+            <span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4"><a href="${url}/article${most.slug}">Read more </a></span></div><div></div></div></td>
       </tr>
     </tbody>
   </table>
@@ -795,7 +795,7 @@ ${
 
 
 <!----------------Footer Logo-------------->
-    <table width="186" style="width:186px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px 10px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-1">
+    <table width="186" style="width:186px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-1">
       <tbody>
         <tr>
           <td style="padding:0px;margin:0px;border-spacing:0;"><table class="wrapper" role="module" data-type="image" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="a89a915d-3817-4dec-aca5-5e2b8bc4bb7e">
@@ -805,8 +805,8 @@ ${
 
       <tr>
         <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;" valign="top" align="center">
-          <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:50% !important; width:50%; height:auto !important;" width="93" alt="" data-proportionally-constrained="true" data-responsive="true" 
-          src="http://localhost:3000/logo2.webp">
+          <img class="max-width" border="0" style="display:block; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px;; height:'27' !important;" width="29" alt="" data-proportionally-constrained="true" data-responsive="true" 
+          src="${url}/techReal.png">
         </td>
       </tr>
 
@@ -866,7 +866,7 @@ ${
         <td height="100%" valign="top"><table width="600" style="width:600px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;" cellpadding="0" cellspacing="0" align="left" border="0" bgcolor="" class="column column-0">
       <tbody>
         <tr>
-          <td style="padding:0px;margin:0px;border-spacing:0;"><div data-role="module-unsubscribe" class="module" role="module" data-type="unsubscribe" style="background-color:#177C65; color:#ffffff; font-size:12px; line-height:20px; padding:20px 16px 16px 16px; text-align:Center;" data-muid="4e838cf3-9892-4a6d-94d6-170e474d21e5"><p style="font-family:georgia,serif; font-size:12px; line-height:20px;"><a class="Unsubscribe--unsubscribeLink" href="{{{unsubscribe}}}" target="_blank" style="color:#ffffff;">Unsubscribe</a> - <a href="{{{unsubscribe_preferences}}}" target="_blank" class="Unsubscribe--unsubscribePreferences" style="color:#ffffff;">Unsubscribe Preferences</a></p></div><table border="0" cellpadding="0" cellspacing="0" class="module" data-role="module-button" data-type="button" role="module" style="table-layout:fixed;" width="100%" data-muid="301a8f4d-9c4f-44ea-b687-15eb3338793c">
+          <td style="padding:0px;margin:0px;border-spacing:0;"><div data-role="module-unsubscribe" class="module" role="module" data-type="unsubscribe" style="background-color:#177C65; color:#ffffff; font-size:12px; line-height:20px; padding:20px 16px 16px 16px; text-align:Center;" data-muid="4e838cf3-9892-4a6d-94d6-170e474d21e5"><p style="font-family:georgia,serif; font-size:12px; line-height:20px;"><a class="Unsubscribe--unsubscribeLink" href="#" target="_blank" style="color:#ffffff;">Unsubscribe</a> - <a href="#" target="_blank" class="Unsubscribe--unsubscribePreferences" style="color:#ffffff;">Unsubscribe Preferences</a></p></div><table border="0" cellpadding="0" cellspacing="0" class="module" data-role="module-button" data-type="button" role="module" style="table-layout:fixed;" width="100%" data-muid="301a8f4d-9c4f-44ea-b687-15eb3338793c">
       <tbody>
         <!-- <tr>
           <td align="center" bgcolor="#177C65" class="outer-td" style="padding:20px 0px 20px 0px; background-color:#177C65;">

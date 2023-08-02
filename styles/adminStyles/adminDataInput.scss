@@ -146,8 +146,13 @@ color: $color8;
     color: $color8 !important;
     z-index: 99;
     display: flex !important;
+    max-width: 500px !important;
 }
+.dropdown-content{
+    color: $color2 !important;
+    width: 100%;
 
+}
 
 .previewimg2{
 display: flex;

@@ -16,6 +16,7 @@ export const getServerSideProps=async (context)=>{
       const res5=await axios.get(`${baseUrl}/api/articles/getArticlesCount`);
       const res6=await axios.get(`${baseUrl}/api/categories/getCategoriesCount`);
       const res7=await axios.get(`${baseUrl}/api/staffs/getStaffsCount`);
+      const res8=await axios.get(`${baseUrl}/api/news_letter/getSubscribers?limit=0`);
     
       const viewsCount= res.data.data;
       const commentsCount= res2.data.data;
@@ -24,9 +25,10 @@ export const getServerSideProps=async (context)=>{
       const articlesCount= res5.data.data;
       const categoriesCount= res6.data.data;
       const staffsCount= res7.data.data;
+      const subscribersCount= res8.data?.data.length;
       
       return {
-        props:{viewsCount,commentsCount,likesCount,usersCount,articlesCount,categoriesCount,staffsCount}
+        props:{viewsCount,commentsCount,likesCount,usersCount,articlesCount,categoriesCount,staffsCount,subscribersCount}
       }    
       
     }catch(err){
@@ -37,7 +39,7 @@ export const getServerSideProps=async (context)=>{
     
   }
 
-export default function AdminAnalytics({error,viewsCount,commentsCount,likesCount,usersCount,articlesCount,categoriesCount,staffsCount}){
+export default function AdminAnalytics({error,viewsCount,commentsCount,likesCount,usersCount,articlesCount,categoriesCount,staffsCount,subscribersCount}){
     const [viewCurrentYear,setviewCurrentYear]=useState('');
     const [viewCurrentMonth,setviewCurrentMonth]=useState('');
     const [likeCurrentYear,setlikeCurrentYear]=useState('');
@@ -50,6 +52,8 @@ export default function AdminAnalytics({error,viewsCount,commentsCount,likesCoun
     const [articleCurrentMonth,setarticleCurrentMonth]=useState('');
     const [categoryCurrentYear,setcategoryCurrentYear]=useState('');
     const [categoryCurrentMonth,setcategoryCurrentMonth]=useState('');
+    const [subscibersCurrentYear,setsubscibersCurrentYear]=useState('');
+    const [subscibersCurrentMonth,setsubscibersCurrentMonth]=useState('');
 
     const [viewStat,setviewStat]=useState({week1:[],week2:[],week3:[],week4:[],week5:[]});
     const [likeStat,setlikeStat]=useState({week1:[],week2:[],week3:[],week4:[],week5:[]});
@@ -57,6 +61,7 @@ export default function AdminAnalytics({error,viewsCount,commentsCount,likesCoun
     const [userStat,setuserStat]=useState({week1:[],week2:[],week3:[],week4:[],week5:[]});
     const [articleStat,setarticleStat]=useState({week1:[],week2:[],week3:[],week4:[],week5:[]});
     const [categoryStat,setcategoryStat]=useState({week1:[],week2:[],week3:[],week4:[],week5:[]});
+    const [subscribersStat,setsubscribersStat]=useState({week1:[],week2:[],week3:[],week4:[],week5:[]});
 
     const [dataLoad1,setdataLoad1]=useState(true);
     const [dataLoad2,setdataLoad2]=useState(true);
@@ -64,6 +69,7 @@ export default function AdminAnalytics({error,viewsCount,commentsCount,likesCoun
     const [dataLoad4,setdataLoad4]=useState(true);
     const [dataLoad5,setdataLoad5]=useState(true);
     const [dataLoad6,setdataLoad6]=useState(true);
+    const [dataLoad7,setdataLoad7]=useState(true);
 
     if(error){
         Swal.fire(
@@ -366,6 +372,57 @@ setcategoryStat({['week1']:week1,['week2']:week2,['week3']:week3,['week4']:week4
     }
 
 
+
+
+    
+    function getSubscribersStat(){
+        setdataLoad6(true)
+        axios.get(`/api/news_letter/getSubscribersStat?month=${subscibersCurrentMonth}&year=${subscibersCurrentYear}`)
+        .then(res=>{
+            let status=res.data.status;
+            let data=res.data.data;
+
+            if(status==='success'){
+                let week1=[]
+                let week2=[]
+                let week3=[]
+                let week4=[]
+                let week5=[]
+              for (let i = 0; i < data.length; i++) { 
+                if(data[i].day >= 1 && data[i].day <= 7){
+                    week1.push(data[i])
+                }else if(data[i].day >= 8 && data[i].day <= 14){
+                    week2.push(data[i])
+                }else if(data[i].day >= 15 && data[i].day <= 21){
+                    week3.push(data[i])
+                }else if(data[i].day >= 22 && data[i].day <= 28){
+                    week4.push(data[i])
+                }else if(data[i].day >= 29 && data[i].day <= 31){
+                    week5.push(data[i])
+                }                   
+              }
+              setdataLoad7(false)
+                setsubscribersStat({['week1']:week1,['week2']:week2,['week3']:week3,['week4']:week4,['week5']:week5});
+
+            }else{
+                setdataLoad7(false)
+                Swal.fire(
+                    'Error Occured',
+                    status,
+                    'warning'
+                )
+            }
+        }).catch(err=>{
+            setdataLoad7(false)
+            Swal.fire(
+                'Error Occured',
+                err.message,
+                'error'
+            )
+        })
+    }
+
+
     function setTime(){
         const dateNow=new Date();
         setviewCurrentMonth(dateNow.getMonth());
@@ -379,7 +436,9 @@ setcategoryStat({['week1']:week1,['week2']:week2,['week3']:week3,['week4']:week4
         setarticleCurrentMonth(dateNow.getMonth());
         setarticleCurrentYear(dateNow.getFullYear())
         setcategoryCurrentMonth(dateNow.getMonth());
-        setcategoryCurrentYear(dateNow.getFullYear())
+        setcategoryCurrentYear(dateNow.getFullYear());
+        setsubscibersCurrentMonth(dateNow.getMonth());
+        setsubscibersCurrentYear(dateNow.getFullYear())
     }
 
 
@@ -538,36 +597,61 @@ const options  = {
     credits:false
   }
 
+  const options7 = {
+    title: {
+      text: ''
+    },
+    chart:{
+    type:'line'
+    },
+    xAxis:{
+        categories:['Week 1','Week 2','Week 3','Week 4','Week 5']
+    },
+    series: [{
+        name:'Subscribers',
+      data: [subscribersStat.week1.length,subscribersStat.week2.length,subscribersStat.week3.length,
+        subscribersStat.week4.length,subscribersStat.week5.length],
+    }],
+    accessibility:{
+        enabled:false
+    },
+    credits:false
+  }
 
 
 
-useEffect(()=>{
-setTime();
-},[])
 
-useEffect(()=>{
-getViewStat();
-},[viewCurrentMonth,viewCurrentYear])
+    useEffect(()=>{
+    setTime();
+    },[])
 
-useEffect(()=>{
-getLikeStat();
-},[likeCurrentMonth,likeCurrentYear])
+    useEffect(()=>{
+    getViewStat();
+    },[viewCurrentMonth,viewCurrentYear])
 
-useEffect(()=>{
-    getCommentStat();
-},[commentCurrentMonth,commentCurrentYear])
-     
-useEffect(()=>{
-    getUserStat();
-},[userCurrentMonth,userCurrentYear])
+    useEffect(()=>{
+    getLikeStat();
+    },[likeCurrentMonth,likeCurrentYear])
 
-useEffect(()=>{
-    getArticleStat();
-},[articleCurrentMonth,articleCurrentYear]);
+    useEffect(()=>{
+        getCommentStat();
+    },[commentCurrentMonth,commentCurrentYear])
+        
+    useEffect(()=>{
+        getUserStat();
+    },[userCurrentMonth,userCurrentYear])
 
-useEffect(()=>{
-    getCategoryStat();
-},[categoryCurrentMonth,categoryCurrentYear])
+    useEffect(()=>{
+        getArticleStat();
+    },[articleCurrentMonth,articleCurrentYear]);
+
+    useEffect(()=>{
+        getCategoryStat();
+    },[categoryCurrentMonth,categoryCurrentYear])
+
+    useEffect(()=>{
+        getSubscribersStat();
+    },[subscibersCurrentMonth,subscibersCurrentYear])
 
 
 
@@ -660,6 +744,17 @@ useEffect(()=>{
                 <div className='adminstat1details'>
                 <p>Total Staffs</p>
                 <p>{staffsCount}</p>
+                </div>
+            </div>
+
+            <div className='adminstat1'>
+                <div className='adminstat1icon'>
+                    <div style={{background:'rgba(97, 36, 8,0.4)',color:'rgb(97, 36, 8)'}}>
+                        <i className='fa fa-support'/></div>
+                </div>
+                <div className='adminstat1details'>
+                <p>Total Subscribers</p>
+                <p>{subscribersCount}</p>
                 </div>
             </div>
 
@@ -786,9 +881,66 @@ useEffect(()=>{
 
 
 
-
-
         <div className='adminstat2con'>
+        <div className='adminstat2'>
+                <div className='adminstat2heading'><p>Subscribers Statistics</p></div>
+                <div className='adminstat2stat'>
+
+                <HighchartsReact
+                highcharts={Highcharts}
+                options={options4}
+                />
+                {dataLoad7&&<ThreeDots
+                height="40" 
+                width="40" 
+                radius="9"
+                color="#177C65" 
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{}}
+                wrapperClassName=""
+                visible={true}
+                />}
+                </div>
+        <div className='chartfilterscon'>
+        <div className='chartInfo'>Week 1 <p>(1th - 7th)</p></div>
+        <div className='chartInfo'>Week 2 <p>(8th - 14th)</p></div>
+        <div className='chartInfo'>Week 3 <p>(15th - 21th)</p></div>
+        <div className='chartInfo'>Week 4 <p>(22th - 28th)</p></div>
+        <div className='chartInfo'>Week 5 <p>(29th - 31th)</p></div>
+        </div>
+                <div className='chartfilterscon'>
+                <select value={subscibersCurrentYear} onChange={(e)=>setsubscibersCurrentYear(e.target.value)}>
+                    <option value='2018'>2018</option>
+                    <option value='2019'>2019</option>
+                    <option value='2020'>2020</option>
+                    <option value='2021'>2021</option>
+                    <option value='2022'>2022</option>
+                    <option value='2023'>2023</option>
+                    <option value='2024'>2024</option>
+                    <option value='2025'>2025</option>
+                    <option value='2026'>2026</option>
+                    <option value='2027'>2027</option>
+                    </select>
+                    <select value={subscibersCurrentMonth} onChange={(e)=>setsubscibersCurrentMonth(e.target.value)}>
+                    <option value='0'>January</option>
+                    <option value='1'>February</option>
+                    <option value='2'>March</option>
+                    <option value='3'>April</option>
+                    <option value='4'>May</option>
+                    <option value='5'>June</option>
+                    <option value='6'>July</option>
+                    <option value='7'>August</option>
+                    <option value='8'>September</option>
+                    <option value='9'>October</option>
+                    <option value='10'>November</option>
+                    <option value='11'>December</option>
+                    </select>
+                    </div>
+                
+            </div>
+
+
+
             <div className='adminstat2'>
                 <div className='adminstat2heading'><p>Comments Statistics</p></div>
                 <div className='adminstat2stat'>
@@ -844,6 +996,13 @@ useEffect(()=>{
                     </select>
                     </div>
             </div>
+
+        </div>
+
+
+
+
+        <div className='adminstat2con'>
 
             <div className='adminstat2'>
                 <div className='adminstat2heading'><p>Users Statistics</p></div>
@@ -902,11 +1061,7 @@ useEffect(()=>{
                 
             </div>
 
-        </div>
 
-
-
-        <div className='adminstat2con'>
             <div className='adminstat2'>
                 <div className='adminstat2heading'><p>Articles Statistics</p></div>
                 <div className='adminstat2stat'>
@@ -962,6 +1117,12 @@ useEffect(()=>{
                     </select>
                     </div>
             </div>
+        </div>
+
+
+
+        <div className='adminstat2con'>
+
 
             <div className='adminstat2'>
                 <div className='adminstat2heading'><p>Categories Statistics</p></div>

@@ -12,7 +12,8 @@ export default function AdminEmail(){
     const {setloading}=useLoader();
     const router=useRouter();
     let limit=useRef(10);
-
+    const months=['January','February','March','April','May','June','July',
+  'August','September','October','November','December'];
     
   function loadSubscribers(){
     setdataLoad(true)
@@ -42,9 +43,59 @@ export default function AdminEmail(){
     })
   }
 
-    function deleteSubsriber(){
 
+
+
+    function deleteSubsriber(id){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Confirm Delete of Subscriber",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+            reverseButtons: true,
+          }).then((result) => {
+            if (result.isConfirmed) {
+                setloading(true);
+                axios.post('/api/news_letter/deleteSubscriber',{id:id})
+                .then(res=>{
+                   let status=res.data.status;
+                   setloading(false);
+                   if(status==='success'){
+                    Swal.fire(
+                        'Successful',
+                        'Comment Deleted',
+                        'success'
+                    )
+                    loadSubscribers()
+                }else if(status==='Invalid User'){
+                    router.push(`/login?next=${router.asPath}`)
+                }else{
+                    Swal.fire(
+                        'Error Occured',
+                        status,
+                        'error'
+                    )
+                   }
+                }).catch(err=>{
+                    setloading(false);
+                    Swal.fire(
+                        'Error Occured',
+                        err.message,
+                        'error'
+                    )
+                })
+            }else{
+                setloading(false);
+                return;
+            }
+          })
     }
+
+
+
 
     function loadLimitSubscribers(){
         limit.current=limit.current+10;

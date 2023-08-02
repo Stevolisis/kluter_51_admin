@@ -31,6 +31,8 @@ export default function AddStaff(){
         { value: 'addStaffs', label: 'Add Staffs' },
         { value: 'editStaffs', label: 'Edit Staffs' },
         { value: 'deleteStaffs', label: 'Delete Staffs' },
+        { value: 'deleteSubscriber', label: 'Delete Subscribers' },
+        { value: 'sendMail', label: 'Send Mail' },
         { value: 'editGeneral_settingSystem', label: 'Edit General Settings' },
     ];
     

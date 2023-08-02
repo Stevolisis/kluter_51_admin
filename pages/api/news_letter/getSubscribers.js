@@ -1,9 +1,5 @@
 import formidable from "formidable";
-import Articles from "../../../db/Model/articleSchema";
-import Views from '../../../db/Model/viewSchema';
-import Settings from "../../../db/Model/general_settingSchema";
 import emailSubscribe from "../../../db/Model/subscribersSchema";
-import { sendNodeMail } from "@/serviceFunctions/nodeMailer";
 
 export const config = {
     api: {

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function SlidingArticles({articlesSlide,title}){
-  const months=['January','February','March','April','May','June','July',
+  const months=['','January','February','March','April','May','June','July',
   'August','September','October','November','December'];
   let listing;
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import parse from 'html-react-parser';
 
 export default function BlogList({articles}){
-  const months=['January','February','March','April','May','June','July',
+  const months=['','January','February','March','April','May','June','July',
   'August','September','October','November','December'];
   let listing;
 

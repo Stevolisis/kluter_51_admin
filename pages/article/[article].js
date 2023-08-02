@@ -93,9 +93,9 @@ export default function Article({error,content,content2,pageId,articleViews,late
         )
   }
 
-  const { loading, setloading } = useLoader();
+  const { setloading } = useLoader();
 
-    const months=['January','February','March','April','May','June','July',
+    const months=['','January','February','March','April','May','June','July',
     'August','September','October','November','December'];
     const [articlesSlide,setarticlesSlide]=useState(null);
     const [liked, setLiked]=useState(false);

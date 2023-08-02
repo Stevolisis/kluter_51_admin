@@ -21,7 +21,7 @@ export default async function handler(req,res){
 
             const emailstosend=[]
             const new_article=await Articles.find({status:'active'}).limit(1).sort({_id:-1}).lean();
-            const related_articles=await Articles.find({status:'active',category:fields.category}).limit(4).sort({_id:-1}).lean();
+            const related_articles=await Articles.find({status:'active',category:fields.category}).populate({ path: 'category',select:'name' }).limit(4).sort({_id:-1}).lean();
             const company_info=await Settings.findOne({});
             const subscribers=await emailSubscribe.find({status:true});
             subscribers.length > 0 ? 

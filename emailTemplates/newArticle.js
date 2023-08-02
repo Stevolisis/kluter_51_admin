@@ -429,7 +429,21 @@ export function Template2(company_info,most_read,new_article){
 
 
 
-
+        <!-------------->
+  
+        <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:40px 20px 30px 0px;" bgcolor="#6CA2CF" data-distribution="1,1">
+          <tbody>
+                <td style="padding:0px;margin:0px;border-spacing:0;"><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="dJWDTG9nTrW3VZvPPGjtw8" data-mc-module-version="2019-10-22">
+          <tbody>
+          <tr>
+          <td style="padding:0px 0px 0px 30px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: inherit"><span style="font-family: tahoma, geneva, sans-serif; color: #ffffff; font-size: 28px">
+          Popular Articles</span></div><div></div></div></td>
+        </tr>
+          </tbody>
+        </table></td>
+          </tbody>
+        </table>
+        
 
 
 ${
@@ -636,7 +650,7 @@ ${
   <tbody>
     <tr>
       <td style="padding:10px 0px 10px 0px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 12px; font-family: tahoma, geneva, sans-serif; color: #8c32d4">
-          <u><a href="${company_info?.facebook?.link}">Facebok</a></u>
+          <u><a href="${company_info?.facebook?.link}">Facebook</a></u>
       </span></div><div></div></div></td>
     </tr>
     </tbody>

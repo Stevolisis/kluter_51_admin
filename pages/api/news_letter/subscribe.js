@@ -26,7 +26,7 @@ export default async function handler(req,res){
         }
         
         let most_read=most_read_fetch.sort((a,b)=>a.views < b.views ? 1:-1);
-        const new_article=await Articles.find({}).populate({ path: 'author',select:'full_name' }).limit(1).sort({_id:-1}).lean();
+        const new_article=await Articles.find({status:'active'}).populate({ path: 'author',select:'full_name' }).limit(1).sort({_id:-1}).lean();
         const company_info=await Settings.findOne({});
         const users=await Users.find({}).lean();
         let subscribers=[];

@@ -3,7 +3,6 @@ import { Template1 } from '@/emailTemplates/welcome';
 import nodemailer from 'nodemailer';
 
 export async function sendNodeMail(template, subject, toEmail, data1, data2, data3) {
-            console.log('rtyui',data2)
     const emailTemplate=template===1 ? 
     Template1('https://techreveal.vercel.app/')
     :template===2 ?

@@ -105,7 +105,7 @@ function dropdown1(){
       setloading(false);
 
       if(status==='success'){
-        Swal.fire('Success','Worked !!!','success') 
+        Swal.fire('Success','You successfully subscribed to techreveal newsletter','success') 
       } else{
         Swal.fire('Error Occured',status,'warning')
       }

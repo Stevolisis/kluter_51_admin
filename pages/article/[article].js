@@ -44,17 +44,15 @@ export const getStaticPaths = async () => {
 
   
 export const getStaticProps=async({params})=>{
-    // let error=context.query;
-
 
     try{
       const res=await axios.get(`${baseUrl}/api/articles/getArticle?article=${params.article}`);
-    //   const res2=await axios.get(`${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${params.blogCategory}`)
+      const res2=await axios.get(`${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${res?.data?.data?.categorySlug}`)
       const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${12}`);
       const res4=await axios.get(`${baseUrl}/api/articles/getArticles?limit=${7}`);
-
+console.log(res2.data)
       const content= res.data.data;
-      const content2= [];
+      const content2= res2.data.data;
       const articleViews= res3.data.data;
       const latestArticles= res4.data.data;
 

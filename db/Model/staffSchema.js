@@ -96,7 +96,13 @@ const staffSchema=new mongoose.Schema({
     type:String,
     required:true,
     immutable:true
-  }  
+  },
+  created_at:{
+    type:Date,
+    default:()=>Date.now(),
+    required:true,
+    immutable:true
+  }
 })
 
 

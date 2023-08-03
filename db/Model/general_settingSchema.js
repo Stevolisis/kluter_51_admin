@@ -66,7 +66,13 @@ const general_settingSchema=new mongoose.Schema({
     link:String
    },
    about_us:String,
-   privacy_policy:String
+   privacy_policy:String,
+   created_at:{
+    type:Date,
+    default:()=>Date.now(),
+    required:true,
+    immutable:true
+  }
 })
 
 

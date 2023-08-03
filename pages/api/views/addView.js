@@ -17,7 +17,6 @@ export default async function handler(req,res){
     form.parse(req,async function(err, fields, files) {
         if (err) throw new Error('Error at Parsing');
         let date=new Date();
-        console.log(fields);
         
         const like=new Views({
             page_link:fields.page_link,

@@ -206,7 +206,7 @@ const options = [
         <div className='admineditnamecon'>
             <div className='admineditname'>
             <p>Description</p>
-            <textarea type='text' name='description' value={description} onChange={(e)=>setdescription(e.target.value)}/><p>description should not be more than 150 words</p>
+            <textarea type='text' name='description' maxLength='400' value={description} onChange={(e)=>setdescription(e.target.value)}/><p>description should not be more than 150 words</p>
         </div>
         </div>
 

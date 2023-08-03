@@ -385,8 +385,8 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
             <div className="articleAuthor">
                 <p>AUTHOR</p>
-                <p>{newUpdate1?.data?.data?.author.full_name}</p>
-                <p>{newUpdate1?.data?.data?.author.description}</p>
+                <p>{newUpdate1?.data?.data?.author?.full_name}</p>
+                <p>{newUpdate1?.data?.data?.author?.description}</p>
                 <div className="authorSocialLinks">
             {newUpdate1?.data?.data?.author?.whatsapp.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.whatsapp.link}`} legacyBehavior><a><i className='fa fa-whatsapp'/></a></Link>}
             {newUpdate1?.data?.data?.author?.dribble.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.dribble.link}`} legacyBehavior><a><i className='fa fa-dribble'/></a></Link>}

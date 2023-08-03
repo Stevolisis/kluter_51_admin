@@ -118,20 +118,15 @@ export default function sendEmail(){
         </div>
 
 
-        <div className='admineditnamecon'>
-            <div className='admineditname'>
+        <div className='admineditnamecon2'>
+        <div style={{width:'100%'}}>
             <p>Subscribers</p>
-            {/* <select name='category'>
-            {subscribers.map(subs=>{
-                return <option value={subs._id} key={subs._id}>{subs.email}</option>
-            })}
-            </select> */}
             <MultiSelect
                 options={subscribers}
                 value={selectedOption}
                 onChange={setselectedOption}
                 labelledBy="Select"
-                disableSearch={true}
+                // disableSearch={true}
             />
             </div>
         </div>

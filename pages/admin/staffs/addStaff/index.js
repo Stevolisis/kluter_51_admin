@@ -250,7 +250,7 @@ export default function AddStaff(){
 
 
         <div className='admineditnamecon2'>
-        <div className='admineditname'>
+        <div style={{width:'100%'}}>
         <p>Priveldges</p>
         <div>
         <MultiSelect
@@ -263,8 +263,6 @@ export default function AddStaff(){
         </div>
         </div>
         </div>
-      
-
 
 
         <div className='admineditnamecon'>

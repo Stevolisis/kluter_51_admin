@@ -311,14 +311,14 @@ const options = [
 
 
         <div className='admineditnamecon2'>
-        <div className='admineditname'>
+        <div style={{width:'100%'}}>
         <p>Priveldges</p>
         <MultiSelect
-        options={options}
-        value={selectedOption}
-        onChange={setselectedOption}
-        labelledBy="Select"
-        disableSearch={true}
+            options={options}
+            value={selectedOption}
+            onChange={setselectedOption}
+            labelledBy="Select"
+            disableSearch={true}
         />
         </div>
         </div>

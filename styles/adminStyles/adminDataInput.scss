@@ -194,6 +194,9 @@ overflow-x: auto;
 border: 1px solid $color9 !important;
 }
 
+.dropdown-content{
+
+}
 
 
 
@@ -205,9 +208,9 @@ border: 1px solid $color9 !important;
 @media (max-width:780px){
     .adminLinks{
 
-            p{
-            margin-left: 5px;
-            }
+        p{
+        margin-left: 5px;
+        }
     
     }
 }

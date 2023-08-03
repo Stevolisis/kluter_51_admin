@@ -44,7 +44,6 @@ export default async function handler(req,res){
                     const emailSent2=await sendNodeMail(2,`Discover: ${new_article[0].title}`,recipients,company_info,most_read,new_article[0]);
 
 
-                    // console.log('emailSentNodemailer',emailSent);
 
                     const subscribe=new emailSubscribe({
                         email:fields.email,
@@ -53,12 +52,9 @@ export default async function handler(req,res){
                         month:date.getMonth()+1,
                         year:date.getFullYear()
                     });
-        
-                    // const newSubscribe=subscribe.save();
-        
+                
                     await Promise.all([subscribe.save(),emailSent,emailSent2])
                     .then(response=>{
-                        console.log('check response',response)
                         if(response){
                             res.status(200).json({status:'success'})
                         }else{

@@ -114,7 +114,6 @@ function dropdown1(){
     }).catch(err=>{
       setloading(false);
       Swal.fire('Error Occured', err.message, 'error')
-        console.log(err);
     })
     
   }

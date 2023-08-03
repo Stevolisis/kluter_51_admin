@@ -3,17 +3,12 @@ import Swal from 'sweetalert2';
 import { useRouter } from 'next/router';
 import { useLoader } from './_app';
 import { baseUrl } from '../components/BaseUrl';
-import { useEffect } from 'react';
 
 export default function Login(){
 const router=useRouter();
 const {next}= router.query;
-const {from}= router.query;
-const { loading, setloading } = useLoader();
-// alert(next)
-function redirect(){
-    
-}
+const { setloading } = useLoader();
+
 function handleSubmit(e){
         e.preventDefault();
         setloading(true)
@@ -25,12 +20,10 @@ function handleSubmit(e){
             if(status==='success'){
                 if(router.pathname!==router.asPath.split('?')[0]){
                     router.reload();
-                    // router.push(baseUrl+router.asPath||`${baseUrl}/admin`,{ shallow: true })
                 }else{
                     router.push(next||`${baseUrl}/admin`);
                 }
             
-            // router.push(next);
             
             }else{
             Swal.fire(
@@ -49,9 +42,6 @@ function handleSubmit(e){
         })
      }
 
-     useEffect(()=>{
-        console.log('reqqs',router)
-     })
 
     return(
         <>

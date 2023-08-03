@@ -36,10 +36,8 @@ export async function sendNodeMail(template, subject, toEmail, data1, data2, dat
   
     try{
         const send=await transporter.sendMail(mailOptions);
-        console.log('reeees',send)
             return true;
     }catch(err){
-        console.log('error',err);
         return false;
     }
 }

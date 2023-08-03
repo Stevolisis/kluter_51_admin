@@ -35,12 +35,10 @@ export async function sendEmail(type,subscribers,subject,email,data1,data2,data3
         }
 
         const sendEmail=await sgMail.send(message)
-        console.log(sendEmail)
         return true
 
 
       }catch(err){
-        console.log(err.message)
         return false
       }
 }

@@ -137,11 +137,6 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 
     useEffect(()=>{
       setShouldRender(true);
-      // setarticles(blogData);
-      // // console.log('ppppppppp',returnedCategories)
-      // setcategories(returnedCategories);
-      // setarticlesSlide(articleViews)
-
     },[blogData])
 
     

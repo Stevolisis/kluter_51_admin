@@ -292,18 +292,13 @@ export default function Article({error,content,content2,pageId,articleViews,late
     checkLike()
     userAuth();
     setShouldRender(true);
-    // setarticlesSlide(data&&data.data);
-    // console.log('dataaaaaa2',data)
-
    },[])
 
     useEffect(()=>{
         if(pageId){
             setView();
             loadComments()
-            // setarticlesSlide(content2);
         }
-        // console.log('dataaaaaa3',data)
 
     },[pageId])
 

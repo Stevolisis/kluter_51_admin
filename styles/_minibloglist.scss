@@ -33,6 +33,7 @@
     background-image: url('/imageLoader.png');
     background-repeat: no-repeat;
     background-position: center;
+    border-radius: 5px;
 
     img{
         width: 100%;
@@ -83,6 +84,19 @@
     .miniBlogInfo{
         h3{
             font-size: 13px;
+        }
+    
+    }
+}
+
+
+
+
+
+@media (prefers-color-scheme: dark) {
+    .miniBlogInfo{
+        h3{
+            color: $color7;
         }
     
     }

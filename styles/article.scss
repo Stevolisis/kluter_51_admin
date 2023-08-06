@@ -175,10 +175,6 @@ margin-top:5px;
             margin: 10px 0;
             border-bottom: 1px solid $color3;
 
-            // h1{
-
-            // }
-
             p{
                 color: $color0;
                 font-size: 15px;
@@ -300,5 +296,15 @@ margin-top:5px;
         color: $color8;
         font-family: poppinsLight;
         word-wrap:break-word;
+    }
+}
+
+
+
+
+
+@media (prefers-color-scheme: dark) {
+    .BlogFastLinkHeader h1{
+        color: $color13;
     }
 }

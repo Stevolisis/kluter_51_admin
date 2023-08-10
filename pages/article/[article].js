@@ -83,13 +83,13 @@ console.log(res2.data)
 
 
 export default function Article({error,content,content2,pageId,articleViews,latestArticles}){
-    if(error){
-        Swal.fire(
-          'Error Occured',
-          error,
-          'error'
-        )
-  }
+//     if(error){
+//         Swal.fire(
+//           'Error Occured',
+//           error,
+//           'error'
+//         )
+//   }
 
   const { setloading } = useLoader();
 

@@ -53,7 +53,7 @@ function MyApp({ Component, pageProps }) {
   const { error, data }= useSWR(url, fetcher, revalidationOptions);
   const status=data?.status;
   const response=data?.data;
-  console.log(revalidationOptions,data);
+  // console.log(revalidationOptions,data);
   
   // if(error) {
   //   Swal.fire(

@@ -61,9 +61,9 @@ export default function Home({categories,blogData,articleViews,articleLikes,erro
   const url4=`${baseUrl}/api/articles/getArticlesByLikes?limit=${12}`;  
   const fetcher = (...args) => fetch(...args).then(res => res.json());  
   const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:categories, ...revalidationOptions}});
-  const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:blogData}});
-  const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
-  const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:articleLikes}});
+  const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:blogData, ...revalidationOptions}});
+  const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews, ...revalidationOptions}});
+  const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:articleLikes, ...revalidationOptions}});
 
   // const newUpdate1 = useSWR(url, fetcher, {
   //   fallbackData: { data: categories },

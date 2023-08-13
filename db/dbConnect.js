@@ -26,7 +26,7 @@ async function dbConnect () {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       bufferCommands: false,
-      poolSize: 20,
+      poolSize: 10,
     }
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then(mongoose => {

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import $ from 'jquery';
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import SlidingArticles from '../components/SlidingArticles';
 import BlogList from '../components/BlogList';
 import Mainscreen from '../components/Mainscreen';
@@ -15,7 +15,6 @@ import BlogLoader from '../components/BlogLoader';
 import SlidingArticlesLoader from '../components/SlidingArticlesLoader';
 import useSWR from 'swr';
 import MiniBlogList from '@/components/MiniBlogList';
-import { useRouter } from 'next/router';
 
 
 
@@ -55,7 +54,6 @@ export default function Home({categories,blogData,articleViews,articleLikes,erro
   const [articles,setarticles]=useState(null);
   const [shouldRender , setShouldRender]=useState(false);
   const [limit,setLimit]=useState(15);
-  const router=useRouter();
   const url=`${baseUrl}/api/categories/getCategories`;
   const url2=`${baseUrl}/api/articles/getArticles?limit=${limit}`;
   const url3=`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`;
@@ -66,7 +64,13 @@ export default function Home({categories,blogData,articleViews,articleLikes,erro
   const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
   const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:articleLikes}});
 
-
+  // const newUpdate1 = useSWR(url, fetcher, {
+  //   fallbackData: { data: categories },
+  //   revalidateOnMount: false, // Prevent initial revalidation
+  //   revalidateOnFocus: false, // Prevent revalidation when window gains focus
+  //   refreshWhenOffline: false, // Prevent revalidation when offline
+  //   dedupingInterval: 60000, // Set a reasonable deduping interval (1 minute)
+  // });
   
   // if(error){
   //   Swal.fire(
@@ -135,6 +139,15 @@ function dropdown1(){
   },[]);
 
   
+
+
+
+
+
+
+
+
+
 
   return (
     <>

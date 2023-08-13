@@ -48,7 +48,52 @@ function MyApp({ Component, pageProps }) {
   const [google_chat,setgoogle_chat]=useState({status:'',link:''});
   const url = `${baseUrl}/api/general_settings/getGeneral_settings`;
   const fetcher = (...args) => fetch(...args).then(res => res.json());
-  const { error, data } = useSWR(url, fetcher);
+  // const { error, data } = useSWR(url, fetcher);
+  const data= {
+    "data": [
+        {
+            "logo": {
+                "public_id": "rfhgkjrqvwqpdp4m1b7x",
+                "url": "https://res.cloudinary.com/dbkcvkodl/image/upload/v1676073238/rfhgkjrqvwqpdp4m1b7x.png"
+            },
+            "front_cover_image": {
+                "public_id": "ypci8ftiq88egzi6wnyu",
+                "url": "https://res.cloudinary.com/dbkcvkodl/image/upload/v1689088075/ypci8ftiq88egzi6wnyu.jpg"
+            },
+            "phone_number": {
+                "status": "inactive",
+                "link": "https://"
+            },
+            "gmail": {
+                "status": "active",
+                "link": "Https"
+            },
+            "linkedin": {
+                "status": "active",
+                "link": ""
+            },
+            "whatsapp": {
+                "status": "active",
+                "link": ""
+            },
+            "facebook": {
+                "status": "active",
+                "link": "stephcom"
+            },
+            "google_chat": {
+                "status": "active",
+                "link": "https://Stephcom"
+            },
+            "_id": "63e6d9171da8aaacddf8a363",
+            "name": "Everything Tech",
+            "description": "For tech enthusiasts and industry leaders alike, TechReveal offers in-depth analysis and revelations, providing a window into the ever-evolving world of technology.",
+            "__v": 0,
+            "about_us": "<p>On August 8, 1970, TechReveal was registered under the Companies Act of 1968 by Steven Joseph, a student of ATBU Nigeria, to engage in the business of publishing newspapers, magazines, and other periodicals. TechReveal was designed to inform, educate, and entertain Nigerians and the world at large.</p><p>In 1971, the company made its debut with the publication of Tech Family, a glossy, family-oriented magazine. Its first editor was Bunmi Sofola. On Sunday, March 18, 1973, its first weekly newspaper, TechSunday, hit the newsstand. The first editor was Ajibade Fashina Thomas. The newspaper was designed \"to give our country a unique Sunday paper which combines the best in serious and popular journalism\" with refreshing information and entertainment.</p><p>On November 1, 1976, the daily tabloid, TechReveal, was born. Designed as \"the lively paper for lively minds,\" it aimed to address most of the shortcomings and inadequacies of the established Nigerian newspapers and to be \"swingingly elegant as well as socially concerned and seriously responsible.\" Its pioneer editor was Dayo Wright.</p><p>In its bid to perform its constitutionally assigned responsibilities, the company was shutdown many times by the powers-that-be. Many of its employees were also harassed and detained by successive military regimes.</p><p>TechReveal has a board of directors which is its highest policy-making organ. The current chairman of the board is Mrs. Angela Emuwa. The first chairman was Chief James Olubunmi Aboderin, an accomplished accountant who died in 1984 from a brief illness. The company's policies and directives are implemented by a management team led by the managing director and Editor-in-Chief. The current Managing Director is Mr. Joseph Adeyeye. Though a corporate business entity which exists to make a profit, it promotes and defends the values of democracy while contributing to the economic development of the country.</p><p>From inception, the company had run its business from Olu Aboderin Street, then Kudeti Street, Onipetesi, in Ikeja, Lagos. But in October 2009, it moved to its imposing permanent headquarters on kilometer 14, Lagos-Ibadan expressway, Magboro, Ogun State.</p><p>For some years now, TechReveal titles, TechReveal, TechSaturday, and TechSunday, have remained the market leaders in Nigeria. Despite this, the company has not rested on its laurels. It keeps adjusting and adapting to modern ways of running a newspaper house. It has invested heavily in new equipment and staff development. There is a big difference in terms of character and content between TechReveal of the '70s and TechReveal of today. The company is set to maintain its leadership position in the media industry.</p>",
+            "privacy_policy": "<p>On August 8, 1970, TechReveal was registered under the Companies Act of 1968 by Steven Joseph, a student of ATBU Nigeria, to engage in the business of publishing newspapers, magazines, and other periodicals. TechReveal was designed to inform, educate, and entertain Nigerians and the world at large.</p><p>In 1971, the company made its debut with the publication of Tech Family, a glossy, family-oriented magazine. Its first editor was Bunmi Sofola. On Sunday, March 18, 1973, its first weekly newspaper, TechSunday, hit the newsstand. The first editor was Ajibade Fashina Thomas. The newspaper was designed \"to give our country a unique Sunday paper which combines the best in serious and popular journalism\" with refreshing information and entertainment.</p><p>On November 1, 1976, the daily tabloid, TechReveal, was born. Designed as \"the lively paper for lively minds,\" it aimed to address most of the shortcomings and inadequacies of the established Nigerian newspapers and to be \"swingingly elegant as well as socially concerned and seriously responsible.\" Its pioneer editor was Dayo Wright.</p><p>In its bid to perform its constitutionally assigned responsibilities, the company was shutdown many times by the powers-that-be. Many of its employees were also harassed and detained by successive military regimes.</p><p>TechReveal has a board of directors which is its highest policy-making organ. The current chairman of the board is Mrs. Angela Emuwa. The first chairman was Chief James Olubunmi Aboderin, an accomplished accountant who died in 1984 from a brief illness. The company's policies and directives are implemented by a management team led by the managing director and Editor-in-Chief. The current Managing Director is Mr. Joseph Adeyeye. Though a corporate business entity which exists to make a profit, it promotes and defends the values of democracy while contributing to the economic development of the country.</p><p>From inception, the company had run its business from Olu Aboderin Street, then Kudeti Street, Onipetesi, in Ikeja, Lagos. But in October 2009, it moved to its imposing permanent headquarters on kilometer 14, Lagos-Ibadan expressway, Magboro, Ogun State.</p><p>For some years now, TechReveal titles, TechReveal, TechSaturday, and TechSunday, have remained the market leaders in Nigeria. Despite this, the company has not rested on its laurels. It keeps adjusting and adapting to modern ways of running a newspaper house. It has invested heavily in new equipment and staff development. There is a big difference in terms of character and content between TechReveal of the '70s and TechReveal of today. The company is set to maintain its leadership position in the media industry.</p>"
+        }
+    ],
+    "status": "success"
+};
   const status=data?.status;
   const response=data?.data;
   

@@ -49,7 +49,6 @@ function MyApp({ Component, pageProps }) {
   const url = `${baseUrl}/api/general_settings/getGeneral_settings`;
   const fetcher = (...args) => fetch(...args).then(res => res.json());
   const { error, data } = useSWR(url, fetcher);
-  // const data= useSWR(url, fetcher);
   const status=data?.status;
   const response=data?.data;
   

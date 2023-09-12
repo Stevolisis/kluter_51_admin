@@ -52,6 +52,6 @@
     "suneditor": "^2.44.12",
     "suneditor-react": "^3.5.0",
     "sweetalert2": "^11.7.1",
-    "swr": "^2.1.2"
+    "swr": "^2.2.2"
   }
 }

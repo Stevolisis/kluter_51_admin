@@ -65,22 +65,6 @@ export default function Home({categories,blogData,articleViews,articleLikes,erro
   const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews, ...revalidationOptions}});
   const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:articleLikes, ...revalidationOptions}});
 
-  // const newUpdate1 = useSWR(url, fetcher, {
-  //   fallbackData: { data: categories },
-  //   revalidateOnMount: false, // Prevent initial revalidation
-  //   revalidateOnFocus: false, // Prevent revalidation when window gains focus
-  //   refreshWhenOffline: false, // Prevent revalidation when offline
-  //   dedupingInterval: 60000, // Set a reasonable deduping interval (1 minute)
-  // });
-  
-  // if(error){
-  //   Swal.fire(
-  //     'Error Occured',
-  //     'Please check your connection',
-  //     'error'
-  //   )
-  // }
-
   
 
 function dropdown1(){

@@ -91,19 +91,6 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
     const [limit,setLimit]=useState(15);
     const router=useRouter();
     const params=router.query;
-    const url=`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`;
-    const url2=`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=${limit}`;
-    const url3=`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`;
-    const url4=`${baseUrl}/api/categories/getCategories`;
-    const fetcher = (...args) => fetch(...args).then(res => res.json());
-    // const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:category}});
-    // const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:blogData}});
-    // const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
-    // const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:returnedCategories}});
-    const newUpdate1 ={data:category};
-    const newUpdate2 = {data:blogData};
-    const newUpdate3 = {data:articleViews};
-    const newUpdate4 = {data:returnedCategories};
 
     if(error){
       Swal.fire(
@@ -156,23 +143,23 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
-        <title>{newUpdate1?.data?.data?.name}</title>
+        <title>{category.name}</title>
         <meta name="description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
         <meta name="keywords" content="tech blog, technology, tech news, updates, insights, latest technology ,Web Technology, app development"/>
 
         <link rel="icon" href="/logo.ico" />
         <meta name="theme-color" content="#177C65" />
 
-        <meta property="og:title" content={newUpdate1?.data?.data?.name}/>
+        <meta property="og:title" content={category.name}/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="https://www.techreveal.vercel.app"/>
-        <meta property="og:image" content={newUpdate1?.data?.data?.img.url}/>
-        <meta property="og:description" content={newUpdate1?.data?.data?.description}/>
+        <meta property="og:image" content={category.img.url}/>
+        <meta property="og:description" content={category.description}/>
 
         <meta name="twitter:card" content="summary_large_image"/>
-        <meta name="twitter:title" content={newUpdate1?.data?.data?.name}/>
-        <meta name="twitter:image" content={newUpdate1?.data?.data?.img.url}/>
-        <meta name="twitter:description" content={newUpdate1?.data?.data?.description}/>
+        <meta name="twitter:title" content={category.name}/>
+        <meta name="twitter:image" content={category.img.url}/>
+        <meta name="twitter:description" content={category.description}/>
         <script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7953128690140311"
@@ -183,8 +170,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 
 
 
-      <Mainscreen heading={newUpdate1?.data?.data?.name} description={newUpdate1?.data?.data?.description}
-     imgLink={newUpdate1?.data?.data?.img.url} page='blogCategory'/>
+      <Mainscreen heading={category.name} description={category.description}
+     imgLink={category.img.url} page='blogCategory'/>
 
 
 
@@ -194,8 +181,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 <div className='categorySlider'>
   {
     shouldRender && (
-      newUpdate4 && newUpdate4.data && newUpdate4.data.data!== undefined||null ? 
-      newUpdate4?.data?.data.map((category,i)=>{
+      returnedCategories && returnedCategories!== undefined||null ? 
+      returnedCategories.map((category,i)=>{
       return <Link href={'/category'+category?.slug} key={i}>
           <div className='categorySlide'>
             <i className={`fa fa-${category.icon}`}/>{category.name}
@@ -227,8 +214,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       
       
       {
-        shouldRender && ( newUpdate2 !==null ? 
-          <BlogList articles={newUpdate2?.data?.data}/>
+        shouldRender && ( blogData !==null ? 
+          <BlogList articles={blogData}/>
         : 
         <BlogLoader/>)
       }
@@ -242,8 +229,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       </div>
 
       {
-        shouldRender && ( newUpdate3 !==undefined ? 
-        <SlidingArticles articlesSlide={newUpdate3?.data?.data} title='Most Read Articles'/>
+        shouldRender && ( articleViews !==undefined ? 
+        <SlidingArticles articlesSlide={articleViews} title='Most Read Articles'/>
         : 
         <SlidingArticlesLoader/>)
       }

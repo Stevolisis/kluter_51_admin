@@ -55,7 +55,7 @@ export const getStaticProps=async({params})=>{
       const articleViews= res3.data.data;
       const latestArticles= res4.data.data;
 
-      const pageId=content?._id;
+      const pageId=content?._id||'63e767ae4d489c5e2eac8128';
       const categoryId=content?.category
       
       return {

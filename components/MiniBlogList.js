@@ -29,7 +29,7 @@ export default function MiniBlogList({title,articles}){
                 <div>
                     <h3>{title}</h3>
                     <p><span>Author: </span>{author?.full_name}</p>
-                    <p>{day} {months[month]}, {description}</p>
+                    <p>{day} {months[month]}, {year}</p>
                 </div>
             </div>
 

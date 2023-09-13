@@ -19,16 +19,18 @@
 }
 
 .miniBlogCon{
-    min-width: 255px;
-    width: 20%;
+    // min-width: 255px;
+    width: 30%;
     margin:12px;
-    height: 250px;
+    height: auto;
     display: flex;
 }
 
 .miniBlogImg{
     height: 140px;
-    width: 100%;
+    width: 140px;
+    min-width: 140px;
+    aspect-ratio: 1;
     position: relative;
     background-color: #F0EEEE;
     background-image: url('/imageLoader.png');
@@ -46,7 +48,7 @@
 
 
 .miniBlogInfo{
-    padding: 12px 0;
+    padding: 5px 12px;
     
 
     h3{
@@ -76,7 +78,7 @@
     }
     .miniBlogCon{
         min-width: 90px;
-        width: 45%;
+        width: 100%;
         margin: 8px;
         height: auto;
     }

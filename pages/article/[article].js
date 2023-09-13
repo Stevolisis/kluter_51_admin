@@ -109,10 +109,14 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const url3 = `${baseUrl}/api/articles/getArticlesByViews?limit=${12}`;
     const url4 = `${baseUrl}/api/articles/getArticles?limit=${7}`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());
-    const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:content}});
-    const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:content2}});
-    const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
-    const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:latestArticles}});
+    // const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:content}});
+    // const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:content2}});
+    // const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
+    // const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:latestArticles}});
+    const newUpdate1 = {data:content};
+    const newUpdate2 =  {data:content2};
+    const newUpdate3 =  {data:articleViews};
+    const newUpdate4 =  {data:latestArticles};
 
 
     const Toast = Swal.mixin({

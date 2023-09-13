@@ -96,10 +96,14 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
     const url3=`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`;
     const url4=`${baseUrl}/api/categories/getCategories`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());
-    const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:category}});
-    const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:blogData}});
-    const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
-    const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:returnedCategories}});
+    // const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:category}});
+    // const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:blogData}});
+    // const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
+    // const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:returnedCategories}});
+    const newUpdate1 ={data:category};
+    const newUpdate2 = {data:blogData};
+    const newUpdate3 = {data:articleViews};
+    const newUpdate4 = {data:returnedCategories};
 
     if(error){
       Swal.fire(
@@ -151,7 +155,7 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
         <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
         <title>{newUpdate1?.data?.data?.name}</title>
         <meta name="description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
         <meta name="keywords" content="tech blog, technology, tech news, updates, insights, latest technology ,Web Technology, app development"/>

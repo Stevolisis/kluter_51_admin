@@ -60,11 +60,18 @@ export default function Home({categories,blogData,articleViews,articleLikes,erro
   const url3=`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`;
   const url4=`${baseUrl}/api/articles/getArticlesByLikes?limit=${12}`;  
   const fetcher = (...args) => fetch(...args).then(res => res.json());  
-  const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:categories, ...revalidationOptions}});
-  const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:blogData, ...revalidationOptions}});
-  const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews, ...revalidationOptions}});
-  const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:articleLikes, ...revalidationOptions}});
-
+  // const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:categories, ...revalidationOptions}});
+  // const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:blogData, ...revalidationOptions}});
+  // const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews, ...revalidationOptions}});
+  // const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:articleLikes, ...revalidationOptions}});
+  const newUpdate1 = {data:categories};
+  const newUpdate2 =  {data:blogData};
+  const newUpdate3 =  {data:articleViews};
+  const newUpdate4 =  {data:articleLikes};
+  // console.log('newUpdate1: ',newUpdate1);
+  // console.log('newUpdate2: ',newUpdate2);
+  // console.log('newUpdate3: ',newUpdate3);
+  // console.log('newUpdate4: ',newUpdate4);
   
 
 function dropdown1(){
@@ -156,11 +163,11 @@ function dropdown1(){
         <meta name="twitter:title" content="TechREVEAL | Stay Up-to-Date with the Latest Technology News"/>
         <meta name="twitter:image" content="https://res.cloudinary.com/dbkcvkodl/image/upload/v1676112672/techReal_lxfms4.png"/>
         <meta name="twitter:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
-        <script
+        {/* <script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7953128690140311"
             crossOrigin="anonymous"
-        ></script>
+        ></script> */}
       </Head>
 
 

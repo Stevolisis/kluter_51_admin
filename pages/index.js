@@ -13,9 +13,7 @@ import { useLoader } from './_app';
 import Image from 'next/image';
 import BlogLoader from '../components/BlogLoader';
 import SlidingArticlesLoader from '../components/SlidingArticlesLoader';
-import useSWR from 'swr';
 import MiniBlogList from '@/components/MiniBlogList';
-import { revalidationOptions } from '@/lib/swr-revalidate';
 
 
 
@@ -50,9 +48,7 @@ try{
 
 
 export default function Home({categories,blogData,articleViews,articleLikes,error}) {
-  const [articlesSlide,setarticlesSlide]=useState(null);
   const { setloading, name, description,front_cover_image } = useLoader();
-  const [articles,setarticles]=useState(null);
   const [shouldRender , setShouldRender]=useState(false);
   const [limit,setLimit]=useState(15);
 
@@ -108,8 +104,6 @@ function dropdown1(){
   })
 
   useEffect(()=>{
-    setarticles(blogData);
-    setarticlesSlide(articleViews);
     setShouldRender(true)
   },[]);
 

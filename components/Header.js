@@ -116,7 +116,7 @@ export default function Header(){
       <Link href='/'>Home</Link>
       <Link href='/about-us'>About Us</Link>
       <Link href='/privacy-policy'>Privacy Policy</Link>
-      <Link href='#'>Contact</Link>
+      <Link href='#footer'>Contact</Link>
       </div>
       <div className="buttonCon">
         <Link href={ !showSocialLink ? '' : 'https://www.facebook.com/sharer/sharer.php?u='+window.location.href}><i className='fa fa-facebook'></i></Link>

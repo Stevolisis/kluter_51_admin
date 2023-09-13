@@ -39,7 +39,7 @@ export default function Footer({whatsapp,linkedin,google_chat,gmail,phone_number
 
     return(
         <>
-  <footer>
+  <footer id="footer">
     <div className='footerCon'>
       <div className='footerLinksCon'>
         <h4>TechREVEAL Blog</h4>

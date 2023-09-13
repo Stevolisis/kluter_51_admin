@@ -87,7 +87,7 @@ export const getStaticProps=async ({params})=>{
 
 
 export default function BlogCategory({category,blogData,articleViews,returnedCategories,error}){
-    const [shouldRender , setShouldRender]=useState(false);
+    const [shouldRender, setShouldRender]=useState(false);
     const [limit,setLimit]=useState(15);
     const router=useRouter();
     const params=router.query;
@@ -143,23 +143,23 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
-        <title>{category.name}</title>
+        <title>{category?.name}</title>
         <meta name="description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
         <meta name="keywords" content="tech blog, technology, tech news, updates, insights, latest technology ,Web Technology, app development"/>
 
         <link rel="icon" href="/logo.ico" />
         <meta name="theme-color" content="#177C65" />
 
-        <meta property="og:title" content={category.name}/>
+        <meta property="og:title" content={category?.name}/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="https://www.techreveal.vercel.app"/>
-        <meta property="og:image" content={category.img.url}/>
-        <meta property="og:description" content={category.description}/>
+        <meta property="og:image" content={category?.img?.url}/>
+        <meta property="og:description" content={category?.description}/>
 
         <meta name="twitter:card" content="summary_large_image"/>
-        <meta name="twitter:title" content={category.name}/>
-        <meta name="twitter:image" content={category.img.url}/>
-        <meta name="twitter:description" content={category.description}/>
+        <meta name="twitter:title" content={category?.name}/>
+        <meta name="twitter:image" content={category?.img?.url}/>
+        <meta name="twitter:description" content={category?.description}/>
         <script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7953128690140311"
@@ -170,8 +170,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 
 
 
-      <Mainscreen heading={category.name} description={category.description}
-     imgLink={category.img.url} page='blogCategory'/>
+      <Mainscreen heading={category?.name} description={category?.description}
+     imgLink={category?.img?.url} page='blogCategory'/>
 
 
 

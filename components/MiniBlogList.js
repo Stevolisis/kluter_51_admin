@@ -28,8 +28,8 @@ export default function MiniBlogList({title,articles}){
         
                 <div>
                     <h3>{title}</h3>
-                    <p><span>Author: </span>{author?.full_name}</p>
                     <p>{day} {months[month]}, {year}</p>
+                    <p><span>Author: </span>{author?.full_name}</p>
                 </div>
             </div>
 
@@ -43,8 +43,10 @@ export default function MiniBlogList({title,articles}){
 
     return(
         <>
-        <div className='blogSliderHeading'><h2>{articles && articles.length!==0 ? title : ''}</h2></div>
-        <div className='categories'>
+        <div className='miniblogHeading'>
+            <h2>{articles && articles.length!==0 ? title : ''}</h2>
+        </div>
+        <div className='blogs'>
             
           {articles&&listing}
 

@@ -7,7 +7,7 @@ export default function BlogList({articles}){
   'August','September','October','November','December'];
   let listing;
 
-     listing=articles&&articles.map((article,i)=>{
+     listing=articles && articles.map((article,i)=>{
       const {title,img,author,slug,categorySlug,description,views,likes,day,month,year}=article;
 
       return(
@@ -21,20 +21,7 @@ export default function BlogList({articles}){
             placeholder="blur"
             priority
           />
-          {/* <Image
-            src={img.url}
-            alt={title}
-            layout="responsive"
-            width={img.width}
-            height={img.height}
-            placeholder="blur"
-            blurDataURL="/favicon.io"
-            priority
-            style={{
-              objectFit: "cover",
-              objectPosition: "center",
-          }}
-          /> */}
+
         </div>
         <div className='blogInfo'>
   

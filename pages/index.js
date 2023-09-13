@@ -55,25 +55,8 @@ export default function Home({categories,blogData,articleViews,articleLikes,erro
   const [articles,setarticles]=useState(null);
   const [shouldRender , setShouldRender]=useState(false);
   const [limit,setLimit]=useState(15);
-  const url=`${baseUrl}/api/categories/getCategories`;
-  const url2=`${baseUrl}/api/articles/getArticles?limit=${limit}`;
-  const url3=`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`;
-  const url4=`${baseUrl}/api/articles/getArticlesByLikes?limit=${12}`;  
-  const fetcher = (...args) => fetch(...args).then(res => res.json());  
-  // const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:categories, ...revalidationOptions}});
-  // const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:blogData, ...revalidationOptions}});
-  // const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews, ...revalidationOptions}});
-  // const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:articleLikes, ...revalidationOptions}});
-  const newUpdate1 = {data:categories};
-  const newUpdate2 =  {data:blogData};
-  const newUpdate3 =  {data:articleViews};
-  const newUpdate4 =  {data:articleLikes};
-  // console.log('newUpdate1: ',newUpdate1);
-  // console.log('newUpdate2: ',newUpdate2);
-  // console.log('newUpdate3: ',newUpdate3);
-  // console.log('newUpdate4: ',newUpdate4);
-  
 
+  
 function dropdown1(){
   $('.filterSearch1').on('focus',function(){
     $('.main4').css('display','block')
@@ -179,7 +162,7 @@ function dropdown1(){
 
 
 
-<CategoryList categories={newUpdate1?.data?.data}/>
+<CategoryList categories={categories}/>
 
 
 
@@ -213,19 +196,12 @@ function dropdown1(){
 
       <div className='categoriesCon3'>
       
-
-
-
-{/* <BlogList articles={articles}/>  */}
       {
-        shouldRender && (newUpdate2!==undefined||null ? 
-          <BlogList articles={newUpdate2?.data?.data}/>
+        shouldRender && (blogData!==undefined||null ? 
+        <BlogList articles={blogData}/>
         : 
         <BlogLoader/>)
       }
-
-      
-
 
       <div className='blogNavCon'>
         <div className='blogNav'>
@@ -251,6 +227,7 @@ function dropdown1(){
     <div className='blogAdsImg'>
      <Image
      src='/OTOTECH3.png'
+     alt='blogAdsImg'
      layout="fill"
      blurDataURL="/favicon.io"
      placeholder="blur"
@@ -260,8 +237,8 @@ function dropdown1(){
 
 
   {
-    shouldRender && ( newUpdate3!==undefined||null ? 
-    <SlidingArticles articlesSlide={newUpdate3?.data?.data} title='Most Read Articles'/>
+    shouldRender && ( articleViews!==undefined||null ? 
+    <SlidingArticles articlesSlide={articleViews} title='Most Read Articles'/>
     : 
     <SlidingArticlesLoader/>)
   }
@@ -271,8 +248,8 @@ function dropdown1(){
   <div className='miniBlogListCon'>
         
         {
-            shouldRender  && (newUpdate4!==undefined||null!==null ? 
-            <MiniBlogList articles={newUpdate4?.data?.data} title='Trending News'/>
+            shouldRender  && (articleLikes!==undefined||null!==null ? 
+            <MiniBlogList articles={articleLikes} title='Trending News'/>
             : 
             <BlogLoader/>)
         }

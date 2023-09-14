@@ -55,6 +55,7 @@ export const getStaticProps=async ({params})=>{
     const blogData= res2.data.data||[];
     const articleViews= res3.data.data;
     const returnedCategories= res4.data.data;
+    console.log('blogCategory: ',category,blogData)
 
     if (res.data.data === null || res2.data.data === null) {
       return {
@@ -91,6 +92,7 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
     const [limit,setLimit]=useState(15);
     const router=useRouter();
     const params=router.query;
+    console.log('blogCategory2: ',category,blogData)
 
     if(error){
       Swal.fire(

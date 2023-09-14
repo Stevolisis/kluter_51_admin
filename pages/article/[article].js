@@ -27,16 +27,16 @@ export const getStaticPaths = async () => {
         paths: content?.map((article) => {
           return {
             params: {
-              article: article.slug.split("/")[0]||'404',
+              article: article.slug.split("/")[0],
             },
           };
         }),
-        fallback: false,
+        fallback: true,
       };
     } catch (err) {
       return {
         paths: [],
-        fallback: false,
+        fallback: true,
       };
     }
   };
@@ -54,7 +54,7 @@ export const getStaticProps=async({params})=>{
       const content2= res2?.data?.data;
       const articleViews= res3?.data?.data;
       const latestArticles= res4?.data?.data;
-      const pageId=content?._id;
+      const pageId=content?._id||null;
       const categoryId=content?.category
       
       return {

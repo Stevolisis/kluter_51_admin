@@ -16,13 +16,12 @@ import MiniBlogList from "@/components/MiniBlogList";
 import BlogLoader from "@/components/BlogLoader";
 import BlogFastLink from "@/components/BlogFastLink";
 import BlogFastLinkLoader from "@/components/BlogFastLinkLoader";
-import useSWR from "swr";
 import { useRouter } from "next/router";
 
 export const getStaticPaths = async () => {
     try {
       const res = await axios.get(`${baseUrl}/api/articles/getArticles`);
-      const content = res?.data?.data;
+      const content = res.data.data;
   
       return {
         paths: content?.map((article) => {
@@ -32,12 +31,12 @@ export const getStaticPaths = async () => {
             },
           };
         }),
-        fallback: true,
+        fallback: false,
       };
     } catch (err) {
       return {
         paths: [],
-        fallback: true,
+        fallback: false,
       };
     }
   };

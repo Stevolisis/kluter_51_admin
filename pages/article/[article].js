@@ -28,7 +28,7 @@ export const getStaticPaths = async () => {
         paths: content?.map((article) => {
           return {
             params: {
-              article: article.slug.split("/")[0] || "404",
+              article: article.slug.split("/")[0],
             },
           };
         }),
@@ -44,18 +44,18 @@ export const getStaticPaths = async () => {
 
   
 export const getStaticProps=async({params})=>{
+    console.log('pageId1',params);
 
     try{
       const res=await axios.get(`${baseUrl}/api/articles/getArticle?article=${params.article}`);
       const res2=await axios.get(`${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${res?.data?.data?.categorySlug}`)
       const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${12}`);
       const res4=await axios.get(`${baseUrl}/api/articles/getArticles?limit=${7}`);
-      const content= res.data.data;
-      const content2= res2.data.data;
-      const articleViews= res3.data.data;
-      const latestArticles= res4.data.data;
-
-      const pageId=content?._id||'63e767ae4d489c5e2eac8128';
+      const content= res?.data?.data;
+      const content2= res2?.data?.data;
+      const articleViews= res3?.data?.data;
+      const latestArticles= res4?.data?.data;
+      const pageId=content?._id;
       const categoryId=content?.category
       
       return {
@@ -93,7 +93,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const [shouldRender , setShouldRender]=useState(false);
     const router=useRouter();
     const params=router.query;
-
+    console.log('pageId3',content2);
 
     const Toast = Swal.mixin({
         toast: true,

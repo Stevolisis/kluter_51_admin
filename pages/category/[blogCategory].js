@@ -24,7 +24,7 @@ export const getStaticPaths=async()=>{
       const content= res.data.data;
 
       return{
-          paths:content.map(category=>{
+          paths:content?.map(category=>{
               return {
                   params:{
                       blogCategory:category.slug.split('/')[0]

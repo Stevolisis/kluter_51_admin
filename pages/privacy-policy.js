@@ -32,7 +32,7 @@ export default function Privacy_policy({privacy_policy}){
     const url=`${baseUrl}/api/general_settings/getPrivacyPolicy`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());  
     const { error, data } = useSWR(url, fetcher, {fallbackData: {data:privacy_policy}});
-    console.log('newUpdate1',parse(data?.data||''))
+
     if(error) {
       Swal.fire(
         'Error',

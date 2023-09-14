@@ -22,7 +22,7 @@ import { useRouter } from "next/router";
 export const getStaticPaths = async () => {
     try {
       const res = await axios.get(`${baseUrl}/api/articles/getArticles`);
-      const content = res.data.data;
+      const content = res?.data?.data;
   
       return {
         paths: content?.map((article) => {
@@ -93,7 +93,6 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const [shouldRender , setShouldRender]=useState(false);
     const router=useRouter();
     const params=router.query;
-    console.log('content: ',content,content2,articleViews);
 
     const Toast = Swal.mixin({
         toast: true,

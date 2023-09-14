@@ -296,12 +296,12 @@ export default function Article({error,content,content2,pageId,articleViews,late
         <meta property="og:title" content={content?.title}/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="https://www.techreveal.vercel.app"/>
-        <meta property="og:image" content={content?.img.url}/>
+        <meta property="og:image" content={content?.img?.url}/>
         <meta property="og:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
 
         <meta name="twitter:card" content="summary_large_image"/>
         <meta name="twitter:title" content={content?.title}/>
-        <meta name="twitter:image" content={content?.img.url}/>
+        <meta name="twitter:image" content={content?.img?.url}/>
         <meta name="twitter:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
         <script
             async

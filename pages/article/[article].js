@@ -28,7 +28,7 @@ export const getStaticPaths = async () => {
         paths: content?.map((article) => {
           return {
             params: {
-              article: article.slug.split("/")[0],
+              article: article.slug.split("/")[0]||'404',
             },
           };
         }),
@@ -93,7 +93,6 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const [shouldRender , setShouldRender]=useState(false);
     const router=useRouter();
     const params=router.query;
-    console.log('pageId3',content2);
 
     const Toast = Swal.mixin({
         toast: true,

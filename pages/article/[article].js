@@ -93,6 +93,7 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const [shouldRender , setShouldRender]=useState(false);
     const router=useRouter();
     const params=router.query;
+    console.log('content: ',content,content2,articleViews);
 
     const Toast = Swal.mixin({
         toast: true,

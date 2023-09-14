@@ -45,7 +45,9 @@ export const getStaticPaths=async()=>{
 
 
 export const getStaticProps=async ({params})=>{
-  // let error=context.query;
+  // let error=context.query;'
+  console.log('params: ',params);
+
   try{
     const res=await axios.get(`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`);
     const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`);

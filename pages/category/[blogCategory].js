@@ -183,8 +183,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 
 
 
-      <Mainscreen heading={newUpdate1?.data?.data?.name} description={newUpdate1?.data?.data?.description}
-     imgLink={newUpdate1?.data?.data?.img.url} page='blogCategory'/>
+      <Mainscreen heading={category?.name} description={category?.description}
+     imgLink={category?.img.url} page='blogCategory'/>
 
 
 

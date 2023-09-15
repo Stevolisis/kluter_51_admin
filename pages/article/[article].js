@@ -50,7 +50,6 @@ export const getStaticProps=async({params})=>{
       const res2=await axios.get(`${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${res?.data?.data?.categorySlug}`)
       const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${12}`);
       const res4=await axios.get(`${baseUrl}/api/articles/getArticles?limit=${7}`);
-console.log('content-res2: ',res2.data||'null1')
       const content= res.data.data;
       const content2= res2.data.data;
       const articleViews= res3.data.data;
@@ -84,8 +83,8 @@ console.log('content-res2: ',res2.data||'null1')
 
 export default function Article({error,content,content2,pageId,articleViews,latestArticles}){
   const { setloading } = useLoader();
-  console.log('error: ',error||'null2');
-  console.log('final',content||'null3');
+  console.log('error2: ',error||'null5');
+  console.log('final2',content||'null6');
 
     const months=['','January','February','March','April','May','June','July',
     'August','September','October','November','December'];

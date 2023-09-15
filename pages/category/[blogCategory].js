@@ -87,6 +87,9 @@ export const getStaticProps=async ({params})=>{
 
 
 export default function BlogCategory({category,blogData,articleViews,returnedCategories,error}){
+    console.log('error: ',error||'null3');
+    console.log('final',category||'null4');
+    
     const [shouldRender , setShouldRender]=useState(false);
     const [limit,setLimit]=useState(15);
     const router=useRouter();

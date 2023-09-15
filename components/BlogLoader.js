@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function BlogLoader(){
-  const articles=[1,2,3,4]
+  const articles=[1,2,3,4];
+  let listing;
 
      listing=articles&&articles.map((article,i)=>{
 

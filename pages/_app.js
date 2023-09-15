@@ -47,12 +47,46 @@ function MyApp({ Component, pageProps }) {
   const [whatsapp,setwhatsapp]=useState({status:'',link:''})
   const [facebook,setfacebook]=useState({status:'',link:''})
   const [google_chat,setgoogle_chat]=useState({status:'',link:''});
-  const url = `${baseUrl}/api/general_settings/getGeneral_settings`;
-  const fetcher = (...args) => fetch(...args).then(res => res.json());
-  const { error, data }= useSWR(url, fetcher);
-  const status=data?.status;
-  const response=data?.data;
-  // console.log(revalidationOptions,data);
+
+  
+  function loadSupport(){
+    axios.get('/api/general_settings/getGeneral_settings')
+    .then(res=>{
+      let status=res.data.status;
+      let data=res.data.data;
+        if(status==='success'){
+          setname(data[0].name)
+          setdescription(data[0].description)
+          setlogo(data[0].logo&&data[0].logo.url)
+          setfront_cover_image(data[0].front_cover_image&&data[0].front_cover_image.url||'')
+          setphone_number(data[0].phone_number)
+          setgmail(data[0].gmail)
+          setfacebook(data[0].facebook)
+          setwhatsapp(data[0].whatsapp)
+          setgoogle_chat(data[0].google_chat)
+          setlinkedin(data[0].linkedin)
+        }else if(status==='no data Found'){
+          setphone_number({status:'inactive'})
+          setgmail({status:'inactive'})
+          setwhatsapp({status:'inactive'})
+          setgoogle_chat({status:'inactive'})
+          setfacebook({status:'inactive'})
+          setlinkedin({status:'inactive'});
+        }else{
+            Swal.fire(
+                'Error',
+                status,
+                'warning'
+            )
+        }
+    }).catch(err=>{
+        Swal.fire(
+            'Error',
+            'Error Occured at Axios',
+            'warning'
+        )           
+    });
+}
   
   // if(error) {
   //   Swal.fire(
@@ -63,34 +97,8 @@ function MyApp({ Component, pageProps }) {
   // }
 
   useEffect(()=>{
-    if(response){
-      if(status==='success'){
-        setname(response[0].name)
-        setdescription(response[0].description)
-        setlogo(response[0]?.logo?.url);
-        setfront_cover_image(response[0]?.front_cover_image?.url||'')
-        setphone_number(response[0].phone_number);
-        setgmail(response[0].gmail);
-        setfacebook(response[0].facebook);
-        setwhatsapp(response[0].whatsapp);
-        setgoogle_chat(response[0].google_chat);
-        setlinkedin(response[0].linkedin);
-      }else if(status==='no data Found'){
-        setphone_number({status:'inactive'});
-        setgmail({status:'inactive'});
-        setwhatsapp({status:'inactive'});
-        setgoogle_chat({status:'inactive'});
-        setfacebook({status:'inactive'});
-        setlinkedin({status:'inactive'});
-      }else{
-          Swal.fire(
-              'Error',
-               status,
-              'warning'
-          )
-      }
-    }
-  },[data])
+    loadSupport();
+  },[]);
 
 
   useEffect(()=>{

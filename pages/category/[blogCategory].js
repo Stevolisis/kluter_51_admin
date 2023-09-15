@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import {useRouter} from 'next/router'
-import { useEffect,useRef,useState } from "react";
+import { useEffect,useState } from "react";
 import BlogList from "@/components/BlogList";
 import SlidingArticles from "@/components/SlidingArticles";
 import $ from 'jquery';
@@ -11,8 +10,6 @@ import Swal from "sweetalert2";
 import { baseUrl } from "@/components/BaseUrl";
 import SlidingArticlesLoader from "@/components/SlidingArticlesLoader";
 import BlogLoader from "@/components/BlogLoader";
-import useSWR from "swr";
-
 
 
 
@@ -87,15 +84,8 @@ export const getStaticProps=async ({params})=>{
 
 
 export default function BlogCategory({category,blogData,articleViews,returnedCategories,error}){
-    console.log('error: ',error||'null3');
-    console.log('final',category||'null4');
     const [shouldRender , setShouldRender]=useState(false);
     const [limit,setLimit]=useState(15);
-    const router=useRouter();
-    const params=router.query;
-    const url4=`${baseUrl}/api/categories/getCategories`;
-    const fetcher = (...args) => fetch(...args).then(res => res.json());
-    const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:returnedCategories}});
 
     if(error){
       Swal.fire(

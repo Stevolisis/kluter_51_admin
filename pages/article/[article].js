@@ -298,22 +298,22 @@ return(
   <Head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
-    <title>{newUpdate1?.data?.data?.title}</title>
+    <title>{content?.title}</title>
     <meta name="description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
     <meta name="keywords" content="tech blog, technology, tech news, updates, insights, latest technology ,Web Technology, app development"/>
 
     <link rel="icon" href="/logo.ico" />
     <meta name="theme-color" content="#177C65" />
 
-    <meta property="og:title" content={newUpdate1?.data?.data?.title}/>
+    <meta property="og:title" content={content?.title}/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://www.techreveal.vercel.app"/>
-    <meta property="og:image" content={newUpdate1?.data?.data?.img.url}/>
+    <meta property="og:image" content={content?.img.url}/>
     <meta property="og:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
 
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content={newUpdate1?.data?.data?.title}/>
-    <meta name="twitter:image" content={newUpdate1?.data?.data?.img.url}/>
+    <meta name="twitter:title" content={content?.title}/>
+    <meta name="twitter:image" content={content?.img.url}/>
     <meta name="twitter:description" content="Get the latest technology news, updates, and insights from our expert writers. Stay ahead of the curve with our tech blog."/>
     <script
         async
@@ -329,13 +329,13 @@ return(
 
  
  <div className='articleHeadCon'>
-    <div className='articleHead'><h1>{newUpdate1?.data?.data?.title}</h1>
-    <p> { newUpdate1 && `Posed on ${months[newUpdate1?.data?.data?.month]} ${newUpdate1?.data?.data?.day}, ${newUpdate1?.data?.data?.year}`}</p>
+    <div className='articleHead'><h1>{content?.title}</h1>
+    <p> { newUpdate1 && `Posed on ${months[content?.month]} ${content?.day}, ${content?.year}`}</p>
     </div>
     <div className="articleImg">
     <div style={{width:'100%',height:'100%',position:'relative'}}>
         <Image 
-        src={newUpdate1?.data?.data?.img?.url}
+        src={content?.img?.url}
         alt='Cover Image'
         layout="fill"
         quality={90}
@@ -361,7 +361,7 @@ return(
     <div className='articleAuthorCon'>
         <div className='authorImg'>
            <Image
-            src={newUpdate1?.data?.data?.author?.img?.url}
+            src={content?.author?.img?.url}
             alt='author Image'
             width={40}
             height={40}
@@ -374,15 +374,15 @@ return(
 
         <div className="articleAuthor">
             <p>AUTHOR</p>
-            <p>{newUpdate1?.data?.data?.author?.full_name}</p>
-            <p>{newUpdate1?.data?.data?.author?.description}</p>
+            <p>{content?.author?.full_name}</p>
+            <p>{content?.author?.description}</p>
             <div className="authorSocialLinks">
-        {newUpdate1?.data?.data?.author?.whatsapp.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.whatsapp.link}`} legacyBehavior><a><i className='fa fa-whatsapp'/></a></Link>}
-        {newUpdate1?.data?.data?.author?.dribble.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.dribble.link}`} legacyBehavior><a><i className='fa fa-dribble'/></a></Link>}
-        {newUpdate1?.data?.data?.author?.github.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.github.link}`} legacyBehavior><a><i className='fa fa-github'/></a></Link>}
-        {newUpdate1?.data?.data?.author?.linkedin.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.linkedin.link}`} legacyBehavior><a><i className='fa fa-linkedin'/></a></Link>}
-        {newUpdate1?.data?.data?.author?.twitter.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.twitter.link}`} legacyBehavior><a><i className='fa fa-twitter'/></a></Link>}
-        {newUpdate1?.data?.data?.author?.instagram.status==='inactive'|| ''? '' :<Link href={`${newUpdate1?.data?.data?.author?.instagram.link}`} legacyBehavior><a><i className='fa fa-instagram'/></a></Link>}
+        {content?.author?.whatsapp.status==='inactive'|| ''? '' :<Link href={`${content?.author?.whatsapp.link}`} legacyBehavior><a><i className='fa fa-whatsapp'/></a></Link>}
+        {content?.author?.dribble.status==='inactive'|| ''? '' :<Link href={`${content?.author?.dribble.link}`} legacyBehavior><a><i className='fa fa-dribble'/></a></Link>}
+        {content?.author?.github.status==='inactive'|| ''? '' :<Link href={`${content?.author?.github.link}`} legacyBehavior><a><i className='fa fa-github'/></a></Link>}
+        {content?.author?.linkedin.status==='inactive'|| ''? '' :<Link href={`${content?.author?.linkedin.link}`} legacyBehavior><a><i className='fa fa-linkedin'/></a></Link>}
+        {content?.author?.twitter.status==='inactive'|| ''? '' :<Link href={`${content?.author?.twitter.link}`} legacyBehavior><a><i className='fa fa-twitter'/></a></Link>}
+        {content?.author?.instagram.status==='inactive'|| ''? '' :<Link href={`${content?.author?.instagram.link}`} legacyBehavior><a><i className='fa fa-instagram'/></a></Link>}
         </div>
            </div>
     </div>
@@ -394,11 +394,11 @@ return(
             data={{
             text: "Like humans, flamingos make friends for life",
             url: `${windowLink}`,
-            title: `${newUpdate1?.data?.data?.title}`,
+            title: `${content?.title}`,
             }}>
-            <button onClick={()=>navigator.share({title:`${newUpdate1?.data?.data?.title}`,text:'OTOTCH BLOG',url:`${windowLink}}`})}>Share <i className="fa fa-share"/></button>
+            <button onClick={()=>navigator.share({title:`${content?.title}`,text:'OTOTCH BLOG',url:`${windowLink}}`})}>Share <i className="fa fa-share"/></button>
         </RWebShare>
-            <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${windowLink}i&title=${newUpdate1?.data?.data?.title}&source=OTOTECH Blog`} legacyBehavior><a><i className="fa fa-linkedin"/></a></Link>
+            <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${windowLink}i&title=${content?.title}&source=OTOTECH Blog`} legacyBehavior><a><i className="fa fa-linkedin"/></a></Link>
             <Link href={`https://twitter.com/intent/tweet?text=${windowLink}`} legacyBehavior><a><i className="fa fa-twitter"/></a></Link>
             <Link href={`https://www.facebook.com/sharer/sharer.php?u=${windowLink}`} legacyBehavior><a><i className="fa fa-facebook"/></a></Link>
         </div>
@@ -414,7 +414,7 @@ return(
 
  <div className="articleContentCon">
 
-    <div className="article">{ parse(newUpdate1?.data?.data?.content||'',{
+    <div className="article">{ parse(content?.content||'',{
             replace:domNode=>{
                 if(domNode.name==='a'){
                     const props = attributesToProps(domNode.attribs);

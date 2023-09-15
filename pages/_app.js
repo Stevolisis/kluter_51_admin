@@ -25,6 +25,7 @@ import Swal from 'sweetalert2'
 import useSWR from 'swr'
 import { baseUrl } from '@/components/BaseUrl'
 import { revalidationOptions } from '@/lib/swr-revalidate'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const LoaderContext = createContext()
 export const useLoader = () => useContext(LoaderContext);
 
@@ -47,6 +48,7 @@ function MyApp({ Component, pageProps }) {
   const [whatsapp,setwhatsapp]=useState({status:'',link:''})
   const [facebook,setfacebook]=useState({status:'',link:''})
   const [google_chat,setgoogle_chat]=useState({status:'',link:''});
+  const queryClient = new QueryClient();
 
   
   function loadSupport(){
@@ -139,14 +141,19 @@ function MyApp({ Component, pageProps }) {
        {admin==='admin' ? 
         <>
             <AdminHeader>
-                  <Component {...pageProps} key={router.asPath}/>        
+                  <QueryClientProvider client={queryClient}>
+                      <Component {...pageProps} key={router.asPath}/>  
+                  </QueryClientProvider>
+         
             </AdminHeader> 
             <Footer phone_number={phone_number} linkedin={linkedin} whatsapp={whatsapp} google_chat={google_chat} facebook={facebook} gmail={gmail} />
         </>
         :
          <>
          <Header/>
-               <Component {...pageProps} key={router.asPath}/>
+               <QueryClientProvider client={queryClient}>
+                     <Component {...pageProps} key={router.asPath}/>
+               </QueryClientProvider>
          <Footer phone_number={phone_number} linkedin={linkedin} whatsapp={whatsapp} google_chat={google_chat} facebook={facebook} gmail={gmail} />
          </>
         }

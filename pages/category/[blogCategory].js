@@ -227,10 +227,12 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       
       
       {
-        shouldRender && ( blogData !==null ? 
+        shouldRender ? ( blogData !==null ? 
           <BlogList articles={blogData}/>
         : 
         <BlogLoader/>)
+        :
+        <BlogLoader/>
       }
 
 

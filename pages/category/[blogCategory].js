@@ -89,17 +89,12 @@ export const getStaticProps=async ({params})=>{
 export default function BlogCategory({category,blogData,articleViews,returnedCategories,error}){
     console.log('error: ',error||'null3');
     console.log('final',category||'null4');
-    
     const [shouldRender , setShouldRender]=useState(false);
     const [limit,setLimit]=useState(15);
     const router=useRouter();
     const params=router.query;
-    const url=`${baseUrl}/api/categories/getCategoryByName?category=${params.blogCategory}`;
-    const url2=`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=${limit}`;
-    const url3=`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`;
     const url4=`${baseUrl}/api/categories/getCategories`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());
-    const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
     const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:returnedCategories}});
 
     if(error){
@@ -192,8 +187,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 <div className='categorySlider'>
   {
     shouldRender ? (
-      newUpdate4 && newUpdate4.data && newUpdate4.data.data!== undefined||null ? 
-      newUpdate4?.data?.data.map((category,i)=>{
+      returnedCategories!== undefined||null ? 
+      returnedCategories.map((category,i)=>{
       return <Link href={'/category'+category?.slug} key={i}>
           <div className='categorySlide'>
             <i className={`fa fa-${category.icon}`}/>{category.name}
@@ -251,7 +246,7 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 
       {
         shouldRender ? ( articleViews !==undefined ? 
-        <SlidingArticles articlesSlide={articleViews } title='Most Read Articles'/>
+        <SlidingArticles articlesSlide={articleViews} title='Most Read Articles'/>
         : 
         <SlidingArticlesLoader/>)
         : 

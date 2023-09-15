@@ -95,7 +95,7 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(()=>{
     const handleRouteChange  = () => {
-      // setloading(true)
+      setloading(true)
     }
 
     const routeChangeComplete = (url) => {  

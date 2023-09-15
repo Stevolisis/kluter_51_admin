@@ -193,7 +193,7 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
 <div className='categorySliderCon'>
 <div className='categorySlider'>
   {
-    shouldRender && (
+    shouldRender ? (
       newUpdate4 && newUpdate4.data && newUpdate4.data.data!== undefined||null ? 
       newUpdate4?.data?.data.map((category,i)=>{
       return <Link href={'/category'+category?.slug} key={i}>
@@ -210,6 +210,14 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
         </Link>
     })
     )
+    :
+    [1,2,3,4].map((i)=>{
+      return <Link href='#' key={i} legacyBehavior>
+          <div style={{width:'100px',height:'35px',background:'rgba(201, 197, 197,0.4)',margin:'0 12px'}}>
+              <i/>
+          </div>
+        </Link>
+    })
   }
   </div>
 </div>
@@ -244,10 +252,12 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       </div>
 
       {
-        shouldRender && ( newUpdate3 !==undefined ? 
+        shouldRender ? ( newUpdate3 !==undefined ? 
         <SlidingArticles articlesSlide={newUpdate3?.data?.data} title='Most Read Articles'/>
         : 
         <SlidingArticlesLoader/>)
+        : 
+        <SlidingArticlesLoader/>
       }
 
         </>

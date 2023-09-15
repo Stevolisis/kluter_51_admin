@@ -56,7 +56,7 @@ export const getStaticProps=async({params})=>{
 
       const pageId=content._id;
       const categoryId=content.category
-      
+
       return {
         props:{content,content2,articleViews,latestArticles,pageId,categoryId}
       }    
@@ -463,23 +463,19 @@ return(
 {comments!==null ? <Comments comments={comments}/> : <CommentsLoader/>}
 
 {
-    shouldRender  ? (content2!==undefined ? 
+    shouldRender && (content2!==undefined ? 
     <SlidingArticles articlesSlide={content2} title='Related Topics'/>
     : 
     <SlidingArticlesLoader/>)
-    : 
-    <SlidingArticlesLoader/>
 }
 
 <div className='miniBlogListCon'>
     
     {
-        shouldRender  ? (articleViews!==undefined ? 
+        shouldRender && (articleViews!==undefined ? 
         <MiniBlogList articles={articleViews} title='Trending News'/>
         : 
         <BlogLoader/>)
-        : 
-        <BlogLoader/>
     }
     
 </div>

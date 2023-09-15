@@ -218,12 +218,10 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       
       
       {
-        shouldRender ? ( blogData !==null ? 
+        shouldRender && ( blogData !==null ? 
           <BlogList articles={blogData}/>
         : 
-        <BlogLoader/>)
-        :
-        <BlogLoader/>
+          <BlogLoader/>)
       }
 
 
@@ -235,12 +233,10 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       </div>
 
       {
-        shouldRender ? ( articleViews !==undefined ? 
+        shouldRender && ( articleViews !==undefined ? 
         <SlidingArticles articlesSlide={articleViews} title='Most Read Articles'/>
         : 
         <SlidingArticlesLoader/>)
-        : 
-        <SlidingArticlesLoader/>
       }
 
         </>

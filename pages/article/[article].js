@@ -16,8 +16,7 @@ import MiniBlogList from "@/components/MiniBlogList";
 import BlogLoader from "@/components/BlogLoader";
 import BlogFastLink from "@/components/BlogFastLink";
 import BlogFastLinkLoader from "@/components/BlogFastLinkLoader";
-import useSWR from "swr";
-import { useRouter } from "next/router";
+
 
 export const getStaticPaths = async () => {
     try {
@@ -82,10 +81,7 @@ export const getStaticProps=async({params})=>{
 
 
 export default function Article({error,content,content2,pageId,articleViews,latestArticles}){
-  const { setloading } = useLoader();
-  console.log('error2: ',error||'null5');
-  console.log('final2',content||'null6');
-
+    const { setloading } = useLoader();
     const months=['','January','February','March','April','May','June','July',
     'August','September','October','November','December'];
     const [liked, setLiked]=useState(false);
@@ -94,29 +90,18 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const [full_name, setfull_name]=useState('');
     const [comments, setcomments]=useState(null); 
     const [shouldRender , setShouldRender]=useState(false);
-    const router=useRouter();
-    const params=router.query;
-    const url = `${baseUrl}/api/articles/getArticle?article=${params.article}`;
-    const url2 = `${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${content?.categorySlug}`;
-    const url3 = `${baseUrl}/api/articles/getArticlesByViews?limit=${12}`;
-    const url4 = `${baseUrl}/api/articles/getArticles?limit=${7}`;
-    const fetcher = (...args) => fetch(...args).then(res => res.json());
-    const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:content}});
-    const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:content2}});
-    const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
-    const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:latestArticles}});
 
-const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 2000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-})
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
 
 function checkLike(){
     let checkTracker=localStorage.getItem('likeTracker');
@@ -330,7 +315,7 @@ return(
  
  <div className='articleHeadCon'>
     <div className='articleHead'><h1>{content?.title}</h1>
-    <p> { newUpdate1 && `Posed on ${months[content?.month]} ${content?.day}, ${content?.year}`}</p>
+    <p> { content && `Posed on ${months[content?.month]} ${content?.day}, ${content?.year}`}</p>
     </div>
     <div className="articleImg">
     <div style={{width:'100%',height:'100%',position:'relative'}}>
@@ -429,10 +414,12 @@ return(
 
 
     {
-    shouldRender  && ( newUpdate4!==undefined ? 
-        <BlogFastLink articles={newUpdate4?.data?.data} title='Latest News'/>
+    shouldRender  ? ( latestArticles!==undefined ? 
+        <BlogFastLink articles={latestArticles} title='Latest News'/>
     : 
         <BlogFastLinkLoader/> )
+    : 
+        <BlogFastLinkLoader/>
     }
 
     
@@ -476,19 +463,23 @@ return(
 {comments!==null ? <Comments comments={comments}/> : <CommentsLoader/>}
 
 {
-    shouldRender  && (newUpdate2!==undefined ? 
-    <SlidingArticles articlesSlide={newUpdate2?.data?.data} title='Related Topics'/>
+    shouldRender  ? (content2!==undefined ? 
+    <SlidingArticles articlesSlide={content2} title='Related Topics'/>
     : 
     <SlidingArticlesLoader/>)
+    : 
+    <SlidingArticlesLoader/>
 }
 
 <div className='miniBlogListCon'>
     
     {
-        shouldRender  && (newUpdate3!==undefined ? 
-        <MiniBlogList articles={newUpdate3?.data?.data} title='Trending News'/>
+        shouldRender  ? (articleViews!==undefined ? 
+        <MiniBlogList articles={articleViews} title='Trending News'/>
         : 
         <BlogLoader/>)
+        : 
+        <BlogLoader/>
     }
     
 </div>

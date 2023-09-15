@@ -227,8 +227,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       
       
       {
-        shouldRender && ( newUpdate2 !==null ? 
-          <BlogList articles={newUpdate2?.data?.data}/>
+        shouldRender && ( blogData !==null ? 
+          <BlogList articles={blogData}/>
         : 
         <BlogLoader/>)
       }

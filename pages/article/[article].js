@@ -88,7 +88,6 @@ export default function Article({error,content,content2,pageId,articleViews,late
 
     const months=['','January','February','March','April','May','June','July',
     'August','September','October','November','December'];
-    const [articlesSlide,setarticlesSlide]=useState(null);
     const [liked, setLiked]=useState(false);
     const [windowLink, setwindowLink]=useState('');
     const [email, setemail]=useState('');

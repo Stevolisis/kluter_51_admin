@@ -99,8 +99,6 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
     const url3=`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`;
     const url4=`${baseUrl}/api/categories/getCategories`;
     const fetcher = (...args) => fetch(...args).then(res => res.json());
-    const newUpdate1 = useSWR(url, fetcher, {fallbackData: {data:category}});
-    const newUpdate2 = useSWR(url2, fetcher, {fallbackData: {data:blogData}});
     const newUpdate3 = useSWR(url3, fetcher, {fallbackData: {data:articleViews}});
     const newUpdate4 = useSWR(url4, fetcher, {fallbackData: {data:returnedCategories}});
 
@@ -252,8 +250,8 @@ export default function BlogCategory({category,blogData,articleViews,returnedCat
       </div>
 
       {
-        shouldRender ? ( newUpdate3 !==undefined ? 
-        <SlidingArticles articlesSlide={newUpdate3?.data?.data} title='Most Read Articles'/>
+        shouldRender ? ( articleViews !==undefined ? 
+        <SlidingArticles articlesSlide={articleViews } title='Most Read Articles'/>
         : 
         <SlidingArticlesLoader/>)
         : 

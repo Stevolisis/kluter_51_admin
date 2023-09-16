@@ -16,14 +16,20 @@ import SlidingArticlesLoader from '../components/SlidingArticlesLoader';
 import MiniBlogList from '@/components/MiniBlogList';
 
 
+const fetchCategories = async () => {
+  const res = await axios.get(`${baseUrl}/api/categories/getCategories`);
+  return res;
+};
 
 export const getStaticProps=async ()=>{
   
 try{
-  const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
+  // const res=await axios.get(`${baseUrl}/api/categories/getCategories`);
   const res2=await axios.get(`${baseUrl}/api/articles/getArticles?limit=15`);
   const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`);
   const res4=await axios.get(`${baseUrl}/api/articles/getArticlesByLikes?limit=${12}`);
+  const res = await useQuery('posts', fetchCategories);
+  console.log('query: ',res||'what?');
 
   const categories= res.data.data;
   const blogData= res2.data.data;

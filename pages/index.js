@@ -28,8 +28,6 @@ try{
   const res2=await axios.get(`${baseUrl}/api/articles/getArticles?limit=15`);
   const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`);
   const res4=await axios.get(`${baseUrl}/api/articles/getArticlesByLikes?limit=${12}`);
-  const ress = await useQuery('posts', fetchCategories);
-  console.log('query: ',ress||'what?');
 
   const categories= res.data.data;
   const blogData= res2.data.data;
@@ -53,10 +51,12 @@ try{
 
 
 
-export default function Home({categories,blogData,articleViews,articleLikes,error}) {
+export default async function Home({categories,blogData,articleViews,articleLikes,error}) {
   const { setloading, name, description,front_cover_image } = useLoader();
   const [shouldRender , setShouldRender]=useState(false);
   const [limit,setLimit]=useState(15);
+  const ress = await useQuery('posts', fetchCategories);
+  console.log('query: ',ress||'what?');
 
   
 function dropdown1(){

@@ -51,7 +51,7 @@ try{
 
 
 
-export default async function Home({categories,blogData,articleViews,articleLikes,error}) {
+export default function Home({categories,blogData,articleViews,articleLikes,error}) {
   const { setloading, name, description,front_cover_image } = useLoader();
   const [shouldRender , setShouldRender]=useState(false);
   const [limit,setLimit]=useState(15);

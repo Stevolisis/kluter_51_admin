@@ -55,8 +55,8 @@ export default async function Home({categories,blogData,articleViews,articleLike
   const { setloading, name, description,front_cover_image } = useLoader();
   const [shouldRender , setShouldRender]=useState(false);
   const [limit,setLimit]=useState(15);
-  const ress = await useQuery('posts', fetchCategories);
-  console.log('query: ',ress||'what?');
+  // const ress = await useQuery('posts', fetchCategories);
+  // console.log('query: ',ress||'what?');
 
   
 function dropdown1(){

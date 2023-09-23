@@ -16,10 +16,10 @@ import SlidingArticlesLoader from '../components/SlidingArticlesLoader';
 import MiniBlogList from '@/components/MiniBlogList';
 
 
-const fetchCategories = async () => {
-  const res = await axios.get(`${baseUrl}/api/categories/getCategories`);
-  return res;
-};
+// const fetchCategories = async () => {
+//   const res = await axios.get(`${baseUrl}/api/categories/getCategories`);
+//   return res;
+// };
 
 export const getStaticProps=async ()=>{
   

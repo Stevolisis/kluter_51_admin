@@ -9,7 +9,7 @@ export default async function handler(req,res){
         let slug=`/${category}`
 
             try{
-            let data=await Categories.findOne({slug:slug,status:'active'}).select('name description img');
+                let data=await Categories.findOne({slug:slug,status:'active'}).select('name description img');
 
                 res.status(200).json({data:data,status:'success'});
 

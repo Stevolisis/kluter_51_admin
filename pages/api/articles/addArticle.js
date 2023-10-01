@@ -30,7 +30,7 @@ export default async function handler(req,res){
                   if (err) throw new Error('Error at Parsing');
     
                       if(files.img_link.size===0){
-                        res.status(200).json({status:'No Img Link Why Bro?'})
+                        res.status(200).json({status:'No Image Found'})
                         return;
                       } else if(!validImagetype.includes(files.img_link.mimetype.split('/')[1],0)) {
                         res.status(200).json({status:'Invalid Image Type'});

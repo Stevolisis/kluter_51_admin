@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { useLoader } from "../../_app";
 import { ThreeDots } from 'react-loader-spinner'
 import { useRouter } from "next/router";
+import { baseUrl4 } from '@/components/BaseUrl';
 
 export default function AdminCategories(){
     const [categories,setcategories]=useState([]);
@@ -22,7 +23,7 @@ export default function AdminCategories(){
 
   function loadCategories(){
     setdataLoad(true)
-    axios.get(`/api/categories/getCategories?limit=${limit.current}&section=admin`)
+    axios.get(`${baseUrl4}/api/categories/getCategories?limit=${limit.current}&section=admin`)
     .then(res=>{
         let status=res.data.status;
         let data=res.data.data;
@@ -62,7 +63,7 @@ export default function AdminCategories(){
       }).then((result) => {
         if (result.isConfirmed) {
             setloading(true)
-    axios.post('/api/categories/deleteCategory',{id:id})
+    axios.post('/deleteCategory',{id:id})
     .then(res=>{
        let status=res.data.status;
        setloading(false);

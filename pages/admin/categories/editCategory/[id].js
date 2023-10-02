@@ -10,8 +10,8 @@ export const getServerSideProps=async (context)=>{
     try{
       const res=await axios.get(`${baseUrl}/api/categories/getCategory/${context.params.id}`);
     
-      const data= res.data.data[0];
-      const editId= data._id;
+      const data= res.data.data;
+      const editId= data.id;
       const editName= data.name;
       const editDescription=data.description;
       const editIcon= data.icon;

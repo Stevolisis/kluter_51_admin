@@ -326,7 +326,7 @@ setarticleStat({['week1']:week1,['week2']:week2,['week3']:week3,['week4']:week4,
 
     function getCategoryStat(){
         setdataLoad6(true)
-        axios.get(`/api/categories/getCategoryStat?month=${categoryCurrentMonth}&year=${categoryCurrentYear}`)
+        axios.get(`${baseUrl}/api/categories/getCategoryStat?month=${categoryCurrentMonth}&year=${categoryCurrentYear}`)
         .then(res=>{
             let status=res.data.status;
             let data=res.data.data;

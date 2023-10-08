@@ -38,12 +38,9 @@ export default async function handler(req,res){
                 if(findSubscriber){
                     res.status(200).json({status:'Subscriber already exist'})
                 }else{
-
                     const recipients=fields.email;
                     const emailSent=await sendNodeMail(1,'TechREVEAL NewsLetter',recipients);
                     const emailSent2=await sendNodeMail(2,`Discover: ${new_article[0].title}`,recipients,company_info,most_read,new_article[0]);
-
-
 
                     const subscribe=new emailSubscribe({
                         email:fields.email,
@@ -56,9 +53,9 @@ export default async function handler(req,res){
                     await Promise.all([subscribe.save(),emailSent,emailSent2])
                     .then(response=>{
                         if(response){
-                            res.status(200).json({status:'success'})
+                            res.status(200).json({status:'success'});
                         }else{
-                            res.status(404).json({status:'Error Occured'})
+                            res.status(404).json({status:'Error Occured'});
                         }
                     })
 

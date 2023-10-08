@@ -8,10 +8,7 @@ export default async function handler(req,res){
     if(req.method==='GET'){
     const {category,article}=req.query;
     let articleSlug=`/${article}`
-    let categorySlug=`/${category}`
-  
-
-
+    let categorySlug=`/${category}`;
 
             try{
             let data=await Articles.findOne({slug:articleSlug,status:'active'}).populate({ path: 'author',select:'full_name description img whatsapp dribble github linkedin twitter instagram' }).lean();

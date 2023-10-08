@@ -9,20 +9,17 @@ export default async function handler(req,res){
 
         if(req.method==='GET'){
             try{
-            let data=await Staffs.find({}).select('full_name email position img day month year status').limit(limit).sort({_id:-1}).lean();
-            for (let i = 0; i < data.length; i++) {
-                data[i].posts=await Articles.count({author:data[i]._id});
-            }
-            res.status(200).json({data:data,status:'success'})
+                let data=await Staffs.find({}).select('full_name email position img day month year status').limit(limit).sort({_id:-1}).lean();
+                for (let i = 0; i < data.length; i++) {
+                    data[i].posts=await Articles.count({author:data[i]._id});
+                }
+                res.status(200).json({data:data,status:'success'})
             }catch(err){
-            res.status(404).json({status:err.message})
+                res.status(404).json({status:err.message})
             }
 
-          }else{
-              res.status(404).json({status:'error'})
-          }
-
-
-
+        }else{
+            res.status(404).json({status:'error'})
+        }
 
 }

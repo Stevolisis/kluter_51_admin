@@ -11,7 +11,7 @@ export default async function handler(req,res){
             if(data.length>0){
                 res.status(200).json({data:data[0].about_us,status:'success'})
             }else{
-                res.status(200).json({data:data,status:'no data Found'})
+                res.status(200).json({data:data,status:'no data Found'});
             }
             }catch(err){
             res.status(404).json({status:err.message})

@@ -8,7 +8,7 @@ export default function BlogList({articles}){
   let listing;
 
      listing=articles && articles.map((article,i)=>{
-      const {title,img,author,slug,categorySlug,description,views,likes,day,month,year}=article;
+      const {title,img,author,slug,description,views,likes,day,month,year}=article;
 
       return(
         <Link href={'/article'+slug} key={i} legacyBehavior><a className='blogCon'>

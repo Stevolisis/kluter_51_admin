@@ -14,16 +14,21 @@ export const config = {
 export default async function handler(req, res) {
   await dbConnect();
   const validImageTypes = ['jpg', 'JPG', 'png', 'PNG', 'jpeg', 'JPEG', 'gif', 'GIF', 'webp', 'WEBP'];
+
   if (req.method === 'POST') {
     const verify = await verifyTokenPriveledge(req.cookies.adminPass, 'addStaffs');
+
     if (req.cookies.adminPass !== undefined && verify === true) {
       const form = new formidable.IncomingForm();
+
       form.parse(req, async function(err, fields, files) {
         if (err) return err;
+
         if (files.img_link.size === 0) return res.status(200).json({ status: 'No Img Link Why Bro?' });
         if (!validImageTypes.includes(files.img_link.mimetype.split('/')[1], 0)) return res.status(200).json({ status: 'Invalid Image Type' });
         if (files.img_link.size >= 1048576) return res.status(200).json({ status: 'Image Size must be less than 1mb' });
         if (files.full_name === 'admin') return res.status(200).json({ status: 'This name is not Permitted' });
+        
         try {
           const password = await bcrypt.hash(fields.password, 10);
           let date=new Date();
@@ -56,12 +61,16 @@ export default async function handler(req, res) {
             month: date.getMonth()+1,
             year: date.getFullYear()
           });
+
           await staff.save();
           res.status(200).json({ status: 'success' });
+        
         } catch (err) {
           res.status(404).json({ status: err.message });
         }
+
       });
+      
     } else if (verify === 'not Permitted') {
       res.status(200).json({ status: 'not Permitted' });
     } else {

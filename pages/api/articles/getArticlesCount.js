@@ -10,7 +10,6 @@ export default async function handler(req,res){
             try{
             let data=await Articles.count({});
             
-
             res.status(200).json({data:data,status:'success'});
 
             }catch(err){

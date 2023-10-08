@@ -9,8 +9,7 @@ export default async function handler(req,res){
     const {id}=req.query; 
 
             try{
-            let data=await Users.find({_id:id}).select('full_name email status');
-               
+                let data=await Users.find({_id:id}).select('full_name email');
                 res.status(200).json({data:data,status:'success'});
 
             }catch(err){

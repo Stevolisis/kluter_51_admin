@@ -97,8 +97,6 @@ export default function AddArticle(){
                     'success'
                 )
 
-
-
                 Swal.fire({
                     title: 'Successful!!',
                     text: "Article Added. Do you want to notify your newsletter subscribers of your new article?",
@@ -141,15 +139,6 @@ export default function AddArticle(){
                 return;
             }
             })
-
-
-
-
-
-
-
-
-
 
 
 

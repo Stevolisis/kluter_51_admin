@@ -15,6 +15,7 @@ export default async function handler(req,res){
         for (let i = 0; i < data.length; i++) {
             data[i].likes=await Likes.count({pageId:data[i]._id});
             data[i].views=await Views.count({pageId:data[i]._id});
+            data[i].description=data[i].content.slice(0,130)+'...';
         }
             
             let response=data.sort((a,b)=>a.likes < b.likes ? 1:-1)

@@ -209,7 +209,7 @@ useEffect(()=>{
         <div className='admineditnamecon'>
             <div className='admineditname'>
             <p>Description</p>
-            <textarea type='text' name='description'  maxLength='250' value={description} onChange={(e)=>setDescription(e.target.value)}/><p>description should not be more than 150 words</p>
+            <textarea type='text' name='description' maxLength='250' value={description} onChange={(e)=>setDescription(e.target.value)}/><p>description should not be more than 150 words</p>
         </div>
         </div>
 

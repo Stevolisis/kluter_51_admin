@@ -59,7 +59,9 @@ export default async function handler(req,res){
               }
     
               {files.img_link.size===0 ? '' : staff.img={public_id:cloudImg.public_id,url:cloudImg.url}}
+              
               await Staffs.updateOne({_id:id},{$set:staff});
+              
               if(files.img_link.size!==0) await Cloudinary.uploader.destroy(imgDelete.img.public_id);
               res.status(200).json({status:'success'});
     

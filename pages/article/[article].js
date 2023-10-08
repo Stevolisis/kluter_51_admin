@@ -262,11 +262,11 @@ function userAuth(){
 
 
 useEffect(()=>{
-setwindowLink(window.location.href)
-checkLike()
-userAuth();
-setShouldRender(true);
-},[])
+    setwindowLink(window.location.href)
+    checkLike();
+    userAuth();
+    setShouldRender(true);
+},[]);
 
 useEffect(()=>{
     if(pageId){

@@ -31,7 +31,7 @@ export default async function handler(req,res){
                 pageId:fields.pageId,
                 comment:fields.comment,
                 day:date.getDate(),
-                month:date.getMonth(),
+                month:date.getMonth()+1,
                 year:date.getFullYear()
                 });
     

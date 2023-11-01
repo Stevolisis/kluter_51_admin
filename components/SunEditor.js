@@ -25,7 +25,7 @@ export default function SunEditors({content,setContent}){
                 ['fullScreen'],
             ]
             }}
-            imageAccept='.jpg'
+            // imageAccept='.jpg'
         />
     );
 };

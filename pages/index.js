@@ -28,7 +28,7 @@ try{
   const res2=await axios.get(`${baseUrl}/api/articles/getArticles?limit=15`);
   const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`);
   const res4=await axios.get(`${baseUrl}/api/articles/getArticlesByLikes?limit=${12}`);
-
+console.log(res,res2,res3,res4);
   const categories= res.data.data;
   const blogData= res2.data.data;
   const articleViews= res3.data.data;

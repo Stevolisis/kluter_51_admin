@@ -14,7 +14,7 @@ export default async function handler(req,res){
 
             try{
                 if(section==='admin'){
-            data=await Articles.find({}).populate({ path: 'author',select:'full_name' }).limit(limit).sort({_id:-1}).lean();
+                data=await Articles.find({}).populate({ path: 'author',select:'full_name' }).limit(limit).sort({_id:-1}).lean();
                 for (let i = 0; i < data.length; i++) {
                     data[i].likes=await Likes.count({pageId:data[i]._id});
                     data[i].views=await Views.count({pageId:data[i]._id});

@@ -27,7 +27,6 @@ export default async function handler(req,res){
             const new_article=await Articles.find({status:'active'}).limit(1).sort({_id:-1}).lean();
             const company_info=await Settings.findOne({});
 
-
             form.parse(req,async function(err,fields) {
                 if (err) throw new Error('Error at Parsing');
                 if(fields.email===""||fields.email===null||fields.email===undefined) res.status(200).json({status:'Email Required'}); 

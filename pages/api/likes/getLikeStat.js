@@ -10,17 +10,17 @@ export default async function handler(req,res){
         let {year}=req.query;
         let data;
 
-            try{
+        try{
             data=await Likes.find({month:month,year:year}).select('-pageId -page_link');
             
             res.status(200).json({data:data,status:'success'});
 
-            }catch(err){
+        }catch(err){
             res.status(404).json({status:err.message})
-            }
+        }
 
-          }else{
-              res.status(404).json({status:'error'})
-          }
+    }else{
+        res.status(404).json({status:'error'})
+    }
 
 }

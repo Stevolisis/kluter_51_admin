@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import { baseUrl } from "@/components/BaseUrl";
 import SlidingArticlesLoader from "@/components/SlidingArticlesLoader";
 import BlogLoader from "@/components/BlogLoader";
-
+import { useParams } from "next/navigation";
 
 
 
@@ -48,10 +48,10 @@ export const getStaticProps=async ({params})=>{
     const res2=await axios.get(`${baseUrl}/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=15`);
     const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`);
     const res4=await axios.get(`${baseUrl}/api/categories/getCategories`);
-    const category= res.data.data;
-    const blogData= res2.data.data||[];
-    const articleViews= res3.data.data;
-    const returnedCategories= res4.data.data;
+    const categorySSR= res.data.data;
+    const blogDataSSR= res2.data.data||[];
+    const articleViewsSSR= res3.data.data;
+    const returnedCategoriesSSR= res4.data.data;
 
     if (res.data.data === null || res2.data.data === null) {
       return {
@@ -60,7 +60,7 @@ export const getStaticProps=async ({params})=>{
     }
 
     return {
-      props:{returnedCategories,blogData,articleViews,category}
+      props:{returnedCategoriesSSR,blogDataSSR,articleViewsSSR,categorySSR}
     }    
     
   }catch(err){
@@ -83,9 +83,46 @@ export const getStaticProps=async ({params})=>{
 
 
 
-export default function BlogCategory({category,blogData,articleViews,returnedCategories,error}){
+export default function BlogCategory({categorySSR,blogDataSSR,articleViewsSSR,returnedCategoriesSSR,error}){
     const [shouldRender , setShouldRender]=useState(false);
     const [limit,setLimit]=useState(15);
+    const params = useParams();
+    console,log('paaaaraaaa',params);
+    const { data:{data:{data:blogData}} } = useQuery({
+      queryKey:['articles2', params?.blogCategory, limit],
+      queryFn:async()=>{
+        const result = await axios.get(`/api/articles/loadArticlesByCategory?category=${params.blogCategory}&limit=${limit}`);
+        return result;
+      },
+      initialData: {data:{data:blogDataSSR}}
+    });
+  
+    const { data:{data:{data:articleViews}} } = useQuery({
+      queryKey:['articles3', params?.blogCategory],
+      queryFn:async()=>{
+        const result = await axios.get(`/api/articles/getArticlesByViews?limit=18`);
+        return result;
+      },
+      initialData: {data:{data:articleViewsSSR}}
+    });
+  
+    const { data:{data:{data:category}} } = useQuery({
+      queryKey:['category', params?.blogCategory],
+      queryFn:async()=>{
+        const result = await axios.get(`/api/categories/getCategoryByName?category=${params.blogCategory}`);
+        return result;
+      },
+      initialData: {data:{data:categorySSR}}
+    });
+  
+    const { data:{data:{data:returnedCategories}} } = useQuery({
+      queryKey:['categories2', params?.blogCategory],
+      queryFn:async()=>{
+        const result = await axios.get(`/api/categories/getCategories?limit=100`);
+        return result;
+      },
+      initialData: {data:{data:returnedCategoriesSSR}}
+    });
 
     if(error){
       Swal.fire(

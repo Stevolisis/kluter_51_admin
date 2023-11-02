@@ -30,13 +30,13 @@ try{
   const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${18}`);
   const res4=await axios.get(`${baseUrl}/api/articles/getArticlesByLikes?limit=${12}`);
 // console.log(res,res2,res3,res4);
-  const categories= res.data.data;
+  const categoriesSSR= res.data.data;
   const blogDataSSR= res2.data.data;
   const articleViews= res3.data.data;
   const articleLikes= res4.data.data;
   
   return {
-    props:{categories,articleLikes,blogDataSSR,articleViews}
+    props:{categoriesSSR,articleLikes,blogDataSSR,articleViews}
   }    
   
 }catch(err){
@@ -52,17 +52,26 @@ try{
 
 
 
-export default function Home({categories,blogDataSSR,articleViews,articleLikes,error}) {
+export default function Home({categoriesSSR,blogDataSSR,articleViews,articleLikes,error}) {
   const { setloading, name, description,front_cover_image } = useLoader();
   const [shouldRender , setShouldRender]=useState(false);
   const [limit,setLimit]=useState(15);
-  const { isLoading, data:{data:{data:blogData}} } = useQuery({
+  const { data:{data:{data:blogData}} } = useQuery({
     queryKey:['articles'],
     queryFn:async()=>{
       const result = await axios.get('/api/articles/getArticles?limit=15');
       return result;
     },
     initialData: {data:{data:blogDataSSR}}
+  });
+
+  const { data:{data:{data:categories}} } = useQuery({
+    queryKey:['categories'],
+    queryFn:async()=>{
+      const result = await axios.get('/api/categories/getCategories');
+      return result;
+    },
+    initialData: {data:{data:categoriesSSR}}
   });
 
   

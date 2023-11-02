@@ -242,7 +242,7 @@ function handleLikeBtn(){
     }
  }
 
-    const setComment=useMutation({
+    const (e)=>setComment.mutate(e)=useMutation({
         mutationFn: async(e) => {
             e.preventDefault();
             const formData=new FormData(e.target);
@@ -257,12 +257,12 @@ function handleLikeBtn(){
             userAuth();
         },
     });
-    if (setComment.isLoading) {
+    if ((e)=>setComment.mutate(e).isLoading) {
         setloading(true);
     }else{
         setloading(false);
     }
-    if (setComment.isError) {
+    if ((e)=>setComment.mutate(e).isError) {
         Toast.fire({icon: 'error',title: 'Error Occured'});
     } 
 
@@ -278,7 +278,7 @@ function handleLikeBtn(){
         let status=res.data.status;
 
         if(status==='success'){
-            setcomments(data);
+            (e)=>setComment.mutate(e)s(data);
         }else{
             return;
         }
@@ -497,7 +497,7 @@ return(
 
  <div className='commentBoxCon'>
 
-    <form onSubmit={setComment}>
+    <form onSubmit={(e)=>setComment.mutate(e)}>
         <h3>Leave a Comment</h3>
     <input required='required' type='text' name='full_name' placeholder="Full Name" value={full_name} onChange={(e)=>setfull_name(e.target.value)}/>
     <input required='required' type='email' name='email' placeholder="E-mail Address" value={email} onChange={(e)=>setemail(e.target.value)}/>

@@ -53,11 +53,11 @@ export const getStaticProps=async({params})=>{
       const res4=await axios.get(`${baseUrl}/api/articles/getArticles?limit=${7}`);
       const contentSSR= res.data.data;
       const relatedArticlesSSR= res2.data.data;
-      const articleViews= res3.data.data;
-      const latestArticles= res4.data.data;
+      const articleViewsSSR= res3.data.data;
+      const latestArticlesSSR= res4.data.data;
 
       const pageId=contentSSR._id;
-      const categoryId=content.category
+      const categoryId=contentSSR.category
 
       return {
         props:{contentSSR,relatedArticlesSSR,articleViewsSSR,latestArticlesSSR,pageId,categoryId}

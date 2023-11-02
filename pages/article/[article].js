@@ -16,6 +16,7 @@ import MiniBlogList from "@/components/MiniBlogList";
 import BlogLoader from "@/components/BlogLoader";
 import BlogFastLink from "@/components/BlogFastLink";
 import BlogFastLinkLoader from "@/components/BlogFastLinkLoader";
+import { useQueryClient } from "@tanstack/react-query";
 
 
 export const getStaticPaths = async () => {
@@ -49,16 +50,16 @@ export const getStaticProps=async({params})=>{
       const res2=await axios.get(`${baseUrl}/api/articles/loadRelatedArticlesByCategory?slug=${res?.data?.data?.categorySlug}`)
       const res3=await axios.get(`${baseUrl}/api/articles/getArticlesByViews?limit=${12}`);
       const res4=await axios.get(`${baseUrl}/api/articles/getArticles?limit=${7}`);
-      const content= res.data.data;
-      const content2= res2.data.data;
+      const contentSSR= res.data.data;
+      const relatedArticlesSSR= res2.data.data;
       const articleViews= res3.data.data;
       const latestArticles= res4.data.data;
 
-      const pageId=content._id;
+      const pageId=contentSSR._id;
       const categoryId=content.category
 
       return {
-        props:{content,content2,articleViews,latestArticles,pageId,categoryId}
+        props:{contentSSR,relatedArticlesSSR,articleViewsSSR,latestArticlesSSR,pageId,categoryId}
       }    
       
     }catch(err){
@@ -80,7 +81,7 @@ export const getStaticProps=async({params})=>{
 
 
 
-export default function Article({error,content,content2,pageId,articleViews,latestArticles}){
+export default function Article({error,contentSSR,relatedArticlesSSR,pageId,articleViewsSSR,latestArticlesSSR}){
     const { setloading } = useLoader();
     const months=['','January','February','March','April','May','June','July',
     'August','September','October','November','December'];
@@ -88,8 +89,52 @@ export default function Article({error,content,content2,pageId,articleViews,late
     const [windowLink, setwindowLink]=useState('');
     const [email, setemail]=useState('');
     const [full_name, setfull_name]=useState('');
-    const [comments, setcomments]=useState(null); 
     const [shouldRender , setShouldRender]=useState(false);
+    const queryClient = useQueryClient();
+    const { data:{data:{data:content}} } = useQuery({
+        queryKey:['article'],
+        queryFn:async()=>{
+            const result = await axios.get(`/api/articles/getArticle?article=${params.article}`);
+            return result;
+        },
+        initialData: {data:{data:contentSSR}}
+    });
+
+    const { data:{data:{data:relatedArticles}} } = useQuery({
+        queryKey:['relatedArticles'],
+        queryFn:async()=>{
+            const result = await axios.get(`/api/articles/loadRelatedArticlesByCategory?slug=${contentSSR?.categorySlug}`);
+            return result;
+        },
+        initialData: {data:{data:relatedArticlesSSR}}
+    });
+    
+    const { data:{data:{data:articleViews}} } = useQuery({
+        queryKey:['articleViews'],
+        queryFn:async()=>{
+            const result = await axios.get(`/api/articles/getArticlesByViews?limit=12`);
+            return result;
+        },
+        initialData: {data:{data:articleViewsSSR}}
+    });
+
+    const { data:{data:{data:latestArticles}} } = useQuery({
+        queryKey:['latestArticles'],
+        queryFn:async()=>{
+            const result = await axios.get(`/api/articles/getArticles?limit=7`);
+            return result;
+        },
+        initialData: {data:{data:latestArticlesSSR}}
+    });
+
+    const { data:{data:{data:comments}} } = useQuery({
+        queryKey:['comments'],
+        queryFn:async()=>{
+            const result = await axios.get(`/api/comments/getPageComments?pageId=${pageId}`);
+            return result;
+        },
+        initialData: {data:{data:[]}}
+    });
 
     const Toast = Swal.mixin({
         toast: true,
@@ -194,27 +239,29 @@ function handleLikeBtn(){
     }
  }
 
- function setComment(e){
-    e.preventDefault();
-    setloading(true);
-    const formData=new FormData(e.target);
-    formData.append('page_link',window.location.href);
-    formData.append('pageId',pageId);
-
-    axios.post('/api/comments/addComment',formData)
-    .then(res=>{
-        let status=res.data.status;
-        let data=res.data.data;
+    const setComment=useMutation({
+        mutationFn: async(e) => {
+            e.preventDefault();
+            const formData=new FormData(e.target);
+            formData.append('page_link',window.location.href);
+            formData.append('pageId',pageId);
+            const result = await axios.post(`/api/comments/addComment`,formData);
+            return result;
+        },
+        onSuccess:()=>{
+            Toast.fire({icon: 'success',title: ''})
+            queryClient.invalidateQueries(['comments']);
+            userAuth();
+        },
+    });
+    if (setComment.isLoading) {
+        setloading(true);
+    }else{
         setloading(false);
-
-        if(status==='success') Toast.fire({icon: 'success',title: ''})
-        loadComments();
-        userAuth();
-       
-    }).catch(err=>{
-        setloading(false);
-    })
- }
+    }
+    if (setComment.isError) {
+        Toast.fire({icon: 'error',title: 'Error Occured'});
+    } 
 
 
 

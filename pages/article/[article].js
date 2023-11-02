@@ -242,7 +242,7 @@ function handleLikeBtn(){
     }
  }
 
-    const (e)=>setComment.mutate(e)=useMutation({
+    const setComment=useMutation({
         mutationFn: async(e) => {
             e.preventDefault();
             const formData=new FormData(e.target);
@@ -257,38 +257,14 @@ function handleLikeBtn(){
             userAuth();
         },
     });
-    if ((e)=>setComment.mutate(e).isLoading) {
+    if (setComment.isLoading) {
         setloading(true);
     }else{
         setloading(false);
     }
-    if ((e)=>setComment.mutate(e).isError) {
+    if (setComment.isError) {
         Toast.fire({icon: 'error',title: 'Error Occured'});
     } 
-
-
-
- function loadComments(){
-   if(pageId===''){
-   return;
-   }else{
-    axios.get(`/api/comments/getPageComments?pageId=${pageId}`)
-    .then(res=>{
-        let data=res.data.data;
-        let status=res.data.status;
-
-        if(status==='success'){
-            (e)=>setComment.mutate(e)s(data);
-        }else{
-            return;
-        }
-    }).catch(err=>{
-       return;
-    })
-   }
-}
-
-
 
 
 
@@ -321,7 +297,6 @@ useEffect(()=>{
 useEffect(()=>{
     if(pageId){
         setView();
-        loadComments()
     }
 
 },[pageId])

@@ -102,6 +102,7 @@ export default function Article({error,contentSSR,relatedArticlesSSR,pageId,arti
         },
         initialData: {data:{data:contentSSR}}
     });
+    console.log('pppppaaaggggeeeeIdddd',pageId,contentSSR,content)
 
     const { data:{data:{data:relatedArticles}} } = useQuery({
         queryKey:['relatedArticles'],

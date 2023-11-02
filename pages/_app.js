@@ -48,8 +48,14 @@ function MyApp({ Component, pageProps }) {
   const [whatsapp,setwhatsapp]=useState({status:'',link:''})
   const [facebook,setfacebook]=useState({status:'',link:''})
   const [google_chat,setgoogle_chat]=useState({status:'',link:''});
-  const queryClient = new QueryClient();
-
+  const [queryClient] = useState(() => new QueryClient({
+    // defaultOptions: {
+    //   queries: {
+    //     refetchOnWindowFocus: false,
+    //   },
+    // },
+    })
+  );
   
   function loadSupport(){
     axios.get('/api/general_settings/getGeneral_settings')

@@ -10,8 +10,8 @@ import Swal from "sweetalert2";
 import { baseUrl } from "@/components/BaseUrl";
 import SlidingArticlesLoader from "@/components/SlidingArticlesLoader";
 import BlogLoader from "@/components/BlogLoader";
-import { useParams } from "next/navigation";
-
+import { useSearchParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 
 
 export const getStaticPaths=async()=>{
@@ -86,8 +86,9 @@ export const getStaticProps=async ({params})=>{
 export default function BlogCategory({categorySSR,blogDataSSR,articleViewsSSR,returnedCategoriesSSR,error}){
     const [shouldRender , setShouldRender]=useState(false);
     const [limit,setLimit]=useState(15);
-    const params = useParams();
-    console,log('paaaaraaaa',params);
+    const search = useSearchParams();
+    // console.log('paaaaraaaa',search.get('blogCategory'));
+    const params = {blogCategory: search.get('blogCategory')};
     const { data:{data:{data:blogData}} } = useQuery({
       queryKey:['articles2', params?.blogCategory, limit],
       queryFn:async()=>{

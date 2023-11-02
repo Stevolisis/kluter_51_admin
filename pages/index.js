@@ -14,6 +14,7 @@ import Image from 'next/image';
 import BlogLoader from '../components/BlogLoader';
 import SlidingArticlesLoader from '../components/SlidingArticlesLoader';
 import MiniBlogList from '@/components/MiniBlogList';
+import { useQuery } from '@tanstack/react-query';
 
 
 // const fetchCategories = async () => {
@@ -30,12 +31,12 @@ try{
   const res4=await axios.get(`${baseUrl}/api/articles/getArticlesByLikes?limit=${12}`);
 // console.log(res,res2,res3,res4);
   const categories= res.data.data;
-  const blogData= res2.data.data;
+  const blogDataSSR= res2.data.data;
   const articleViews= res3.data.data;
   const articleLikes= res4.data.data;
   
   return {
-    props:{categories,articleLikes,blogData,articleViews}
+    props:{categories,articleLikes,blogDataSSR,articleViews}
   }    
   
 }catch(err){
@@ -51,12 +52,18 @@ try{
 
 
 
-export default function Home({categories,blogData,articleViews,articleLikes,error}) {
+export default function Home({categories,blogDataSSR,articleViews,articleLikes,error}) {
   const { setloading, name, description,front_cover_image } = useLoader();
   const [shouldRender , setShouldRender]=useState(false);
   const [limit,setLimit]=useState(15);
-  // const ress = await useQuery('posts', fetchCategories);
-  // console.log('query: ',ress||'what?');
+  const { isLoading, data:{data:{data:blogData}} } = useQuery({
+    queryKey:['articles'],
+    queryFn:async()=>{
+      const result = await axios.get('/api/articles/getArticles?limit=15');
+      return result;
+    },
+    initialData: {data:{data:blogDataSSR}}
+  });
 
   
 function dropdown1(){

@@ -87,7 +87,6 @@ export default function BlogCategory({categorySSR,blogDataSSR,articleViewsSSR,re
     const [shouldRender , setShouldRender]=useState(false);
     const [limit,setLimit]=useState(15);
     const search = useSearchParams();
-    // console.log('paaaaraaaa',search.get('blogCategory'));
     const params = {blogCategory: search.get('blogCategory')};
     const { data:{data:{data:blogData}} } = useQuery({
       queryKey:['articles2', params?.blogCategory, limit],

@@ -17,6 +17,7 @@ import BlogLoader from "@/components/BlogLoader";
 import BlogFastLink from "@/components/BlogFastLink";
 import BlogFastLinkLoader from "@/components/BlogFastLinkLoader";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 
 
 export const getStaticPaths = async () => {
@@ -91,6 +92,8 @@ export default function Article({error,contentSSR,relatedArticlesSSR,pageId,arti
     const [full_name, setfull_name]=useState('');
     const [shouldRender , setShouldRender]=useState(false);
     const queryClient = useQueryClient();
+    const search = useSearchParams();
+    const params = {article: search.get('article')};
     const { data:{data:{data:content}} } = useQuery({
         queryKey:['article'],
         queryFn:async()=>{

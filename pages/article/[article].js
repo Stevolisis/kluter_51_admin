@@ -513,8 +513,8 @@ return(
 {comments!==null ? <Comments comments={comments}/> : <CommentsLoader/>}
 
 {
-    shouldRender && (content2!==undefined ? 
-    <SlidingArticles articlesSlide={content2} title='Related Topics'/>
+    shouldRender && (relatedArticles!==undefined ? 
+    <SlidingArticles articlesSlide={relatedArticles} title='Related Topics'/>
     : 
     <SlidingArticlesLoader/>)
 }

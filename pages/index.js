@@ -32,11 +32,11 @@ try{
 // console.log(res,res2,res3,res4);
   const categoriesSSR= res.data.data;
   const blogDataSSR= res2.data.data;
-  const articleViews= res3.data.data;
-  const articleLikes= res4.data.data;
+  const articleViewsSSR= res3.data.data;
+  const articleLikesSSR= res4.data.data;
   
   return {
-    props:{categoriesSSR,articleLikes,blogDataSSR,articleViews}
+    props:{categoriesSSR,articleLikesSSR,blogDataSSR,articleViewsSSR}
   }    
   
 }catch(err){
@@ -52,7 +52,7 @@ try{
 
 
 
-export default function Home({categoriesSSR,blogDataSSR,articleViews,articleLikes,error}) {
+export default function Home({categoriesSSR,blogDataSSR,articleViewsSSR,articleLikesSSR,error}) {
   const { setloading, name, description,front_cover_image } = useLoader();
   const [shouldRender , setShouldRender]=useState(false);
   const [limit,setLimit]=useState(15);
@@ -72,6 +72,24 @@ export default function Home({categoriesSSR,blogDataSSR,articleViews,articleLike
       return result;
     },
     initialData: {data:{data:categoriesSSR}}
+  });
+
+  const { data:{data:{data:articleViews}} } = useQuery({
+    queryKey:['articleViews2'],
+    queryFn:async()=>{
+      const result = await axios.get('/api/articles/getArticlesByViews?limit=18');
+      return result;
+    },
+    initialData: {data:{data:articleViewsSSR}}
+  });
+
+  const { data:{data:{data:articleLikes}} } = useQuery({
+    queryKey:['articleLikes'],
+    queryFn:async()=>{
+      const result = await axios.get('/api/articles/getArticlesByLikes?limit=12');
+      return result;
+    },
+    initialData: {data:{data:articleLikesSSR}}
   });
 
   

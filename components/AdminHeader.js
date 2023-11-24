@@ -97,14 +97,14 @@ export default function AdminHeader({children}){
 <div className="subNav3">
 <div className='navusername'><i className='fa fa-user-circle'/><span>Admin Steven</span></div>
 <div className='navlinks'><Link href='/admin' >Dashboard</Link></div>
-<div className='navlinks'><Link href='/admin/categories' >Categories</Link></div>
-<div className='navlinks'><Link href='/admin/articles' >Articles</Link></div>
-<div className='navlinks'><Link href='/admin/comments' >Comments</Link></div>
-<div className='navlinks'><Link href='/admin/users' >Users</Link></div>
-<div className='navlinks'><Link href='/admin/staffs' >Staffs</Link></div>
-<div className='navlinks'><Link href='/admin/analytics' >Analytics</Link></div>
-<div className='navlinks'><Link href='/admin/email_support' >Email Support</Link></div>
-<div className='navlinks'><Link href='/admin/general_settings' >General Settings</Link></div>
+<div className='navlinks'><Link href='/admin/categories' >Patients</Link></div>
+{/* <div className='navlinks'><Link href='/admin/articles' >Reports</Link></div> */}
+<div className='navlinks'><Link href='/admin/analytics' >Reports</Link></div>
+<div className='navlinks'><Link href='/admin/comments' >Medications</Link></div>
+<div className='navlinks'><Link href='/admin/users' >Resources</Link></div>
+{/* <div className='navlinks'><Link href='/admin/staffs' >Staffs</Link></div>
+<div className='navlinks'><Link href='/admin/email_support' >Email Support</Link></div> */}
+<div className='navlinks'><Link href='/admin/general_settings' >Settings</Link></div>
 <div className='adminmorebtn' style={{padding:'0'}}><button onClick={logout} style={{width:'100%',background:'transparent',color:'#177C65',fontFamily:'poppinsMedium',boxShadow:'none',textAlign:'left',fontSize:'15px',padding:'10px 0'}}>Logout</button></div>
 </div>
 </div>

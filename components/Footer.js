@@ -42,7 +42,7 @@ export default function Footer({whatsapp,linkedin,google_chat,gmail,phone_number
   <footer id="footer">
     <div className='footerCon'>
       <div className='footerLinksCon'>
-        <h4>TechREVEAL Blog</h4>
+        <h4>KlustMedics</h4>
         <p> For tech enthusiasts and industry leaders alike, TechReveal offers in-depth analysis and revelations, providing a window into the ever-evolving world of technology.</p>
            <ul>
            {facebook && facebook.status==='inactive' ? '' :<li><a href={facebook.link}><i className='fa fa-facebook'></i></a></li>}
@@ -57,7 +57,7 @@ export default function Footer({whatsapp,linkedin,google_chat,gmail,phone_number
       <div className='footerLinksCon'>
         <h4>Additional Pages</h4>
         <ol>
-          <li><Link href='/about-us'>About Us</Link></li>
+          <li><Link href='/#'>About Us</Link></li>
           <li><Link href='#'>Quick Support</Link></li>
           <li><Link href='/privacy-policy'>Privacy Policy</Link></li>
         </ol>

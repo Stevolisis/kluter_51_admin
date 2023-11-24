@@ -62,9 +62,9 @@ export default function AdminHeader({children}){
       <header>
       <div className="logoCon" onClick={()=>router.push('/')}>
         {logo&&<Image
-          src={logo}
-          width={140}
-          height={25}
+          src='https://res.cloudinary.com/dbkcvkodl/image/upload/v1700692489/Frame_vmalvg.png'
+          width={30}
+          height={30}
           blurDataURL="/logo.io"
           alt={logo}
           priority
